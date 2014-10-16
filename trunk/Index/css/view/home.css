@@ -4,24 +4,24 @@
 }
 .idex-view-panel.home .idex-shadow-box{
     position: absolute;
-    width: 400px;
+    width: 415px;
     height: 250px;
 }
 .idex-view-panel.home .idex-shadow-box.desc{
     left: 45px;
-    top: 50px;
+    top: 20px;
 }
 .idex-view-panel.home .idex-shadow-box.template{
     right: 45px;
-    top: 50px;
+    top: 20px;
 }
 .idex-view-panel.home .idex-shadow-box.module{
     left: 45px;
-    top: 350px;
+    top: 300px;
 }
 .idex-view-panel.home .idex-shadow-box.renovation{
     right: 45px;
-    top: 350px;
+    top: 300px;
 }
 .idex-view-panel.home .idex-shadow-box .title{
 	font-size: 30px;
@@ -57,12 +57,12 @@
 .idex-home-bottom-box .left{
     position: absolute;
     left: 45px;
-    bottom: 20px;
+    bottom: 15px;
 }
 .idex-home-bottom-box .right{
     position: absolute;
     right: 45px;
-    bottom: 20px;
+    bottom: 15px;
 }
 
 .idex-home-bottom-box .version{
