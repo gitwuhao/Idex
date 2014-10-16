@@ -50,7 +50,7 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	top: 3px;
 	bottom: 3px;
 	background-color: #FFF;
-	padding: 15px;
+	padding: 5px;
 	box-sizing: border-box;
 }
 
@@ -64,13 +64,22 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 .idex-shadow-box{
 	border: 1px solid #DDD;
 	border-radius: 5px;
-	box-shadow: 1px 1px 3px #DBDBDB;
-	border-bottom-color: #CECECE;
+	box-shadow: 1px 1px 3px #DDD;
+	border-bottom-color: #CCC;
 }
 
-.idex-view-panel.home .idex-shadow-box{
-    float: left;
-    width: 400px;
-    height: 250px;
-    margin: 25px;
+em{
+	font-style: normal;
+}
+.c1{
+	color:#ff6600;
+}
+.c2{
+	color:#00b2ff;
+}
+.c3{
+	color:#ccc;
+}
+.c3{
+	color:#aaa;
 }

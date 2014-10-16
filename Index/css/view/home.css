@@ -1,6 +1,35 @@
+.idex-view-panel.home{
+	padding: 15px;
+	box-sizing: border-box;
+}
 .idex-view-panel.home .idex-shadow-box{
     float: left;
     width: 400px;
     height: 250px;
     margin: 25px;
+}
+.idex-home-bottom-box{
+	font-size: 24px;
+	font-family: 微软雅黑;
+	color: #999;
+}
+.idex-home-bottom-box .left{
+    position: absolute;
+    left: 50px;
+    bottom: 20px;
+}
+.idex-home-bottom-box .right{
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+}
+
+.idex-home-bottom-box .version{
+	margin-right: 20px;
+}
+.idex-home-bottom-box .upgrade{
+	margin-right: 5px;
+}
+.idex-home-bottom-box .renew{
+
 }
