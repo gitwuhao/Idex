@@ -3,24 +3,65 @@
 	box-sizing: border-box;
 }
 .idex-view-panel.home .idex-shadow-box{
-    float: left;
+    position: absolute;
     width: 400px;
     height: 250px;
-    margin: 25px;
+}
+.idex-view-panel.home .idex-shadow-box.desc{
+    left: 45px;
+    top: 50px;
+}
+.idex-view-panel.home .idex-shadow-box.template{
+    right: 45px;
+    top: 50px;
+}
+.idex-view-panel.home .idex-shadow-box.module{
+    left: 45px;
+    top: 350px;
+}
+.idex-view-panel.home .idex-shadow-box.renovation{
+    right: 45px;
+    top: 350px;
+}
+.idex-view-panel.home .idex-shadow-box .title{
+	font-size: 30px;
+	font-family: 微软雅黑;
+	color: #ccc;
+	float: right;
+	margin: 10px 20px 0px 0px;
+}
+
+.idex-view-panel.home .idex-shadow-box .content{
+	font-size: 14px;
+	font-family: 宋体;
+	color: #aaa;
+	position: absolute;
+	top: 70px;
+	left: 30px;
+	width: 340px;
+	line-height: 25px;
+}
+.idex-view-panel.home .idex-shadow-box .count{
+	font-size: 18px;
+	font-family: 微软雅黑;
+	color: #999;
+	position: absolute;
+	left: 30px;
+	bottom: 30px;
 }
 .idex-home-bottom-box{
-	font-size: 24px;
+	font-size: 25px;
 	font-family: 微软雅黑;
 	color: #999;
 }
 .idex-home-bottom-box .left{
     position: absolute;
-    left: 50px;
+    left: 45px;
     bottom: 20px;
 }
 .idex-home-bottom-box .right{
     position: absolute;
-    right: 50px;
+    right: 45px;
     bottom: 20px;
 }
 
