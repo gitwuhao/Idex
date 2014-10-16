@@ -246,7 +246,7 @@
 		var stylecolor=$.attr(element,'stylecolor');
 		if(stylecolor){
 			$.getDoc().trigger('changestyle',{
-				path:'idex-desc.css',
+				path:'idex-desc-default.css',
 				color : stylecolor
 			});
 		}
@@ -262,7 +262,7 @@
 			$.removeAttr(elem,'_s_');
 		});
 		*/
-		CSSApplyStyle("idex-desc.css").disabled=true;
+		CSSApplyStyle('idex-desc-default.css').disabled=true;
 
 		$('.float-box').each(function(index,elem){
 			this.style.width=getWidth(this.children[0]);

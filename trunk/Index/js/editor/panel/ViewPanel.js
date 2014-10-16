@@ -320,7 +320,7 @@
 		setStylecolor:function(value){
 			this.logger(this);
 			$.getDoc().trigger('changestyle',{
-				path:'idex-desc.css',
+				path:'idex-desc-default.css',
 				color : value
 			});
 			this.userdata.stylecolor=value;
