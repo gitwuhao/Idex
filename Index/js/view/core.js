@@ -9,6 +9,11 @@
 				type:'list'
 			},{
 				type:'module'
+			},{
+				type:'editor',
+				init : function(){
+					window.location.href='editor.html';
+				}
 			}/*,{
 				type:'timing'
 			},{
