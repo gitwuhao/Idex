@@ -10,7 +10,7 @@
 	}else{
 		_NAME_='';
 	}
-	ROOTPATH=[loca.protocol,'/','/',loca.host,'/',_NAME_].join('');
+	$.ROOTPATH=[loca.protocol,'/','/',loca.host,'/',_NAME_].join('');
 
 	var ObjectHasOwnProperty=Object.prototype.hasOwnProperty,
 		ObjectConstructor={}.constructor,
@@ -36,7 +36,6 @@
 		href : window.location.href,
 		ui:{},
 		layout : {},
-		ROOTPATH : ROOTPATH,
 		_module_list_:[],
 		_init_ : function(){
 			if(!this._isReady_){
