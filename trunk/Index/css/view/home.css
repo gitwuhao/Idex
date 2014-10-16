@@ -37,8 +37,8 @@
 	color: #aaa;
 	position: absolute;
 	top: 70px;
-	left: 30px;
-	width: 340px;
+	left: 35px;
+	width: 330px;
 	line-height: 25px;
 }
 .idex-view-panel.home .idex-shadow-box .count{
@@ -46,8 +46,8 @@
 	font-family: 微软雅黑;
 	color: #999;
 	position: absolute;
-	left: 30px;
-	bottom: 30px;
+	left: 10px;
+	bottom: 10px;
 }
 .idex-home-bottom-box{
 	font-size: 25px;
