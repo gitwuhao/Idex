@@ -1,0 +1,21 @@
+.idex-view-panel.list .x-ui-tabview{
+    padding-top: 10px;
+    overflow: hidden;
+}
+.idex-view-panel.list .x-ui-tabview-box{
+	position: absolute;
+	top: 50px;
+	bottom: 10px;
+}
+.idex-list-form-box{
+	float: left;
+	width: 280px;
+}
+.idex-list-splitline{
+
+}
+.idex-list-view-box{
+    float: left;
+    width: 630px;
+    height: 200px;
+}
