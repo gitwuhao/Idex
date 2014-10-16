@@ -59,6 +59,7 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	overflow-x: hidden;
 	overflow-y: auto;
 	display: none;
+	box-sizing: border-box;
 }
 
 .idex-shadow-box{
