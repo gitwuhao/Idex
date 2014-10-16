@@ -115,7 +115,7 @@ function loadFile(){
 				document.body.innerHTML='';
 				document.body.appendChild(canvas);
 				
-				Canvas2Image.saveAsPNG(canvas,'idex-template-' + tid);
+				Canvas2Image.saveAsPNG(canvas,'Idex-template-' + tid);
 				
 				var _L_S_C_='__tops_callback__',
 					callback=localStorage.getItem(_L_S_C_);
@@ -140,7 +140,7 @@ function loadFile(){
 					 'p,',
 					 'dD = app.displayDialogs,',
 					 'jO = new JPEGSaveOptions();',
-				'p=a.path+"/ideJPEG/";',
+				'p=a.path+"/IdexJPEG/";',
 				'jO.quality=12;',
 				'function yCA(){'
 		];
