@@ -1,0 +1,77 @@
+.idex-template-tabpanle{
+	margin: 10px;
+	color: #000;
+	border-bottom: 1px solid #DBDBDB;
+	padding-bottom: 5px;
+}
+.idex-template-tabpanle .x-ui-tabview-box{
+	height: 200px;
+	overflow: auto;
+	/* border-bottom: 1px solid #DBDBDB; */
+}
+.idex-template-tabpanle .x-ui-tabview-box .x-ui-tabview{
+	overflow: hidden;
+}
+.idex-template-tabpanle .x-ui-tabview-box .x-ui-tabview.system{
+}
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item{
+	float: left;
+	width: 75px;
+	height: 65px;
+	overflow: hidden;
+	margin: 5px 10px 5px 0px;
+	border: 1px solid #DDD;
+	border-radius: 2px;
+	text-align: center;
+}
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item span{
+	line-height: 14px;
+	font-size: 12px;
+	white-space: nowrap;
+}
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item:hover{
+	box-shadow: 0px 1px 2px #DBDBDB;
+	border-color: #CECECE;
+}
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item .idex-icon{
+	width: 40px;
+	height: 40px;
+	margin: 3px 15px;
+	opacity: 0.5;
+}
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item .share-tag.idex-icon{
+	background-position: -270px -60px;
+	opacity: initial;
+	width: 22px;
+	height: 22px;
+	float: left;
+	margin-top: -61px;
+	margin-left: 1px;
+}
+
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item.selected{
+	border-color: #07A8E5;
+	color: #07A8E5;
+}
+.idex-template-tabpanle .container-icon .idex-icon{
+	background-position: -80px -235px;
+}
+.idex-template-tabpanle .x-ui-floatbar-box .x-ui-button{
+	padding: 4px;
+}
+.idex-template-tabpanle .x-ui-floatbar-box .share .x-ui-icon{
+	background-position: -300px -60px;
+}
+.idex-template-tabpanle .x-ui-floatbar-box .del .x-ui-icon{
+	background-position: -320px -60px;
+}
+.idex-template-tabpanle .x-ui-floatbar-box .refresh .x-ui-icon{
+	background-position: -300px -80px;
+}
+.idex-template-tabpanle .x-ui-floatbar-box .refresh2 .x-ui-icon{
+	background-position: -320px -80px;
+}
+
+.idex-template-tabpanle .x-ui-floatbar-box .unshare .x-ui-icon{
+	background-position: -320px -80px;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Idex</title>
+<link type="text/css" href="css/view/import.css" rel="stylesheet" />
+<link rel="Shortcut Icon" href="images/logo.ico" type="image/x-icon" />
+</head>
+<body>
+<div class="idex-navigation border-box uns">
+</div>
+<div class="idex-view-box">
+	<div class="idex-view-panel home">
+		<div class="idex-shadow-box desc"></div>
+		<div class="idex-shadow-box template"></div>
+		<div class="idex-shadow-box module"></div>
+		<div class="idex-shadow-box renovation"></div>
+		<div class="idex-home-bottom-box"></div>
+	</div>
+</div>
+<script>
+function loadFile(){
+	window.BASE_PATH='/oilan/',
+		uiPath= BASE_PATH + 'ui/';
+	
+	window.UI_LIB_PATH=uiPath+'js/ui/';
+
+	$.includePack('css',uiPath+'css/ui.css');
+
+	$.loadJSQueue(
+		uiPath+'js/ui.files.js',
+		function(){
+			UIList.push(
+					'js/view/core.js'
+			);
+			$.loadJSQueue.apply(this,UIList);
+	});
+};
+</script>
+<script type="text/javascript" charset="utf-8" src="/_/js/startup.js" ></script>
+</body>
+</html>

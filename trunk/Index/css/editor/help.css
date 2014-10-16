@@ -1,0 +1,59 @@
+.idex-ui-qtip-box.helptip .idex-ui-qtip-content{
+	max-width: 220px;
+}
+.idex-ui-qtip-box.helptip .helpinfo{
+	color: #BBB;
+	max-height: 50px;
+	overflow: hidden;
+}
+.idex-ui-qtip-box.helptip .itemfield{
+	color: #F90;
+	margin-top: 5px;
+}
+.idex-ui-qtip-box.property-field.left{
+	margin-right: 15px;
+}
+.idex-ui-qtip-box.property-field.right{
+	margin-left: 5px;
+}
+.idex-ui-qtip-box.property-field.button.right{
+	margin-left: -10px;
+}
+.idex-ui-qtip-box.property-field.bottom{
+	margin-bottom: -1px;
+}
+.idex-ui-qtip-box.property-field.top{
+	margin-bottom: 3px;
+}
+.idex-ui-qtip-box.right-panel-icon.right{
+	margin-left: -10px;
+}
+
+.idex-ui-qtip-box em{
+	font-style: normal;
+}
+
+.idex-ui-qtip-box .a{
+	color:#09F;
+}
+.idex-ui-qtip-box .b{
+	color:#31849B;
+}
+.idex-ui-qtip-box .c{
+	color:#9857CC;
+}
+.idex-ui-qtip-box .d{
+	color:#00B616;
+}
+.idex-ui-qtip-box .e{
+	color:#953735;
+}
+.idex-ui-qtip-box .f{
+	color:#376091;
+}
+.idex-ui-qtip-box .g{
+	color:#538ED5;
+}
+.idex-ui-qtip-box .h{
+	color: #F90;
+}

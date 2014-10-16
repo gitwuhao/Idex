@@ -1,0 +1,60 @@
+.idex-info-panel .idex-info-view-box{
+	height: 150px;
+	margin-bottom: 10px;
+	padding: 10px 10px 0px 10px;
+	/* margin: 0px; */
+	overflow: hidden;
+}
+.idex-float-box .idex-checkimage-panel .idex-list-item{
+    height: 40px;
+    line-height: 30px;
+}
+.idex-checkimage-panel .idex-warning-icon .idex-icon{
+	background-position: -15px -60px;
+}
+.idex-checkimage-panel .idex-error-icon .idex-icon{
+	background-position: -0px -60px;
+}
+.idex-checkimage-panel .idex-reload-icon .idex-icon{
+	background-position: -75px -60px;
+}
+.idex-float-box .idex-checkimage-panel .idex-img-width-height-view{
+    float: left;
+    width: 70px;
+    /* height: 40px; */
+    line-height: 23px;
+    border: 1px solid #5A5A5A;
+    text-align: center;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.idex-float-box .idex-checkimage-panel .idex-list-item-icon{
+	margin: 7px 5px 0px 5px;
+}
+
+.idex-float-box .idex-checkimage-panel .idex-reload-icon{
+    margin-right: 0px;
+}
+
+.idex-float-box .idex-checkimage-panel .idex-checkimage-view-box{
+	height: 300px;
+}
+.idex-float-box .idex-checkimage-panel .idex-list-item-title{
+    width: 115px;
+    /* white-space: nowrap; */
+    margin-right: 0px;
+	height: 30px;
+}
+
+.idex-float-box .idex-checkimage-panel .idex-list-item:first-child{
+	border-top: 1px solid #1F1F1F;
+}
+.idex-float-box .idex-checkimage-panel{
+	width: 250px;
+}
+/*
+.idex-float-box .idex-info-panel{
+	width: 200px;
+}
+*/

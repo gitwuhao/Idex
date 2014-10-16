@@ -1,0 +1,180 @@
+body{
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.idex-browse-box{
+	background-color: #EEE;
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 900000;
+	-webkit-user-select: none;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.idex-browse-box::-webkit-scrollbar-thumb:vertical{
+	-webkit-border-radius:7px;
+	outline:5px solid #EEE;
+	outline-offset:-5px;
+	border: 5px solid #EEE;
+}
+.idex-browse-box::-webkit-scrollbar {
+	 width: 20px;/*对垂直流动条有效*/
+	 height: 8px;/*对水平流动条有效*/
+}
+/*垂直滚动条的按钮*/   /* 垂直滚动条的滑动块*/
+.idex-browse-box::-webkit-scrollbar-button,.idex-browse-box::-webkit-scrollbar-thumb {
+	background: -webkit-linear-gradient(#B6B6B6 0%, #9E9E9E 100%);
+	border-radius: 2px;
+}
+.idex-browse-box::-webkit-resizer,.idex-browse-box::-webkit-scrollbar-resizer,.idex-browse-box::-webkit-scrollbar-corner,.idex-browse-box::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+/*CSS的坐标系，左上角为(0,0),往右往下为增加，往上往左为减少*/
+/*显示滚动条上方的渐增按钮*/
+.idex-browse-box::-webkit-scrollbar-button:start:decrement, /*显示滚动条上方的渐减按钮*/
+.idex-browse-box::-webkit-scrollbar-button:end:increment {
+	display: none;
+}
+.idex-browse-view-box{
+
+}
+.idex-browse-view{
+	width: 750px;
+	min-height: 1000px;
+	background-color: #FFF;
+	box-shadow: 1px 1px 3px #C9C9C9;
+	border: 1px solid #CFCFCF;
+	border-top: none;
+	border-bottom: none;
+}
+.idex-browse-button-box{
+	position: fixed;
+	right: 30px;
+	top: 10px;
+	font-size: 12px;
+	color: #FFF;
+	display: none;
+}
+.idex-browse-button{
+	cursor: pointer;
+	background-color: #9B9A9A;
+	background: -webkit-linear-gradient(#8F8F8F 0%, #707070 100%);
+	margin: 0px 5px;
+	float: left;
+	line-height: 30px;
+	border-radius: 3px;
+	opacity: 0.75;
+	width: 60px;
+	height: 30px;
+}
+.idex-browse-button:hover,.idex-browse-button.hover{
+	opacity: 1;
+}
+.idex-browse-button:active{
+	background: -webkit-linear-gradient(#707070 0%,#8F8F8F 100%);
+	opacity: 1;
+}
+.idex-browse-count{
+	font-size: 12px;
+	color: #626262;
+	position: fixed;
+	bottom: 10px;
+	right: 30px;
+}
+.idex-browse-qtipbox{
+	color: #FFF;
+	font-size: 14px;
+	padding: 14px 25px;
+	vertical-align: top;
+	background-color: #70C1ED;
+	position: fixed;
+	left: 45%;
+	top: 100px;
+	border-radius: 3px;
+	z-index: 900000;
+	box-shadow: 1px 1px 3px #C9C9C9;
+	display: none;
+}
+
+.fadeInDown-animation{
+	-webkit-animation:fadeInDown 1s .2s ease both;
+}
+@-webkit-keyframes fadeInDown{
+0%{
+	opacity:0;
+	-webkit-transform:translateY(-20px)
+}
+100%{
+	opacity:1;
+	-webkit-transform:translateY(0)
+}
+}
+.fadeOutUp-animation{
+	-webkit-animation:fadeOutUp 1s .2s ease both;
+}
+@-webkit-keyframes fadeOutUp{
+0%{
+	opacity:1;
+	-webkit-transform:translateY(0)}
+100%{
+	opacity:0;
+	-webkit-transform:translateY(-20px)}
+}
+
+.idex-browse-loading{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(0, 0, 0, 0.1);
+	-webkit-user-select: none;z-index: 999999999;
+}
+.bubbling-g-box {
+	text-align: center;
+	width: 400px;
+	height: 200px;
+	margin: 15% auto;
+	overflow: hidden;
+}
+.bubbling-g-box span {
+	display: inline-block;
+	vertical-align: middle;
+	width: 5%;
+	height: 10%;
+	margin-top: 30%;
+	background-color: #6CF;
+	-webkit-border-radius: 50%;
+	-webkit-animation: bubbling_G 1.3s infinite alternate;
+}
+.bubbling-g-box .bubbling-g-1 {
+	-webkit-animation-delay: 0s;
+}
+
+.bubbling-g-box .bubbling-g-2 {
+	-webkit-animation-delay: 0.39s;
+}
+
+.bubbling-g-box .bubbling-g-3 {
+	-webkit-animation-delay: 0.78s;
+}
+
+@-webkit-keyframes bubbling_G {
+	0% {
+		width: 5%;
+		height: 10%;
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+
+	100% {
+		width: 15%;
+		height: 30%;
+		opacity: 0;
+		-webkit-transform: translateY(-30px);
+	}
+}

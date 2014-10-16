@@ -1,0 +1,209 @@
+.idex-layout-tab-panel .idex-tabview-box{
+    height: 300px;
+}
+.idex-layout-tab-panel .idex-list-item{
+	height: 50px;
+	line-height: 40px;
+	border-bottom: 1px solid #1F1F1F;
+}
+.idex-layout-tab-panel .idex-list-item.sort-after{
+	border-bottom: 3px double #929292;
+}
+.idex-layout-tab-panel .idex-list-item.sort-before{
+	border-top: 3px double #929292;
+	padding-top: 2px;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-icon{
+	padding: 12px 10px 15px 10px;
+	margin: 0px;
+}
+.idex-layout-tab-panel .idex-list-item .idex-layout-icon{
+	float: left;
+	margin: 0px 5px 0px 0px;
+	overflow: hidden;
+}
+.idex-layout-tab-panel .idex-list-item.container-item .idex-layout-icon{
+	width: 80px;
+	height: 40px;
+	border: 1px solid #000;
+	background-color: #3D3d3d;
+	text-align: center;
+	margin: 0px;
+}
+.idex-layout-tab-panel .idex-list-item .idex-layout-icon .idex-icon{
+    width: 40px;
+    height: 40px;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-title{
+    width: 135px;
+	overflow: hidden;
+	height: 40px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-right: 0px;
+}
+.idex-layout-tab-panel .idex-list-item.container-item .idex-list-item-title{
+    width: 100px;
+}
+.idex-layout-tab-panel .idex-list-item.active .idex-list-item-title{
+	width: 120px;
+}
+.idex-layout-tab-panel .idex-list-item.container-item.active .idex-list-item-title{
+	width: 85px;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar{
+	float: right;
+	display:none;
+	margin: 0px 3px 0px 0px;
+	cursor: pointer;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button.down{
+	margin-top: 9px;
+}
+.idex-layout-tab-panel .idex-list-item.active .idex-list-item-sortbar{
+	display:block;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button{
+	opacity: 0.6;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button.hover{
+	opacity: 1;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button.disabled{
+	opacity: 0.2;
+	cursor: default;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button .idex-icon{
+	width: 15px;
+	height: 15px;
+}
+.idex-toolbar-button-box{
+	overflow: hidden;
+}
+.idex-layout-tab-panel .idex-button.config,.idex-layout-tab-panel .idex-button.globalstyle{
+	float: right;
+	margin-right: 10px;
+	margin-left: 0px;
+}
+.idex-layout-tab-panel .idex-list-item-icon.eye .idex-icon{
+	background-position: -15px -45px;
+}
+.idex-layout-tab-panel .idex-list-item-icon.deye .idex-icon{
+	background-position: -15px -45px;
+}
+.idex-layout-tab-panel .idex-button.new .idex-icon{
+	background-position: -15px -15px;
+}
+.idex-layout-tab-panel .idex-button.code .idex-icon{
+	background-position: -75px -15px;
+}
+.idex-layout-tab-panel .idex-button.saveas .idex-icon{
+	background-position: -45px -15px;
+}
+.idex-layout-tab-panel .idex-button.copy .idex-icon{
+	background-position: -30px -15px;
+}
+.idex-layout-tab-panel .idex-button.config .idex-icon{
+	background-position: -30px -30px;
+}
+.idex-layout-tab-panel .idex-button.globalstyle .idex-icon{
+	background-position: -45px -30px;
+}
+.idex-layout-tab-panel .idex-button.home .idex-icon{
+	background-position: -0px -30px;
+}
+.idex-layout-tab-panel .idex-button.back .idex-icon{
+	background-position: -15px -30px;
+}
+.idex-layout-tab-panel .idex-button.style .idex-icon{
+	background-position: -30px -30px;
+}
+.idex-layout-tab-panel .idex-button.up .idex-icon{
+	background-position: -60px -30px;
+}
+.idex-layout-tab-panel .idex-button.down .idex-icon{
+	background-position: -75px -30px;
+}
+.image-rtable-icon .idex-icon{
+	background-position: -160px -195px;
+}
+.image-grid-icon .idex-icon{
+	background-position: -40px -155px;
+}
+.image-fgrid-icon .idex-icon{
+	background-position: -40px -155px;
+}
+.image-rtable-icon .idex-icon{
+	background-position: -160px -195px;
+}
+.image-ctable-icon .idex-icon{
+	background-position: -80px -155px;
+}
+.property-itable-icon .idex-icon{
+	background-position: -120px -155px;
+}
+.property-image-icon .idex-icon{
+	background-position: -40px -195px;
+}
+.property-table-icon .idex-icon{
+	background-position: -160px -155px;
+}
+.list-table-icon .idex-icon{
+	background-position: -200px -155px;
+}
+.user-table-icon .idex-icon{
+	background-position: -200px -195px;
+}
+.image-list-icon .idex-icon{
+	background-position: -0px -195px;
+}
+.image-item-icon .idex-icon{
+	background-position: -40px -195px;
+}
+.text-item-icon .idex-icon,.float-text-icon .idex-icon{
+	background-position: -80px -195px;
+}
+.html-item-icon .idex-icon,.float-html-icon .idex-icon{
+	background-position: -120px -195px;
+}
+.float-box-icon .idex-icon{
+	background-position: -0px -155px;
+}
+.float-table-icon .idex-icon{
+	background-position: -200px -155px;
+}
+.float-link-icon .idex-icon{
+	background-position: -0px -235px;
+}
+.float-image-icon .idex-icon{
+	background-position: -40px -235px;
+}
+.image-glink-icon .idex-icon{
+	background-position: -40px -235px;
+}
+.image-fglink-icon .idex-icon{
+	background-position: -40px -235px;
+}
+.image-clink-icon .idex-icon{
+	background-position: -40px -235px;
+}
+.image-rlink-icon .idex-icon{
+	background-position: -40px -235px;
+}
+.image-row-icon .idex-icon{
+	background-position: -160px -235px;
+}
+.image-col-icon .idex-icon{
+	background-position: -120px -235px;
+}
+.idex-property-panel .idex-tabview-box{
+    height: 3500px;
+}
+
+.idex-layout-tab-panel .idex-list-item .idex-list-item-icon.deye{
+	opacity: 0.3;
+	cursor: default;
+}
+.idex-layout-tab-panel .idex-list-item .idex-list-item-icon.eye,.idex-layout-tab-panel .idex-list-item .idex-list-item-icon.check{
+	cursor: pointer;
+}
