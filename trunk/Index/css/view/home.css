@@ -1,27 +1,43 @@
 .idex-view-panel.home{
 	padding: 15px;
-	box-sizing: border-box;
+	overflow: hidden;
 }
+
+.idex-home-bottom-box{
+	font-size: 25px;
+	font-family: 微软雅黑;
+	color: #999;
+	width: 100%;
+	height: 40px;
+	overflow: hidden;
+}
+.idex-home-bottom-box .left{
+    float: left;
+    margin-left: 25px;
+}
+.idex-home-bottom-box .right{
+    float: right;
+    margin-right: 35px;
+}
+
+.idex-home-bottom-box .version{
+	margin-right: 20px;
+}
+.idex-home-bottom-box .upgrade{
+	margin-right: 5px;
+}
+.idex-home-bottom-box .renew{
+
+}
+
+
 .idex-view-panel.home .idex-shadow-box{
-    position: absolute;
-    width: 400px;
-    height: 250px;
+	float: left;
+	width: 430px;
+	margin: 10px;
 }
-.idex-view-panel.home .idex-shadow-box.desc{
-    left: 45px;
-    top: 50px;
-}
-.idex-view-panel.home .idex-shadow-box.template{
-    right: 45px;
-    top: 50px;
-}
-.idex-view-panel.home .idex-shadow-box.module{
-    left: 45px;
-    top: 350px;
-}
-.idex-view-panel.home .idex-shadow-box.renovation{
-    right: 45px;
-    top: 350px;
+
+.idex-view-panel.home .idex-shadow-box.desc .count{
 }
 .idex-view-panel.home .idex-shadow-box .title{
 	font-size: 30px;
@@ -35,42 +51,35 @@
 	font-size: 14px;
 	font-family: 宋体;
 	color: #aaa;
-	position: absolute;
-	top: 70px;
-	left: 35px;
-	width: 330px;
+	float: left;
+	width: 100%;
 	line-height: 25px;
+	padding: 30px;
+	height: 145px;
+	box-sizing: border-box;
 }
 .idex-view-panel.home .idex-shadow-box .count{
 	font-size: 18px;
 	font-family: 微软雅黑;
 	color: #999;
-	position: absolute;
-	left: 10px;
-	bottom: 10px;
-}
-.idex-home-bottom-box{
-	font-size: 25px;
-	font-family: 微软雅黑;
-	color: #999;
-}
-.idex-home-bottom-box .left{
-    position: absolute;
-    left: 45px;
-    bottom: 20px;
-}
-.idex-home-bottom-box .right{
-    position: absolute;
-    right: 45px;
-    bottom: 20px;
+	float: left;
+	margin-left: 10px;
+	margin-bottom: 5px;
 }
 
-.idex-home-bottom-box .version{
-	margin-right: 20px;
-}
-.idex-home-bottom-box .upgrade{
-	margin-right: 5px;
-}
-.idex-home-bottom-box .renew{
 
+@media screen and (min-height:660px){
+
+	.idex-view-panel.home .idex-shadow-box{
+		margin: 25px;
+		width: 400px;
+	}
+	
+	.idex-view-panel.home .idex-shadow-box.desc,.idex-view-panel.home .idex-shadow-box.template{
+		margin-top: 15px;
+	}
+
+	.idex-view-panel.home .idex-shadow-box .content{
+		height: 160px;
+	}
 }
