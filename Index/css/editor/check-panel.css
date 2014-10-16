@@ -1,0 +1,54 @@
+.idex-checkimage-tab-panel .idex-list-item{
+    height: 40px;
+    line-height: 30px;
+	cursor: pointer;
+}
+
+.idex-checkimage-tab-panel .checkimg .idex-icon{
+	background-position: -105px -60px;
+}
+.idex-checkimage-tab-panel .idex-warning-icon .idex-icon{
+	background-position: -15px -60px;
+}
+.idex-checkimage-tab-panel .idex-error-icon .idex-icon{
+	background-position: -0px -60px;
+}
+.idex-checkimage-tab-panel .idex-reload-icon .idex-icon{
+	background-position: -75px -60px;
+}
+.idex-checkimage-tab-panel .idex-img-width-height-view{
+    float: left;
+    width: 75px;
+    height: 30px;
+    border: 1px solid #5A5A5A;
+    text-align: center;
+    margin-right: 7px;
+}
+
+.idex-checkimage-tab-panel .idex-list-item-icon{
+	margin: 7px 5px 0px 5px;
+}
+.idex-checkimage-tab-panel .idex-reload-icon{
+	margin: 7px 0px 0px 0px;
+	opacity: 0.7;
+}
+.idex-checkimage-tab-panel .idex-reload-icon:hover{
+	opacity: 1;
+}
+.idex-checkimage-tab-panel .idex-checkimage-view-box{
+	height: 300px;
+}
+.idex-checkimage-tab-panel .idex-list-item-title{
+    width: 100px;
+    margin: 0px;
+	height: 30px;
+}
+
+.idex-checkimage-tab-panel{
+	width: 250px;
+}
+
+.idex-desc-box img.idex-r-activeimg{
+	outline: 2px dashed #F00;
+	outline-offset: -2px;
+}

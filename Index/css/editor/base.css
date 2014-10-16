@@ -1,0 +1,63 @@
+.uns{
+	-webkit-user-select: none;
+}
+.border-box * {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.idex-icon,.idex-ui-icon{
+	background-image: url(/_/images/allicon.png);
+	background-repeat: no-repeat;
+	background-position: 1000px 0px;
+}
+body{
+	background-color: #262626;
+	font-family: tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+	height: 1200px;
+	/* display: inline-block; */
+	overflow: hidden;
+}
+body:-webkit-full-screen{
+	background-color: #262626;
+	position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;	
+}
+
+/* Turn on a 13x13 scrollbar */
+::-webkit-scrollbar {
+	 width: 2px;/*对垂直流动条有效*/
+	 height: 2px;/*对水平流动条有效*/
+
+}
+/*垂直滚动条的按钮*/   /* 垂直滚动条的滑动块*/
+::-webkit-scrollbar-button, ::-webkit-scrollbar-thumb {
+	 background-color: #888;
+/*
+	border-radius:2px;
+*/}
+::-webkit-resizer,::-webkit-scrollbar-resizer,::-webkit-scrollbar-corner,::-webkit-scrollbar-track {
+/*
+	background-color:#424242;
+	border-radius:4px;
+*/
+	background-color: transparent;
+}
+/*
+body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-corner,body::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+*/
+/*CSS的坐标系，左上角为(0,0),往右往下为增加，往上往左为减少*/
+/*显示滚动条上方的渐增按钮*/
+::-webkit-scrollbar-button:start:decrement, /*显示滚动条上方的渐减按钮*/
+::-webkit-scrollbar-button:end:increment {
+ display: none;
+}

@@ -1,0 +1,211 @@
+.idex-ui-text-box,.idex-ui-textarea-box{
+	border-radius: 2px;
+	border: 1px solid #161616;
+	background-color: #222;
+	box-shadow: 1px 1px 3px #1F1F1F inset;
+}
+
+.idex-ui-text.selected .idex-ui-text-box,.idex-ui-textarea.selected .idex-ui-textarea-box{
+	outline: 1px solid #4A669B;
+}
+.idex-ui-text .idex-ui-textfield input,.idex-ui-textarea .idex-ui-textareafield textarea{
+	width : 100%;
+	height: 16px;
+	outline: 0px;
+	border: 0px;
+	color:#BCBCBC;
+	padding: 3px 2px;
+	font: normal 12px/14px 宋体;
+	margin: 0px;
+	background-color: rgba(0, 0, 0, 0);
+}
+.idex-ui-text .idex-ui-textfield input::-webkit-input-placeholder,.idex-ui-textarea .idex-ui-textareafield textarea::-webkit-input-placeholder{
+	color: #3C3C3C;
+}
+.idex-ui-textarea .idex-ui-textareafield textarea{
+	min-height: 50px;
+	height: auto;
+}
+.idex-ui-textarea .idex-ui-textarea-box .idex-ui-icon{
+	display:none;
+}
+
+
+
+.idex-ui-radio-group,.idex-ui-checkbox-group{
+	float: left;
+	margin: 5px 2px 3px 0px;
+}
+.idex-ui-radio-group .idex-ui-icon,.idex-ui-checkbox-group .idex-ui-icon{
+	float: left;
+	line-height: 0px;
+	width: 14px;
+	height: 14px;
+	padding: 0px;
+	margin: 0px;
+	outline: 0px;
+	font-size: 0px;
+	background-color: rgba(0, 0, 0, 0);
+	border: none;
+	cursor: default;
+}
+
+.idex-ui-radio-group span,.idex-ui-checkbox-group span{
+	float: left;
+	margin: 0px 5px 0px 2px;
+	font-size: 12px;
+	line-height: 13px;
+	cursor: default;
+}
+.idex-ui-radio-group .idex-ui-icon{
+	background-position: -303px -103px;
+}
+.idex-ui-checkbox-group .idex-ui-icon{
+	background-position: -323px -103px;
+}
+.idex-ui-radio-group.checked .idex-ui-icon{
+	background-position: -303px -123px;
+}
+.idex-ui-checkbox-group.checked .idex-ui-icon{
+	background-position: -323px -123px;
+}
+.idex-ui-radio-group.selected .idex-ui-icon{
+	background-position: -303px -143px;
+}
+.idex-ui-checkbox-group.selected .idex-ui-icon{
+	background-position: -323px -143px;
+}
+.idex-ui-radio-group.checked.selected .idex-ui-icon{
+	background-position: -303px -163px;
+}
+.idex-ui-checkbox-group.checked.selected .idex-ui-icon{
+	background-position: -323px -163px;
+}
+.idex-ui-color .idex-ui-textfield input{
+	font-size: 0px;
+	cursor: default;
+}
+.idex-ui-color .idex-ui-textfield{
+	line-height: 1px;
+}
+div.x-ui-popu{
+	box-shadow:none;
+}
+.idex-ui-item-field.disabled,.idex-ui-button.disabled{
+	opacity: 0.25;
+}
+/*++++++++++++++++++++++++++++++++++idex-ui-qtip++++++++++++++++++++++++++++++++++*/
+.idex-ui-qtip-box{
+	color: #DDD;
+	position: absolute;
+	z-index: 999999;
+	opacity: 0.9;
+	font-size: 13px;
+	line-height: 16px;
+}
+.idex-ui-qtip-content{
+	padding: 8px;
+	overflow: hidden;
+	/*text-align: center;*/
+	border-radius: 5px;
+	background-color: #404040;
+	text-shadow: 0 1px 1px #000;
+	box-shadow: 0px 0px 3px 1px #000;
+	min-height: 30px;
+	min-width: 100px;
+}
+
+.idex-ui-qtip-box.qit-autosize .idex-ui-qtip-content{
+	min-width: 0px;
+}
+
+.idex-ui-qtip-box.qit-autosize.bottom {
+	margin-bottom: 5px;
+}
+
+.idex-ui-qtip-box.qit-autosize.right {
+	margin-left: -10px;
+}
+
+
+.idex-ui-qtip-arrow-box .idex-ui-icon {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+/*	display: none;*/
+}
+.idex-ui-qtip-arrow-box .top{
+	background-position: -300px -20px;
+	left: 50px;
+	top: -15px;
+}
+.idex-ui-qtip-arrow-box .bottom{
+	background-position: -280px -20px;
+	bottom: -15px;
+	left: 50px;
+}
+.idex-ui-qtip-arrow-box .left{
+	background-position: -280px -40px;
+	left: -15px;
+	top: -30%;
+}
+.idex-ui-qtip-arrow-box .right{
+	background-position: -300px -40px;
+	right: -15px;
+	top: -30%;
+}
+.idex-ui-qtip-box.easeout{
+	opacity: 0;
+	-webkit-animation: animations 1.1s ease-out;
+}
+@-webkit-keyframes animations{
+	0%{opacity:0.9;}
+	100%{opacity:0;}
+}
+/*----------------------------------idex-ui-qtip----------------------------------*/
+
+.x-ui-dd-sort-box.idex-sort-ghost{
+	background-color: #262626;
+	border: none;
+	box-shadow: 0px 0px 3px 1px #000000;
+}
+
+.fontfamily-combo-list {
+	width: 138px;
+}
+
+
+
+
+/*++++++++++++++++++++++++++++++++++css3 animation++++++++++++++++++++++++++++++++++*/
+.tada-animation{
+-webkit-animation:tada 1s .2s ease both;
+}
+@-webkit-keyframes tada{
+0%{-webkit-transform:scale(1)}
+10%,20%{-webkit-transform:scale(0.9) rotate(-3deg)}
+30%,50%,70%,90%{-webkit-transform:scale(1.1) rotate(3deg)}
+40%,60%,80%{-webkit-transform:scale(1.1) rotate(-3deg)}
+100%{-webkit-transform:scale(1) rotate(0)}
+}
+.shake-animation{
+-webkit-animation:shake 1s .2s ease both;
+}
+@-webkit-keyframes shake{
+0%,100%{-webkit-transform:translateX(0);}
+10%,30%,50%,70%, 90%{-webkit-transform:translateX(-10px);}
+20%,40%,60%,80%{-webkit-transform:translateX(10px);}
+}
+.wobble-animation{
+-webkit-animation:wobble 1s .2s ease both;
+}
+@-webkit-keyframes wobble{
+0%{-webkit-transform:translateX(0%)}
+15%{-webkit-transform:translateX(-25%) rotate(-5deg)}
+30%{-webkit-transform:translateX(20%) rotate(3deg)}
+45%{-webkit-transform:translateX(-15%) rotate(-3deg)}
+60%{-webkit-transform:translateX(10%) rotate(2deg)}
+75%{-webkit-transform:translateX(-5%) rotate(-1deg)}
+100%{-webkit-transform:translateX(0%)}
+}
+/*----------------------------------css3 animation----------------------------------*/
