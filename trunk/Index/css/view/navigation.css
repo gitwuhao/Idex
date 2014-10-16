@@ -33,45 +33,48 @@
 .idex-navigation .idex-nav-icon.active{
 	opacity:1;
 }
-.idex-nav-topbar .home .idex-icon{
+.idex-navigation .home .idex-icon{
 	background-position: 0px -75px;
 }
-.idex-nav-topbar .home.active .idex-icon{
+.idex-navigation .home.active .idex-icon{
 	background-position: 0px -115px;
 }
-.idex-nav-topbar .list .idex-icon{
+.idex-navigation .list .idex-icon{
 	background-position: -40px -75px;
 }
-.idex-nav-topbar .list.active .idex-icon{
+.idex-navigation .list.active .idex-icon{
 	background-position: -40px -115px;
 }
-.idex-nav-topbar .module .idex-icon{
+.idex-navigation .module .idex-icon{
 	background-position: -80px -75px;
 }
-.idex-nav-topbar .module.active .idex-icon{
+.idex-navigation .module.active .idex-icon{
 	background-position: -80px -115px;
 }
-.idex-nav-topbar .timing .idex-icon{
+.idex-navigation .timing .idex-icon{
 	background-position: -120px -75px;
 }
-.idex-nav-topbar .timing.active .idex-icon{
+.idex-navigation .timing.active .idex-icon{
 	background-position: -120px -115px;
 }
-.idex-nav-topbar .style .idex-icon{
+.idex-navigation .style .idex-icon{
 	background-position: -160px -75px;
 }
-.idex-nav-topbar .style.active .idex-icon{
+.idex-navigation .style.active .idex-icon{
 	background-position: -160px -115px;
 }
-.idex-nav-bottombar .sync .idex-icon{
+.idex-navigation .sync .idex-icon{
 	background-position: -200px -75px;
 }
-.idex-nav-bottombar .sync.active .idex-icon{
+.idex-navigation .sync.active .idex-icon{
 	background-position: -200px -115px;
 }
-.idex-nav-bottombar .config .idex-icon{
+.idex-navigation .config .idex-icon{
 	background-position: -240px -75px;
 }
-.idex-nav-bottombar .config.active .idex-icon{
+.idex-navigation .config.active .idex-icon{
 	background-position: -240px -115px;
+}
+.idex-navigation .editor .idex-icon{
+	background-position: -200px -235px;
 }
