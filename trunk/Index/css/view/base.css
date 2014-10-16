@@ -1,5 +1,8 @@
 body{
 	background-color: #262626;
+	height: 1200px;
+	margin: 0px;
+	overflow: hidden;
 }
 .uns{
 	-webkit-user-select: none;
@@ -50,7 +53,7 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	top: 3px;
 	bottom: 3px;
 	background-color: #FFF;
-	padding: 5px;
+	padding: 10px;
 	box-sizing: border-box;
 }
 
