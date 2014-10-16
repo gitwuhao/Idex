@@ -7,7 +7,6 @@
 			system : null,
 			share : null
 		},
-		ROOTPATH,
 		APP
 		;
 
@@ -25,7 +24,6 @@
 		initModule : function(){
 			this.logger(this);
 			
-			ROOTPATH=this.app.ROOTPATH;
 
 			this.app.addEventListener('getTemplate',function(config){
 				this.Template.getTemplate(config);
@@ -816,7 +814,7 @@
 	var __ERROR_INDEX__=0;
 	function loadTemplateData(isAsync,callback){
 		$.ajax({
-			url : ROOTPATH + 'loadtemplate.jsp',
+			url : $.ROOTPATH + 'loadtemplate.jsp',
 			dataType : 'jsonp',
 			async : isAsync ,
 			success : function(data){
