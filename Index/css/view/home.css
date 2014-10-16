@@ -1,23 +1,23 @@
 .idex-view-panel.home{
-	padding: 15px;
-	overflow: hidden;
+	padding: 10px;
+	/* overflow: scroll; */
 }
 
 .idex-home-bottom-box{
 	font-size: 25px;
 	font-family: 微软雅黑;
 	color: #999;
-	width: 100%;
+	width: 880px;
 	height: 40px;
 	overflow: hidden;
 }
 .idex-home-bottom-box .left{
     float: left;
-    margin-left: 25px;
+    margin-left: 20px;
 }
 .idex-home-bottom-box .right{
     float: right;
-    margin-right: 35px;
+    margin-right: 10px;
 }
 
 .idex-home-bottom-box .version{
@@ -33,7 +33,7 @@
 
 .idex-view-panel.home .idex-shadow-box{
 	float: left;
-	width: 430px;
+	width: 420px;
 	margin: 10px;
 }
 
@@ -55,7 +55,7 @@
 	width: 100%;
 	line-height: 25px;
 	padding: 30px;
-	height: 145px;
+	height: 140px;
 	box-sizing: border-box;
 }
 .idex-view-panel.home .idex-shadow-box .count{
@@ -71,7 +71,7 @@
 @media screen and (min-height:660px){
 
 	.idex-view-panel.home .idex-shadow-box{
-		margin: 25px;
+		margin: 20px;
 		width: 400px;
 	}
 	
@@ -80,6 +80,10 @@
 	}
 
 	.idex-view-panel.home .idex-shadow-box .content{
-		height: 160px;
+		height: 165px;
+	}
+	
+	.idex-home-bottom-box .right{
+		margin-right: 15px;
 	}
 }
