@@ -65,6 +65,7 @@
     float: left;
     border: 1px solid #DDD;
     padding: 2px;
+	border-radius: 3px;
 }
 .idex-view-panel.list .idex-item-img img{
     width: 100%;
