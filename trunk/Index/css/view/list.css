@@ -26,11 +26,17 @@
     height: 100%;
     overflow: auto;
 }
-.idex-list-splitline{
-
+.idex-list-view-box{
+	position: absolute;
+	left: 300px;
+	right: 10px;
+	top: 50px;
+	bottom: 10px;
+	border-left: 2px groove #FFF;
+	padding-left:10px;
+	overflow: hidden;
 }
-.idex-list-form-box .idex-list-view-box{
-    float: left;
-    width: 630px;
-    height: 200px;
+.idex-list-view-box .idex-list-view{
+	height: 100%;
+	overflow: auto;
 }
