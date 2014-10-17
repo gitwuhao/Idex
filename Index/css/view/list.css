@@ -1,32 +1,30 @@
 .idex-view-panel.list .x-ui-tabview{
-    padding-top: 10px;
-    overflow: hidden;
 }
 .idex-view-panel.list .x-ui-tabview-box{
 }
-.idex-list-form-box{
+.idex-view-panel.list .idex-form-box{
 	position: absolute;
 	width: 280px;
 	top: 50px;
 	bottom: 10px;
 	overflow: hidden;
 }
-.idex-list-form-box .x-ui-form-box,.idex-list-form-box .x-ui-form,.idex-list-form-box .x-ui-form-table{
+.idex-view-panel.list .x-ui-form-box,.idex-view-panel.list .x-ui-form,.idex-view-panel.list .x-ui-form-table{
 	height: 100%;
 }
-.idex-list-form-box .x-ui-form-box{
+.idex-view-panel.list .x-ui-form-box{
 	min-height: 400px;
 }
-.idex-list-form-box .tree-item .x-ui-item-field{
+.idex-view-panel.list .tree-item .x-ui-item-field{
 	text-align: left;
 	vertical-align: top;
 }
-.idex-list-form-box .idex-list-tree-box{
+.idex-view-panel.list .idex-tree-box{
     min-height: 180px;
     height: 100%;
     overflow: auto;
 }
-.idex-list-view-box{
+.idex-view-panel.list .idex-list-box{
 	position: absolute;
 	left: 300px;
 	right: 10px;
@@ -36,7 +34,77 @@
 	padding-left:10px;
 	overflow: auto;
 }
-.idex-list-view-box .idex-list-view{
+.idex-view-panel.list .idex-list-view{
 	height: 100%;
 	width: 610px;
+}
+
+.idex-view-panel.list .idex-list-item{
+    overflow: hidden;
+	margin-top: 10px;
+}
+.idex-view-panel.list .idex-list-item:first-child{
+	margin-top: 0px;
+}
+.idex-view-panel.list .idex-item-img{
+    width: 200px;
+    height: 200px;
+    float: left;
+    border: 1px solid #DDD;
+    padding: 2px;
+}
+.idex-view-panel.list .idex-item-img img{
+    width: 100%;
+    height: 100%;
+}
+.idex-view-panel.list .idex-item-content{
+    float: left;
+    width: 400px;
+    font-size: 12px;
+    color: #808080;
+    margin-left: 10px;
+    overflow: hidden;
+}
+.idex-view-panel.list .idex-item-title{
+    height: 35px;
+    overflow: hidden;
+    line-height: 18px;
+}
+.idex-view-panel.list .idex-item-detail{
+    height: 80px;
+    margin-bottom: 5px;
+}
+.idex-view-panel.list .idex-item-buttons{
+    height: 80px;
+}
+.idex-view-panel.list .idex-item-buttons .x-ui-form-button{
+	padding: 5px 30px;
+	margin-top: 5px;
+}
+.idex-view-panel.list .idex-item-publish,.idex-view-panel.list .idex-item-editor{
+    overflow: hidden;
+    height: 40px;
+}
+.idex-view-panel.list .idex-item-buttons em{
+	float: left;
+	line-height: 40px;
+}
+.idex-view-panel.list .idex-item-content .invalid{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 2px dashed #BBB;
+	line-height: 75px;
+	text-align: center;
+	font-size: 28px;
+	color: #AAA;
+	float: left;
+}
+.idex-view-panel.list .idex-item-buttons .text{
+	float: left;
+	font-size: 12px;
+	line-height: 20px;
+	height: 40px;
+	margin-top: 40px;
+	margin-left: 20px;
 }
