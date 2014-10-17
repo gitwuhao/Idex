@@ -3,7 +3,6 @@
 	CF.merger(list,Idex.view.list,{
 		floatbar : [{
 			xtype:'text',
-			name :'id',
 			icon :'search',
 			placeholder : '粘贴宝贝ID或链接直接查询'
 		}],
@@ -128,7 +127,13 @@
 				}]
 			},
 			onTagClick:function(){
-				console.info("onTagClick:"+this.label);
+
+			},
+			onShowAfter : function(){
+				this.tabPanel.$floatbar.show();
+			},
+			onHideAfter : function(){
+				this.tabPanel.$floatbar.hide();
 			},
 			onLoad:function(){
 				this.$formbox=this.$tabview.children('.idex-form-box:first');
@@ -141,7 +146,6 @@
 		},{
 			label:'描述模板',
 			onTagClick:function(){
-				console.info("onTagClick:"+this.label);
 
 			},
 			onLoad:function(){
