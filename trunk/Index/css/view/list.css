@@ -34,9 +34,9 @@
 	bottom: 10px;
 	border-left: 2px groove #FFF;
 	padding-left:10px;
-	overflow: hidden;
+	overflow: auto;
 }
 .idex-list-view-box .idex-list-view{
 	height: 100%;
-	overflow: auto;
+	width: 610px;
 }
