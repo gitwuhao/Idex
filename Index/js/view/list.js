@@ -41,12 +41,14 @@
 					label:'商家分类',
 					html : '<input type="hidden" name="seller_cids"/>'
 				},{
-					html : '<div class="idex-list-tree-box"></div>'
+					cls :'tree-item',
+					html : ' '
 				}],
 				onRenderAfter : function(){
 					ui.logger(this);
 					this.tree=new ui.tree({
-						render: $('.idex-list-tree-box',this.$elem),
+						render: $('.tree-item td',this.$elem),
+						cls : 'idex-list-tree-box',
 						items: [{"name":"新品专区","parent_cid":0,"sort_order":1,"label":"新品专区","children":[{"name":"10.18冬装第二弹","parent_cid":662573946,"sort_order":1,"label":"10.18冬装第二弹"},{"name":"9.27冬装第一弹-解构几何潮流","parent_cid":662573946,"sort_order":2,"label":"9.27冬装第一弹-解构几何潮流"},{"name":"9.9秋装第三弹-现代部落","parent_cid":662573946,"sort_order":3,"label":"9.9秋装第三弹-现代部落"},{"name":"8.25秋装第二弹-都市素描","parent_cid":662573946,"sort_order":4,"label":"8.25秋装第二弹-都市素描"},{"name":"8.15秋装第一弹-寻找格兰芬多","parent_cid":662573946,"sort_order":5,"label":"8.15秋装第一弹-寻找格兰芬多"}]},{"name":"镇店之宝-强货力荐","parent_cid":0,"sort_order":2,"label":"镇店之宝-强货力荐"},{"name":"手机专享价","parent_cid":0,"sort_order":3,"label":"手机专享价"},{"name":"上装","parent_cid":0,"sort_order":4,"label":"上装","children":[{"name":"长袖衬衫","parent_cid":909614390,"sort_order":1,"label":"长袖衬衫"},{"name":"毛衣/针织衫","parent_cid":909614390,"sort_order":2,"label":"毛衣/针织衫"},{"name":"夹克","parent_cid":909614390,"sort_order":3,"label":"夹克"},{"name":"卫衣","parent_cid":909614390,"sort_order":4,"label":"卫衣"},{"name":"西装","parent_cid":909614390,"sort_order":5,"label":"西装"},{"name":"棉衣/棉服","parent_cid":909614390,"sort_order":6,"label":"棉衣/棉服"},{"name":"羽绒服","parent_cid":909614390,"sort_order":7,"label":"羽绒服"},{"name":"长袖T恤","parent_cid":909614390,"sort_order":8,"label":"长袖T恤"},{"name":"短袖T恤","parent_cid":909614390,"sort_order":9,"label":"短袖T恤"}]},{"name":"下装","parent_cid":0,"sort_order":5,"label":"下装","children":[{"name":"休闲裤","parent_cid":909614394,"sort_order":1,"label":"休闲裤"},{"name":"牛仔裤","parent_cid":909614394,"sort_order":2,"label":"牛仔裤"},{"name":"潮鞋","parent_cid":909614394,"sort_order":3,"label":"潮鞋"},{"name":"九分裤/七分裤","parent_cid":909614394,"sort_order":4,"label":"九分裤/七分裤"},{"name":"短裤","parent_cid":909614394,"sort_order":5,"label":"短裤"}]},{"name":"绝版专区","parent_cid":0,"sort_order":6,"label":"绝版专区"},{"name":"价格区间","parent_cid":0,"sort_order":7,"label":"价格区间","children":[{"name":"100以下","parent_cid":662573997,"sort_order":1,"label":"100以下"},{"name":"100-199元","parent_cid":662573997,"sort_order":2,"label":"100-199元"},{"name":"200-299元","parent_cid":662573997,"sort_order":3,"label":"200-299元"},{"name":"300-499元","parent_cid":662573997,"sort_order":4,"label":"300-499元"},{"name":"500-799元","parent_cid":662573997,"sort_order":5,"label":"500-799元"},{"name":"800以上","parent_cid":662573997,"sort_order":6,"label":"800以上"}]}]
 					});
 				},
