@@ -3,18 +3,33 @@
     overflow: hidden;
 }
 .idex-view-panel.list .x-ui-tabview-box{
-	position: absolute;
-	top: 50px;
-	bottom: 10px;
 }
 .idex-list-form-box{
-	float: left;
+	position: absolute;
 	width: 280px;
+	top: 50px;
+	bottom: 10px;
+	overflow: hidden;
+}
+.idex-list-form-box .x-ui-form-box,.idex-list-form-box .x-ui-form,.idex-list-form-box .x-ui-form-table{
+	height: 100%;
+}
+.idex-list-form-box .x-ui-form-box{
+	min-height: 400px;
+}
+.idex-list-form-box .tree-item .x-ui-item-field{
+	text-align: left;
+	vertical-align: top;
+}
+.idex-list-form-box .idex-list-tree-box{
+    min-height: 180px;
+    height: 100%;
+    overflow: auto;
 }
 .idex-list-splitline{
 
 }
-.idex-list-view-box{
+.idex-list-form-box .idex-list-view-box{
     float: left;
     width: 630px;
     height: 200px;
