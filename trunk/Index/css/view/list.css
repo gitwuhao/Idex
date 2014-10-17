@@ -32,7 +32,7 @@
 	right: 10px;
 	top: 50px;
 	bottom: 10px;
-	border-left: 2px groove #FFF;
+	border-left: 2px groove rgba(255, 255, 255, 0.7);
 	padding-left:10px;
 	overflow: auto;
 }
