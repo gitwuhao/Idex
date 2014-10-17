@@ -2,6 +2,19 @@
 }
 .idex-view-panel.list .x-ui-tabview-box{
 }
+.idex-view-panel.list .x-ui-floatbar-box .x-ui-textfield input{
+	height: 24px;
+	width: 200px;
+}
+.idex-view-panel.list .x-ui-tab-panel .x-ui-floatbar-box {
+	overflow: visible;
+}
+.idex-view-panel.list .x-ui-floatbar-box .x-ui-search-icon{
+	background-position: -420px -177px;
+	display: table-cell;
+	width: 22px;
+	cursor: pointer;
+}
 .idex-view-panel.list .idex-form-box{
 	position: absolute;
 	width: 280px;
@@ -76,6 +89,7 @@
 }
 .idex-view-panel.list .idex-item-buttons{
     height: 80px;
+	cursor: default;
 }
 .idex-view-panel.list .idex-item-buttons .x-ui-form-button{
 	padding: 5px 30px;
