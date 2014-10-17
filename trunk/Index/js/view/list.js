@@ -211,21 +211,6 @@
 					name : 'code',
 					placeholder : '填写商家编码'
 				},{
-					label:'宝贝类型',
-					xtype:'radio',
-					name : 'ptype',
-					items:[{
-						label:'全部&nbsp;&nbsp;&nbsp;',
-						value : '1',
-						checked : true
-					},{
-						label:'出售&nbsp;&nbsp;&nbsp;',
-						value:'2'
-					},{
-						label:'仓库&nbsp;&nbsp;&nbsp;',
-						value:'3'
-					}]
-				},{
 					label:'描述类型',
 					xtype:'radio',
 					name : 'type',
@@ -238,6 +223,21 @@
 						value:'2'
 					},{
 						label:'Idex&nbsp;&nbsp;&nbsp;',
+						value:'3'
+					}]
+				},{
+					label:'宝贝类型',
+					xtype:'radio',
+					name : 'ptype',
+					items:[{
+						label:'全部&nbsp;&nbsp;&nbsp;',
+						value : '1',
+						checked : true
+					},{
+						label:'出售中&nbsp;',
+						value:'2'
+					},{
+						label:'仓库中&nbsp;',
 						value:'3'
 					}]
 				},{
