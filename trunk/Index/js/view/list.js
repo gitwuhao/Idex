@@ -1,6 +1,12 @@
 (function(CF,$){
 	var list={};
 	CF.merger(list,Idex.view.list,{
+		floatbar : [{
+			xtype:'text',
+			name :'id',
+			icon :'search',
+			placeholder : '粘贴宝贝ID或链接直接查询'
+		}],
 		items : [{
 			active:true,
 			label:'描述列表',
@@ -72,10 +78,6 @@
 				  ].join(''),
 			_form_ : {
 				items : [{
-					label:'宝贝编号',
-					name : 'id',
-					placeholder : '粘贴宝贝ID或链接'
-				},{
 					label:'宝贝标题',
 					name : 'title',
 					placeholder : '填写宝贝标题'
