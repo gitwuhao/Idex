@@ -6,8 +6,7 @@
 			label:'描述列表',
 			html :[
 				    '<div class="idex-list-form-box"></div>',
-				    '<div class="idex-list-splitline"></div>',
-				    '<div class="idex-list-view-box"></div>',
+				    '<div class="idex-list-view-box"><div class="idex-list-view"><div style="height:1000px;"></div></div></div>',
 				  ].join(''),
 			_form_ : {
 				items : [{
