@@ -46,9 +46,9 @@
 	border-left: 2px groove rgba(255, 255, 255, 0.7);
 	padding-left:10px;
 	overflow: auto;
+	font-family: arial,'Hiragino Sans GB',"宋体",sans-serif;
 }
 .idex-view-panel.list .idex-list-view{
-	height: 100%;
 	width: 610px;
 }
 
@@ -60,8 +60,8 @@
 	margin-top: 0px;
 }
 .idex-view-panel.list .idex-item-img{
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     float: left;
     border: 1px solid #DDD;
     padding: 2px;
@@ -73,53 +73,56 @@
 }
 .idex-view-panel.list .idex-item-content{
     float: left;
-    width: 400px;
-    font-size: 12px;
+    width: 450px;
+    font-size: 14px;
     color: #808080;
     margin-left: 10px;
     overflow: hidden;
 }
 .idex-view-panel.list .idex-item-title{
-    height: 35px;
+    height: 20px;
     overflow: hidden;
-    line-height: 18px;
-}
-.idex-view-panel.list .idex-item-detail{
-    height: 80px;
-    margin-bottom: 5px;
-}
-.idex-view-panel.list .idex-item-buttons{
-    height: 80px;
-	cursor: default;
-}
-.idex-view-panel.list .idex-item-buttons .x-ui-form-button{
-	padding: 5px 30px;
-	margin-top: 5px;
-}
-.idex-view-panel.list .idex-item-publish,.idex-view-panel.list .idex-item-editor{
-    overflow: hidden;
-    height: 40px;
-}
-.idex-view-panel.list .idex-item-buttons em{
-	float: left;
-	line-height: 40px;
+    line-height: 20px;
 }
 .idex-view-panel.list .idex-item-content .invalid{
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
+	width: 100px;
+	height: 40px;
+	border-radius: 2px;
 	border: 2px dashed #BBB;
-	line-height: 75px;
+	line-height: 35px;
 	text-align: center;
-	font-size: 28px;
+	font-size: 20px;
 	color: #AAA;
 	float: left;
 }
-.idex-view-panel.list .idex-item-buttons .text{
-	float: left;
-	font-size: 12px;
+.idex-view-panel.list .idex-item-content .idex-item-detail{
 	line-height: 20px;
 	height: 40px;
-	margin-top: 40px;
-	margin-left: 26px;
+	font-size: 12px;
+	margin-top: 7px;
+}
+.idex-view-panel.list .idex-item-buttons{
+    height: 32px;
+    margin-top: 50px;
+}
+.idex-view-panel.list .idex-item-buttons .x-ui-button{
+	margin-left: 0px;
+	margin-right: 20px;
+	padding: 3px 10px;
+}
+
+.idex-view-panel.list .idex-item-type{
+    height: 40px;
+    margin-top: 43px;
+}
+.idex-view-panel.list .idex-paging-box{
+	overflow: hidden;
+	padding-top: 10px;
+	float: right;
+}
+.idex-view-panel.list .idex-paging-box .x-ui-button{
+    padding: 6px 10px;
+    margin-right: 5px;
+    border: 1px solid #EDEDED;  
+    color: #3D3D3D;
 }
