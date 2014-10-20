@@ -51,12 +51,12 @@
 	top: 50px;
 	bottom: 10px;
 	border-left: 1px solid #E9E9E9;/*2px groove rgba(255, 255, 255, 0.2);*/
-	padding-left:10px;
+	/* padding-left:10px; */
 	overflow: auto;
 	font-family: arial,'Hiragino Sans GB',"宋体",sans-serif;
 }
 .idex-view-panel.list .idex-list-view{
-	width: 610px;
+	width: 620px;
 }
 
 .idex-view-panel.list .idex-list-item{
@@ -77,6 +77,7 @@
     border: 1px solid #DDD;
     padding: 2px;
 	border-radius: 3px;
+    margin-left: 10px;
 }
 .idex-view-panel.list .idex-item-img img{
     width: 100%;
