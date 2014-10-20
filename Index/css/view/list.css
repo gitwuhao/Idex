@@ -50,7 +50,7 @@
 	right: 10px;
 	top: 50px;
 	bottom: 10px;
-	border-left: 2px groove rgba(255, 255, 255, 0.7);
+	border-left: 2px groove rgba(255, 255, 255, 0.2);
 	padding-left:10px;
 	overflow: auto;
 	font-family: arial,'Hiragino Sans GB',"宋体",sans-serif;
