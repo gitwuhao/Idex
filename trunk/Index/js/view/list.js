@@ -233,6 +233,10 @@
 						'<p>750px</p>',
 						'<em>品牌形象品牌形象</em>',
 					'</div>',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>750px</p>',
+						'<em>品牌形象品牌形象</em>',
+					'</div>',
 				  '</div>'];
 			
 		tab.$tabview.html(html.join(''));
