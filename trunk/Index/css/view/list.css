@@ -37,6 +37,10 @@
     height: 100%;
     overflow: auto;
 }
+.idex-view-panel.list .x-ui-form-box .x-ui-button{
+	margin-right: 15px;
+}
+
 .idex-view-panel.list .idex-list-box{
 	position: absolute;
 	left: 300px;
@@ -121,8 +125,11 @@
 	float: right;
 }
 .idex-view-panel.list .idex-paging-box .x-ui-button{
-    padding: 6px 10px;
-    margin-right: 5px;
-    border: 1px solid #EDEDED;  
-    color: #3D3D3D;
+	padding: 2px 0px;
+	text-align: center;
+	margin-right: 5px;
+	width: 60px;
+}
+.idex-view-panel.list .idex-paging-box .x-ui-button.num{
+	width: 30px;
 }
