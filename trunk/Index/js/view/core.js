@@ -9,19 +9,19 @@
 				type:'list'
 			},{
 				type:'module'
-			},{
+			}/*,{
 				type:'editor',
 				init : function(){
 					window.location.href='editor.html';
 				}
-			}/*,{
+			},{
 				type:'timing'
 			},{
 				type:'style'
 			}*/],
-			bottombar=[{
+			bottombar=[/*{
 				type:'sync'
-			}/*,{
+			},{
 				type:'config'
 			}*/];
 
