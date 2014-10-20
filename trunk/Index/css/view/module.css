@@ -1,4 +1,4 @@
-.idex-view-panel.list .idex-module-box{
+.idex-view-panel .idex-module-box{
 	position: absolute;
 	left: 10px;
 	right: 10px;
@@ -8,7 +8,7 @@
 	padding-top: 15px;
 }
 
-.idex-view-panel.list .idex-module-item{
+.idex-view-panel .idex-module-item{
 	float: left;
 	width: 200px;
 	margin: 0px 0px 25px 25px;
@@ -19,7 +19,7 @@
 }
 
 
-.idex-view-panel.list .idex-module-item p{
+.idex-view-panel .idex-module-item p{
     font-size: 36px;
     color: #DDD;
     padding: 15px 0px 25px 0px;
@@ -27,19 +27,19 @@
     height: 80px;
 }
 
-.idex-view-panel.list .idex-module-item em{
-    font-size: 20px;
+.idex-view-panel .idex-module-item em{
+    font-size: 16px;
 	color:#808080;
     line-height: 20px;
     white-space: nowrap;
 }
-.idex-view-panel.list .idex-module-item:hover{
+.idex-view-panel .idex-module-item:hover{
 	border-color:#00B2FF;
 }
-.idex-view-panel.list .idex-module-item:hover .idex-mini-tbar{
+.idex-view-panel .idex-module-item:hover .idex-mini-tbar{
 	display: block;
 }
-.idex-view-panel.list .idex-module-item:hover p{
+.idex-view-panel .idex-module-item:hover p{
 	color:#00B2FF;
 }
 
