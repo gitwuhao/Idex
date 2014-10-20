@@ -102,3 +102,21 @@ em{
 	box-shadow: 0 0 5px #B8D7FF;
 }
 */
+.idex-view-panel .idex-mini-tbar{
+	float: right;
+	margin-top: -40px;  
+	margin-right: -10px;
+}
+.idex-view-panel .del.idex-icon{
+	background-position: -399px -140px;
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-left: 5px;
+}
+.idex-view-panel .copy.idex-icon{
+	background-position: -400px -180px;
+	width: 20px;
+	height: 20px;
+	float: left;
+}
