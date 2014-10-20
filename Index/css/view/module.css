@@ -13,7 +13,9 @@
 	margin: 0px 0px 25px 25px;
 	padding: 30px 0px 5px 0px;
 	text-align: center;
+    font-family: arial,微软雅黑;
 	cursor: default;
+	overflow: hidden;
 }
 
 
@@ -22,14 +24,14 @@
     color: #DDD;
     padding: 15px 0px 25px 0px;
     margin: 0px;
-    font-family: arial,微软雅黑;
     height: 80px;
 }
 
 .idex-view-panel.list .idex-module-item em{
-    font-size: 12px;
+    font-size: 20px;
 	color:#808080;
     line-height: 20px;
+    white-space: nowrap;
 }
 .idex-view-panel.list .idex-module-item:hover{
 	border-color:#00B2FF;
