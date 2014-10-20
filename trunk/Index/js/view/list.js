@@ -215,7 +215,7 @@
 			html=['<div class="idex-module-box">',
 					'<div class="idex-module-item idex-shadow-box">',
 						'<p>空白</p>',
-						'<em>点击新增模板</em>',
+						'<em>点击创建模板</em>',
 					'</div>',
 					'<div class="idex-module-item idex-shadow-box">',
 						'<p>750px</p>',
