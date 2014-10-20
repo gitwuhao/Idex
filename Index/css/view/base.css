@@ -18,8 +18,8 @@ body{
 }
 /* Turn on a 13x13 scrollbar */
 ::-webkit-scrollbar {
-	 width: 12px;/*对垂直流动条有效*/
-	 height: 12px;/*对水平流动条有效*/
+	 width: 8px;/*对垂直流动条有效*/
+	 height: 8px;/*对水平流动条有效*/
 
 }
 /*垂直滚动条的按钮*/   /* 垂直滚动条的滑动块*/
