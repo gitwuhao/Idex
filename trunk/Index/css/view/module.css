@@ -1,6 +1,6 @@
 .idex-view-panel.list .idex-module-box{
 	position: absolute;
-	left: 40px;
+	left: 10px;
 	right: 10px;
 	top: 70px;
 	bottom: 10px;
@@ -10,7 +10,7 @@
 .idex-view-panel.list .idex-module-item{
 	float: left;
 	width: 200px;
-	margin: 0px 20px 20px 0px;
+	margin: 0px 0px 25px 25px;
 	padding: 30px 0px 5px 0px;
 	text-align: center;
 	cursor: default;
