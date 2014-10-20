@@ -55,15 +55,11 @@
 .idex-view-panel.list .idex-list-view{
 	width: 610px;
 }
-
 .idex-view-panel.list .idex-list-item{
     overflow: hidden;
 	margin-top: 10px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #E9E9E9;
-}
-.idex-view-panel.list .idex-list-item a{
-	color: #888;
 }
 .idex-view-panel.list .idex-list-item:first-child{
 	margin-top: 0px;
@@ -118,8 +114,8 @@
 	margin-left: 0px;
 	margin-right: 20px;
 	padding: 3px 10px;
+	background:none;
 }
-
 .idex-view-panel.list .idex-item-type{
     height: 40px;
     margin-top: 43px;
@@ -134,7 +130,14 @@
 	text-align: center;
 	margin-right: 5px;
 	width: 60px;
+	background:none;
 }
 .idex-view-panel.list .idex-paging-box .x-ui-button.num{
 	width: 30px;
+}
+.idex-view-panel.list .idex-list-box .x-ui-button:hover{
+	color: #FFF;
+	box-shadow:none;
+	border-color:#00b2ff;
+	background-color:#00b2ff;
 }
