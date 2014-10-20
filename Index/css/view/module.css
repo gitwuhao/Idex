@@ -1,0 +1,36 @@
+.idex-view-panel.list .idex-module-box{
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 50px;
+	bottom: 10px;
+	overflow: auto;
+}
+
+.idex-view-panel.list .idex-module-box .idex-module-item{
+	float: left;
+	width: 210px;
+	margin: 0px 20px 20px 0px;
+	padding: 5px 0px;
+	text-align: center;
+	cursor: default;
+}
+
+.idex-view-panel.list .idex-module-box .idex-module-item:hover{
+	border-color:#00B2FF;
+}
+
+.idex-view-panel.list .idex-module-box .idex-module-item p{
+    font-size: 36px;
+    color: #DDD;
+    line-height: 100px;
+    padding: 0px;
+    margin: 0px;
+    font-family: arial,微软雅黑;
+}
+
+.idex-view-panel.list .idex-module-box .idex-module-item em{
+    font-size: 12px;
+	color:#808080;
+    line-height: 20px;
+}

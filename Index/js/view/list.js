@@ -1,6 +1,5 @@
 (function(CF,$){
-	var list={};
-	CF.merger(list,Idex.view.list,{
+	var TAB={
 		floatbar : [{
 			xtype:'text',
 			icon :'search',
@@ -9,6 +8,7 @@
 		items : [{
 			active:true,
 			label:'描述列表',
+			cls : 'list',
 			html :[
 				    '<div class="idex-form-box"></div>',
 				    '<div class="idex-list-box">',
@@ -168,7 +168,7 @@
 				},{
 					label:'重置',
 					onClick:function(){
-
+						
 					}
 				}]
 			},
@@ -191,25 +191,55 @@
 			}
 		},{
 			label:'描述模板',
+			cls : 'module',
 			onTagClick:function(){
-
+				
 			},
 			onLoad:function(){
-
+				Idex.view.module.load();
 			}
-		}],
-		onShow : function(){
-			this.$render.show();
+		}]
+	};
 
-		},
-		onHide : function(){
-			this.$render.hide();
-
-		}
-	});
 
 	Idex.view.list.init=function(){
-		Idex.view.list=new ui.tab(list);
+		TAB.render=this.render;
+		//TAB.$render=this.$render;
+		TAB=new ui.tab(TAB);
+	};
+
+	CF.extendEventListener(Idex.view.list);
+	
+	function loadModuleView(){
+		var tab=TAB.getTab('module'),
+			html=['<div class="idex-module-box">',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>空白</p>',
+						'<em>点击新增模板</em>',
+					'</div>',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>750px</p>',
+						'<em>淘宝模板</em>',
+					'</div>',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>790px</p>',
+						'<em>天猫模板</em>',
+					'</div>',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>750px</p>',
+						'<em>品牌形象</em>',
+					'</div>',
+					'<div class="idex-module-item idex-shadow-box">',
+						'<p>750px</p>',
+						'<em>品牌形象品牌形象</em>',
+					'</div>',
+				  '</div>'];
+			
+		tab.$tabview.html(html.join(''));
+	};
+
+	Idex.view.module.load=function(){
+		loadModuleView();
 	};
 
 })(CF,jQuery);
