@@ -106,6 +106,7 @@ em{
 	float: right;
 	margin-top: -40px;  
 	margin-right: -10px;
+	display: none;
 }
 
 .idex-view-panel .idex-mini-tbar .idex-icon{
