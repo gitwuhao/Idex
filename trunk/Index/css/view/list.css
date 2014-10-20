@@ -50,7 +50,7 @@
 	right: 10px;
 	top: 50px;
 	bottom: 10px;
-	border-left: 2px groove rgba(255, 255, 255, 0.2);
+	border-left: 1px solid #E9E9E9;/*2px groove rgba(255, 255, 255, 0.2);*/
 	padding-left:10px;
 	overflow: auto;
 	font-family: arial,'Hiragino Sans GB',"宋体",sans-serif;
@@ -58,14 +58,17 @@
 .idex-view-panel.list .idex-list-view{
 	width: 610px;
 }
+
 .idex-view-panel.list .idex-list-item{
     overflow: hidden;
 	margin-top: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #E9E9E9;
+	padding-top: 10px;
+	border-top: 1px solid #E9E9E9;
 }
 .idex-view-panel.list .idex-list-item:first-child{
 	margin-top: 0px;
+	padding-top: 0px;
+	border-top: none;
 }
 .idex-view-panel.list .idex-item-img{
     width: 150px;
