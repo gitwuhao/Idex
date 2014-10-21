@@ -1,8 +1,11 @@
 (function(CF,$){
 
-	function initBar(){
-		var html,
-			topbar=[{
+	var Idex=function(){};
+
+	Idex=new Idex();
+
+	CF.merger(Idex,{
+		topbar : [{
 				type : 'home',
 				isStatic : true
 			},{
@@ -19,57 +22,11 @@
 			},{
 				type:'style'
 			}*/],
-			bottombar=[/*{
+		bottombar : [/*{
 				type:'sync'
 			},{
 				type:'config'
-			}*/];
-
-		html=['<div class="idex-nav-topbar">'];
-
-		for(var i=0,len=topbar.length;i<len;i++){
-			var item=topbar[i];
-			html.push('<div class="',item.type,' idex-nav-icon">',
-						 '<div class="idex-icon"></div>',
-					  '</div>');
-			Idex.view[item.type]=item;
-		}
-
-		html.push('</div>',
-			      '<div class="idex-nav-bottombar">');
-		for(var i=0,len=bottombar.length;i<len;i++){
-			var item=bottombar[i];
-			html.push('<div class="',item.type,' idex-nav-icon">',
-						 '<div class="idex-icon"></div>',
-					  '</div>');
-			Idex.view[item.type]=item;
-		}
-		Idex.$navbox.html(html.join(''));
-
-
-		$('.idex-nav-topbar .idex-nav-icon',Idex.$navbox).each(function(index,target){
-			topbar[index].$icon=$(target);
-			topbar[index].icon=target;
-			Idex.bindIcon(topbar[index]);
-		});
-
-		$('.idex-nav-bottombar .idex-nav-icon',Idex.$navbox).each(function(index,target){
-			bottombar[index].$icon=$(target);
-			bottombar[index].icon=target;
-			Idex.bindIcon(bottombar[index]);
-		});
-		
-
-		//CF.extendEventListener(Idex.view.timing);
-		//CF.extendEventListener(Idex.view.style);
-		//CF.extendEventListener(Idex.view.config);
-	};
-
-	var Idex=function(){};
-
-	Idex=new Idex();
-
-	CF.merger(Idex,{
+			}*/],
 		logger : function(ref){
 			var caller,
 				_owner_,
@@ -100,19 +57,12 @@
 			item.render=render;
 			item.$render=$(render);
 
-			if(item.init){
-				this.initPanel();
-			}else{
-				var me=this;
-				$.loadJSQueue('js/view/'+item.type+'.js',function(){
-					me.initPanel();
-				});
+			if(this.activeItem.init){
+				this.activeItem.init();
+				this.activeItem=this.view[item.type];
+
+				this.activeItem.on('show');
 			}
-		},
-		initPanel : function(){
-			this.activeItem.init();
-			this.activeItem=this.view[this.activeItem.type];
-			this.activeItem.on('show');
 		},
 		setPanel : function(anchor){
 			var item=this.view[anchor];
@@ -122,9 +72,11 @@
 				this.activeItem.on('hide');
 				this.activeItem.$icon.removeClass('active');
 			}
-
-			window.location.hash=anchor;
-
+			if(anchor=='home'){
+				window.location.hash='';
+			}else{
+				window.location.hash=anchor;
+			}
 			this.activeItem=item;
 			item.$icon.addClass('active');
 
@@ -133,10 +85,8 @@
 			}else{
 				this.createPanel(item);
 			}
-
-			
 		},
-		view :{},
+		view : {},
 		bindIcon : function(item){
 			item.$icon.click({
 				me : this,
@@ -166,16 +116,76 @@
 		}
 	});
 
+	(function(){
+		for(var i=0,len=Idex.topbar.length;i<len;i++){
+			var item=Idex.topbar[i];
+			Idex.view[item.type]=item;
+		}
+
+		for(var i=0,len=Idex.bottombar.length;i<len;i++){
+			var item=Idex.bottombar[i];
+			Idex.view[item.type]=item;
+		}
+	})();
+	
+	function initBar(){
+		var html=['<div class="idex-nav-topbar">'];
+
+		for(var i=0,len=Idex.topbar.length;i<len;i++){
+			var item=Idex.topbar[i];
+			html.push('<div class="',item.type,' idex-nav-icon">',
+						 '<div class="idex-icon"></div>',
+					  '</div>');
+		}
+
+		html.push('</div>',
+			      '<div class="idex-nav-bottombar">');
+		for(var i=0,len=Idex.bottombar.length;i<len;i++){
+			var item=Idex.bottombar[i];
+			html.push('<div class="',item.type,' idex-nav-icon">',
+						 '<div class="idex-icon"></div>',
+					  '</div>');
+		}
+		Idex.$navbox.html(html.join(''));
+
+		$('.idex-nav-topbar .idex-nav-icon',Idex.$navbox).each(function(index,target){
+			var item=Idex.topbar[index];
+			item.$icon=$(target);
+			item.icon=target;
+			Idex.bindIcon(item);
+		});
+
+		$('.idex-nav-bottombar .idex-nav-icon',Idex.$navbox).each(function(index,target){
+			var item=Idex.bottombar[index];
+			item.$icon=$(target);
+			item.icon=target;
+			Idex.bindIcon(item);
+		});
+		
+		//CF.extendEventListener(Idex.view.timing);
+		//CF.extendEventListener(Idex.view.style);
+		//CF.extendEventListener(Idex.view.config);
+	};
 
 	CF.extendEventListener(Idex);
 
 	window.Idex=Idex;
 
+
 	$.getDoc().ready(function(){
 		Idex.$navbox=$('.idex-navigation');
 		Idex.$viewbox=$('.idex-view-box');
 		initBar();
+
 		Idex.ready();
+
+
 	});
+
+	
+	$.loadJSQueue(
+		'js/view/list.js',
+		'js/view/module.js'
+	);
 
 })(CF,jQuery);
