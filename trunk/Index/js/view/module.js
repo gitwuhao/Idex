@@ -1,6 +1,5 @@
 (function(CF,$){
-	var module={};
-	CF.merger(module,Idex.view.module,{
+	var TAB={
 		items : [{
 			active:true,
 			label:'自定义模块',
@@ -96,19 +95,15 @@
 				  '</div>'];
 				this.$tabview.html(html.join(''));
 			}
-		}],
-		onShow : function(){
-			this.$render.show();
-		
-		},
-		onHide : function(){
-			this.$render.hide();
-			
-		}
-	});
+		}]
+	};
+
 
 	Idex.view.module.init=function(){
-		Idex.view.module=new ui.tab(module);
+		TAB.render=this.render;
+		TAB=new ui.tab(TAB);
 	};	
+
+	CF.extendEventListener(Idex.view.module);
 
 })(CF,jQuery);
