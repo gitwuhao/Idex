@@ -6,7 +6,6 @@
 			placeholder : '粘贴宝贝ID或链接直接查询'
 		}],
 		items : [{
-			active:true,
 			label:'描述列表',
 			name : 'list',
 			html :[
