@@ -1,7 +1,6 @@
 (function(CF,$){
 	var TAB={
 		items : [{
-			active:true,
 			label:'自定义模块',
 			name : 'module',
 			onTagClick:function(){
