@@ -49,7 +49,6 @@
 			this.$viewbox.append(render);
 			item.render=render;
 			item.$render=$(render);
-			console.info('Idex.createViewPanel(\''+item.type+'\')');
 			return item.render;
 		},
 		setViewPanel : function(anchor){
@@ -70,7 +69,6 @@
 			item.$icon.addClass('active');
 			this.activeItem=item;
 			this.activeViewPanel=item.render;
-			console.info('Idex.setViewPanel(\''+anchor+'\')');
 		},
 		view : {},
 		bindIcon : function(item){
