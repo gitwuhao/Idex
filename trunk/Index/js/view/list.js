@@ -161,9 +161,6 @@
 					}
 				}]
 			},
-			onTagClick:function(){
-
-			},
 			onShowAfter : function(){
 				this.tabPanel.$floatbar.show();
 			},
@@ -181,9 +178,6 @@
 		},{
 			label:'描述模板',
 			name : 'module',
-			onTagClick:function(){
-				
-			},
 			onLoad:function(){
 				var html=['<div class="idex-module-box">',
 						'<div class="idex-module-item idex-shadow-box">',
