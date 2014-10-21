@@ -3,11 +3,7 @@
 		items : [{
 			label:'自定义模块',
 			name : 'module',
-			onTagClick:function(){
-				console.info("onTagClick:"+this.label);
-			},
 			onLoad:function(){
-				
 				var html=['<div class="idex-module-box">',
 					'<div class="idex-module-item idex-shadow-box">',
 						'<div class="idex-mini-tbar">',
@@ -43,10 +39,6 @@
 		},{
 			label:'装修模块',
 			name : 'renovation',
-			onTagClick:function(){
-				console.info("onTagClick:"+this.label);
-
-			},
 			onLoad:function(){
 				var html=['<div class="idex-module-box">',
 					'<div class="idex-module-item idex-shadow-box">',
