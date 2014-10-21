@@ -3,6 +3,7 @@
 		items : [{
 			active:true,
 			label:'自定义模块',
+			name : 'module',
 			onTagClick:function(){
 				console.info("onTagClick:"+this.label);
 			},
@@ -42,6 +43,7 @@
 			}
 		},{
 			label:'装修模块',
+			name : 'renovation',
 			onTagClick:function(){
 				console.info("onTagClick:"+this.label);
 
@@ -99,11 +101,28 @@
 	};
 
 
-	Idex.view.module.init=function(){
-		TAB.render=this.render;
-		TAB=new ui.tab(TAB);
-	};	
 
-	CF.extendEventListener(Idex.view.module);
+	function initTab(render){
+		if(TAB._owner_name_==ui.tab._owner_name_){
+			return;
+		}
+		TAB.render=render;
+		TAB=new ui.tab(TAB);
+	};
+
+
+	Idex.addEventListener('anchor.module',function(event){
+		this.setViewPanel('module');
+		initTab(this.activeViewPanel);
+		TAB.setCurrentTab(TAB.getTab('module'));
+	});
+
+
+
+	Idex.addEventListener('anchor.renovation',function(event){
+		this.setViewPanel('module');
+		initTab(this.activeViewPanel);
+		TAB.setCurrentTab(TAB.getTab('renovation'));
+	});
 
 })(CF,jQuery);

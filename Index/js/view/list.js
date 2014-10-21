@@ -8,7 +8,7 @@
 		items : [{
 			active:true,
 			label:'描述列表',
-			cls : 'list',
+			name : 'list',
 			html :[
 				    '<div class="idex-form-box"></div>',
 				    '<div class="idex-list-box">',
@@ -181,79 +181,83 @@
 			}
 		},{
 			label:'描述模板',
-			cls : 'module',
+			name : 'module',
 			onTagClick:function(){
 				
 			},
 			onLoad:function(){
-				Idex.view.module.load();
+				var html=['<div class="idex-module-box">',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<p>空白</p>',
+							'<em>点击创建模板</em>',
+						'</div>',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<div class="idex-mini-tbar">',
+								'<div class="copy idex-icon"></div>',
+								'<div class="del idex-icon"></div>',
+							'</div>',
+							'<p>750px</p>',
+							'<em>淘宝模板</em>',
+						'</div>',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<div class="idex-mini-tbar">',
+								'<div class="copy idex-icon"></div>',
+								'<div class="del idex-icon"></div>',
+							'</div>',
+							'<p>790px</p>',
+							'<em>天猫模板</em>',
+						'</div>',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<div class="idex-mini-tbar">',
+								'<div class="copy idex-icon"></div>',
+								'<div class="del idex-icon"></div>',
+							'</div>',
+							'<p>750px</p>',
+							'<em>品牌形象</em>',
+						'</div>',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<div class="idex-mini-tbar">',
+								'<div class="copy idex-icon"></div>',
+								'<div class="del idex-icon"></div>',
+							'</div>',
+							'<p>750px</p>',
+							'<em>品牌形象品牌形象</em>',
+						'</div>',
+						'<div class="idex-module-item idex-shadow-box">',
+							'<div class="idex-mini-tbar">',
+								'<div class="copy idex-icon"></div>',
+								'<div class="del idex-icon"></div>',
+							'</div>',
+							'<p>750px</p>',
+							'<em>品牌形象品牌形象</em>',
+						'</div>',
+					  '</div>'];
+				
+				this.$tabview.html(html.join(''));
 			}
 		}]
 	};
 
-
-	Idex.view.list.init=function(){
-		TAB.render=this.render;
-		//TAB.$render=this.$render;
+	function initTab(render){
+		if(TAB._owner_name_==ui.tab._owner_name_){
+			return;
+		}
+		TAB.render=render;
 		TAB=new ui.tab(TAB);
 	};
 
-	CF.extendEventListener(Idex.view.list);
-	
-	function loadModuleView(){
-		var tab=TAB.getTab('module'),
-			html=['<div class="idex-module-box">',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<p>空白</p>',
-						'<em>点击创建模板</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="copy idex-icon"></div>',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<p>750px</p>',
-						'<em>淘宝模板</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="copy idex-icon"></div>',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<p>790px</p>',
-						'<em>天猫模板</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="copy idex-icon"></div>',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<p>750px</p>',
-						'<em>品牌形象</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="copy idex-icon"></div>',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<p>750px</p>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="copy idex-icon"></div>',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<p>750px</p>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
-				  '</div>'];
-			
-		tab.$tabview.html(html.join(''));
-	};
 
-	Idex.view.module.load=function(){
-		loadModuleView();
-	};
+	Idex.addEventListener('anchor.list',function(event){
+		this.setViewPanel('list');
+		initTab(this.activeViewPanel);
+		TAB.setCurrentTab(TAB.getTab('list'));
+	});
+
+	
+	Idex.addEventListener('anchor.template',function(event){
+		this.setViewPanel('list');
+		initTab(this.activeViewPanel);
+		TAB.setCurrentTab(TAB.getTab('module'));
+	});
 
 })(CF,jQuery);

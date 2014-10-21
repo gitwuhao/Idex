@@ -41,35 +41,22 @@
 			callerName=callerName + caller._name_;
 			CF.logger(callerName,arg);
 		},
-		ready : function(){
-			var anchor=$.getAnchor().toLowerCase();
-			if(!this.view[anchor]){
-				anchor='home';
-			}
-			this.setPanel(anchor);
-		},
-		createPanel : function(item){
+		createViewPanel : function(item){
 			if(item.render){
-				return;
+				return item.render;
 			}
 			var render=$.createElement(['<div class="idex-view-panel ',item.type,'"></div>'].join(''));
 			this.$viewbox.append(render);
 			item.render=render;
 			item.$render=$(render);
-
-			if(this.activeItem.init){
-				this.activeItem.init();
-				this.activeItem=this.view[item.type];
-
-				this.activeItem.on('show');
-			}
+			return item.render;
 		},
-		setPanel : function(anchor){
+		setViewPanel : function(anchor){
 			var item=this.view[anchor];
 			if(this.activeItem==item){
 				return;
 			}else if(this.activeItem){
-				this.activeItem.on('hide');
+				this.activeItem.$render.hide();
 				this.activeItem.$icon.removeClass('active');
 			}
 			if(anchor=='home'){
@@ -77,14 +64,11 @@
 			}else{
 				window.location.hash=anchor;
 			}
-			this.activeItem=item;
+			this.createViewPanel(item);
+			item.$render.show();
 			item.$icon.addClass('active');
-
-			if(item.$render){
-				this.activeItem.on('show');
-			}else{
-				this.createPanel(item);
-			}
+			this.activeItem=item;
+			this.activeViewPanel=item.render;
 		},
 		view : {},
 		bindIcon : function(item){
@@ -93,7 +77,7 @@
 				type : item.type,
 			},function(event){
 				var data=event.data;
-				data.me.setPanel(data.type);
+				data.me.trigger('anchor.'+data.type);
 			});
 
 			if(!item.onShow){
@@ -169,6 +153,41 @@
 
 	CF.extendEventListener(Idex);
 
+	Idex.addEventListener('anchor.home',function(){
+		this.setViewPanel('home');
+	});
+
+
+	Idex.addEventListener('ready',function(){
+		var anchor=$.getAnchor().toLowerCase();
+		if(!this.view[anchor]){
+			anchor='home';
+		}
+		this.trigger('anchor.'+anchor);
+
+		$('.idex-shadow-box .count',this.view.home.$render).each(function(index,target){
+			var anchor=null,
+				parentElement=target.parentElement;
+			if($.hasClass(parentElement,'list')){
+				anchor='list';
+			}else if($.hasClass(parentElement,'template')){
+				anchor='template';
+			}else if($.hasClass(parentElement,'module')){
+				anchor='module';
+			}else if($.hasClass(parentElement,'renovation')){
+				anchor='renovation';
+			}
+			$(target).click({
+				anchor : anchor
+			},function(event){
+				Idex.trigger('anchor.'+event.data.anchor);
+			});
+		});
+
+		
+	});
+
+
 	window.Idex=Idex;
 
 
@@ -176,16 +195,20 @@
 		Idex.$navbox=$('.idex-navigation');
 		Idex.$viewbox=$('.idex-view-box');
 		initBar();
-
-		Idex.ready();
-
-
+		Idex.triggerAndRemoveEvent('ready');
 	});
 
 	
+	
+
+
 	$.loadJSQueue(
 		'js/view/list.js',
 		'js/view/module.js'
 	);
+
+
+	
+
 
 })(CF,jQuery);

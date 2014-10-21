@@ -37,7 +37,7 @@
 	margin: 10px;
 }
 
-.idex-view-panel.home .idex-shadow-box.desc .count{
+.idex-view-panel.home .idex-shadow-box.list .count{
 }
 .idex-view-panel.home .idex-shadow-box .title{
 	font-size: 30px;
@@ -74,7 +74,7 @@
 		width: 400px;
 	}
 	
-	.idex-view-panel.home .idex-shadow-box.desc,.idex-view-panel.home .idex-shadow-box.template{
+	.idex-view-panel.home .idex-shadow-box.list,.idex-view-panel.home .idex-shadow-box.template{
 		margin-top: 15px;
 	}
 
