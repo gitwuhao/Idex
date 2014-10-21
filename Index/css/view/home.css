@@ -65,9 +65,8 @@
 	float: left;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	cursor: pointer;
 }
-
-
 @media screen and (min-height:660px){
 
 	.idex-view-panel.home .idex-shadow-box{
