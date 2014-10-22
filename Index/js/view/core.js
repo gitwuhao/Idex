@@ -6,8 +6,7 @@
 
 	CF.merger(Idex,{
 		topbar : [{
-				type : 'home',
-				isStatic : true
+				type : 'home'
 			},{
 				type:'list'
 			},{
@@ -22,7 +21,10 @@
 			},{
 				type:'style'
 			}*/],
-		bottombar : [/*{
+		bottombar : [{
+				type:'comment',
+				href:'http://item.taobao.com/item.htm?id=27018556087'
+			}/*,{
 				type:'sync'
 			},{
 				type:'config'
@@ -111,29 +113,43 @@
 			Idex.view[item.type]=item;
 		}
 	})();
-	
+
 	function initBar(){
+		
+		function getNavItemHTML(item){
+			var html=[];
+			html.push('<div class="',item.type,' idex-nav-icon">');
+			if(item.href){
+				html.push('<a href="',item.href,'" target="_blank">',
+							'<div class="idex-icon"></div>',
+						  '</a>');
+			}else{
+				html.push('<div class="idex-icon"></div>');
+			}
+			html.push('</div>');
+			return html;
+		};
+
 		var html=['<div class="idex-nav-topbar">'];
 
 		for(var i=0,len=Idex.topbar.length;i<len;i++){
 			var item=Idex.topbar[i];
-			html.push('<div class="',item.type,' idex-nav-icon">',
-						 '<div class="idex-icon"></div>',
-					  '</div>');
+			html.push.apply(html,getNavItemHTML(item));
 		}
 
 		html.push('</div>',
 			      '<div class="idex-nav-bottombar">');
 		for(var i=0,len=Idex.bottombar.length;i<len;i++){
 			var item=Idex.bottombar[i];
-			html.push('<div class="',item.type,' idex-nav-icon">',
-						 '<div class="idex-icon"></div>',
-					  '</div>');
+			html.push.apply(html,getNavItemHTML(item));
 		}
 		Idex.$navbox.html(html.join(''));
 
 		$('.idex-nav-topbar .idex-nav-icon',Idex.$navbox).each(function(index,target){
 			var item=Idex.topbar[index];
+			if(item.href){
+				return;
+			}
 			item.$icon=$(target);
 			item.icon=target;
 			Idex.bindIcon(item);
@@ -141,6 +157,9 @@
 
 		$('.idex-nav-bottombar .idex-nav-icon',Idex.$navbox).each(function(index,target){
 			var item=Idex.bottombar[index];
+			if(item.href){
+				return;
+			}
 			item.$icon=$(target);
 			item.icon=target;
 			Idex.bindIcon(item);
