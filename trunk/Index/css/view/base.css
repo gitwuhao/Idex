@@ -70,7 +70,7 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 }
 .idex-view-panel a:hover{
 	text-decoration: underline;
-	color:#03b1fc;
+	color:#00B2FF;
 }
 .idex-shadow-box{
 	border: 1px solid #DDD;

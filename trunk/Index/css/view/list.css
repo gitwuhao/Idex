@@ -123,6 +123,8 @@
 	margin-right: 20px;
 	padding: 3px 10px;
 	background:none;
+	border-color: #00B2FF;
+	color: #00B2FF;
 }
 .idex-view-panel.list .idex-item-content .x-ui-button.create{
     margin-top: 100px;
@@ -150,6 +152,5 @@
 .idex-view-panel.list .idex-list-box .x-ui-button:hover{
 	color: #FFF;
 	box-shadow:none;
-	border-color:#00b2ff;
 	background-color:#00b2ff;
 }
