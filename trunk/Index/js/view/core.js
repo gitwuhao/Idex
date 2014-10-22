@@ -99,6 +99,45 @@
 				item.$render=$render;
 				CF.extendEventListener(item);
 			}
+		},
+		getNavHTML : function(){
+		
+			function getNavItemHTML(item){
+				var html=['<div class="',item.type,' idex-nav-icon">'];
+				if(item.href){
+					html.push('<a href="',item.href,'" target="_blank">',
+								'<div class="idex-icon"></div>',
+							  '</a>');
+				}else{
+					if(item.type=="home"){
+						html.push('<a href="/">');
+					}else{
+						html.push('<a href="/#',item.type,'">');
+					}
+					html.push( '<div class="idex-icon"></div>',
+							  '</a>');
+				}
+				html.push('</div>');
+				return html;
+			};
+
+			var html=['<div class="idex-navigation border-box uns">',
+						'<div class="idex-nav-topbar">'];
+
+			for(var i=0,len=Idex.topbar.length;i<len;i++){
+				var item=Idex.topbar[i];
+				html.push.apply(html,getNavItemHTML(item));
+			}
+
+			html.push('</div>',
+					  '<div class="idex-nav-bottombar">');
+			for(var i=0,len=Idex.bottombar.length;i<len;i++){
+				var item=Idex.bottombar[i];
+				html.push.apply(html,getNavItemHTML(item));
+			}
+			html.push('</div>',
+					'</div>');
+			console.info(html.join(''));
 		}
 	});
 
