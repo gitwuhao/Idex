@@ -173,6 +173,10 @@
 	CF.extendEventListener(Idex);
 
 	Idex.addEventListener('anchor.home',function(){
+		var $render=this.$viewbox.children('.idex-view-panel.home');
+		this.view.home.render=$render[0];
+		this.view.home.$render=$render;
+
 		this.setViewPanel('home');
 	});
 
