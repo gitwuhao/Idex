@@ -1,8 +1,13 @@
 body{
 	background-color: #262626;
-	height: 1200px;
 	margin: 0px;
 	overflow: hidden;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding: 0px;
 }
 .uns{
 	-webkit-user-select: none;
