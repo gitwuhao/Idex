@@ -30,11 +30,15 @@
 	});
 	
 	function init(){
-		var callback='C'+$.randomChar(5),
-		isInitProgress=false,
+		var isInitProgress=false,
+		callbackName,
+		frameID='idexFrame'+$.randomChar(3),
 		$progress,
 		$progresslabel,
 		$progressbg,
+		timeoutID,
+		firstRunTimeStamp,
+		$frame,
 		html=['<style>',
 				'.idex-s-progress{',
 					'position: fixed;',
@@ -69,12 +73,17 @@
 					'background: -webkit-gradient(linear, left top, left bottom, from(#09F), to(#008FFF));',
 				'}',
 			  '</style>',
-			  '<div class="idex-s-progress"><div class="idex-s-label">1%</div><div class="idex-s-progress-bg"></div></div>',
-			  '<iframe src="http://idex.oilan.com.cn/mp4/imp.ast?callback=',callback,'" width="1" height="1"></iframe>'
+			  '<div class="idex-s-progress">',
+					'<div class="idex-s-label"></div>',
+					'<div class="idex-s-progress-bg"></div>',
+			  '</div>',
+			  '<iframe id="',frameID,'" width="1" height="1" ',
+			  '>',
+			  '</iframe>'
 			];
 		
 
-		window[callback]=function(val){
+		function callbackHandle(val){
 			if(!isInitProgress){
 				$progress.show();
 				isInitProgress=true;
@@ -82,11 +91,18 @@
 			$progressbg.css('width',val+'%');
 			$progresslabel.html(val+'%');
 			$progress.attr('title','已导入淘宝'+val+'%的数据');
+
+			if(timeoutID){
+				
+			}else if(val<100){
+				timeoutID=setTimeout(loadFrame,50000);
+				firstRunTimeStamp=$.timestamp();
+			}
 		};
 
 		window.importComplete=function(){
 			console.info('完成');
-			window[callback](100);
+			window[callbackName](100);
 		};
 
 		$.getBody().append(html.join(''));
@@ -94,6 +110,27 @@
 		$progress=$('.idex-s-progress');
 		$progresslabel=$progress.children('.idex-s-label:first');
 		$progressbg=$progress.children('.idex-s-progress-bg:first');
+		$frame=$('#'+frameID);
+		$frame.removeAttr('id');
+		 
+		function loadFrame(){
+			if(firstRunTimeStamp){
+				var timeout=$.timestamp() - firstRunTimeStamp - 30000;
+				if(timeout<0){
+					setTimeout(loadFrame,20000);
+					return;
+				}
+			}
+			if(callbackName){
+				delete window[callbackName];
+			}
+			timeoutID=null;
+			callbackName='C'+$.randomChar(5);
+			window[callbackName]=callbackHandle;
+			$frame.attr('src','http://idex.oilan.com.cn/mp4/imp.ast?callback='+callbackName);
+		};
+
+		loadFrame();
 	};
 
 })(CF,jQuery);
