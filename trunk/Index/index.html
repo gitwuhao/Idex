@@ -61,12 +61,14 @@ function loadFile(){
 		uiPath+'js/ui.files.js',
 		function(){
 			UIList.push(
-					'js/view/core.js'
+					'js/view/core.js',
+					'js/view/importProgress.js'
 			);
 			$.loadJSQueue.apply(this,UIList);
 	});
 };
 </script>
+
 <script type="text/javascript" charset="utf-8" src="/_/js/startup.js" ></script>
 </body>
 </html>
