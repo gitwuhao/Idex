@@ -36,7 +36,7 @@
 		$progress,
 		$progresslabel,
 		$progressbg,
-		timeoutID,
+		timeoutID=null,
 		firstRunTimeStamp,
 		$frame,
 		html=['<style>',
@@ -94,7 +94,7 @@
 
 			if(timeoutID && val>=100){
 				window.clearTimeout(timeoutID);
-				timeoutID=-1;
+				timeoutID=null;
 			}else if(!timeoutID && val<100){
 				timeoutID=setTimeout(loadFrame,50000);
 				firstRunTimeStamp=$.timestamp();
@@ -126,7 +126,7 @@
 				delete window[callbackName];
 			}
 			console.info('loadFrame:'+new Date().format()+'>>>'+$progresslabel.html());
-			timeoutID=-1;
+			timeoutID=null;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
 			$frame.attr('src','http://idex.oilan.com.cn/mp4/imp.ast?callback='+callbackName);
