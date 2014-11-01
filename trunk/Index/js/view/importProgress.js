@@ -124,6 +124,7 @@
 			if(callbackName){
 				delete window[callbackName];
 			}
+			console.info('loadFrame:'+new Date().format());
 			timeoutID=null;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
