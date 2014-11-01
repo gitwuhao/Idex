@@ -94,7 +94,8 @@
 
 			if(timeoutID && val>=100){
 				window.clearTimeout(timeoutID);
-			}else if(val<100){
+				timeoutID=-1;
+			}else if(!timeoutID && val<100){
 				timeoutID=setTimeout(loadFrame,50000);
 				firstRunTimeStamp=$.timestamp();
 			}
@@ -125,7 +126,7 @@
 				delete window[callbackName];
 			}
 			console.info('loadFrame:'+new Date().format()+'>>>'+$progresslabel.html());
-			timeoutID=null;
+			timeoutID=-1;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
 			$frame.attr('src','http://idex.oilan.com.cn/mp4/imp.ast?callback='+callbackName);
