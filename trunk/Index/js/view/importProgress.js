@@ -92,8 +92,8 @@
 			$progresslabel.html(val+'%');
 			$progress.attr('title','已导入淘宝'+val+'%的数据');
 
-			if(timeoutID){
-				
+			if(timeoutID && val>=100){
+				window.clearTimeout(timeoutID);
 			}else if(val<100){
 				timeoutID=setTimeout(loadFrame,50000);
 				firstRunTimeStamp=$.timestamp();
@@ -124,7 +124,7 @@
 			if(callbackName){
 				delete window[callbackName];
 			}
-			console.info('loadFrame:'+new Date().format());
+			console.info('loadFrame:'+new Date().format()+'>>>'+$progresslabel.html());
 			timeoutID=null;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
