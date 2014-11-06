@@ -11,7 +11,7 @@
 .idex-view-panel .idex-module-item{
 	float: left;
 	width: 200px;
-	margin: 0px 0px 25px 25px;
+	margin: 3px 0px 25px 25px;
 	padding: 30px 0px 5px 0px;
 	text-align: center;
     font-family: arial,微软雅黑;
@@ -35,6 +35,8 @@
 }
 .idex-view-panel .idex-module-item:hover{
 	border-color:#00B2FF;
+	margin-top: 0px;
+	margin-bottom: 28px;
 }
 .idex-view-panel .idex-module-item:hover .idex-mini-tbar{
 	display: block;
