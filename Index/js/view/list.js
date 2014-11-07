@@ -5,6 +5,18 @@
 			icon :'search',
 			placeholder : '粘贴宝贝ID或链接直接查询'
 		}],
+		topbar : {
+			cls:'idex-list-sort-bar uns',
+			items:[{
+				label:'发布时间',
+				cls:'publish-time',
+				icon:'sort'
+			},{
+				label:'修改时间',
+				cls:'editor-time desc',
+				icon:'sort'
+			}]
+		},
 		items : [{
 			label:'描述列表',
 			name : 'list',
