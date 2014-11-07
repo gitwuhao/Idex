@@ -12,7 +12,7 @@
 				cls:'publish-time',
 				icon:'sort'
 			},{
-				label:'修改时间',
+				label:'编辑时间',
 				cls:'editor-time desc',
 				icon:'sort'
 			}]
