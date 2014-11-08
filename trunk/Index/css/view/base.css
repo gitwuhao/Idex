@@ -83,6 +83,9 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	box-shadow: 1px 1px 3px #DDD;
 	border-bottom-color: #CCC;
 }
+/*
+box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+*/
 
 em{
 	font-style: normal;
