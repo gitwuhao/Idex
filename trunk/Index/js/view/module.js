@@ -43,7 +43,7 @@
 				var html=['<div class="idex-module-box">',
 					'<div class="idex-module-item idex-shadow-box">',
 						'<p>空白</p>',
-						'<em>创建装修模块</em>',
+						'<em>点击创建模块</em>',
 					'</div>',
 					'<div class="idex-module-item idex-shadow-box">',
 						'<div class="idex-mini-tbar">',
