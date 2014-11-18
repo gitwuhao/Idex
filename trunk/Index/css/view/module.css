@@ -34,6 +34,7 @@
 }
 .idex-view-panel .idex-module-item:hover{
 	border-color:#00B2FF;
+	color:#00B2FF;
 	margin-top: 0px;
 	margin-bottom: 28px;
 	transition: all 0.5s 0s ease;
@@ -41,10 +42,6 @@
 .idex-view-panel .idex-module-item:hover .idex-mini-tbar{
 	display: block;
 }
-.idex-view-panel .idex-module-item:hover p{
-	color:#00B2FF;
-}
-
 .idex-view-panel .idex-module-item .bg.idex-icon{
 	background-position: -120px -280px;
 	width: 120px;
