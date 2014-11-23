@@ -1,7 +1,11 @@
 (function(CF,$){
 	var ide={},
 		_LAYOUT_CLASS_MAP_={},
-		_CONTAINER_PROTOTYPE_;
+		_CONTAINER_PROTOTYPE_,
+		_LAYOUT_TYPE_MAP_={
+			'container':0,'text-item':1,'html-item':2,'float-box':3,'float-link':4,'float-image':5,'float-text':6,'float-html':7,'image-fgrid':8,'image-fglink':9,'image-rtable':10,'image-row':11,'image-rlink':12,'image-ctable':13,'image-col':14,'image-clink':15,'property-table':16,'property-itable':17,'user-table':18,'list-table':19,'image-list':20,'image-item':21
+		};
+	
 
 	ide.container=function(config){
 		this.eventmap={};
@@ -838,15 +842,27 @@
 		
 		},
 		_layout_:{
+			__LAYOUT_INDEX_TYPE_MAP__ :{},
 			__LAYOUT_INSTANCE_MAP__ : {},
 			getLayout : function(_name_){
 				return this.__LAYOUT_INSTANCE_MAP__[_name_];
+			},
+			getLayoutByIndex : function(_index_){
+				return this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
 			},
 			addClass : function(__className__,_class_){
 				_LAYOUT_CLASS_MAP_[__className__]=_class_;
 			},
 			getClass:function(__className__){
 				return _LAYOUT_CLASS_MAP_[__className__];
+			},
+			__printIndexMap__ : function(){
+				var h=[];
+				var map=this.__LAYOUT_INDEX_TYPE_MAP__;
+				for(var i in map){
+					h.push(i+'.'+map[i]._name_);
+				}
+				console.info(h.join(';')+';');
 			},
 			__findParent__ : function(target){
 				if(this.descbox==target || !target){
@@ -949,6 +965,13 @@
 			var _class_=this.layout.getClass(module._className_);
 			var _layout_=new _class_(module);
 			this.layout.__LAYOUT_INSTANCE_MAP__[module._name_]=_layout_;
+
+			_layout_._type_index_=_LAYOUT_TYPE_MAP_[module._name_];
+
+			this.layout.__LAYOUT_INDEX_TYPE_MAP__[_layout_._type_index_]=_layout_;
+
+			
+			//this.layout._LAYOUT_TYPE_MAP_.push('\''+module._name_+'\':'+this.layout._LAYOUT_TYPE_MAP_.length);
 			return _layout_;
 		}
 	});
