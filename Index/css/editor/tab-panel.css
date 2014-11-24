@@ -149,6 +149,8 @@ to{
 .idex-panel-box{
     float: left;
     background-color: #262626;
+	font-size: 12px;
+	font-family: arial,sans-serif,宋体;
 }
 .idex-panel-box .idex-tab-panel{
     border: 1px solid #000000;
@@ -235,7 +237,7 @@ to{
 	overflow: hidden;
 	height: 25px;
 	padding-top: 5px;
-	font-size:13px;
+	font-size:12px;
 	line-height: 15px;
 	/* vertical-align: middle; */
 	border-bottom: 1px solid #1F1F1F;
