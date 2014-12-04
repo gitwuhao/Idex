@@ -25,7 +25,7 @@
 
 	$.getDoc().ready(function(){
 		setTimeout(function(){
-			init();
+			//init();
 		},500);
 	});
 	
