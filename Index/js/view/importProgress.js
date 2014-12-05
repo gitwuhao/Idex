@@ -25,7 +25,7 @@
 
 	$.getDoc().ready(function(){
 		setTimeout(function(){
-			//init();
+			init();
 		},500);
 	});
 	
@@ -83,21 +83,39 @@
 			];
 		
 
-		function callbackHandle(val){
+		function callbackHandle(json){
+			var status,progress;
+			if(json=="100"){
+				status=-1;
+				progress=100;
+			}else{
+				status=json.status;
+				progress=json.progress;
+			}
 			if(!isInitProgress){
 				$progress.show();
 				isInitProgress=true;
 			}
-			$progressbg.css('width',val+'%');
-			$progresslabel.html(val+'%');
-			$progress.attr('title','已导入淘宝'+val+'%的数据');
+			if(status>0){
+				$progresslabel.html('前面还有'+status+'任务');
+			}else{
+				$progressbg.css('width',progress+'%');
+				$progresslabel.html(progress+'%');
+				if(status==0){
+					$progress.attr('title','已导入淘宝'+progress+'%的数据');
+				}
+			}
 
-			if(timeoutID && val>=100){
+			if(timeoutID && progress>=100){
 				window.clearTimeout(timeoutID);
 				timeoutID=null;
-			}else if(!timeoutID && val<100){
+			}else if(!timeoutID && progress<100){
 				timeoutID=setTimeout(loadFrame,50000);
 				firstRunTimeStamp=$.timestamp();
+			}
+
+			if(progress>=100){
+				$.removeCookie('import',{path:'/'});
 			}
 		};
 
@@ -129,7 +147,7 @@
 			timeoutID=null;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
-			$frame.attr('src','http://idex.oilan.com.cn/mp4/imp.ast?callback='+callbackName);
+			$frame.attr('src','/progressQuery.as?callback='+callbackName);
 		};
 
 		loadFrame();

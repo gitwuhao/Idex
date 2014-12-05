@@ -61,9 +61,11 @@ function loadFile(){
 		uiPath+'js/ui.files.js',
 		function(){
 			UIList.push(
-					'js/view/core.js',
-					'js/view/importProgress.js'
+					'js/view/core.js'
 			);
+			if($.cookie('import')){
+				UIList.push('js/view/importProgress.js');
+			}
 			$.loadJSQueue.apply(this,UIList);
 	});
 };
