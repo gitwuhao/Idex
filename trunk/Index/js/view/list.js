@@ -147,7 +147,7 @@
 						value:'3'
 					}]
 				},{
-					label:'商家分类',
+					label:'商品分类',
 					html : '<input type="hidden" name="seller_cids"/>'
 				},{
 					cls :'tree-item',
