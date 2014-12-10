@@ -6,7 +6,7 @@
 
 	CF.merger(Idex,{
 		topbar : [{
-				type : 'home'
+				type:'home'
 			},{
 				type:'list'
 			},{
@@ -23,12 +23,16 @@
 			}*/],
 		bottombar : [{
 				type:'comment',
+				target : '_blank',
 				href:'http://item.taobao.com/item.htm?id=27018556087'
 			}/*,{
 				type:'sync'
 			},{
 				type:'config'
-			}*/],
+			}*/,{
+				type:'logout',
+				href:'/logout.s'
+			}],
 		logger : function(ref){
 			var caller,
 				_owner_,
@@ -105,7 +109,7 @@
 			function getNavItemHTML(item){
 				var html=['<div class="',item.type,' idex-nav-icon">'];
 				if(item.href){
-					html.push('<a href="',item.href,'" target="_blank">',
+					html.push('<a href="',item.href,'" ',(item.target?'target="'+item.target+'"':''),'>',
 								'<div class="idex-icon"></div>',
 							  '</a>');
 				}else{

@@ -78,3 +78,9 @@
 .idex-navigation .comment .idex-icon{
 	background-position: -0px -275px;
 }
+.idex-navigation .logout .idex-icon{
+	background-position: -40px -275px;
+}
+.idex-navigation .logout:hover .idex-icon{
+	background-position: -40px -315px;
+}
