@@ -1,6 +1,6 @@
 (function(CF,$){
-
-$.loadJSQueue(
+var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
+	list=[
 	'js/editor/core.js',
 	'js/editor/event.js',
 	'js/editor/absPanel.js',
@@ -50,18 +50,25 @@ $.loadJSQueue(
 	'js/editor/adapter/SelectImage.js',
 	'js/editor/adapter/dragdrop.js',
 	'js/editor/adapter/imagequeue.js',
-	'js/editor/adapter/ZeroClipboard.js',
+//	'js/editor/adapter/ZeroClipboard.js',
 	'js/editor/adapter/TextEditor.js',
 	'js/editor/adapter/HTMLEditor.js',
-	'js/editor/adapter/TableEditor.js',
-	function(){
-		setTimeout(function(){
-			$.loadJSQueue(
-				'js/editor/style.js',
-				'js/editor/help.js',
-				'js/editor/guide.js'
-			);
-		},1000);
-	});
+	'js/editor/adapter/TableEditor.js'
+];
+for(var i=0,len=list.length;i<len;i++){
+	var u=list[i];
+	list[i]=IDEX_LIB_PATH+u;
+}
+list.push(function(){
+	setTimeout(function(){
+		$.loadJSQueue(
+			IDEX_LIB_PATH+'js/editor/style.js',
+			IDEX_LIB_PATH+'js/editor/help.js',
+			IDEX_LIB_PATH+'js/editor/guide.js'
+		);
+	},1000);
+});
+
+$.loadJSQueue.apply(this,list);
 
 })(CF,$);

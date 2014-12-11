@@ -104,12 +104,14 @@
 				CF.extendEventListener(item);
 			}
 		},
-		getNavItemHTML:function (item){
+		getNavItemHTML : function(item,isInitBar){
 			var html=['<div class="',item.type,' idex-nav-icon">'];
 			if(item.href){
 				html.push('<a href="',item.href,'" ',(item.target?'target="'+item.target+'"':''),'>',
 							'<div class="idex-icon"></div>',
 						  '</a>');
+			}else if(isInitBar){
+				html.push('<div class="idex-icon"></div>');
 			}else{
 				if(item.type=="home"){
 					html.push('<a href="/">');
@@ -122,7 +124,7 @@
 			html.push('</div>');
 			return html;
 		},
-		getNavHTML : function(){
+		printNavHTML : function(){
 
 			var html=['<div class="idex-navigation border-box uns">',
 						'<div class="idex-nav-topbar">'];
@@ -161,14 +163,14 @@
 
 		for(var i=0,len=Idex.topbar.length;i<len;i++){
 			var item=Idex.topbar[i];
-			html.push.apply(html,Idex.getNavItemHTML(item));
+			html.push.apply(html,Idex.getNavItemHTML(item,true));
 		}
 
 		html.push('</div>',
 			      '<div class="idex-nav-bottombar">');
 		for(var i=0,len=Idex.bottombar.length;i<len;i++){
 			var item=Idex.bottombar[i];
-			html.push.apply(html,Idex.getNavItemHTML(item));
+			html.push.apply(html,Idex.getNavItemHTML(item,true));
 		}
 		Idex.$navbox.html(html.join(''));
 
