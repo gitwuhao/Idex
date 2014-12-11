@@ -148,7 +148,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="seller_cids"/>'
+					html : '<input type="hidden" name="seller_cids"/><div class="selected-category"><div class="del x-ui-icon"></div><span>新品专区</span></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
