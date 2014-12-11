@@ -34,7 +34,8 @@
 									'</div>',
 									'<div class="idex-item-buttons">',
 										'<div class="x-ui-button"><div class="x-ui-label">发布描述</div></div>',
-										'<div class="x-ui-button"><div class="x-ui-label">编辑描述</div></div>',		
+										'<div class="x-ui-button"><div class="x-ui-label">编辑描述</div></div>',
+										'<div class="x-ui-button revert"><div class="x-ui-label">还原</div></div>',
 									'</div>',
 									'<div class="idex-item-detail">',
 										'最后编辑时间：2014-10-11 11:26:07<br/>',
@@ -169,7 +170,7 @@
 				},{
 					label:'重置',
 					onClick:function(){
-						
+
 					}
 				}]
 			},
@@ -237,7 +238,7 @@
 							'<em>品牌形象品牌形象</em>',
 						'</div>',
 					  '</div>'];
-				
+
 				this.$tabview.html(html.join(''));
 			}
 		}]
@@ -258,7 +259,7 @@
 		TAB.setCurrentTab(TAB.getTab('list'));
 	});
 
-	
+
 	Idex.addEventListener('anchor.template',function(event){
 		this.setViewPanel('list');
 		initTab(this.activeViewPanel);

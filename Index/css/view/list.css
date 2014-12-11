@@ -158,6 +158,10 @@
 	border-color: #00B2FF;
 	color: #00B2FF;
 }
+.idex-view-panel.list .idex-item-content .x-ui-button.revert{
+	float: right;
+	margin-top: 48px;
+}
 .idex-view-panel.list .idex-item-content .x-ui-button.create{
     margin-top: 100px;
     overflow: hidden;
