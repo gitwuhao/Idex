@@ -249,12 +249,18 @@
 				for(var key in version){
 					$('#'+key).text(version[key]);
 				}
+				if(version.v==3){
+					$('#upgrade').remove();
+				}
 			}
 			if(homeJSON.d){
 				var date=new Date(homeJSON.d);
 				$('#dtime').text(date.format('yyyy-MM-dd hh:mm'));
 			}
+			
+		
 			$('[id]',Idex.view.home.render).removeAttr('id');
+
 			delete window.getHomeJSON;
 		})();
 	});
