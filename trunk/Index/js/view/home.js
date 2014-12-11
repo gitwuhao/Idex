@@ -1,22 +1,21 @@
 (function(){
 Idex.addEventListener('ready',function(){
-	var homeJSON=window.getHomeJSON();
+	var homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
 	if(homeJSON.c && homeJSON.c[0]){
 		var count=homeJSON.c[0];
 		for(var key in count){
 			$('#'+key.toCamelCase()).text(count[key]);
 		}
-		
 	}
 	if(homeJSON.v){
-		var version=homeJSON.v;
-		for(var key in version){
-			$('#'+key).text(version[key]);
+		var versionLimit=homeJSON.v;
+		for(var key in versionLimit){
+			$('#'+key).text(versionLimit[key]);
 		}
-		if(version.dcount==-1){
+		if(versionLimit.dcount==-1){
 			$('#dcs').remove();
 		}
-		if(version.v==3){
+		if(versionLimit.version==3){
 			$('#upgrade').remove();
 		}
 	}
