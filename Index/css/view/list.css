@@ -85,7 +85,7 @@
 	border-left: 1px solid #E9E9E9;/*2px groove rgba(255, 255, 255, 0.2);*/
 	/* padding-left:10px; */
 	overflow: auto;
-	font-family: arial,'Hiragino Sans GB',"宋体",sans-serif;
+	font-family: arial,'Hiragino Sans GB',"SimSun",sans-serif;
 }
 .idex-view-panel.list .idex-list-view{
 	width: 620px;

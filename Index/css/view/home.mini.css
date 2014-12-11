@@ -25,7 +25,7 @@
 }
 .idex-view-panel.home .idex-shadow-box .title{
 	font-size: 30px;
-	font-family: 微软雅黑;
+	font-family: "Microsoft YaHei";
 	color: #ccc;
 	float: right;
 	margin: 10px 20px 0px 0px;
@@ -33,7 +33,7 @@
 
 .idex-view-panel.home .idex-shadow-box .content{
 	font-size: 14px;
-	font-family: 宋体;
+	font-family: SimSun;
 	color: #aaa;
 	position: absolute;
 	top: 70px;
@@ -43,7 +43,7 @@
 }
 .idex-view-panel.home .idex-shadow-box .count{
 	font-size: 18px;
-	font-family: 微软雅黑;
+	font-family: "Microsoft YaHei";
 	color: #999;
 	position: absolute;
 	left: 10px;
@@ -51,7 +51,7 @@
 }
 .idex-home-bottom-box{
 	font-size: 25px;
-	font-family: 微软雅黑;
+	font-family: "Microsoft YaHei";
 	color: #999;
 }
 .idex-home-bottom-box .left{
