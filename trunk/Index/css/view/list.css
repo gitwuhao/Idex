@@ -81,9 +81,15 @@
 	font-size: 12px;
 	border: 1px solid #D8D8D8;
 	border-radius: 3px;
-	padding: 6px 10px 6px 10px;
-	height: 28px;
+	padding: 4px 10px 4px 10px;
+	height: 25px;
 	float: left;
+}
+
+.idex-view-panel.list .x-ui-form-box .selected-category .label{
+	max-width: 150px;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .idex-view-panel.list .x-ui-form-box .selected-category .del{
 	float: right;
