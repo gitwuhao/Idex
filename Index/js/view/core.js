@@ -23,7 +23,7 @@
 			}*/],
 		bottombar : [{
 				type:'comment',
-				target : '_idex_comment',
+				target : '_idex_popu',
 				href:'http://item.taobao.com/item.htm?id=27018556087'
 			}/*,{
 				type:'sync'
