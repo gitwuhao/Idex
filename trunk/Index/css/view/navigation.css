@@ -3,8 +3,8 @@
 	position: fixed;
 	bottom: 3px;
 	top: 3px;
-	left: 0px;
-	background-color: #333333;
+	left: 3px;
+	background-color: #444;
 	z-index: 99999;
 }
 .idex-nav-topbar,.idex-nav-bottombar{
