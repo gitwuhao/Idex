@@ -50,6 +50,7 @@
 .idex-view-panel.list .idex-list-sort-bar .desc,.idex-view-panel.list .idex-list-sort-bar .asc{
 	color:#00B2FF;
 }
+/*++++++++++++++++++++++++++++form+++++++++++++++++++++++++++++++++++++++++++++*/
 .idex-view-panel.list .idex-form-box{
 	position: absolute;
 	width: 280px;
@@ -76,6 +77,28 @@
 	margin-right: 15px;
 }
 
+.idex-view-panel.list .x-ui-form-box .selected-category{
+	font-size: 12px;
+	border: 1px solid #D8D8D8;
+	border-radius: 3px;
+	padding: 6px 10px 6px 10px;
+	height: 28px;
+	float: left;
+}
+.idex-view-panel.list .x-ui-form-box .selected-category .del{
+	float: right;
+	background-position: -420px -83px;
+	cursor: pointer;
+	width: 15px;
+	height: 15px;
+	margin-left: 5px;
+}
+
+.idex-view-panel.list .x-ui-form-box .selected-category .del:hover{
+	background-position: -400px -123px;
+}
+
+/*----------------------------form---------------------------------------------*/
 .idex-view-panel.list .idex-list-box{
 	position: absolute;
 	left: 300px;
