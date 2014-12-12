@@ -55,7 +55,9 @@ function buildTreeData(data){
 	return map[0].children;
 };
 
-var json=buildTreeData(pic_category);
-console.info(JSON.stringify(json));
+//var json=buildTreeData(pic_category);
+//console.info(JSON.stringify(json));
+
+
 
 })(CF,jQuery);
