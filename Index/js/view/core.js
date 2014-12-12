@@ -252,7 +252,7 @@
 		'js/view/home.js',
 		'js/view/list.js',
 		'js/view/module.js',
-		'js/view/cacheUtil.js'
+		'js/cache.js'
 	);
 
 })(CF,jQuery);
