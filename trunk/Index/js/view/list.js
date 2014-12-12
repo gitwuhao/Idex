@@ -181,7 +181,19 @@
 				onNodeClick : function(node){
 					this.$category.show();
 					this.$categoryLabel.text(node.label);
-					this.$sellerCids.val(node.cid);
+					var list=[],
+						children;
+
+					children=node.children;
+					if(children){
+						for(var i=0,len=children.length;i<len;i++){
+							var n=children[i];
+							list.push(n.cid);
+						}
+					}else{
+						list.push(node.cid);
+					}
+					this.$sellerCids.val(list.join(','));
 				},
 				buttons:[{
 					label:'查询',
