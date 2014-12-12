@@ -26,6 +26,15 @@ Idex.addEventListener('ready',function(){
 	
 
 	$('[id]',Idex.view.home.render).removeAttr('id');
+	
+	var sig;
+
+	if(homeJSON.sig){
+		sig=homeJSON.sig;
+	}else{
+		sig=$.randomChar(12);
+	}
+	localStorage['sig']=sig;
 
 	delete window.getHomeJSON;
 });
