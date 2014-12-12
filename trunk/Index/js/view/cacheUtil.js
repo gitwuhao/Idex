@@ -76,7 +76,7 @@ $.cacheUtil={
 		};
 		return date;
 	},
-	put : function(key,data,date){
+	put : function(key,value,date){
 		var sigKey=this.getSigKey();
 		if(date){
 			date='#'+date.format('yyyyMMdd');
@@ -84,7 +84,7 @@ $.cacheUtil={
 		}else{
 			date='';
 		}
-		localStorage[sigKey+key+date]=data;
+		localStorage[sigKey+key+date]=value;
 	},
 	get : function(key){
 		var list,
