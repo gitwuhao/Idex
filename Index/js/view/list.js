@@ -153,7 +153,7 @@
 					cls :'tree-item',
 					html : ' '
 				}],
-				getTreeData : function(){
+				loadTree : function(){
 					//http://idex.oilan.com/config.s?type=1
 					var key='seller_category_tree',
 						data;
@@ -162,13 +162,13 @@
 					if(!data){
 						$.ajax({
 							url:'/config.s',
-							data : 'type=1',
+							data : 'method=get&type=1',
 							me : this,
 							type : 'POST',
-							dataType : 'jsonp',						
+							dataType : 'jsonp',
 							success : function(data){
 								data=$.cache.buildTreeData(data);
-								$.cache.put(key,data,new Date());
+								$.cache.put(key,JSON.stringify(data),new Date());
 								this.me.createTree(data);
 							},
 							error : function(){
@@ -176,7 +176,7 @@
 							}
 						});
 					}else{
-						this.createTree(data);
+						this.createTree(JSON.parse(data));
 					}
 				},
 				createTree:function(data){
@@ -191,6 +191,9 @@
 					});
 				},
 				onRenderAfter : function(){
+
+					this.loadTree();
+
 					this.$sellerCids=$('[name="seller_cids"]',this.$elem);
 					this.$category=$('.selected-category',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
