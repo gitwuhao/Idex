@@ -148,7 +148,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="seller_cids"/><div class="selected-category"><div class="del x-ui-icon"></div><div class="label">新品专区</div></div>'
+					html : '<input type="hidden" name="seller_cids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
@@ -195,7 +195,7 @@
 					this.loadTree();
 
 					this.$sellerCids=$('[name="seller_cids"]',this.$elem);
-					this.$category=$('.selected-category',this.$elem);
+					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
 					this.$categoryDel=this.$category.children(".del");
 					this.$categoryDel.click({
