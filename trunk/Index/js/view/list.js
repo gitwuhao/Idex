@@ -114,7 +114,7 @@
 					placeholder : '填写宝贝标题'
 				},{
 					label:'商家编码',
-					name : 'code',
+					name : 'outerId',
 					placeholder : '填写商家编码'
 				},{
 					label:'描述类型',
@@ -148,7 +148,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="seller_cids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
+					html : '<input type="hidden" name="sellerCids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
@@ -194,7 +194,7 @@
 
 					this.loadTree();
 
-					this.$sellerCids=$('[name="seller_cids"]',this.$elem);
+					this.$sellerCids=$('[name="sellerCids"]',this.$elem);
 					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
 					this.$categoryDel=this.$category.children(".del");
@@ -239,7 +239,7 @@
 					onClick:function(){
 						var form=this.$owner;
 						form.getItem('title').setValue('');
-						form.getItem('code').setValue('');
+						form.getItem('outerId').setValue('');
 						form.getItem('isdesc').setValue('');
 						form.getItem('status').setValue('');
 						form.resetSellerCat();
