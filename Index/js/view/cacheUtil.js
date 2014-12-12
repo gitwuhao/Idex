@@ -76,36 +76,36 @@ $.cacheUtil={
 		};
 		return date;
 	},
-	put : function(type,data,date){
+	put : function(key,data,date){
 		var sigKey=this.getSigKey();
 		if(date){
 			date='#'+date.format('yyyyMMdd');
-			delete localStorage[sigKey+type];
+			delete localStorage[sigKey+key];
 		}else{
 			date='';
 		}
-		localStorage[sigKey+type+date]=data;
+		localStorage[sigKey+key+date]=data;
 	},
-	get : function(type){
+	get : function(key){
 		var list,
 			date,
 			sigDataKey,
 			sigKey=this.getSigKey();
 		
-		sigDataKey=sigKey + type;
+		sigDataKey=sigKey + key;
 
-		for(var key in localStorage){
-			if(key == sigDataKey){
-				return localStorage[key];
-			}if(key.indexOf('#')>-1){
-				list=key.split('#');
+		for(var k in localStorage){
+			if(k == sigDataKey){
+				return localStorage[k];
+			}if(k.indexOf('#')>-1){
+				list=k.split('#');
 				if(list && list[0]==sigDataKey){
 					date=$.toNumber(list[1]);
 					if(date){
 						if(date>=this.getDate()){
-							return localStorage[key];
+							return localStorage[k];
 						}else{
-							delete localStorage[key];
+							delete localStorage[k];
 						}
 					}
 				}
