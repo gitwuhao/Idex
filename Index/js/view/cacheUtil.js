@@ -58,6 +58,60 @@ function buildTreeData(data){
 //var json=buildTreeData(pic_category);
 //console.info(JSON.stringify(json));
 
+$.cacheUtil={
+	getSigKey : function(){
+		var key,
+			sig=localStorage['sig'];
+		key=sig.substr(4);
+		this.getSigKey=function(){
+			return key;
+		};
+		return key;
+	},
+	getDate : function(){
+		var date=new Date();
+		date=date.format('yyyyMMdd');
+		this.getDATE=function(){
+			return date;
+		};
+		return date;
+	},
+	put : function(type,data,date){
+		var sigKey=this.getSigKey();
+		if(date){
+			date='#'+date.format('yyyyMMdd');
+			delete localStorage[sigKey+type];
+		}else{
+			date='';
+		}
+		localStorage[sigKey+type+date]=data;
+	},
+	get : function(type){
+		var list,
+			date,
+			sigDataKey,
+			sigKey=this.getSigKey();
+		
+		sigDataKey=sigKey + type;
 
+		for(var key in localStorage){
+			if(key == sigDataKey){
+				return localStorage[key];
+			}if(key.indexOf('#')>-1){
+				list=key.split('#');
+				if(list && list[0]==sigDataKey){
+					date=$.toNumber(list[1]);
+					if(date){
+						if(date>=this.getDate()){
+							return localStorage[key];
+						}else{
+							delete localStorage[key];
+						}
+					}
+				}
+			}
+		}
+	}
+};
 
 })(CF,jQuery);
