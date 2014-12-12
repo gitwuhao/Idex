@@ -119,32 +119,32 @@
 				},{
 					label:'描述类型',
 					xtype:'radio',
-					name : 'type',
+					name : 'isdesc',
 					items:[{
 						label:'全部&nbsp;&nbsp;&nbsp;',
-						value : '1',
+						value : '',
 						checked : true
 					},{
 						label:'默认&nbsp;&nbsp;&nbsp;',
-						value:'2'
+						value:'0'
 					},{
 						label:'Idex&nbsp;&nbsp;&nbsp;',
-						value:'3'
+						value:'1'
 					}]
 				},{
 					label:'宝贝类型',
 					xtype:'radio',
-					name : 'ptype',
+					name : 'status',
 					items:[{
 						label:'全部&nbsp;&nbsp;&nbsp;',
-						value : '1',
+						value : '',
 						checked : true
 					},{
 						label:'出售中&nbsp;',
-						value:'2'
+						value:'1'
 					},{
 						label:'仓库中&nbsp;',
-						value:'3'
+						value:'2'
 					}]
 				},{
 					label:'商品分类',
@@ -163,13 +163,13 @@
 						$.ajax({
 							url:'/config.s',
 							data : 'method=get&type=1',
-							me : this,
+							$owner : this,
 							type : 'POST',
 							dataType : 'jsonp',
 							success : function(data){
 								data=$.cache.buildTreeData(data);
 								$.cache.put(key,JSON.stringify(data),new Date());
-								this.me.createTree(data);
+								this.$owner.createTree(data);
 							},
 							error : function(){
 
@@ -201,11 +201,13 @@
 					this.$categoryDel.click({
 						me : this
 					},function(event){
-						var me=event.data.me;
-						me.$category.hide();
-						me.$sellerCids.val('');
-						me.tree.removeActiveNode();
+						event.data.me.resetSellerCat();
 					});
+				},
+				resetSellerCat : function(){
+					this.$category.hide();
+					this.$sellerCids.val('');
+					this.tree.removeActiveNode();
 				},
 				onNodeClick : function(node){
 					this.$category.show();
@@ -227,12 +229,20 @@
 				buttons:[{
 					label:'查询',
 					onClick:function(){
-
+						var param,
+							form=this.$owner;
+						param=form.getParam();
+						console.info(param);
 					}
 				},{
 					label:'重置',
 					onClick:function(){
-
+						var form=this.$owner;
+						form.getItem('title').setValue('');
+						form.getItem('code').setValue('');
+						form.getItem('isdesc').setValue('');
+						form.getItem('status').setValue('');
+						form.resetSellerCat();
 					}
 				}]
 			},
