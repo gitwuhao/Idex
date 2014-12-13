@@ -22,7 +22,7 @@
 				this.submit();
 			},
 			getNumIID : function(){
-				
+				//.match(/id=(\d{9,13})/i)
 			},
 			validation : function(){
 			
