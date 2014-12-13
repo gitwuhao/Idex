@@ -46,10 +46,9 @@
 						html : '宝贝ID不正确，可直接复制宝贝链接贴入。<div class="shortcuts c2">清空：Shift`+`Backspace</div>'.formatHTML(),
 						target :  this.$elem[0]
 					});
-					this.setValue('');
 					return;
 				}
-				console.info('submit:'+this.value);
+				console.info('submit:'+value);
 				
 				var form,
 					list=this.$owner.getTab('list');
