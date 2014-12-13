@@ -152,6 +152,7 @@
 					'</div>',
 				  ].join(''),
 			_form_ : {
+				notLabelPadding : true,
 				items : [{
 					label:'宝贝标题',
 					name : 'title',
