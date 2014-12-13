@@ -4,20 +4,23 @@
 .idex-view-panel.list .x-ui-tabview-box{
 }
 .idex-view-panel.list .x-ui-floatbar-box .x-ui-textfield input{
-	height: 24px;
+	height: 20px;
 	width: 160px;
 }
 .idex-view-panel.list .x-ui-tab-panel .x-ui-floatbar-box {
 	overflow: visible;
 }
 .idex-view-panel.list .x-ui-floatbar-box .x-ui-search-icon{
-	background-position: -420px -175px;
+	background-position: -420px -177px;
 	display: table-cell;
 	width: 22px;
 	cursor: pointer;
 }
+{
+	line-height: 22px;
+}
 .idex-view-panel.list .x-ui-floatbar-box .x-ui-search-icon:hover{
-	background-position: -440px -175px;
+	background-position: -440px -177px;
 }
 .list-search-quicktip{
 	margin-left: -15px;
