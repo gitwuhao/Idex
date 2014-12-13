@@ -166,10 +166,10 @@
 							$owner : this,
 							type : 'POST',
 							dataType : 'jsonp',
-							success : function(data){
-								data=$.cache.buildTreeData(data);
-								$.cache.put(key,JSON.stringify(data),new Date());
-								this.$owner.createTree(data);
+							success : function(json){
+								json=$.cache.buildTreeData(json);
+								$.cache.put(key,JSON.stringify(json),new Date());
+								this.$owner.createTree(json);
 							},
 							error : function(){
 
@@ -226,13 +226,58 @@
 					}
 					this.$sellerCids.val(list.join(','));
 				},
+				query : function (data,type,isGet){
+					var method;
+					if(isGet){
+						method='get';
+					}else{
+						method='query';
+					}
+					
+					if(data){
+						data='method='+method+'&'+data;
+					}else{
+						data='method='+method;
+					}
+					
+					$.ajax({
+						url:'/item.s',
+						data : data,
+						$type : type,
+						$owner : this,
+						type : 'POST',
+						dataType : 'jsonp',
+						success : function(json){
+							this.$owner.onLoadList(json,this.$type);
+						},
+						error : function(){
+
+						}
+					});
+				},
+				Q_TYPE : {
+					SUBMIT : 1,
+					GET : 2,
+					LOAD : 3
+				},
+				onLoadList : function(json,type){
+					var qType=this.Q_TYPE;
+					if(type==qType.SUBMIT){
+						console.info('SUBMIT');
+					}else if(type==qType.GET){
+						console.info('GET');
+					}else if(type==qType.LOAD){
+						console.info('LOAD');
+					}
+					console.info(json);
+				},
 				buttons:[{
 					label:'查询',
 					onClick:function(){
 						var param,
 							form=this.$owner;
-						param=form.getParam();
-						console.info(param);
+						param=form.getParam(true);
+						form.query(param,form.Q_TYPE.SUBMIT);
 					}
 				},{
 					label:'重置',
