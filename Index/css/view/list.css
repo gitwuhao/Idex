@@ -19,6 +19,12 @@
 .idex-view-panel.list .x-ui-floatbar-box .x-ui-search-icon:hover{
 	background-position: -440px -175px;
 }
+.list-search-quicktip{
+	margin-left: -15px;
+}
+.list-search-quicktip .shortcuts{
+	margin-top: 5px;
+}
 .idex-view-panel.list .idex-list-sort-bar{
 	position: absolute;
 	top: 20px;
