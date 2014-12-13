@@ -132,15 +132,22 @@
 }
 .idex-view-panel.list .idex-list-item{
     overflow: hidden;
-	margin-top: 10px;
-	padding-top: 10px;
-	border-top: 1px solid #E9E9E9;
+	padding: 10px 0px;
+	border-top: 1px solid #DDD;
 }
 .idex-view-panel.list .idex-list-item:first-child{
 	margin-top: 0px;
 	padding-top: 0px;
 	border-top: none;
 }
+/*
+.idex-view-panel.list .idex-list-item:hover{
+	border-bottom: 1px solid #00B2FF;
+	padding-bottom:9px;
+	margin-left: -1px;
+	border-right: none;
+}
+*/
 .idex-view-panel.list .idex-item-img{
     width: 150px;
     height: 150px;
