@@ -252,8 +252,36 @@
 						return;			
 					}
 					html=[];
-
-					console.info(json);
+					$.it(json,function(i,item){
+						html.push(
+						'<div class="idex-list-item">',
+							'<div class="idex-item-img"><img src="',item.pic_url,'_200x200.jpg"/></div>',
+							'<div class="idex-item-content">',
+								'<div class="idex-item-title">',
+									'<a href="http://item.taobao.com/item.htm?id=',item.num_iid,'" target="_TB_ITEM">',
+										item.title,
+									'</a>',
+								'</div>',
+								'<div class="idex-item-buttons">',
+									'<div class="x-ui-button"><div class="x-ui-label">发布</div></div>',
+									'<div class="x-ui-button"><div class="x-ui-label">编辑</div></div>',
+								'</div>',
+								'<div class="idex-item-detail">',
+									'最后编辑时间：2014-10-11 11:26:07<br/>',
+									'最后发布时间：2014-10-11 11:26:07',
+									'<span class="revert"><a href="#list">还原</a></span>',
+								'</div>',
+							'</div>',
+						'</div>'
+						);
+					});
+					if(type==qType.LOAD){
+						$viewbox.append(html.join(''));
+					}else{
+						$viewbox.removeClass('not-result');
+						$viewbox.html(html.join(''));
+					}
+					//console.info(json);
 				},
 				buttons:[{
 					label:'查询',
