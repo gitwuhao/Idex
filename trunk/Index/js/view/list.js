@@ -3,7 +3,7 @@
 		floatbar : [{
 			xtype:'text',
 			icon :'search',
-			placeholder : '粘贴宝贝详情页链接回车查询',
+			placeholder : '粘贴宝贝链接回车查询',
 			onRenderAfter : function(){
 				this.callPrototypeMethod();
 				this.addEventListener('textkeydown',function(event){
