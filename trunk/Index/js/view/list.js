@@ -77,86 +77,6 @@
 				    '<div class="idex-form-box"></div>',
 				    '<div class="idex-list-box">',
 						'<div class="idex-list-view">',
-							'<div class="idex-list-item">',
-								'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/imgextra/i3/263817957/T26y.6Xm4XXXXXXXXX_!!263817957.jpg_200x200.jpg"/></div>',
-								'<div class="idex-item-content">',
-									'<div class="idex-item-title">',
-										'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
-										'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
-										'</a>',
-									'</div>',
-									'<div class="idex-item-buttons">',
-										'<div class="x-ui-button"><div class="x-ui-label">发布</div></div>',
-										'<div class="x-ui-button"><div class="x-ui-label">编辑</div></div>',
-									'</div>',
-									'<div class="idex-item-detail">',
-										'最后编辑时间：2014-10-11 11:26:07<br/>',
-										'最后发布时间：2014-10-11 11:26:07',
-										'<span class="revert"><a href="#list">还原</a></span>',
-									'</div>',
-								'</div>',
-							'</div>',
-							'<div class="idex-list-item">',
-								'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/bao/uploaded/i3/TB13htlGpXXXXaZXXXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
-								'<div class="idex-item-content">',
-									'<div class="idex-item-title">',
-										'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
-										'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
-										'</a>',
-									'</div>',
-									'<div class="idex-item-type">',
-										'<div class="invalid">失效</div>',
-									'</div>',
-									'<div class="idex-item-detail">',
-										'最后编辑时间：2014-10-11 11:26:07<br/>',
-									'</div>',
-								'</div>',
-							'</div>',
-							'<div class="idex-list-item">',
-								'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/bao/uploaded/i3/TB1HsiEFVXXXXXZaXXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
-								'<div class="idex-item-content">',
-									'<div class="idex-item-title">',
-										'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
-										'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
-										'</a>',
-									'</div>',
-									'<div class="x-ui-button create"><div class="x-ui-label">创建</div></div>',
-								'</div>',
-							'</div>',
-							'<div class="idex-list-item">',
-								'<div class="idex-item-img"><img src="http://gi2.md.alicdn.com/bao/uploaded/i2/TB1j27lFVXXXXaLXFXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
-								'<div class="idex-item-content">',
-									'<div class="idex-item-title">',
-										'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
-										'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
-										'</a>',
-									'</div>',
-									'<div class="idex-item-type">',
-										'<div class="invalid">失效</div>',
-									'</div>',
-									'<div class="idex-item-detail">',
-										'最后编辑时间：2014-10-11 11:26:07<br/>',
-										'最后发布时间：2014-10-11 11:26:07',
-									'</div>',
-								'</div>',
-							'</div>',
-							'<div class="idex-list-item">',
-								'<div class="idex-item-img"><img src="images/s.gif"/></div>',
-								'<div class="idex-item-content">',
-									'<div class="idex-item-title">',
-										'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
-										'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
-										'</a>',
-									'</div>',
-									'<div class="idex-item-type">',
-										'<div class="invalid">失效</div>',
-									'</div>',
-									'<div class="idex-item-detail">',
-										'最后编辑时间：2014-10-11 11:26:07<br/>',
-										'最后发布时间：2014-10-11 11:26:07',
-									'</div>',
-								'</div>',
-							'</div>',
 						'</div>',
 					'</div>',
 				  ].join(''),
@@ -315,14 +235,24 @@
 					LOAD : 3
 				},
 				onLoadList : function(json,type){
-					var qType=this.Q_TYPE;
-					if(type==qType.SUBMIT){
-						console.info('SUBMIT');
-					}else if(type==qType.GET){
-						console.info('GET');
-					}else if(type==qType.LOAD){
-						console.info('LOAD');
+					var qType=this.Q_TYPE,
+						html,
+						$viewbox=this.$owner.$viewbox;
+					
+					if(!json){
+						if(type==qType.LOAD){
+							return;
+					    }else if(type==qType.SUBMIT){
+							html='没有找到你要的宝贝，直接用宝贝ID试试...';
+						}else{
+							html='没有找到对应的宝贝...';
+						}
+						$viewbox.addClass('not-result');
+						$viewbox.html(html);
+						return;			
 					}
+					html=[];
+
 					console.info(json);
 				},
 				buttons:[{
@@ -353,11 +283,14 @@
 			},
 			onLoad:function(){
 				this.$formbox=this.$tabview.children('.idex-form-box:first');
-				this.$viewbox=this.$tabview.children('.idex-list-box:first');
+				this.$viewbox=this.$tabview.children('.idex-list-box:first').children('.idex-list-view:first');
 
 				this._form_.render=this.$formbox[0];
 
 				this.form=new ui.form(this._form_);
+				
+				this.form.$owner=this;
+				delete this._form_;
 			}
 		},{
 			label:'描述模板',
@@ -438,3 +371,88 @@
 	});
 
 })(CF,jQuery);
+
+
+/*
+'<div class="idex-list-item">',
+	'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/imgextra/i3/263817957/T26y.6Xm4XXXXXXXXX_!!263817957.jpg_200x200.jpg"/></div>',
+	'<div class="idex-item-content">',
+		'<div class="idex-item-title">',
+			'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
+			'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
+			'</a>',
+		'</div>',
+		'<div class="idex-item-buttons">',
+			'<div class="x-ui-button"><div class="x-ui-label">发布</div></div>',
+			'<div class="x-ui-button"><div class="x-ui-label">编辑</div></div>',
+		'</div>',
+		'<div class="idex-item-detail">',
+			'最后编辑时间：2014-10-11 11:26:07<br/>',
+			'最后发布时间：2014-10-11 11:26:07',
+			'<span class="revert"><a href="#list">还原</a></span>',
+		'</div>',
+	'</div>',
+'</div>',
+'<div class="idex-list-item">',
+	'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/bao/uploaded/i3/TB13htlGpXXXXaZXXXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
+	'<div class="idex-item-content">',
+		'<div class="idex-item-title">',
+			'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
+			'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
+			'</a>',
+		'</div>',
+		'<div class="idex-item-type">',
+			'<div class="invalid">失效</div>',
+		'</div>',
+		'<div class="idex-item-detail">',
+			'最后编辑时间：2014-10-11 11:26:07<br/>',
+		'</div>',
+	'</div>',
+'</div>',
+'<div class="idex-list-item">',
+	'<div class="idex-item-img"><img src="http://gi3.md.alicdn.com/bao/uploaded/i3/TB1HsiEFVXXXXXZaXXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
+	'<div class="idex-item-content">',
+		'<div class="idex-item-title">',
+			'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
+			'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
+			'</a>',
+		'</div>',
+		'<div class="x-ui-button create"><div class="x-ui-label">创建</div></div>',
+	'</div>',
+'</div>',
+'<div class="idex-list-item">',
+	'<div class="idex-item-img"><img src="http://gi2.md.alicdn.com/bao/uploaded/i2/TB1j27lFVXXXXaLXFXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/></div>',
+	'<div class="idex-item-content">',
+		'<div class="idex-item-title">',
+			'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
+			'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
+			'</a>',
+		'</div>',
+		'<div class="idex-item-type">',
+			'<div class="invalid">失效</div>',
+		'</div>',
+		'<div class="idex-item-detail">',
+			'最后编辑时间：2014-10-11 11:26:07<br/>',
+			'最后发布时间：2014-10-11 11:26:07',
+		'</div>',
+	'</div>',
+'</div>',
+'<div class="idex-list-item">',
+	'<div class="idex-item-img"><img src="images/s.gif"/></div>',
+	'<div class="idex-item-content">',
+		'<div class="idex-item-title">',
+			'<a href="http://item.taobao.com/item.htm?id=27018556087" target="_TB_ITEM">',
+			'韩都衣舍韩版2014冬装新款女装宽松保暖连帽羽绒服GW2800阨',
+			'</a>',
+		'</div>',
+		'<div class="idex-item-type">',
+			'<div class="invalid">失效</div>',
+		'</div>',
+		'<div class="idex-item-detail">',
+			'最后编辑时间：2014-10-11 11:26:07<br/>',
+			'最后发布时间：2014-10-11 11:26:07',
+		'</div>',
+	'</div>',
+'</div>',
+
+*/
