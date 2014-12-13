@@ -126,7 +126,11 @@
 .idex-view-panel.list .idex-list-view{
 	width: 620px;
 }
-
+.idex-view-panel.list .idex-list-view.not-result{
+	text-align: center;
+	line-height: 30em;
+	height: 100%;
+}
 .idex-view-panel.list .idex-list-item{
     overflow: hidden;
 	margin-top: 10px;
