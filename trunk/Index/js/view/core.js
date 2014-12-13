@@ -251,8 +251,7 @@
 	$.loadJSQueue(
 		'js/view/home.js',
 		'js/view/list.js',
-		'js/view/module.js',
-		'js/cache.js'
+		'js/view/module.js'
 	);
 
 })(CF,jQuery);
