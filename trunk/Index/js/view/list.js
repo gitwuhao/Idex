@@ -3,11 +3,12 @@
 		floatbar : [{
 			xtype:'text',
 			icon :'search',
-			placeholder : '粘贴宝贝ID或链接直接查询',
+			placeholder : '粘贴宝贝详情页链接回车查询',
 			onRenderAfter : function(){
 				this.callPrototypeMethod();
 				this.addEventListener('textkeydown',function(event){
 					 if(event.keyCode==13){
+						this.value=this.$text.val();
 						this.submit();
 					 }
 				});
@@ -15,20 +16,37 @@
 				this.$text.on("paste",{
 					me : this
 				},function(event){
-					event.data.me.getNumIID();
+					var array,
+						value=$.getClipboardTextData(event);
+					if(!value){
+					}else if(value.indexOf('item.taobao.com')>-1 || value.indexOf('detail.tmall.com')>-1){					
+						array=value.match(/id=(\d{10,13})/i);
+						if(array && array.length==2){
+							this.value=array[1];
+						}
+					}else if(event.data.me.REG_NUMIID.test(value)){
+						this.value=value;
+					}
+					return false;
 				});
 			},
+			REG_NUMIID : /^[1234]\d{9,12}$/,
 			onIconmousedown : function(event){
 				this.submit();
 			},
-			getNumIID : function(){
-				//.match(/id=(\d{9,13})/i)
-			},
-			validation : function(){
-			
-			},
 			submit : function(){
+				var value=this.value;
+				if(!this.REG_NUMIID.test(value)){
+					
+					return;
+				}
 				console.info('submit:'+this.value);
+				
+				var form,
+					list=this.$owner.getTab('list');
+				form=list.form;
+
+				form.query('numIID='+value,form.Q_TYPE.GET);
 			}
 		}],
 		topbar : {
@@ -252,9 +270,9 @@
 					}
 					this.$sellerCids.val(list.join(','));
 				},
-				query : function (data,type,isGet){
+				query : function (data,type){
 					var method;
-					if(isGet){
+					if(type==this.Q_TYPE.GET){
 						method='get';
 					}else{
 						method='query';
