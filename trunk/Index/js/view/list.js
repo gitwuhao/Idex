@@ -75,7 +75,8 @@
 			html :[
 				    '<div class="idex-form-box"></div>',
 				    '<div class="idex-list-box">',
-						'<div class="idex-list-view">',
+						'<div class="idex-list-view not-result">',
+							'空空的列表等待查找...',
 						'</div>',
 					'</div>',
 				  ].join(''),
