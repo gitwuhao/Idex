@@ -37,7 +37,13 @@
 			submit : function(){
 				var value=this.value;
 				if(!this.REG_NUMIID.test(value)){
-					
+					ui.quicktip.show({
+						align : 'lc',
+						offset : 'lt',
+						cls : 'list-search-quicktip c1',
+						html : '宝贝ID不正确，可直接复制宝贝链接贴入。<div class="shortcuts c2">清空：Shift`+`Backspace</div>'.formatHTML(),
+						target :  this.$elem[0]
+					});
 					return;
 				}
 				console.info('submit:'+this.value);
