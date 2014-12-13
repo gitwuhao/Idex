@@ -1,5 +1,17 @@
 (function(CF,$){
 
+	(function(){	
+		var sig,
+			homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
+		if(homeJSON.sig){
+			sig=homeJSON.sig;
+		}else{
+			sig=$.randomChar(12);
+		}
+		localStorage['sig']=sig;
+	})();
+
+
 	var Idex=function(){};
 
 	Idex=new Idex();
@@ -247,6 +259,8 @@
 		initBar();
 		Idex.triggerAndRemoveEvent('ready');
 	});
+
+
 
 	$.loadJSQueue(
 		'js/view/home.js',
