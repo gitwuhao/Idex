@@ -3,7 +3,33 @@
 		floatbar : [{
 			xtype:'text',
 			icon :'search',
-			placeholder : '粘贴宝贝ID或链接直接查询'
+			placeholder : '粘贴宝贝ID或链接直接查询',
+			onRenderAfter : function(){
+				this.callPrototypeMethod();
+				this.addEventListener('textkeydown',function(event){
+					 if(event.keyCode==13){
+						this.submit();
+					 }
+				});
+
+				this.$text.on("paste",{
+					me : this
+				},function(event){
+					event.data.me.getNumIID();
+				});
+			},
+			onIconmousedown : function(event){
+				this.submit();
+			},
+			getNumIID : function(){
+				
+			},
+			validation : function(){
+			
+			},
+			submit : function(){
+				console.info('submit:'+this.value);
+			}
 		}],
 		topbar : {
 			cls:'idex-list-sort-bar uns',
