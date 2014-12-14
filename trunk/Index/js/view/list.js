@@ -255,10 +255,21 @@
 				page : null,
 				loadMoreList : function(){
 					this.removeAutoLoadListener();
-					if(){
-					
+					if(!this.page){
+						this.page=2;
+					}else{
+						this.page++;
 					}
-					console.info('load more');
+					var param=null;
+					if(!this.queryParam){
+						param='page='+this.page;
+					}else{
+						param=this.queryParam+'&page='+this.page;
+					}
+					this.query(param,this.Q_TYPE.LOAD);
+					
+					//console.info('load more');
+					
 				},
 				Q_TYPE : {
 					SUBMIT : 1,
@@ -379,6 +390,7 @@
 						var param,
 							form=this.$owner;
 						param=form.getParam(true);
+						form.queryParam=param;
 						form.query(param,form.Q_TYPE.SUBMIT);
 					}
 				},{
