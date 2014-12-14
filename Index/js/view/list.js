@@ -397,7 +397,7 @@
 						var form=this.$owner;
 						form.getItem('title').setValue('');
 						form.getItem('outerId').setValue('');
-						form.getItem('isdesc').setValue('');
+						form.getItem('isDesc').setValue('');
 						form.getItem('status').setValue('');
 						form.resetSellerCat();
 					}
