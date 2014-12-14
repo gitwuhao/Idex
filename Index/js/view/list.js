@@ -315,6 +315,8 @@
 					}else{
 						$viewbox.removeClass('not-result');
 						$viewbox.html(html.join(''));
+						//滚动到顶部
+						this.$owner.$listbox[0].scrollTop=0;
 					}
 					//console.info(json);
 				},
@@ -345,8 +347,9 @@
 				this.tabPanel.$floatbar.hide();
 			},
 			onLoad:function(){
-				this.$formbox=this.$tabview.children('.idex-form-box:first');
-				this.$viewbox=this.$tabview.children('.idex-list-box:first').children('.idex-list-view:first');
+				this.$formbox=this.$tabview.children('.idex-form-box:first');;
+				this.$listbox=this.$tabview.children('.idex-list-box:first');
+				this.$viewbox=this.$listbox.children('.idex-list-view:first');
 
 				this._form_.render=this.$formbox[0];
 
