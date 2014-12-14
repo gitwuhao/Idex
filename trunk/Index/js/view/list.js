@@ -173,6 +173,8 @@
 
 					this.loadTree();
 
+					this.pageSize=$.toNumber(localStorage[this.KEY_PAGE_SIZE]);
+
 					this.$sellerCids=$('[name="sellerCids"]',this.$elem);
 					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
@@ -218,6 +220,7 @@
 					}else{
 						data='method='+method;
 					}
+					//获取分页尺寸
 					if(!this.pageSize){
 						data=data+'&pageSize=1';
 					}
@@ -230,7 +233,7 @@
 						dataType : 'jsonp',
 						success : function(json){
 							if(!this.$owner.pageSize){
-								this.$owner.pageSize=localStorage['idex_list_page_size'];
+								this.$owner.pageSize=localStorage[this.$owner.KEY_PAGE_SIZE];
 							}
 							this.$owner.onLoadList(json,this.$type);
 						},
@@ -239,6 +242,7 @@
 						}
 					});
 				},
+				KEY_PAGE_SIZE : 'idex_list_page_size',
 				pageSize : null,
 				loadMoreList : function(){
 					console.info('load more');
