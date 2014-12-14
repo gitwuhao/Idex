@@ -247,7 +247,7 @@
 							return;
 					    }else if(type==qType.SUBMIT){
 							html='没有找到你要的宝贝...';
-							this.tab.getItem('search').showQuicktip('未找到新增的宝贝试试这里...');
+							this.tab.getItem('search').showQuicktip('试试这里...');
 						}else{
 							html='没有找到对应的宝贝...';
 						}
