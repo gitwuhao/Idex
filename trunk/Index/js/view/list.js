@@ -214,6 +214,11 @@
 					}else{
 						method='query';
 					}
+
+					
+					if(type!=this.Q_TYPE.LOAD){
+						this.page=null;
+					}
 					
 					if(data){
 						data='method='+method+'&'+data;
@@ -233,7 +238,10 @@
 						dataType : 'jsonp',
 						success : function(json){
 							if(!this.$owner.pageSize){
-								this.$owner.pageSize=localStorage[this.$owner.KEY_PAGE_SIZE];
+								this.$owner.pageSize=$.toNumber(localStorage[this.$owner.KEY_PAGE_SIZE]);
+								if(!this.$owner.pageSize){
+									console.error('pageSize is null...');
+								}
 							}
 							this.$owner.onLoadList(json,this.$type);
 						},
@@ -244,7 +252,12 @@
 				},
 				KEY_PAGE_SIZE : 'idex_list_page_size',
 				pageSize : null,
+				page : null,
 				loadMoreList : function(){
+					this.removeAutoLoadListener();
+					if(){
+					
+					}
 					console.info('load more');
 				},
 				Q_TYPE : {
@@ -257,6 +270,9 @@
 						html;
 					
 					if(!json){
+						
+						this.removeAutoLoadListener();
+
 						if(type==qType.LOAD){
 							return;
 					    }else if(type==qType.SUBMIT){
@@ -332,20 +348,30 @@
 						//滚动到顶部
 						this.$listbox[0].scrollTop=0;
 					}
+					
+					if(json.length==this.pageSize){
+						this.addAutoLoadListener();
+					}else{
+						this.removeAutoLoadListener();
+					}
 					//console.info(json);
 				},
-				EVENT_NAME_SPACE : '.IDEX_AUTO_LOAD',
 				addAutoLoadListener:function(){
-					this.$listbox.on('scroll'+this.EVENT_NAME_SPACE,{
+					if(this.isAutoLoadListener){
+						return;
+					}
+					this.isAutoLoadListener=true;
+					this.$listbox.on('scroll',{
 						me : this
-					},function(evet){
-						if(this.scrollTop + 20 > this.scrollHeight){
+					},function(event){
+						if(this.scrollTop + this.clientHeight + 100 > this.scrollHeight){
 							event.data.me.loadMoreList();
 						}
 					});
 				},
 				removeAutoLoadListener:function(){
-					this.$listbox.off(this.EVENT_NAME_SPACE);
+					delete this.isAutoLoadListener;
+					this.$listbox.off('scroll');
 				},
 				buttons:[{
 					label:'查询',
