@@ -265,16 +265,47 @@
 									'<a href="http://item.taobao.com/item.htm?id=',item.num_iid,'" target="_TB_ITEM">',
 										item.title,
 									'</a>',
-								'</div>',
+								'</div>');
+						
+						if(item.status==3){
+							html.push(
+								'<div class="idex-item-type">',
+									'<div class="invalid">失效</div>',
+								'</div>'
+							);
+						}else if(item.is_desc==0){
+							html.push(
+								'<div class="x-ui-button create"><div class="x-ui-label">创建</div></div>'
+							);
+						}else{
+							html.push(
 								'<div class="idex-item-buttons">',
-									'<div class="x-ui-button"><div class="x-ui-label">发布</div></div>',
-									'<div class="x-ui-button"><div class="x-ui-label">编辑</div></div>',
-								'</div>',
+									'<div class="x-ui-button publish"><div class="x-ui-label">发布</div></div>',
+									'<div class="x-ui-button edit"><div class="x-ui-label">编辑</div></div>',
+								'</div>'
+							);
+						}
+
+						if(item.edit_time){
+							html.push(
 								'<div class="idex-item-detail">',
-									'最后编辑时间：2014-10-11 11:26:07<br/>',
-									'最后发布时间：2014-10-11 11:26:07',
-									'<span class="revert"><a href="#list">还原</a></span>',
-								'</div>',
+									'最后编辑时间：',item.edit_time);
+							if(item.publish_time){
+								html.push(
+									'<br/>',
+									'最后发布时间：',item.publish_time
+								);
+								if(item.status!=3){
+									html.push(
+									'<span class="revert"><a href="#list">还原</a></span>'
+									);
+								}
+							}
+							html.push(
+								'</div>'
+							);
+						}
+						html.push(
 							'</div>',
 						'</div>'
 						);
