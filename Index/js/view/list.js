@@ -81,6 +81,7 @@
 						'<div class="idex-list-view not-result">',
 							'空空的列表...',
 						'</div>',
+						'<div class="idex-status-box"></div>',
 					'</div>',
 				  ].join(''),
 			_form_ : {
@@ -170,6 +171,7 @@
 				onRenderAfter : function(){
 					this.$listbox=this.$owner.$listbox;
 					this.$viewbox=this.$owner.$viewbox;
+					this.$statusbox=this.$owner.$statusbox;
 
 					this.loadTree();
 
@@ -229,6 +231,9 @@
 					if(!this.pageSize){
 						data=data+'&pageSize=1';
 					}
+					
+					this.$statusbox.empty();
+
 					$.ajax({
 						url:'/item.s',
 						data : data,
@@ -246,7 +251,7 @@
 							this.$owner.onLoadList(json,this.$type);
 						},
 						error : function(){
-
+							this.$owner.$statusbox.append(this.$owner.LOAD_MORE_HTML);
 						}
 					});
 				},
@@ -274,6 +279,8 @@
 					GET : 2,
 					LOAD : 3
 				},
+				NOT_MORE_HTML : '<div class="idex-not-more-list">没有更多宝贝</div>',
+				LOAD_MORE_HTML : '<div class="idex-load-more-list">点击加载更多</div>',
 				onLoadList : function(json,type){
 					var qType=this.Q_TYPE,
 						html;
@@ -283,6 +290,7 @@
 						this.removeAutoLoadListener();
 
 						if(type==qType.LOAD){
+							this.$statusbox.append(this.NOT_MORE_HTML);
 							return;
 					    }else if(type==qType.SUBMIT){
 							html='没有找到你要的宝贝...';
@@ -292,6 +300,7 @@
 						}
 						this.$viewbox.addClass('not-result');
 						this.$viewbox.html(html);
+						this.$statusbox.empty();
 						return;			
 					}
 					html=[];
@@ -361,6 +370,7 @@
 					if(json.length==this.pageSize){
 						this.addAutoLoadListener();
 					}else{
+						this.$statusbox.append(this.NOT_MORE_HTML);
 						this.removeAutoLoadListener();
 					}
 					//console.info(json);
@@ -410,9 +420,10 @@
 				this.tabPanel.$floatbar.hide();
 			},
 			onLoad:function(){
-				this.$formbox=this.$tabview.children('.idex-form-box:first');;
+				this.$formbox=this.$tabview.children('.idex-form-box:first');
 				this.$listbox=this.$tabview.children('.idex-list-box:first');
 				this.$viewbox=this.$listbox.children('.idex-list-view:first');
+				this.$statusbox=this.$listbox.children('.idex-status-box:first');
 
 				this._form_.render=this.$formbox[0];
 
