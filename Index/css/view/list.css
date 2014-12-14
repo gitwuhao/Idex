@@ -15,8 +15,6 @@
 	display: table-cell;
 	width: 22px;
 	cursor: pointer;
-}
-{
 	line-height: 22px;
 }
 .idex-view-panel.list .x-ui-floatbar-box .x-ui-search-icon:hover{
@@ -131,7 +129,8 @@
 }
 .idex-view-panel.list .idex-list-view.not-result{
 	text-align: center;
-	padding-top: 45%;
+	position: absolute;
+	top: 50%;
 }
 .idex-view-panel.list .idex-list-item{
     overflow: hidden;

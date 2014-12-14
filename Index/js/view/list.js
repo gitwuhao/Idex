@@ -36,16 +36,19 @@
 			onIconmousedown : function(event){
 				this.submit();
 			},
+			showQuicktip : function(html){
+				ui.quicktip.show({
+					align : 'lc',
+					offset : 'lt',
+					cls : 'list-search-quicktip c1',
+					html : html,
+					target :  this.$elem[0]
+				});
+			},
 			submit : function(){
 				var value=this.value;
 				if(!this.REG_NUMIID.test(value)){
-					ui.quicktip.show({
-						align : 'lc',
-						offset : 'lt',
-						cls : 'list-search-quicktip c1',
-						html : '宝贝ID不正确，可直接复制宝贝链接贴入。<div class="shortcuts c2">清空：Shift`+`Backspace</div>'.formatHTML(),
-						target :  this.$elem[0]
-					});
+					this.showQuicktip('宝贝ID不正确，可直接复制宝贝链接贴入。<div class="shortcuts c2">清空：Shift`+`Backspace</div>'.formatHTML());
 					return;
 				}
 				console.info('submit:'+value);
@@ -76,7 +79,7 @@
 				    '<div class="idex-form-box"></div>',
 				    '<div class="idex-list-box">',
 						'<div class="idex-list-view not-result">',
-							'空空的列表等待查找...',
+							'空空的列表...',
 						'</div>',
 					'</div>',
 				  ].join(''),
@@ -243,7 +246,8 @@
 						if(type==qType.LOAD){
 							return;
 					    }else if(type==qType.SUBMIT){
-							html='没有找到你要的宝贝，直接用宝贝ID试试...';
+							html='没有找到你要的宝贝...';
+							this.tab.getItem('search').showQuicktip('试试这个...');
 						}else{
 							html='没有找到对应的宝贝...';
 						}
@@ -318,6 +322,8 @@
 				this.form=new ui.form(this._form_);
 				
 				this.form.$owner=this;
+
+				this.form.tab=this.$owner;
 				delete this._form_;
 			}
 		},{
