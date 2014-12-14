@@ -96,7 +96,7 @@
 				},{
 					label:'描述类型',
 					xtype:'radio',
-					name : 'isdesc',
+					name : 'isDesc',
 					items:[{
 						label:'全部&nbsp;&nbsp;&nbsp;',
 						value : '',
