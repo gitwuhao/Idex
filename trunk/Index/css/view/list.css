@@ -141,6 +141,7 @@
 	line-height: 30px;
 	border-radius: 5px;
 	color: #0BF;
+	cursor: pointer;
 }
 .idex-view-panel.list .idex-not-more-list{
 	text-align: center;
