@@ -168,6 +168,8 @@
 					});
 				},
 				onRenderAfter : function(){
+					this.$listbox=this.$owner.$listbox;
+					this.$viewbox=this.$owner.$viewbox;
 
 					this.loadTree();
 
@@ -216,7 +218,9 @@
 					}else{
 						data='method='+method;
 					}
-					
+					if(!this.pageSize){
+						data=data+'&pageSize=1';
+					}
 					$.ajax({
 						url:'/item.s',
 						data : data,
@@ -225,12 +229,19 @@
 						type : 'POST',
 						dataType : 'jsonp',
 						success : function(json){
+							if(!this.$owner.pageSize){
+								this.$owner.pageSize=localStorage['idex_list_page_size'];
+							}
 							this.$owner.onLoadList(json,this.$type);
 						},
 						error : function(){
 
 						}
 					});
+				},
+				pageSize : null,
+				loadMoreList : function(){
+					console.info('load more');
 				},
 				Q_TYPE : {
 					SUBMIT : 1,
@@ -239,8 +250,7 @@
 				},
 				onLoadList : function(json,type){
 					var qType=this.Q_TYPE,
-						html,
-						$viewbox=this.$owner.$viewbox;
+						html;
 					
 					if(!json){
 						if(type==qType.LOAD){
@@ -251,8 +261,8 @@
 						}else{
 							html='没有找到对应的宝贝...';
 						}
-						$viewbox.addClass('not-result');
-						$viewbox.html(html);
+						this.$viewbox.addClass('not-result');
+						this.$viewbox.html(html);
 						return;			
 					}
 					html=[];
@@ -311,14 +321,27 @@
 						);
 					});
 					if(type==qType.LOAD){
-						$viewbox.append(html.join(''));
+						this.$viewbox.append(html.join(''));
 					}else{
-						$viewbox.removeClass('not-result');
-						$viewbox.html(html.join(''));
+						this.$viewbox.removeClass('not-result');
+						this.$viewbox.html(html.join(''));
 						//滚动到顶部
-						this.$owner.$listbox[0].scrollTop=0;
+						this.$listbox[0].scrollTop=0;
 					}
 					//console.info(json);
+				},
+				EVENT_NAME_SPACE : '.IDEX_AUTO_LOAD',
+				addAutoLoadListener:function(){
+					this.$listbox.on('scroll'+this.EVENT_NAME_SPACE,{
+						me : this
+					},function(evet){
+						if(this.scrollTop + 20 > this.scrollHeight){
+							event.data.me.loadMoreList();
+						}
+					});
+				},
+				removeAutoLoadListener:function(){
+					this.$listbox.off(this.EVENT_NAME_SPACE);
 				},
 				buttons:[{
 					label:'查询',
@@ -353,11 +376,12 @@
 
 				this._form_.render=this.$formbox[0];
 
+				this._form_.$owner=this;
+
+				this._form_.tab=this.$owner;
+
 				this.form=new ui.form(this._form_);
 				
-				this.form.$owner=this;
-
-				this.form.tab=this.$owner;
 				delete this._form_;
 			}
 		},{
