@@ -267,9 +267,7 @@
 						param=this.queryParam+'&page='+this.page;
 					}
 					this.query(param,this.Q_TYPE.LOAD);
-					
 					//console.info('load more');
-					
 				},
 				Q_TYPE : {
 					SUBMIT : 1,
