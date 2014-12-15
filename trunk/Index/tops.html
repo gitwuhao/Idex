@@ -7,14 +7,20 @@
 <link rel="Shortcut Icon" href="images/logo.ico" type="image/x-icon" />
 </head>
 <body style="margin: 0px;padding: 0px;">
-<script type="text/javascript" charset="utf-8" src="/_/js/jquery-2.1.1.min.js" ></script>
-<script type="text/javascript" charset="utf-8" src="/_/js/ClassFactory.js" ></script>
-<script type="text/javascript" charset="utf-8" src="/_/js/extend-js.js" ></script>
-<script type="text/javascript" charset="utf-8" src="/_/js/htmlfilter.js" ></script>
-<script type="text/javascript" charset="utf-8" src="js/editor/style.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/tops/html2canvas.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/tops/base64.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/tops/canvas2image.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/tops/tops.js"></script>
+
+<script>
+function loadFile(){
+	$.loadJSQueue(
+		'js/editor/style.js',
+		'js/tops/html2canvas.min.js',
+		'js/tops/base64.js',
+		'js/tops/canvas2image.js',
+		'js/tops/tops.js',
+		function(){
+		
+		});
+};
+</script>
+<script type="text/javascript" charset="utf-8" src="/_/js/startup.js" ></script>
 </body>
 </html>
