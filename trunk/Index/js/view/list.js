@@ -279,7 +279,7 @@
 					GET : 2,
 					LOAD : 3
 				},
-				NOT_MORE_HTML : '<div class="idex-not-more-list">没有更多宝贝</div>',
+				NOT_MORE_HTML : '<div class="idex-not-more-list">没有更多宝贝显示</div>',
 				//LOAD_MORE_HTML : '<div class="idex-load-more-list">点击加载更多</div>',
 				onLoadList : function(json,type){
 					var qType=this.Q_TYPE,
