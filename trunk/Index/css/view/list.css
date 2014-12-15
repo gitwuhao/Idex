@@ -132,6 +132,7 @@
 	position: absolute;
 	top: 50%;
 }
+/*
 .idex-view-panel.list .idex-load-more-list{
 	text-align: center;
 	font-size: 14px;
@@ -143,12 +144,12 @@
 	color: #0BF;
 	cursor: pointer;
 }
+*/
 .idex-view-panel.list .idex-not-more-list{
 	text-align: center;
 	font-size: 14px;
 	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-	background-image: -webkit-linear-gradient(top,#EEE,#E0E0E0);
-	border: 1px solid #ccc;
+	border: 1px solid #ddd;
 	margin: 0px 210px;
 	line-height: 30px;
 	border-radius: 5px;
