@@ -251,7 +251,7 @@
 							this.$owner.onLoadList(json,this.$type);
 						},
 						error : function(){
-							this.$owner.$statusbox.append(this.$owner.LOAD_MORE_HTML);
+							//this.$owner.$statusbox.append(this.$owner.LOAD_MORE_HTML);
 						}
 					});
 				},
@@ -280,7 +280,7 @@
 					LOAD : 3
 				},
 				NOT_MORE_HTML : '<div class="idex-not-more-list">没有更多宝贝</div>',
-				LOAD_MORE_HTML : '<div class="idex-load-more-list">点击加载更多</div>',
+				//LOAD_MORE_HTML : '<div class="idex-load-more-list">点击加载更多</div>',
 				onLoadList : function(json,type){
 					var qType=this.Q_TYPE,
 						html;
