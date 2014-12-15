@@ -284,13 +284,15 @@
 				onLoadList : function(json,type){
 					var qType=this.Q_TYPE,
 						html;
-					
+
+					if(type==qType.LOAD){
+						this.$statusbox.append(this.NOT_MORE_HTML);
+					}
 					if(!json){
 						
 						this.removeAutoLoadListener();
 
 						if(type==qType.LOAD){
-							this.$statusbox.append(this.NOT_MORE_HTML);
 							return;
 					    }else if(type==qType.SUBMIT){
 							html='没有找到你要的宝贝...';
@@ -370,7 +372,7 @@
 					if(json.length==this.pageSize){
 						this.addAutoLoadListener();
 					}else{
-						this.$statusbox.append(this.NOT_MORE_HTML);
+						//this.$statusbox.append(this.NOT_MORE_HTML);
 						this.removeAutoLoadListener();
 					}
 					//console.info(json);
