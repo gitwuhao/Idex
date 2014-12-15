@@ -221,6 +221,7 @@
 						if(config.px){
 							item.px=config.px;
 						}
+						
 						html.push(ui.getXTypeHTML(item));
 					}
 				}
