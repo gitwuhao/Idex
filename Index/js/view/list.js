@@ -340,6 +340,11 @@
 							html.push(
 								'<div class="idex-item-detail">',
 									'最后编辑时间：',item.edit_time);
+							if(item.last_user_nick){
+								html.push(
+									'<span class="last-user">',item.last_user_nick,'</span>'
+									);
+							}
 							if(item.publish_time){
 								html.push(
 									'<br/>',
