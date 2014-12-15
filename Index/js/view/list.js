@@ -89,10 +89,12 @@
 				items : [{
 					label:'宝贝标题',
 					name : 'title',
+					maxlength : 10,
 					placeholder : '填写宝贝标题'
 				},{
 					label:'商家编码',
 					name : 'outerId',
+					maxlength : 50,
 					placeholder : '填写商家编码'
 				},{
 					label:'描述类型',
