@@ -16,20 +16,25 @@
 	text-align: center;
     font-family: arial,"Microsoft YaHei";
 	cursor: default;
-    color: #DDD;
+    color: #999;
 }
-
-
+.idex-view-panel .idex-module-item .datetime{
+	float: left;
+	font-size: 12px;
+	margin-top: -20px;
+	margin-left: 10px;
+}
 .idex-view-panel .idex-module-item p{
 	font-size: 20px;
-	padding: 25px 0px;
-    margin: 0px;
-    height: 80px;
+	padding: 0px;
+	height: 22px;
+	overflow: hidden;
+	margin: 10px 0px;
 }
 
 .idex-view-panel .idex-module-item em{
     font-size: 16px;
-    line-height: 20px;
+    line-height: 30px;
     white-space: nowrap;
 }
 .idex-view-panel .idex-module-item:hover{
