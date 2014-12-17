@@ -21,7 +21,7 @@ Idex.addEventListener('ready',function(){
 	}
 	if(homeJSON.d){
 		var date=new Date(homeJSON.d);
-		$('#dtime').text(date.format('yyyy-MM-dd hh:mm'));
+		$('#dtime').text(date.format('yyyy-MM-dd'));
 	}
 	
 
