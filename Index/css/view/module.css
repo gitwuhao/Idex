@@ -20,6 +20,7 @@
 }
 .idex-view-panel .idex-module-item.blank{
 	color: #DDD;
+	cursor: pointer;
 }
 .idex-view-panel .idex-module-item .datetime{
 	float: left;
