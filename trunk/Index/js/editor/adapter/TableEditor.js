@@ -518,7 +518,7 @@
 				left : offset.left,
 				top : offset.top,
 				width : width,
-				height : height,
+				//height : height,
 				'z-index' : zindex
 			});
 
