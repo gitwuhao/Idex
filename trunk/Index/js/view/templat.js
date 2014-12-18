@@ -54,6 +54,12 @@
 							'</div>',
 						  '</div>'];
 				this.$tabview.html(html.join(''));
+			},
+			onHideAfter : function(){
+				console.info(this,'hide after...');
+			},
+			onShowAfter : function(){
+				console.info(this,'show after...');
 			}
 		});
 

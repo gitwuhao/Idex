@@ -1,4 +1,6 @@
 (function(CF,$){
+
+
 	var TAB={
 		floatbar : [{
 			xtype:'text',
