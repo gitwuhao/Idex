@@ -449,9 +449,9 @@
 			name : 'module',
 			onLoad:function(){
 				var html=['<div class="idex-module-box">',
-						'<div class="idex-module-item idex-shadow-box">',
+						'<div class="idex-module-item idex-shadow-box blank">',
 							'<p>空白</p>',
-							'<em>点击创建模板</em>',
+							'<em>点击创建</em>',
 						'</div>',
 						'<div class="idex-module-item idex-shadow-box">',
 							'<div class="idex-mini-tbar">',
