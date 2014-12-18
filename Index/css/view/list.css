@@ -9,22 +9,22 @@
 	width: 160px;
 }
 */
-.idex-view-panel.list .x-ui-tab-panel .x-ui-floatbar-box {
-	overflow: visible;
-}
 .list-search-quicktip{
 	margin-left: -15px;
 }
 .list-search-quicktip .shortcuts{
 	margin-top: 5px;
 }
-.idex-view-panel.list .idex-list-sort-bar{
+
+
+/*++++++++++++++++++++++++++++sort+++++++++++++++++++++++++++++++++++++++++++++*/
+
+.idex-view-panel.list .idex-sortbar-box{
 	position: absolute;
 	top: 20px;
 	left: 300px;
-	display: none;
 }
-.idex-view-panel.list .idex-list-sort-bar .sort{
+.idex-view-panel.list .idex-sortbar-box .sort{
 	background-position: -480px -180px;
 	width: 20px;
 	height: 20px;
@@ -32,13 +32,13 @@
 	margin-top: -18px;
 }
 
-.idex-view-panel.list .idex-list-sort-bar .desc .sort{
+.idex-view-panel.list .idex-sortbar-box .desc .sort{
 	background-position: -460px -200px;
 }
-.idex-view-panel.list .idex-list-sort-bar .asc .sort{
+.idex-view-panel.list .idex-sortbar-box .asc .sort{
 	background-position: -480px -200px;
 }
-.idex-view-panel.list .idex-list-sort-bar .x-ui-tab-button{
+.idex-view-panel.list .idex-sortbar-box .idex-sort-button{
 	float:left;
 	width: 65px;
 	margin-right: 7px;
@@ -46,9 +46,10 @@
 	font-size: 12px;
 	cursor: pointer;
 }
-.idex-view-panel.list .idex-list-sort-bar .desc,.idex-view-panel.list .idex-list-sort-bar .asc{
+.idex-view-panel.list .idex-sortbar-box .desc,.idex-view-panel.list .idex-sortbar-box .asc{
 	color:#00B2FF;
 }
+/*----------------------------sort---------------------------------------------*/
 /*++++++++++++++++++++++++++++form+++++++++++++++++++++++++++++++++++++++++++++*/
 .idex-view-panel.list .idex-form-box{
 	position: absolute;
