@@ -116,11 +116,7 @@ em{
 	box-shadow: 0 0 5px #B8D7FF;
 }
 */
-.idex-view-panel .idex-icon{
-	width: 20px;
-	height: 20px;
-	cursor: pointer;
-}
+
 .idex-view-panel .idex-mini-tbar{
 	float: right;
 	margin-top: -25px;  
@@ -131,6 +127,9 @@ em{
 .idex-view-panel .idex-mini-tbar .idex-icon{
 	float: left;
 	margin-left: 3px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
 }
 .idex-view-panel .del.idex-icon{
 	background-position: -399px -140px;
@@ -143,13 +142,10 @@ em{
 .idex-view-panel .edit.idex-icon{
 	background-position: -400px -200px;
 }
-.idex-view-panel .refresh.idex-icon{
-	background-position: -260px -180px;
-	float: left;
-	margin-right: 15px;
-	margin-top: 3px;
+.idex-view-panel .x-ui-floatbar-box .x-ui-icon-button.refresh{
+	padding: 2px 3px 3px 3px;
+	margin-right: 10px;
 }
-
 .idex-view-panel .x-ui-floatbar-box .x-ui-search-icon{
 	background-position: -420px -177px;
 	display: table-cell;

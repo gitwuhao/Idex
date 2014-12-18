@@ -1,6 +1,14 @@
 (function(CF,$){
 	var TAB={
 		floatbar : [{
+			xtype : 'button',
+			icon : true,
+			cls : 'refresh',
+			title : "刷新",
+			onClick:function(){
+
+			}
+		},{
 			xtype:'text',
 			icon :'search',
 			placeholder : '输入模块名进行检索',
@@ -14,9 +22,6 @@
 						}
 					 }
 				});
-				var div=$.createElement('<div class="idex-icon refresh"></div>');
-				this.$elem.before(div);
-				this.$refresh=$(div);
 			},
 			onIconmousedown : function(event){
 				this.submit();
