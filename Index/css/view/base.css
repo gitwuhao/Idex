@@ -116,6 +116,11 @@ em{
 	box-shadow: 0 0 5px #B8D7FF;
 }
 */
+.idex-view-panel .idex-icon{
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
 .idex-view-panel .idex-mini-tbar{
 	float: right;
 	margin-top: -25px;  
@@ -124,10 +129,7 @@ em{
 }
 
 .idex-view-panel .idex-mini-tbar .idex-icon{
-	width: 20px;
-	height: 20px;
 	float: left;
-	cursor: pointer;
 	margin-left: 3px;
 }
 .idex-view-panel .del.idex-icon{
@@ -143,6 +145,9 @@ em{
 }
 .idex-view-panel .refresh.idex-icon{
 	background-position: -260px -180px;
+	float: left;
+	margin-right: 15px;
+	margin-top: 3px;
 }
 
 .idex-view-panel .x-ui-floatbar-box .x-ui-search-icon{
