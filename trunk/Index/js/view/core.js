@@ -88,7 +88,9 @@
 			this.activeItem=item;
 			this.activeViewPanel=item.render;
 		},
-		view : {},
+		view : {
+			template : {}
+		},
 		bindIcon : function(item){
 			item.$icon.click({
 				me : this,
