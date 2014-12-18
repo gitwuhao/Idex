@@ -54,13 +54,62 @@
 							'</div>',
 						  '</div>'];
 				this.$tabview.html(html.join(''));
+
+
+				
+				var div,
+					html=['<div class="x-ui-floatbar-box">',
+								ui.getXTypeHTML(this.refresh),
+								ui.getXTypeHTML(this.search),
+						  '</div>'];
+				div=$.createElement(html.join(''));
+				this.$owner.$tabbarbox.before(div);
+
+				this.$floatbox=$(div);
+				
+				var children=this.$floatbox.children();
+
+				this.refresh=ui.getXTypeItem(this.refresh,children[0]);
+
+				this.search=ui.getXTypeItem(this.search,children[1]);
 			},
-			onHideAfter : function(){
-				console.info(this,'hide after...');
+			refresh : {
+				xtype : 'button',
+				icon : true,
+				cls : 'refresh',
+				title : "刷新",
+				onClick:function(){
+
+				}
+			},
+			search : {
+				xtype:'text',
+				icon :'search',
+				placeholder : '输入模块名进行检索',
+				onRenderAfter : function(){
+					this.callPrototypeMethod();
+					this.addEventListener('textkeydown',function(event){
+						 if(event.keyCode==13){
+							this.value=this.$text.val();
+							if(this.value){
+								this.submit();
+							}
+						 }
+					});
+				},
+				onIconmousedown : function(event){
+					this.submit();
+				},
+				submit : function(){
+
+				}
 			},
 			onShowAfter : function(){
-				console.info(this,'show after...');
-			}
+				this.$floatbox.show();
+			},
+			onHideAfter : function(){
+				this.$floatbox.hide();
+			},
 		});
 
 		tab.onRender();
