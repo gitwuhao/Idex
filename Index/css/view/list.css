@@ -23,6 +23,7 @@
 	position: absolute;
 	top: 20px;
 	left: 300px;
+	display: none;
 }
 .idex-view-panel.list .idex-sortbar-box .sort{
 	background-position: -480px -180px;

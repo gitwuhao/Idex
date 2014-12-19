@@ -56,7 +56,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="sellerCids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
+					html : '<input type="hidden" name="sellerCids"/><input type="hidden" name="orderCol"/><input type="hidden" name="orderType"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
@@ -108,6 +108,10 @@
 					this.pageSize=$.toNumber(localStorage[this.KEY_PAGE_SIZE]);
 
 					this.$sellerCids=$('[name="sellerCids"]',this.$elem);
+
+					this.$orderCol=$('[name="orderCol"]',this.$elem);
+					this.$orderType=$('[name="orderType"]',this.$elem);
+
 					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
 					this.$categoryDel=this.$category.children(".del");
@@ -147,11 +151,11 @@
 						method='query';
 					}
 
-					
+
 					if(type!=this.Q_TYPE.LOAD){
 						this.page=null;
 					}
-					
+
 					if(data){
 						data='method='+method+'&'+data;
 					}else{
@@ -161,7 +165,7 @@
 					if(!this.pageSize){
 						data=data+'&pageSize=1';
 					}
-					
+
 					this.$statusbox.empty();
 
 					$.ajax({
@@ -219,21 +223,25 @@
 						this.$statusbox.append(this.NOT_MORE_HTML);
 					}
 					if(!json){
-						
+
 						this.removeAutoLoadListener();
 
 						if(type==qType.LOAD){
 							return;
 					    }else if(type==qType.SUBMIT){
 							html='没有找到你要的宝贝...';
-							this.tab.getItem('search').showQuicktip('试试这里...');
+							this.tabPanel.seach.showQuicktip('试试这里...');
 						}else{
 							html='没有找到对应的宝贝...';
 						}
+						
+						
+						this.tabPanel.$sortbarbox.hide();
+						
 						this.$viewbox.addClass('not-result');
 						this.$viewbox.html(html);
 						this.$statusbox.empty();
-						return;			
+						return;
 					}
 					html=[];
 					$.it(json,function(i,item){
@@ -246,7 +254,7 @@
 										item.title,
 									'</a>',
 								'</div>');
-						
+
 						if(item.status==3){
 							html.push(
 								'<div class="idex-item-type">',
@@ -303,12 +311,18 @@
 						//滚动到顶部
 						this.$listbox[0].scrollTop=0;
 					}
-					
+
 					if(json.length==this.pageSize){
 						this.addAutoLoadListener();
+						if(type==qType.SUBMIT){
+							this.tabPanel.$sortbarbox.show();
+						}
 					}else{
 						//this.$statusbox.append(this.NOT_MORE_HTML);
 						this.removeAutoLoadListener();
+						if(type==qType.SUBMIT || type==qType.GET){
+							this.tabPanel.$sortbarbox.hide();
+						}
 					}
 					//console.info(json);
 				},
@@ -346,6 +360,7 @@
 						form.getItem('outerId').setValue('');
 						form.getItem('isDesc').setValue('');
 						form.getItem('status').setValue('');
+
 						form.resetSellerCat();
 					}
 				}]
@@ -368,34 +383,52 @@
 
 				this._form_.tab=this.$owner;
 
-				this.form=new ui.form(this._form_);
 				
+				this._form_.tabPanel=this;
+
+				this.form=new ui.form(this._form_);
+
 				delete this._form_;
 
 				var div,
 					html=['<div class="x-ui-floatbar-box">',
 							'<div class="idex-sortbar-box">',
-								'<div class="idex-sort-button publish-time">发布时间',
+								'<div class="idex-sort-button publish-time" data-sort="publish">发布时间',
 									'<div class="idex-icon sort"></div>',
 								'</div>',
-								'<div class="idex-sort-button editor-time desc">编辑时间',
+								'<div class="idex-sort-button editor-time desc" data-sort="editor">编辑时间',
 									'<div class="idex-icon sort"></div>',
 								'</div>',
 							'</div>',
 							'<div class="idex-search-box"></div>',
 						  '</div>'];
 				div=$.createElement(html.join(''));
-				this.$owner.$tabbarbox.before(div);
 
+				this.$owner.$tabbarbox.before(div);
 				this.$floatbox=$(div);
 
-				this.initSearchText();
+				var children=this.$floatbox.children();
+
+				this.initSortBarBox(children[0]);
+				this.initSearchText(children[1]);
 			},
-			initSearchText : function(){
-				this.seach.render = this.$floatbox.children('.idex-search-box:first');
+			initSortBarBox : function(sortbarbox){
+				this.$sortbarbox=$(sortbarbox);
+
+				var children=this.$sortbarbox.children();
+
+
+				children.click({
+					$owner : this
+				},function(event){
+
+				});
+			},
+			initSearchText : function(searchbox){
+				this.seach.render = searchbox;
 
 				var seach=new ui.form.text(this.seach);
- 
+
 				seach.form=this.form;
 
 				this.seach=seach;
@@ -420,7 +453,7 @@
 						var array,
 							value=$.getClipboardTextData(event);
 						if(!value){
-						}else if(value.indexOf('item.taobao.com')>-1 || value.indexOf('detail.tmall.com')>-1){					
+						}else if(value.indexOf('item.taobao.com')>-1 || value.indexOf('detail.tmall.com')>-1){
 							array=value.match(/id=(\d{10,13})/i);
 							if(array && array.length==2){
 								this.value=array[1];
