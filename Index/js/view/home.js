@@ -18,6 +18,11 @@ Idex.addEventListener('ready',function(){
 		if(versionLimit.version==3){
 			$('#upgrade').remove();
 		}
+
+		
+		Idex.getVersionLimit=function(key){
+			return versionLimit[key];
+		};
 	}
 	if(homeJSON.d){
 		var date=new Date(homeJSON.d);
@@ -28,5 +33,6 @@ Idex.addEventListener('ready',function(){
 	$('[id]',Idex.view.home.render).removeAttr('id');
 	
 	delete window.getHomeJSON;
+
 });
 })();

@@ -1,4 +1,6 @@
 (function(){
+	var count;
+
 	Idex.view.template.init=function(tab){
 		CF.merger(tab,{
 			onRender : function(){
@@ -53,10 +55,8 @@
 								'<em>品牌形象品牌形象</em>',
 							'</div>',
 						  '</div>'];
-				this.$tabview.html(html.join(''));
+				//this.$tabview.html(html.join(''));
 
-
-				
 				var div,
 					html=['<div class="x-ui-floatbar-box">',
 								ui.getXTypeHTML(this.refresh),
@@ -69,9 +69,16 @@
 				
 				var children=this.$floatbox.children();
 
+
+				this.refresh.$owner=this;
 				this.refresh=ui.getXTypeItem(this.refresh,children[0]);
 
+				this.search.$owner=this;
 				this.search=ui.getXTypeItem(this.search,children[1]);
+
+				count=Idex.getVersionLimit('tcount');
+
+				this.initList();
 			},
 			refresh : {
 				xtype : 'button',
@@ -79,7 +86,7 @@
 				cls : 'refresh',
 				title : "刷新",
 				onClick:function(){
-
+					this.$owner.query();
 				}
 			},
 			search : {
@@ -111,7 +118,7 @@
 				this.$floatbox.hide();
 			},
 			CACHE_KEY : 'template_list',
-			getList : function(){
+			initList : function(){
 				var data=$.cache.get(this.CACHE_KEY);
 				if(data){
 					this.onLoad(JSON.parse(data));
@@ -128,7 +135,7 @@
 					dataType : 'jsonp',
 					success : function(json){
 						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json));
-						this.onLoad(json);
+						this.$owner.onLoad(json);
 					},
 					error : function(){
 					},
@@ -138,6 +145,44 @@
 			},
 			onLoad : function(json){
 				this.listJSON=json;
+				var html=['<div class="idex-module-box">'];
+
+				if(json.length<count){
+					html.push('<div class="idex-module-item idex-shadow-box blank">',
+								'<p>空白</p>',
+								'<em>点击创建</em>',
+							   '</div>'
+					);
+				}
+				
+
+				for(var i=0,len=json.length;i<len;i++){
+					var date,
+						item=json[i];
+					if(item.modified){
+						date=new Date(Date.parse(item.modified)).stringify();
+					}else{
+						date='';
+					}
+					html.push(
+							'<div class="idex-module-item idex-shadow-box">',
+								'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
+								'<div class="idex-mini-tbar" data-id="',item.id,'">',
+									'<div class="edit idex-icon"></div>',
+									'<div class="copy idex-icon"></div>',
+									'<div class="del idex-icon"></div>',
+								'</div>',
+								'<p>',item.width,'</p>',
+								'<em>',item.title,'</em>',
+							'</div>'
+					);
+				}
+
+				
+				html.push('</div>');
+				
+				this.$tabview.html(html.join(''));
+
 			}
 		});
 
