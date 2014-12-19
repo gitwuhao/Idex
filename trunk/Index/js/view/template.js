@@ -110,6 +110,10 @@
 			onHideAfter : function(){
 				this.$floatbox.hide();
 			},
+			getList : function(){
+				$.cache.get('template_list');
+			
+			}
 		});
 
 		tab.onRender();

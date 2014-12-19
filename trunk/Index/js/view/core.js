@@ -268,7 +268,7 @@
 		'js/view/home.js',
 		'js/view/list.js',
 		'js/view/module.js',
-		'js/view/templat.js',
+		'js/view/template.js',
 		'js/view/custom.js',
 		'js/view/renovation.js'
 	);
