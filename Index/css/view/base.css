@@ -145,6 +145,7 @@ em{
 .idex-view-panel .x-ui-tab-panel .x-ui-floatbar-box{
 	overflow: visible;
 	padding: 2px;
+	-webkit-user-select: none;
 }
 .idex-view-panel .x-ui-floatbar-box .x-ui-icon-button.refresh{
 	padding: 2px 3px 3px 3px;

@@ -32,13 +32,6 @@
 	float: right;
 	margin-top: -18px;
 }
-
-.idex-view-panel.list .idex-sortbar-box .desc .sort{
-	background-position: -460px -200px;
-}
-.idex-view-panel.list .idex-sortbar-box .asc .sort{
-	background-position: -480px -200px;
-}
 .idex-view-panel.list .idex-sortbar-box .idex-sort-button{
 	float:left;
 	width: 65px;
@@ -47,8 +40,17 @@
 	font-size: 12px;
 	cursor: pointer;
 }
-.idex-view-panel.list .idex-sortbar-box .desc,.idex-view-panel.list .idex-sortbar-box .asc{
+.idex-view-panel.list .idex-sortbar-box .idex-sort-button:hover,.idex-view-panel.list .idex-sortbar-box .desc,.idex-view-panel.list .idex-sortbar-box .asc{
 	color:#00B2FF;
+}
+.idex-view-panel.list .idex-sortbar-box .idex-sort-button:hover .sort{
+	background-position: -480px -200px;
+}
+.idex-view-panel.list .idex-sortbar-box .idex-sort-button.desc .sort{
+	background-position: -460px -200px;
+}
+.idex-view-panel.list .idex-sortbar-box .idex-sort-button.asc .sort{
+	background-position: -480px -200px;
 }
 /*----------------------------sort---------------------------------------------*/
 /*++++++++++++++++++++++++++++form+++++++++++++++++++++++++++++++++++++++++++++*/
