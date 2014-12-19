@@ -430,9 +430,11 @@
 			sortButtonClick : function(item){
 				if(this.activeSortItem){
 					this.activeSortItem.$elem.removeClass('desc asc');
+					/*
 					if(this.activeSortItem!=item){
 						this.activeSortItem.type='';
 					}
+					*/
 				}
 				if(item.type=='desc'){
 					item.type='asc';
