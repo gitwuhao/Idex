@@ -46,9 +46,7 @@
 					this.addEventListener('textkeydown',function(event){
 						 if(event.keyCode==13){
 							this.value=this.$text.val();
-							if(this.value){
-								this.submit();
-							}
+							this.submit();
 						 }
 					});
 				},
@@ -56,7 +54,7 @@
 					this.submit();
 				},
 				submit : function(){
-
+					this.$owner.onSearch();
 				}
 			},
 			onShowAfter : function(){
@@ -96,7 +94,8 @@
 				this.$tabview.html(this.buildListHTMLByJSON(json));
 			},
 			buildListHTMLByJSON : function(json,keyword){
-				var html=['<div class="idex-module-box">'];
+				var keyCode='<span class="c1">' + (keyword || '') + '</span>',
+					html=['<div class="idex-module-box">'];
 
 				if(json.length<count){
 					html.push('<div class="idex-module-item idex-shadow-box blank">',
@@ -108,7 +107,28 @@
 				
 				for(var i=0,len=json.length;i<len;i++){
 					var date,
-						item=json[i];
+						item=json[i],
+						last_user_nick,
+						title;
+
+					last_user_nick=item.last_user_nick||'';
+					title=item.title||'';
+
+					if(keyword){
+						var isNot=true;
+						if(title.indexOf(keyword)>-1){
+							title=title.replaceAll(keyword,keyCode);
+							isNot=false;
+						}
+
+						if(last_user_nick.indexOf(keyword)>-1){
+							last_user_nick=last_user_nick.replaceAll(keyword,keyCode);
+							isNot=false;
+						}
+						if(isNot){
+							continue;
+						}
+					}
 					if(item.modified){
 						date=new Date(Date.parse(item.modified)).stringify();
 					}else{
@@ -116,14 +136,14 @@
 					}
 					html.push(
 							'<div class="idex-module-item idex-shadow-box">',
-								'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
+								'<div class="datetime">',date,'&nbsp;&nbsp;',last_user_nick,'</div>',
 								'<div class="idex-mini-tbar" data-id="',item.id,'">',
 									'<div class="edit idex-icon"></div>',
 									'<div class="copy idex-icon"></div>',
 									'<div class="del idex-icon"></div>',
 								'</div>',
 								'<p>',item.width,'px</p>',
-								'<em>',item.title,'</em>',
+								'<em>',title,'</em>',
 							'</div>'
 					);
 				}
@@ -133,9 +153,13 @@
 				return html.join('');
 			},
 			onSearch : function(){
-				var val=this.search.getValue();
-				
-
+				var keyword=this.search.getValue()||'',
+					html;
+				html=this.buildListHTMLByJSON(this.listJSON,$.trim(keyword));
+				if(!html){
+					html=this.buildListHTMLByJSON(this.listJSON);
+				}
+				this.$tabview.html(html);
 			}
 		});
 
