@@ -120,7 +120,7 @@
 									'<div class="copy idex-icon"></div>',
 									'<div class="del idex-icon"></div>',
 								'</div>',
-								'<p>',item.width,'</p>',
+								'<p>',item.width,'px</p>',
 								'<em>',item.title,'</em>',
 							'</div>'
 					);
