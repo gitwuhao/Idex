@@ -110,9 +110,34 @@
 			onHideAfter : function(){
 				this.$floatbox.hide();
 			},
+			CACHE_KEY : 'template_list',
 			getList : function(){
-				$.cache.get('template_list');
-			
+				var data=$.cache.get(this.CACHE_KEY);
+				if(data){
+					this.onLoad(JSON.parse(data));
+				}else{
+					this.query();
+				}
+			},
+			query : function(){
+				$.ajax({
+					url:'/module.s',
+					data : 'method=query&type=1',
+					$owner : this,
+					type : 'POST',
+					dataType : 'jsonp',
+					success : function(json){
+						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json));
+						this.onLoad(json);
+					},
+					error : function(){
+					},
+					complete : function(){
+					}
+				});
+			},
+			onLoad : function(json){
+				this.listJSON=json;
 			}
 		});
 
