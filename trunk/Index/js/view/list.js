@@ -56,7 +56,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="sellerCids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
+					html : '<input type="hidden" name="sellerCids"/><input type="hidden" name="orderCol"/><input type="hidden" name="orderType"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
@@ -108,6 +108,8 @@
 					this.pageSize=$.toNumber(localStorage[this.KEY_PAGE_SIZE]);
 
 					this.$sellerCids=$('[name="sellerCids"]',this.$elem);
+					this.$orderCol=$('[name="orderCol"]',this.$elem);
+					this.$orderType=$('[name="orderType"]',this.$elem);
 
 					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
@@ -183,6 +185,10 @@
 						},
 						error : function(){
 							//this.$owner.$statusbox.append(this.$owner.LOAD_MORE_HTML);
+						},
+						complete : function(){
+							this.$owner.isSubmiting=false;
+							this.$owner.getItem('submit').enabled();
 						}
 					});
 				},
@@ -231,16 +237,40 @@
 						}else{
 							html='没有找到对应的宝贝...';
 						}
-						
-						
-						this.tabPanel.$sortbarbox.hide();
-						
+												
+						this.tabPanel.hideSortBar();
+
 						this.$viewbox.addClass('not-result');
 						this.$viewbox.html(html);
 						this.$statusbox.empty();
 						return;
 					}
-					html=[];
+					html=this.buildHTMLByJSON(json);
+					if(type==qType.LOAD){
+						this.$viewbox.append(html.join(''));
+					}else{
+						this.$viewbox.removeClass('not-result');
+						this.$viewbox.html(html.join(''));
+						//滚动到顶部
+						this.$listbox[0].scrollTop=0;
+					}
+
+					if(json.length==this.pageSize){
+						this.addAutoLoadListener();
+						if(type==qType.SUBMIT){
+							this.tabPanel.showSortBar();
+						}
+					}else{
+						//this.$statusbox.append(this.NOT_MORE_HTML);
+						this.removeAutoLoadListener();
+						if(type==qType.SUBMIT || type==qType.GET){
+							this.tabPanel.hideSortBar();
+						}
+					}
+					//console.info(json);
+				},
+				buildHTMLByJSON : function(json){
+					var html=[];
 					$.it(json,function(i,item){
 						html.push(
 						'<div class="idex-list-item">',
@@ -300,28 +330,8 @@
 						'</div>'
 						);
 					});
-					if(type==qType.LOAD){
-						this.$viewbox.append(html.join(''));
-					}else{
-						this.$viewbox.removeClass('not-result');
-						this.$viewbox.html(html.join(''));
-						//滚动到顶部
-						this.$listbox[0].scrollTop=0;
-					}
 
-					if(json.length==this.pageSize){
-						this.addAutoLoadListener();
-						if(type==qType.SUBMIT){
-							this.tabPanel.$sortbarbox.show();
-						}
-					}else{
-						//this.$statusbox.append(this.NOT_MORE_HTML);
-						this.removeAutoLoadListener();
-						if(type==qType.SUBMIT || type==qType.GET){
-							this.tabPanel.$sortbarbox.hide();
-						}
-					}
-					//console.info(json);
+					return html;
 				},
 				addAutoLoadListener:function(){
 					if(this.isAutoLoadListener){
@@ -340,17 +350,26 @@
 					delete this.isAutoLoadListener;
 					this.$listbox.off('scroll');
 				},
+				submit : function(){
+					if(this.isSubmiting){
+						return;
+					}
+					this.getItem('submit').disabled();
+					this.isSubmiting=true;
+					var param;
+					param=this.getParam(true);
+					this.queryParam=param;
+					this.query(param,this.Q_TYPE.SUBMIT);
+				},
 				buttons:[{
 					label:'查询',
+					name : 'submit',
 					onClick:function(){
-						var param,
-							form=this.$owner;
-						param=form.getParam(true);
-						form.queryParam=param;
-						form.query(param,form.Q_TYPE.SUBMIT);
+						this.$owner.submit();
 					}
 				},{
 					label:'重置',
+					name : 'reset',
 					onClick:function(){
 						var form=this.$owner;
 						form.getItem('title').setValue('');
@@ -358,6 +377,8 @@
 						form.getItem('isDesc').setValue('');
 						form.getItem('status').setValue('');
 
+						form.$orderCol.val('');
+						form.$orderType.val('');
 						form.resetSellerCat();
 					}
 				}]
@@ -430,11 +451,6 @@
 			sortButtonClick : function(item){
 				if(this.activeSortItem){
 					this.activeSortItem.$elem.removeClass('desc asc');
-					/*
-					if(this.activeSortItem!=item){
-						this.activeSortItem.type='';
-					}
-					*/
 				}
 				if(item.type=='desc'){
 					item.type='asc';
@@ -443,6 +459,22 @@
 				}
 				item.$elem.addClass(item.type);
 				this.activeSortItem=item;
+				
+				this.form.$orderCol.val(item.field);
+				this.form.$orderType.val(item.type);
+
+				this.form.submit();
+
+			},
+			showSortBar : function(){
+				this.$sortbarbox.show();
+				this.form.$orderCol.val(this.activeSortItem.field);
+				this.form.$orderType.val(this.activeSortItem.type);
+			},
+			hideSortBar : function(){
+				this.$sortbarbox.hide();
+				this.form.$orderCol.val('');
+				this.form.$orderType.val('');
 			},
 			initSortBarBox : function(sortbarbox){
 				this.$sortbarbox=$(sortbarbox);
