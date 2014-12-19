@@ -93,6 +93,9 @@
 			},
 			onLoad : function(json){
 				this.listJSON=json;
+				this.$tabview.html(this.buildListHTMLByJSON(json));
+			},
+			buildListHTMLByJSON : function(json,keyword){
 				var html=['<div class="idex-module-box">'];
 
 				if(json.length<count){
@@ -103,7 +106,6 @@
 					);
 				}
 				
-
 				for(var i=0,len=json.length;i<len;i++){
 					var date,
 						item=json[i];
@@ -126,10 +128,13 @@
 					);
 				}
 
-				
 				html.push('</div>');
 				
-				this.$tabview.html(html.join(''));
+				return html.join('');
+			},
+			onSearch : function(){
+				var val=this.search.getValue();
+				
 
 			}
 		});
