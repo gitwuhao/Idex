@@ -430,6 +430,9 @@
 			sortButtonClick : function(item){
 				if(this.activeSortItem){
 					this.activeSortItem.$elem.removeClass('desc asc');
+					if(this.activeSortItem!=item){
+						this.activeSortItem.type='';
+					}
 				}
 				if(item.type=='desc'){
 					item.type='asc';
@@ -456,6 +459,7 @@
 						data.$owner.sortButtonClick(data.item);
 					});
 				}
+				this.activeSortItem=this.sortbar[1];
 			},
 			initSearchText : function(searchbox){
 				this.seach.render = searchbox;
