@@ -518,6 +518,7 @@
 				left : offset.left,
 				top : offset.top,
 				width : width,
+				'max-height': '500px',
 				//height : height,
 				'z-index' : zindex
 			});
