@@ -474,6 +474,9 @@
 				this.$sortbarbox.hide();
 				this.form.$orderCol.val('');
 				this.form.$orderType.val('');
+				if(this.activeSortItem){
+					this.activeSortItem.$elem.removeClass('desc asc');
+				}
 			},
 			initSortBarBox : function(sortbarbox){
 				this.$sortbarbox=$(sortbarbox);
