@@ -26,6 +26,13 @@
 
 				count=Idex.getVersionLimit('tcount');
 
+				
+				
+				div=$.createElement('<div class="idex-module-box"></div>');
+				this.$tabview.html(div);
+
+				this.$moduleBox=$(div);
+
 				this.initList();
 			},
 			refresh : {
@@ -91,11 +98,12 @@
 			},
 			onLoad : function(json){
 				this.listJSON=json;
-				this.$tabview.html(this.buildListHTMLByJSON(json));
+				this.currentKeyWord='';
+				this.$moduleBox.html(this.buildListHTMLByJSON(json));
 			},
 			buildListHTMLByJSON : function(json,keyword){
 				var keyCode='<span class="c1">' + (keyword || '') + '</span>',
-					html=['<div class="idex-module-box">'];
+					html=[];
 
 				if(json.length<count){
 					html.push('<div class="idex-module-item idex-shadow-box blank">',
@@ -148,18 +156,22 @@
 					);
 				}
 
-				html.push('</div>');
 				
 				return html.join('');
 			},
 			onSearch : function(){
-				var keyword=this.search.getValue()||'',
+				var keyword=$.trim(this.search.getValue()||''),
 					html;
-				html=this.buildListHTMLByJSON(this.listJSON,$.trim(keyword));
+				if(this.currentKeyWord==keyword){
+					return;
+				}
+				html=this.buildListHTMLByJSON(this.listJSON,keyword);
 				if(!html){
 					html=this.buildListHTMLByJSON(this.listJSON);
 				}
-				this.$tabview.html(html);
+				this.$moduleBox.html(html);
+				
+				this.currentKeyWord=keyword;
 			}
 		});
 
