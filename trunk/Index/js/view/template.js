@@ -27,7 +27,6 @@
 				count=Idex.getVersionLimit('tcount');
 
 				
-				
 				div=$.createElement('<div class="idex-module-box"></div>');
 				this.$tabview.html(div);
 
