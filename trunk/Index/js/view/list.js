@@ -377,8 +377,9 @@
 						form.getItem('isDesc').setValue('');
 						form.getItem('status').setValue('');
 
-						form.$orderCol.val('');
-						form.$orderType.val('');
+						//form.$orderCol.val('');
+						//form.$orderType.val('');
+						form.tabPanel.hideSortBar();
 						form.resetSellerCat();
 					}
 				}]
@@ -416,12 +417,7 @@
 				for(var i=0,len=this.sortbar.length;i<len;i++){
 					var cls,
 						item=this.sortbar[i];
-					if(item.type){
-						cls=item.cls + ' '+ item.type;
-					}else{
-						cls=item.cls;
-					}
-					html.push(	'<div class="idex-sort-button ',cls,'" >',item.label,
+					html.push(	'<div class="idex-sort-button" >',item.label,
 									'<div class="idex-icon sort"></div>',
 								'</div>');
 				}
@@ -440,13 +436,12 @@
 			},
 			sortbar : [{
 				field :'publish_time',
-				cls : 'publish-time',
 				label :'发布时间'
+				//type : 'asc',
+				//orderType : 0
 			},{
-				field :'editor_time',
-				cls : 'editor-time',
-				label :'编辑时间',
-				type : 'desc'
+				field :'edit_time',
+				label :'编辑时间'
 			}],
 			sortButtonClick : function(item){
 				if(this.activeSortItem){
@@ -454,22 +449,26 @@
 				}
 				if(item.type=='desc'){
 					item.type='asc';
+					item.orderType=0;
 				}else{
 					item.type='desc';
+					item.orderType=1;
 				}
 				item.$elem.addClass(item.type);
 				this.activeSortItem=item;
 				
 				this.form.$orderCol.val(item.field);
-				this.form.$orderType.val(item.type);
+				this.form.$orderType.val(item.orderType);
 
 				this.form.submit();
 
 			},
 			showSortBar : function(){
 				this.$sortbarbox.show();
-				this.form.$orderCol.val(this.activeSortItem.field);
-				this.form.$orderType.val(this.activeSortItem.type);
+				if(this.activeSortItem){
+					this.form.$orderCol.val(this.activeSortItem.field);
+					this.form.$orderType.val(this.activeSortItem.orderType);
+				}
 			},
 			hideSortBar : function(){
 				this.$sortbarbox.hide();
@@ -493,7 +492,6 @@
 						data.$owner.sortButtonClick(data.item);
 					});
 				}
-				this.activeSortItem=this.sortbar[1];
 			},
 			initSearchText : function(searchbox){
 				this.seach.render = searchbox;
