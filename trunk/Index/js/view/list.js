@@ -56,7 +56,7 @@
 					}]
 				},{
 					label:'商品分类',
-					html : '<input type="hidden" name="sellerCids"/><input type="hidden" name="orderCol"/><input type="hidden" name="orderType"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
+					html : '<input type="hidden" name="sellerCids"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
 					html : ' '
@@ -108,9 +108,6 @@
 					this.pageSize=$.toNumber(localStorage[this.KEY_PAGE_SIZE]);
 
 					this.$sellerCids=$('[name="sellerCids"]',this.$elem);
-
-					this.$orderCol=$('[name="orderCol"]',this.$elem);
-					this.$orderType=$('[name="orderType"]',this.$elem);
 
 					this.$category=$('.category-label',this.$elem);
 					this.$categoryLabel=this.$category.children(".label");
@@ -392,16 +389,24 @@
 
 				var div,
 					html=['<div class="x-ui-floatbar-box">',
-							'<div class="idex-sortbar-box">',
-								'<div class="idex-sort-button publish-time" data-sort="publish">发布时间',
+							'<div class="idex-sortbar-box">'
+						 ];
+
+				for(var i=0,len=this.sortbar.length;i<len;i++){
+					var cls,
+						item=this.sortbar[i];
+					if(item.type){
+						cls=item.cls + ' '+ item.type;
+					}else{
+						cls=item.cls;
+					}
+					html.push(	'<div class="idex-sort-button ',cls,'" >',item.label,
 									'<div class="idex-icon sort"></div>',
-								'</div>',
-								'<div class="idex-sort-button editor-time desc" data-sort="editor">编辑时间',
-									'<div class="idex-icon sort"></div>',
-								'</div>',
-							'</div>',
+								'</div>');
+				}
+				html.push(  '</div>',
 							'<div class="idex-search-box"></div>',
-						  '</div>'];
+						  '</div>');
 				div=$.createElement(html.join(''));
 
 				this.$owner.$tabbarbox.before(div);
@@ -412,17 +417,45 @@
 				this.initSortBarBox(children[0]);
 				this.initSearchText(children[1]);
 			},
+			sortbar : [{
+				field :'publish_time',
+				cls : 'publish-time',
+				label :'发布时间'
+			},{
+				field :'editor_time',
+				cls : 'editor-time',
+				label :'编辑时间',
+				type : 'desc'
+			}],
+			sortButtonClick : function(item){
+				if(this.activeSortItem){
+					this.activeSortItem.$elem.removeClass('desc asc');
+				}
+				if(item.type=='desc'){
+					item.type='asc';
+				}else{
+					item.type='desc';
+				}
+				item.$elem.addClass(item.type);
+				this.activeSortItem=item;
+			},
 			initSortBarBox : function(sortbarbox){
 				this.$sortbarbox=$(sortbarbox);
-
+	 
 				var children=this.$sortbarbox.children();
+			
+				for(var i=0,len=this.sortbar.length;i<len;i++){
+					var item = this.sortbar[i];
+					item.$elem=$(children[i]);
 
-
-				children.click({
-					$owner : this
-				},function(event){
-
-				});
+					item.$elem.click({
+						item : item,
+						$owner : this
+					},function(event){
+						var data=event.data;
+						data.$owner.sortButtonClick(data.item);
+					});
+				}
 			},
 			initSearchText : function(searchbox){
 				this.seach.render = searchbox;
