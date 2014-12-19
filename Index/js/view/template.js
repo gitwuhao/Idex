@@ -105,7 +105,7 @@
 				var keyCode='<span class="c1">' + (keyword || '') + '</span>',
 					html=[];
 
-				if(json.length<count){
+				if(!keyword && json.length<count){
 					html.push('<div class="idex-module-item idex-shadow-box blank">',
 								'<p>空白</p>',
 								'<em>点击创建</em>',
@@ -155,8 +155,6 @@
 							'</div>'
 					);
 				}
-
-				
 				return html.join('');
 			},
 			onSearch : function(){
