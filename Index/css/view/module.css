@@ -27,6 +27,10 @@
 	font-size: 12px;
 	margin-top: -20px;
 	margin-left: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 185px;
+	text-align: left;
 }
 .idex-view-panel .idex-module-item p{
 	font-size: 36px;
