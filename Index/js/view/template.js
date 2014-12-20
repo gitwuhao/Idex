@@ -122,7 +122,7 @@
 				this.saveCache();
 			},
 			saveCache : function(){
-				$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(RAW_DATA),new Date());
+				$.cache.put(this.CACHE_KEY,JSON.stringify(RAW_DATA),new Date());
 			},
 			initRawData : function(json){
 				this.listJSON=json;
