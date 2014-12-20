@@ -87,7 +87,7 @@
 					type : 'POST',
 					dataType : 'jsonp',
 					success : function(json){
-						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json));
+						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json),new Date());
 						this.$owner.onLoad(json);
 					},
 					error : function(){
