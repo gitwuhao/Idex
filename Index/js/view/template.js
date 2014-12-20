@@ -102,8 +102,8 @@
 					id : item.id,
 					width : item.width,
 					title : item.title,
-					modified : item.modified,
-					last_user_nick : item.last_user_nick
+					modified : item.modified || '',
+					last_user_nick : item.last_user_nick || ''
 				};
 			},
 			insertRawData : function(index,copy){
@@ -167,6 +167,9 @@
 
 				this.insertRawData(item.index,copy);
 			},
+			delItem : function(item){
+				this.delRawData(item.index);
+			},
 			onDel : function(item){
 				$.ajax({
 					url:'/module.s',
@@ -177,7 +180,7 @@
 					dataType : 'jsonp',
 					success : function(data){
 						if(data==1){
-							
+							this.$owner.delItem(this.item);
 						}
 					},
 					error : function(){
