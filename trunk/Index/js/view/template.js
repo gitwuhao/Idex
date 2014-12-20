@@ -88,8 +88,8 @@
 					type : 'POST',
 					dataType : 'jsonp',
 					success : function(json){
-						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json),new Date());
 						this.$owner.initRawData(json);
+						this.$owner.saveCache();
 					},
 					error : function(){
 					},
@@ -114,10 +114,15 @@
 				copy=this.copyItemValue(copy);
 				RAW_DATA.insert(index,copy);
 				this.initRawData(RAW_DATA);
+				this.saveCache();
 			},
 			delRawData : function(index){
 				RAW_DATA.splice(index,1);
 				this.initRawData(RAW_DATA);
+				this.saveCache();
+			},
+			saveCache : function(){
+				$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(RAW_DATA),new Date());
 			},
 			initRawData : function(json){
 				this.listJSON=json;
