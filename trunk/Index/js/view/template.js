@@ -124,28 +124,25 @@
 					var item,
 						id=$.attr(element,'data-id');
 					item=MapJSON[id];
-					item.elem=element;
-					me.bindMiniToolBarEvent(item);
-					$.removeAttr(element,'data-id')
-				});
+					item.$elem=$(element);
 
-			},
-			bindMiniToolBarEvent : function(item){
-				$(item.elem).children().click({
-					item : item,
-					$owner : this
-				},function(event){
-					var data=event.data,
-						cls=this.className,
-						type;
-					if(cls.indexOf('copy')>-1){
-						type='copy';
-					}else if(cls.indexOf('edit')>-1){
-						type='edit';
-					}else if(cls.indexOf('del')>-1){
-						type='del';
-					}
-					data.$owner.on(type,data.item);
+					item.$elem.children().click({
+						item : item,
+						$owner : me
+					},function(event){
+						var data=event.data,
+							cls=this.className,
+							type;
+						if(cls.indexOf('copy')>-1){
+							type='copy';
+						}else if(cls.indexOf('edit')>-1){
+							type='edit';
+						}else if(cls.indexOf('del')>-1){
+							type='del';
+						}
+						data.$owner.on(type,data.item);
+					});
+					$.removeAttr(element,'data-id')
 				});
 			},
 			buildListHTMLByJSON : function(json,keyword){
