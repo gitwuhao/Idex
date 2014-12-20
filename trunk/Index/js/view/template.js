@@ -4,7 +4,7 @@
 	Idex.view.template.init=function(tab){
 		CF.merger(tab,{
 			onRender : function(){
-			
+
 				var div,
 					html=['<div class="x-ui-floatbar-box">',
 								ui.getXTypeHTML(this.refresh),
@@ -14,7 +14,7 @@
 				this.$owner.$tabbarbox.before(div);
 
 				this.$floatbox=$(div);
-				
+
 				var children=this.$floatbox.children();
 
 
@@ -26,7 +26,7 @@
 
 				count=Idex.getVersionLimit('tcount');
 
-				
+
 				div=$.createElement('<div class="idex-module-box"></div>');
 				this.$tabview.html(div);
 
@@ -97,8 +97,56 @@
 			},
 			onLoad : function(json){
 				this.listJSON=json;
+				this.MapJSON={};
+				for(var i=0,len=json.length;i<len;i++){
+					var item=json[i];
+					this.MapJSON[item.id]=item;
+				}
 				this.currentKeyWord='';
-				this.$moduleBox.html(this.buildListHTMLByJSON(json));
+				this.renderList(this.buildListHTMLByJSON(json));
+			},
+			onEdit : function(item){
+				console.info('on edit['+item.id+']');
+			},
+			onCopy : function(item){
+				console.info('on copy['+item.id+']');
+			},
+			onDel : function(item){
+				console.info('on del['+item.id+']');
+			},
+			renderList : function(html){
+				this.$moduleBox.html(html);
+
+				var listMiniToolBar=$('.idex-mini-tbar',this.$moduleBox),
+					MapJSON=this.MapJSON,
+					me=this;
+				listMiniToolBar.each(function(i,element){
+					var item,
+						id=$.attr(element,'data-id');
+					item=MapJSON[id];
+					item.elem=element;
+					me.bindMiniToolBarEvent(item);
+					$.removeAttr(element,'data-id')
+				});
+
+			},
+			bindMiniToolBarEvent : function(item){
+				$(item.elem).children().click({
+					item : item,
+					$owner : this
+				},function(event){
+					var data=event.data,
+						cls=this.className,
+						type;
+					if(cls.indexOf('copy')>-1){
+						type='copy';
+					}else if(cls.indexOf('edit')>-1){
+						type='edit';
+					}else if(cls.indexOf('del')>-1){
+						type='del';
+					}
+					data.$owner.on(type,data.item);
+				});
 			},
 			buildListHTMLByJSON : function(json,keyword){
 				var keyCode='<span class="c1">' + (keyword || '') + '</span>',
@@ -111,7 +159,7 @@
 							   '</div>'
 					);
 				}
-				
+
 				for(var i=0,len=json.length;i<len;i++){
 					var date,
 						item=json[i],
@@ -166,8 +214,8 @@
 				if(!html){
 					html=this.buildListHTMLByJSON(this.listJSON);
 				}
-				this.$moduleBox.html(html);
-				
+				this.renderList(html);
+
 				this.currentKeyWord=keyword;
 			}
 		});
