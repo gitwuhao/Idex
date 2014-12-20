@@ -70,6 +70,7 @@
 				this.$floatbox.hide();
 			},
 			CACHE_KEY : 'template_list',
+			ACTION_TYPE : 1,
 			initList : function(){
 				var data=$.cache.get(this.CACHE_KEY);
 				if(data){
@@ -81,7 +82,7 @@
 			query : function(){
 				$.ajax({
 					url:'/module.s',
-					data : 'method=query&type=1',
+					data : 'method=query&type=' + this.ACTION_TYPE,
 					$owner : this,
 					type : 'POST',
 					dataType : 'jsonp',
@@ -109,10 +110,36 @@
 				console.info('on edit['+item.id+']');
 			},
 			onCopy : function(item){
-				console.info('on copy['+item.id+']');
+				$.ajax({
+					url:'/module.s',
+					data : 'method=copy&id='+item.id+'&type='+this.ACTION_TYPE,
+					$owner : this,
+					type : 'POST',
+					dataType : 'jsonp',
+					success : function(data){
+
+					},
+					error : function(){
+					},
+					complete : function(){
+					}
+				});
 			},
 			onDel : function(item){
-				console.info('on del['+item.id+']');
+				$.ajax({
+					url:'/module.s',
+					data : 'method=delete&id='+item.id+'&type='+this.ACTION_TYPE,
+					$owner : this,
+					type : 'POST',
+					dataType : 'jsonp',
+					success : function(data){
+
+					},
+					error : function(){
+					},
+					complete : function(){
+					}
+				});
 			},
 			renderList : function(html){
 				this.$moduleBox.html(html);
