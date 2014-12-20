@@ -75,7 +75,7 @@
 			initList : function(){
 				var data=$.cache.get(this.CACHE_KEY);
 				if(data){
-					this.onLoad(JSON.parse(data));
+					this.initRawData(JSON.parse(data));
 				}else{
 					this.query();
 				}
@@ -89,7 +89,7 @@
 					dataType : 'jsonp',
 					success : function(json){
 						$.cache.put(this.$owner.CACHE_KEY,JSON.stringify(json),new Date());
-						this.$owner.onLoad(json);
+						this.$owner.initRawData(json);
 					},
 					error : function(){
 					},
@@ -129,12 +129,7 @@
 					this.MapJSON[item.id]=item;
 					RAW_DATA.push(this.copyItemValue(item));
 				}
-			},
-			onLoad : function(json){
-				this.initRawData(json);
-				this.renderList();
-			},
-			renderList : function(){
+				
 				this.currentKeyWord='';
 				this.renderListByHTML(this.buildListHTMLByJSON(this.listJSON));
 			},
@@ -166,8 +161,6 @@
 				copy.modified=new Date().formatDateTime();
 
 				this.insertRawData(item.index,copy);
-
-				this.renderList();
 			},
 			onDel : function(item){
 				$.ajax({
