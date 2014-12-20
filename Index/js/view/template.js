@@ -88,7 +88,7 @@
 					type : 'POST',
 					dataType : 'jsonp',
 					success : function(json){
-						this.$owner.initRawData(json);
+						this.$owner.initRawData(json||[]);
 						this.$owner.saveCache();
 					},
 					error : function(){
@@ -134,7 +134,6 @@
 					this.MapJSON[item.id]=item;
 					RAW_DATA.push(this.copyItemValue(item));
 				}
-				
 				this.currentKeyWord='';
 				this.renderListByHTML(this.buildListHTMLByJSON(this.listJSON));
 			},
@@ -294,7 +293,7 @@
 			onSearch : function(){
 				var keyword=$.trim(this.search.getValue()||''),
 					html;
-				if(this.currentKeyWord==keyword){
+				if(this.currentKeyWord==keyword || this.listJSON.length==0){
 					return;
 				}
 				html=this.buildListHTMLByJSON(this.listJSON,keyword);
