@@ -114,16 +114,39 @@
 					url:'/module.s',
 					data : 'method=copy&id='+item.id+'&type='+this.ACTION_TYPE,
 					$owner : this,
+					item : item,
 					type : 'POST',
 					dataType : 'jsonp',
-					success : function(data){
-
+					success : function(json){
+						if(json && json.id){
+							this.$owner.copyItem(this.item,json);
+						}
 					},
 					error : function(){
 					},
 					complete : function(){
 					}
 				});
+			},
+			copyItem : function(item,copy){
+				copy.title=item.title;
+				copy.width=item.width;
+				copy.modified=new Date().formatDateTime();
+
+				var div,
+					html=this.getItemHTML(copy);
+
+				div=$.createElement(html);
+				
+				item.$elem.after(div);
+
+				copy.$elem=$(div);
+
+				copy.$elem.addClass('copy-item');
+				
+				this.listJSON.push(copy);
+
+				this.MapJSON[copy.id]=copy;
 			},
 			onDel : function(item){
 				$.ajax({
@@ -154,9 +177,9 @@
 					$.removeAttr(element,'data-id');
 
 					item=MapJSON[id];
-					item.$elem=$(element);
+					item.$elem=$(element.parentElement);
 					
-					item.$elem.children().click({
+					$(element).children().click({
 						item : item,
 						$owner : me
 					},function(event){
@@ -176,6 +199,7 @@
 			},
 			buildListHTMLByJSON : function(json,keyword){
 				var keyCode='<span class="c1">' + (keyword || '') + '</span>',
+					isAdd=false,
 					html=[];
 
 				if(!keyword && json.length<count){
@@ -184,6 +208,7 @@
 								'<em>点击创建</em>',
 							   '</div>'
 					);
+					isAdd=true;
 				}
 
 				for(var i=0,len=json.length;i<len;i++){
@@ -215,20 +240,31 @@
 					}else{
 						date='';
 					}
-					html.push(
-							'<div class="idex-module-item idex-shadow-box">',
-								'<div class="datetime">',date,'&nbsp;&nbsp;',last_user_nick,'</div>',
+					var copyItem=CF.merger({},item,{
+						title : title
+					});
+					html.push(this.getItemHTML(copyItem,isAdd));
+				}
+				return html.join('');
+			},
+			getItemHTML : function(item,isAdd){
+				var date;
+				if(item.modified){
+					date=new Date(Date.parse(item.modified)).stringify();
+				}else{
+					date='';
+				}
+
+				return ['<div class="idex-module-item idex-shadow-box">',
+								'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
 								'<div class="idex-mini-tbar" data-id="',item.id,'">',
 									'<div class="edit idex-icon"></div>',
-									'<div class="copy idex-icon"></div>',
+									(isAdd ?  '<div class="copy idex-icon"></div>' : '' ), 
 									'<div class="del idex-icon"></div>',
 								'</div>',
 								'<p>',item.width,'px</p>',
-								'<em>',title,'</em>',
-							'</div>'
-					);
-				}
-				return html.join('');
+								'<em>',item.title,'</em>',
+						'</div>'].join('');
 			},
 			onSearch : function(){
 				var keyword=$.trim(this.search.getValue()||''),
