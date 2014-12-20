@@ -1,6 +1,7 @@
 (function(){
-	var count;
-
+	var count,
+		RAW_DATA;
+	
 	Idex.view.template.init=function(tab){
 		CF.merger(tab,{
 			onRender : function(){
@@ -96,15 +97,46 @@
 					}
 				});
 			},
-			onLoad : function(json){
+			copyItemValue : function(item){
+				return {
+					id : item.id,
+					width : item.width,
+					title : item.title,
+					modified : item.modified,
+					last_user_nick : item.last_user_nick
+				};
+			},
+			insertRawData : function(index,copy){
+				var item=RAW_DATA[index];
+				if(!item){
+					return;
+				}
+				copy=this.copyItemValue(copy);
+				RAW_DATA.insert(index,copy);
+				this.initRawData(RAW_DATA);
+			},
+			delRawData : function(index){
+				RAW_DATA.splice(index,1);
+				this.initRawData(RAW_DATA);
+			},
+			initRawData : function(json){
 				this.listJSON=json;
 				this.MapJSON={};
+				RAW_DATA=[];
 				for(var i=0,len=json.length;i<len;i++){
 					var item=json[i];
+					item.index=i;
 					this.MapJSON[item.id]=item;
+					RAW_DATA.push(this.copyItemValue(item));
 				}
+			},
+			onLoad : function(json){
+				this.initRawData(json);
+				this.renderList();
+			},
+			renderList : function(){
 				this.currentKeyWord='';
-				this.renderList(this.buildListHTMLByJSON(json));
+				this.renderListByHTML(this.buildListHTMLByJSON(this.listJSON));
 			},
 			onEdit : function(item){
 				console.info('on edit['+item.id+']');
@@ -133,20 +165,9 @@
 				copy.width=item.width;
 				copy.modified=new Date().formatDateTime();
 
-				var div,
-					html=this.getItemHTML(copy);
+				this.insertRawData(item.index,copy);
 
-				div=$.createElement(html);
-				
-				item.$elem.after(div);
-
-				copy.$elem=$(div);
-
-				copy.$elem.addClass('copy-item');
-				
-				this.listJSON.push(copy);
-
-				this.MapJSON[copy.id]=copy;
+				this.renderList();
 			},
 			onDel : function(item){
 				$.ajax({
@@ -167,7 +188,7 @@
 					}
 				});
 			},
-			renderList : function(html){
+			renderListByHTML : function(html){
 				this.$moduleBox.html(html);
 
 				var listMiniToolBar=$('.idex-mini-tbar',this.$moduleBox),
@@ -279,7 +300,7 @@
 				if(!html){
 					html=this.buildListHTMLByJSON(this.listJSON);
 				}
-				this.renderList(html);
+				this.renderListByHTML(html);
 
 				this.currentKeyWord=keyword;
 			}
