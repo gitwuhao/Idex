@@ -153,10 +153,13 @@
 					url:'/module.s',
 					data : 'method=delete&id='+item.id+'&type='+this.ACTION_TYPE,
 					$owner : this,
+					item : item,
 					type : 'POST',
 					dataType : 'jsonp',
 					success : function(data){
-
+						if(data==1){
+							
+						}
 					},
 					error : function(){
 					},
