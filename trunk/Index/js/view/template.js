@@ -123,9 +123,12 @@
 				listMiniToolBar.each(function(i,element){
 					var item,
 						id=$.attr(element,'data-id');
+
+					$.removeAttr(element,'data-id');
+
 					item=MapJSON[id];
 					item.$elem=$(element);
-
+					
 					item.$elem.children().click({
 						item : item,
 						$owner : me
@@ -142,7 +145,6 @@
 						}
 						data.$owner.on(type,data.item);
 					});
-					$.removeAttr(element,'data-id')
 				});
 			},
 			buildListHTMLByJSON : function(json,keyword){
