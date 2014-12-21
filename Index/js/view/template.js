@@ -173,7 +173,11 @@
 				}
 			},
 			delItem : function(item){
-				this.delRawData(item.index);
+				item.$elem.addClass('del-ani');
+				$.setTimeout(function(_item_){
+					_item_.$elem.removeClass('del-ani');
+					this.delRawData(_item_.index);
+				},1000,this,[item]);
 			},
 			onDel : function(item,target){
 				item.$elem.addClass('del');
