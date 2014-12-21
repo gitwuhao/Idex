@@ -106,13 +106,15 @@
 					last_user_nick : item.last_user_nick || ''
 				};
 			},
-			insertRawData : function(index,copy){
+			insertRawData : function(index,item){
+				/*
 				var item=RAW_DATA[index];
 				if(!item){
 					return;
 				}
-				copy=this.copyItemValue(copy);
-				RAW_DATA.insert(index,copy);
+				*/
+				item=this.copyItemValue(item);
+				RAW_DATA.insert(index,item);
 				this.initRawData(RAW_DATA);
 				this.saveCache();
 			},
@@ -149,7 +151,7 @@
 					type : 'POST',
 					dataType : 'jsonp',
 					success : function(json){
-						if(json && json.id){
+						if(json && json.id>0){
 							this.$owner.copyItem(this.item,json);
 						}
 					},
@@ -172,12 +174,46 @@
 					},1000,copy);
 				}
 			},
-			delItem : function(item){
-				item.$elem.addClass('del-ani');
-				$.setTimeout(function(_item_){
-					_item_.$elem.removeClass('del-ani');
-					this.delRawData(_item_.index);
-				},1000,this,[item]);
+			onNew : function(item,target){
+				$.ajax({
+					url:'/module.s',
+					data : 'method=insert&id='+item.id+'&type='+this.ACTION_TYPE,
+					_$owner : this,
+					_target : target,
+					type : 'POST',
+					dataType : 'jsonp',
+					success : function(json){
+						if(json && json.id>0){
+							this._$owner.newItem(json);
+						}else{
+							ui.quicktip.show({
+								align : 'tc',
+								offset : 'lt',
+								cls : 'c3',
+								html : '创建失败',
+								time : 1001,
+								target :  this._target
+							});
+							$.setTimeout(function(){
+								this.query();
+							},1000,this._$owner)
+						}
+					},
+					error : function(){
+					},
+					complete : function(){
+					}
+				});
+			},
+			newItem : function(item){
+				this.insertRawData(0,item);
+				item = this.MapJSON[item.id];
+				if(item.$elem){
+					item.$elem.addClass('new');
+					$.setTimeout(function(){
+						this.$elem.removeClass('new');
+					},1000,item);
+				}
 			},
 			onDel : function(item,target){
 				item.$elem.addClass('del');
@@ -216,6 +252,13 @@
 					complete : function(){
 					}
 				});
+			},
+			delItem : function(item){
+				item.$elem.addClass('del-ani');
+				$.setTimeout(function(_item_){
+					_item_.$elem.removeClass('del-ani');
+					this.delRawData(_item_.index);
+				},1000,this,[item]);
 			},
 			renderListByHTML : function(html){
 				this.$moduleBox.html(html);
