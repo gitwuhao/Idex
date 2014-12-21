@@ -56,14 +56,28 @@
 	margin-top: 0px;
 	margin-bottom: 28px;
 }
+.idex-view-panel .idex-module-item.del-ani{
+	-webkit-animation:bounceOut 1s .2s ease both;
+}
+@-webkit-keyframes bounceOut{
+	0%{-webkit-transform:scale(1)}
+	25%{-webkit-transform:scale(.95)}
+	50%{opacity:1;
+	-webkit-transform:scale(1.1)}
+	100%{opacity:0;
+	-webkit-transform:scale(.3)}
+}
 .idex-view-panel .idex-module-item.new{
 	border-color:#15CD00;
 	color:#15CD00;
-	-webkit-animation:pulse 1s .2s ease both;
+	-webkit-animation:bounceIn 1s .2s ease both;
 }
-@-webkit-keyframes pulse{
-	0%{-webkit-transform:scale(1)}
-	50%{-webkit-transform:scale(1.1)}
+@-webkit-keyframes bounceIn{
+	0%{opacity:0;
+	-webkit-transform:scale(.3)}
+	50%{opacity:1;
+	-webkit-transform:scale(1.05)}
+	70%{-webkit-transform:scale(.9)}
 	100%{-webkit-transform:scale(1)}
 }
 .idex-view-panel .idex-module-item:hover .idex-mini-tbar{
