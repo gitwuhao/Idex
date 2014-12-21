@@ -43,13 +43,24 @@
     line-height: 30px;
     white-space: nowrap;
 }
-
 .idex-view-panel .idex-module-item:hover{
 	border-color:#00B2FF;
 	color:#00B2FF;
 	margin-top: 0px;
 	margin-bottom: 28px;
 	transition: all 0.5s 0s ease;
+}
+.idex-view-panel .idex-module-item.del{
+	border-color:#F27530;
+	color:#F27530;
+	margin-top: 0px;
+	margin-bottom: 28px;
+}
+.idex-view-panel .idex-module-item.new{
+	border-color:#00B26F;
+	color:#00B26F;
+	margin-top: 0px;
+	margin-bottom: 28px;
 }
 .idex-view-panel .idex-module-item:hover .idex-mini-tbar{
 	display: block;

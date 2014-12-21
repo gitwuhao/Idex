@@ -137,10 +137,10 @@
 				this.currentKeyWord='';
 				this.renderListByHTML(this.buildListHTMLByJSON(this.listJSON));
 			},
-			onEdit : function(item){
+			onEdit : function(item,target){
 				console.info('on edit['+item.id+']');
 			},
-			onCopy : function(item){
+			onCopy : function(item,target){
 				$.ajax({
 					url:'/module.s',
 					data : 'method=copy&id='+item.id+'&type='+this.ACTION_TYPE,
@@ -169,7 +169,26 @@
 			delItem : function(item){
 				this.delRawData(item.index);
 			},
-			onDel : function(item){
+			onDel : function(item,target){
+				item.$elem.addClass('del');
+
+				ui.quicktip.confirm({
+					$owner : this,
+					item : item,
+					align : 'tc',
+					offset : 'lt',
+					cls : 'del c1',
+					target :  target,
+					html : '确认删除!',
+					yes : function(){
+						this.$owner.confirmDel(this.item);
+					},
+					no : function(){
+						this.item.$elem.removeClass('del');
+					}
+				});
+			},
+			confirmDel : function(item){
 				$.ajax({
 					url:'/module.s',
 					data : 'method=delete&id='+item.id+'&type='+this.ACTION_TYPE,
@@ -217,7 +236,7 @@
 						}else if(cls.indexOf('del')>-1){
 							type='del';
 						}
-						data.$owner.on(type,data.item);
+						data.$owner.on(type,data.item,this);
 					});
 				});
 			},
