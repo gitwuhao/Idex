@@ -57,10 +57,14 @@
 	margin-bottom: 28px;
 }
 .idex-view-panel .idex-module-item.new{
-	border-color:#00B26F;
-	color:#00B26F;
-	margin-top: 0px;
-	margin-bottom: 28px;
+	border-color:#15CD00;
+	color:#15CD00;
+	-webkit-animation:pulse 1s .2s ease both;
+}
+@-webkit-keyframes pulse{
+	0%{-webkit-transform:scale(1)}
+	50%{-webkit-transform:scale(1.1)}
+	100%{-webkit-transform:scale(1)}
 }
 .idex-view-panel .idex-module-item:hover .idex-mini-tbar{
 	display: block;

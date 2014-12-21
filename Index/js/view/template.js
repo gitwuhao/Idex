@@ -163,8 +163,14 @@
 				copy.title=item.title;
 				copy.width=item.width;
 				copy.modified=new Date().formatDateTime();
-
 				this.insertRawData(item.index,copy);
+				copy = this.MapJSON[copy.id];
+				if(copy.$elem){
+					copy.$elem.addClass('new');
+					$.setTimeout(function(){
+						this.$elem.removeClass('new');
+					},1000,copy);
+				}
 			},
 			delItem : function(item){
 				this.delRawData(item.index);
@@ -179,7 +185,7 @@
 					offset : 'lt',
 					cls : 'del c1',
 					target :  target,
-					html : '确认删除!',
+					html : '确认删除 ?',
 					yes : function(){
 						this.$owner.confirmDel(this.item);
 					},
