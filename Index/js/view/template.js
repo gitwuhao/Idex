@@ -174,10 +174,10 @@
 					},1000,copy);
 				}
 			},
-			onNew : function(item,target){
+			onNew : function(target){
 				$.ajax({
 					url:'/module.s',
-					data : 'method=insert&id='+item.id+'&type='+this.ACTION_TYPE,
+					data : 'method=insert&type='+this.ACTION_TYPE,
 					_$owner : this,
 					_target : target,
 					type : 'POST',
@@ -206,6 +206,7 @@
 				});
 			},
 			newItem : function(item){
+				item.modified=new Date().formatDateTime();
 				this.insertRawData(0,item);
 				item = this.MapJSON[item.id];
 				if(item.$elem){
@@ -266,6 +267,13 @@
 				var listMiniToolBar=$('.idex-mini-tbar',this.$moduleBox),
 					MapJSON=this.MapJSON,
 					me=this;
+
+				this.$moduleBox.children('.idex-module-item.blank:first').click({
+					$owner : this
+				},function(event){
+					event.data.$owner.on('new',this);
+				});
+
 				listMiniToolBar.each(function(i,element){
 					var item,
 						id=$.attr(element,'data-id');
