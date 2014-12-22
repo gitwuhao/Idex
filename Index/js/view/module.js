@@ -339,8 +339,8 @@
 							'<em>',item.title,'</em>',
 					'</div>'].join('');
 		},
-		onSearch : function(){
-			var keyword=$.trim(this.search.getValue()||''),
+		onSearch : function(val){
+			var keyword=$.trim(val||''),
 				html;
 			if(this.currentKeyWord==keyword || this.listJSON.length==0){
 				return;
@@ -388,7 +388,7 @@
 			submit : function(){
 				var tab=this.$owner.currentTab;
 				if(tab && tab.search){
-					tab.search();
+					tab.search(this.getValue());
 				}
 			}
 		}],
@@ -451,8 +451,8 @@
 				}
 				this.query();
 			},
-			search : function(){
-				this.onSearch();
+			search : function(val){
+				this.onSearch(val);
 			}
 		}]
 	};
