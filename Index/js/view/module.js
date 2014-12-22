@@ -394,39 +394,36 @@
 			label:'自定义模块',
 			name : 'module',
 			onLoad:function(){
-				var html=['<div class="idex-module-box">',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<div class="bg idex-icon"></div>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<div class="bg idex-icon"></div>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<div class="bg idex-icon"></div>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
-					'<div class="idex-module-item idex-shadow-box">',
-						'<div class="idex-mini-tbar">',
-							'<div class="del idex-icon"></div>',
-						'</div>',
-						'<div class="bg idex-icon"></div>',
-						'<em>品牌形象品牌形象</em>',
-					'</div>',
+				var module=new Idex.Module({
+					COUNT : Idex.getVersionLimit('ccount'),
+					MODULE_TYPE : 'c',
+					CACHE_KEY : 'custom_list',
+					ACTION_TYPE : 2,
+					getItemHTML : function(item){
+						return ['<div class="idex-module-item idex-shadow-box">',
+										'<div class="idex-mini-tbar" data-id="',item.id,'">',
+											'<div class="del idex-icon"></div>',
+										'</div>',
+										'<div class="bg idex-icon"></div>',
+										'<em>',item.title,'</em>',
+								'</div>'].join('');
+					},
+					getBlankItemHTML : function(){
+					}
+				});
+				
+				CF.merger(this,module);
 
-
-				  '</div>'];
-				this.$tabview.html(html.join(''));
+				this.initModule();
+			},
+			refresh : function(){
+				if(this.isActionBusy()){
+					return;
+				}
+				this.query();
+			},
+			search : function(val){
+				this.onSearch(val);
 			}
 		},{
 			label:'装修模块',
