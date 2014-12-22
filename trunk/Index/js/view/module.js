@@ -19,14 +19,16 @@
 		isActionBusy : function (element){
 			var now=$.timestamp();
 			if(this.lastActionTime + 2000  > now){
-				ui.quicktip.show({
-					align : 'tc',
-					offset : 'lt',
-					cls : 'c1',
-					html : '操作太频繁 !',
-					time : 3000,
-					target :  element
-				});
+				if(element){
+					ui.quicktip.show({
+						align : 'tc',
+						offset : 'lt',
+						cls : 'c1',
+						html : '操作太频繁 !',
+						time : 3000,
+						target :  element
+					});
+				}
 				return true;
 			}
 			this.lastActionTime=now;
@@ -360,7 +362,10 @@
 			cls : 'refresh',
 			title : "刷新",
 			onClick:function(){
-
+				var tab=this.$owner.currentTab;
+				if(tab && tab.refresh){
+					tab.refresh();
+				}
 			}
 		},{
 			xtype:'text',
@@ -381,7 +386,10 @@
 				this.submit();
 			},
 			submit : function(){
-
+				var tab=this.$owner.currentTab;
+				if(tab && tab.search){
+					tab.search();
+				}
 			}
 		}],
 		items : [{
@@ -436,6 +444,15 @@
 				CF.merger(this,module);
 
 				this.initModule();
+			},
+			refresh : function(){
+				if(this.isActionBusy()){
+					return;
+				}
+				this.query();
+			},
+			search : function(){
+				this.onSearch();
 			}
 		}]
 	};
