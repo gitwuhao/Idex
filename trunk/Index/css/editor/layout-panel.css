@@ -55,7 +55,7 @@
 	float: right;
 	display:none;
 	margin: 0px 3px 0px 0px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button.down{
 	margin-top: 9px;
@@ -65,6 +65,7 @@
 }
 .idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button{
 	opacity: 0.6;
+	cursor: pointer;;
 }
 .idex-layout-tab-panel .idex-list-item .idex-list-item-sortbar .idex-button.hover{
 	opacity: 1;

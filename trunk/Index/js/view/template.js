@@ -70,6 +70,7 @@
 			onHideAfter : function(){
 				this.$floatbox.hide();
 			},
+			MODULE_TYPE : 't',
 			CACHE_KEY : 'template_list',
 			ACTION_TYPE : 1,
 			initList : function(){
@@ -296,6 +297,8 @@
 							type='edit';
 						}else if(cls.indexOf('del')>-1){
 							type='del';
+						}else{
+							return;
 						}
 						data.$owner.on(type,data.item,this);
 					});
@@ -362,7 +365,9 @@
 				return ['<div class="idex-module-item idex-shadow-box">',
 								'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
 								'<div class="idex-mini-tbar" data-id="',item.id,'">',
-									'<div class="edit idex-icon"></div>',
+									'<a href="/module/',this.MODULE_TYPE,'/',item.id,'" target="_blank">',
+										'<div class="edit idex-icon"></div>',
+									'</a>',
 									(isAdd ?  '<div class="copy idex-icon"></div>' : '' ), 
 									'<div class="del idex-icon"></div>',
 								'</div>',
