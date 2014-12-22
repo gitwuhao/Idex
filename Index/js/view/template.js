@@ -1,7 +1,25 @@
 (function(){
 	var count,
+		lastActionTime=0,
 		RAW_DATA;
 	
+	function isActionBusy(element){
+		var now=$.timestamp();
+		if(lastActionTime + 2000  > now){
+			ui.quicktip.show({
+				align : 'tc',
+				offset : 'lt',
+				cls : 'c1',
+				html : '操作太频繁 !',
+				time : 1001,
+				target :  element
+			});
+			return true;
+		}
+		lastActionTime=now;
+		return false;
+	};
+
 	Idex.view.template.init=function(tab){
 		CF.merger(tab,{
 			onRender : function(){
@@ -41,6 +59,9 @@
 				cls : 'refresh',
 				title : "刷新",
 				onClick:function(){
+					if(isActionBusy(this.$elem[0])){
+						return;
+					}
 					this.$owner.query();
 				}
 			},
@@ -144,6 +165,9 @@
 				console.info('on edit['+item.id+']');
 			},
 			onCopy : function(item,target){
+				if(isActionBusy(target)){
+					return;
+				}
 				$.ajax({
 					url:'/module.s',
 					data : 'method=copy&id='+item.id+'&type='+this.ACTION_TYPE,
@@ -176,6 +200,9 @@
 				}
 			},
 			onNew : function(target){
+				if(isActionBusy(target)){
+					return;
+				}
 				$.ajax({
 					url:'/module.s',
 					data : 'method=insert&type='+this.ACTION_TYPE,
@@ -348,7 +375,8 @@
 						date='';
 					}
 					var copyItem=CF.merger({},item,{
-						title : title
+						title : title,
+						last_user_nick : last_user_nick
 					});
 					html.push(this.getItemHTML(copyItem,isAdd));
 				}
