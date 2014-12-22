@@ -376,9 +376,7 @@
 				this.addEventListener('textkeydown',function(event){
 					 if(event.keyCode==13){
 						this.value=this.$text.val();
-						if(this.value){
-							this.submit();
-						}
+						this.submit();
 					 }
 				});
 			},
