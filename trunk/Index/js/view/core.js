@@ -258,6 +258,7 @@
 	$.getDoc().ready(function(){
 		Idex.$navbox=$('.idex-navigation');
 		Idex.$viewbox=$('.idex-view-box');
+		Idex.triggerAndRemoveEvent('initHomeCount');
 		initBar();
 		Idex.triggerAndRemoveEvent('ready');
 	});
