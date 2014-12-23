@@ -22,7 +22,7 @@
 			},{
 				type:'list'
 			},{
-				type:'module'
+				type:'custom'
 			}/*,{
 				type:'editor',
 				init : function(){
@@ -238,8 +238,8 @@
 				anchor='list';
 			}else if($.hasClass(parentElement,'template')){
 				anchor='template';
-			}else if($.hasClass(parentElement,'module')){
-				anchor='module';
+			}else if($.hasClass(parentElement,'custom')){
+				anchor='custom';
 			}else if($.hasClass(parentElement,'renovation')){
 				anchor='renovation';
 			}
@@ -267,8 +267,8 @@
 
 	$.loadJSQueue(
 		'js/view/home.js',
-		'js/view/list.js',
 		'js/view/module.js',
+		'js/view/list.js',
 		'js/view/template.js',
 		'js/view/custom.js',
 		'js/view/renovation.js'
