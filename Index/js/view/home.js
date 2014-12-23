@@ -1,5 +1,5 @@
 (function(){
-Idex.addEventListener('ready',function(){
+Idex.addEventListener('initHomeCount',function(){
 	var homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
 	if(homeJSON.c && homeJSON.c[0]){
 		var count=homeJSON.c[0];
@@ -29,8 +29,8 @@ Idex.addEventListener('ready',function(){
 		$('#dtime').text(date.format('yyyy-MM-dd'));
 	}
 	
-
-	$('[id]',Idex.view.home.render).removeAttr('id');
+	var $home=Idex.$viewbox.children('.idex-view-panel.home');
+	$('[id]',$home).removeAttr('id');
 	
 	delete window.getHomeJSON;
 
