@@ -16,17 +16,17 @@
 			this.$moduleBox=$(div);
 			this.initList();
 		},
-		isActionBusy : function (element){
+		isActionBusy : function (target){
 			var now=$.timestamp();
 			if(this.lastActionTime + 2000  > now){
-				if(element){
+				if(target){
 					ui.quicktip.show({
 						align : 'tc',
 						offset : 'lt',
 						cls : 'c1',
 						html : '操作太频繁 !',
 						time : 3000,
-						target :  element
+						target :  target
 					});
 				}
 				return true;
@@ -64,6 +64,9 @@
 				this.MapJSON[item.id]=item;
 				this.RAW_DATA.push(this.copyItemValue(item));
 			}
+			this.rerenderList();
+		},
+		rerenderList : function(){
 			this.currentKeyWord='';
 			this.renderListByHTML(this.buildListHTMLByJSON(this.listJSON));
 		},
@@ -339,142 +342,31 @@
 							'<em>',item.title,'</em>',
 					'</div>'].join('');
 		},
-		onSearch : function(val){
+		onSearch : function(val,target){
 			var keyword=$.trim(val||''),
 				html;
 			if(this.currentKeyWord==keyword || this.listJSON.length==0){
 				return;
 			}
 			html=this.buildListHTMLByJSON(this.listJSON,keyword);
-			if(!html){
-				html=this.buildListHTMLByJSON(this.listJSON);
+			if(html){
+				this.renderListByHTML(html);
+				this.currentKeyWord=keyword;
+				return;
 			}
-			this.renderListByHTML(html);
 
-			this.currentKeyWord=keyword;
+			if(target){
+				ui.quicktip.show({
+					align : 'lc',
+					offset : 'lt',
+					cls : 'c1',
+					html : '没有找到你要的模块 !',
+					time : 3000,
+					target :  target
+				});
+				this.rerenderList();
+			}
 		}
 	};
-
-	var TAB={
-		floatbar : [{
-			xtype : 'button',
-			icon : true,
-			cls : 'refresh',
-			title : "刷新",
-			onClick:function(){
-				var tab=this.$owner.currentTab;
-				if(tab && tab.refresh){
-					tab.refresh();
-				}
-			}
-		},{
-			xtype:'text',
-			icon :'search',
-			placeholder : '输入模块名进行检索',
-			onRenderAfter : function(){
-				this.callPrototypeMethod();
-				this.addEventListener('textkeydown',function(event){
-					 if(event.keyCode==13){
-						this.value=this.$text.val();
-						this.submit();
-					 }
-				});
-			},
-			onIconmousedown : function(event){
-				this.submit();
-			},
-			submit : function(){
-				var tab=this.$owner.currentTab;
-				if(tab && tab.search){
-					tab.search(this.getValue());
-				}
-			}
-		}],
-		items : [{
-			label:'自定义模块',
-			name : 'module',
-			onLoad:function(){
-				var module=new Idex.Module({
-					COUNT : Idex.getVersionLimit('ccount'),
-					MODULE_TYPE : 'c',
-					CACHE_KEY : 'custom_list',
-					ACTION_TYPE : 2,
-					getItemHTML : function(item){
-						return ['<div class="idex-module-item idex-shadow-box">',
-										'<div class="idex-mini-tbar" data-id="',item.id,'">',
-											'<div class="del idex-icon"></div>',
-										'</div>',
-										'<div class="bg idex-icon"></div>',
-										'<em>',item.title,'</em>',
-								'</div>'].join('');
-					},
-					getBlankItemHTML : function(){
-					}
-				});
-				
-				CF.merger(this,module);
-
-				this.initModule();
-			},
-			refresh : function(){
-				if(this.isActionBusy()){
-					return;
-				}
-				this.query();
-			},
-			search : function(val){
-				this.onSearch(val);
-			}
-		},{
-			label:'装修模块',
-			name : 'renovation',
-			onLoad:function(){
-				var module=new Idex.Module({
-					COUNT : Idex.getVersionLimit('rcount'),
-					MODULE_TYPE : 'r',
-					CACHE_KEY : 'renovation_list',
-					ACTION_TYPE : 3
-				});
-				
-				CF.merger(this,module);
-
-				this.initModule();
-			},
-			refresh : function(){
-				if(this.isActionBusy()){
-					return;
-				}
-				this.query();
-			},
-			search : function(val){
-				this.onSearch(val);
-			}
-		}]
-	};
-
-
-
-	function initTab(render){
-		if(TAB._owner_name_==ui.tab._owner_name_){
-			return;
-		}
-		TAB.render=render;
-		TAB=new ui.tab(TAB);
-	};
-
-
-	Idex.addEventListener('anchor.module',function(event){
-		this.setViewPanel('module');
-		initTab(this.activeViewPanel);
-		TAB.setCurrentTab(TAB.getTab('module'));
-	});
-
-
-
-	Idex.addEventListener('anchor.renovation',function(event){
-		this.setViewPanel('module');
-		initTab(this.activeViewPanel);
-		TAB.setCurrentTab(TAB.getTab('renovation'));
-	});
 
 })(CF,jQuery);
