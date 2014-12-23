@@ -37,7 +37,7 @@
 		bottombar : [{
 				type:'comment',
 				target : '_IDEX_COMMENT',
-				href:'http://item.taobao.com/item.htm?id=27018556087'
+				href:'http://bangpai.taobao.com/group/16499510.htm'
 			}/*,{
 				type:'sync'
 			},{
