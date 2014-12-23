@@ -2,14 +2,6 @@
 
 var TAB;
 
-function onShowBefore(){
-	if(this.search){
-		this.search.setValue('');
-	}
-	if(this.currentKeyWord){
-		this.rerenderList();
-	}
-};
 function initTab(render){
 	if(TAB && TAB._owner_name_==ui.tab._owner_name_){
 		return;
@@ -27,6 +19,9 @@ function initTab(render){
 					return;
 				}
 				tab.query();
+				if(tab.search){
+					tab.search.setValue('');
+				}
 			}
 		},{
 			xtype:'text',
@@ -78,8 +73,7 @@ function initTab(render){
 				this.initModule();
 
 				this.search=this.$owner.getItem('search');
-			},
-			onShowBefore : onShowBefore
+			}
 		},{
 			label:'装修模块',
 			name : 'renovation',
@@ -97,8 +91,7 @@ function initTab(render){
 
 				
 				this.search=this.$owner.getItem('search');
-			},
-			onShowBefore : onShowBefore
+			}
 		}]
 	});
 };
