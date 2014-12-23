@@ -128,10 +128,14 @@
 				html.push('<div class="idex-icon"></div>');
 			}else{
 				if(item.type=="home"){
-					html.push('<a href="/">');
+					html.push('<a href="/"');
 				}else{
-					html.push('<a href="/#',item.type,'" ',(item.target?'target="'+item.target+'"':''),'>');
+					html.push('<a href="/#',item.type,'"');
 				}
+				if(item.target){
+					html.push(' target="'+item.target+'"');
+				}
+				html.push('>');
 				html.push( '<div class="idex-icon"></div>',
 						  '</a>');
 			}
