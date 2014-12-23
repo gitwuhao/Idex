@@ -15,10 +15,10 @@
 			_form_ : {
 				notLabelPadding : true,
 				items : [{
-					label:'宝贝标题',
+					label:'宝贝名称',
 					name : 'title',
 					maxlength : 10,
-					placeholder : '填写宝贝标题'
+					placeholder : '填写宝贝名称'
 				},{
 					label:'商家编码',
 					name : 'outerId',
@@ -55,7 +55,7 @@
 						value:'2'
 					}]
 				},{
-					label:'商品分类',
+					label:'宝贝分类',
 					html : '<input type="hidden" name="sellerCids"/><input type="hidden" name="orderCol"/><input type="hidden" name="orderType"/><div class="category-label"><div class="del x-ui-icon"></div><div class="label"></div></div>'
 				},{
 					cls :'tree-item',
