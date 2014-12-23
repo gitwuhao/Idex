@@ -6,6 +6,7 @@ Idex.Module=function(config){
 Idex.Module.prototype={
 	MODULE_TYPE : 't',
 	CACHE_KEY : 'template_list',
+	LINK_TARGET : '_IDEX_EDIT',
 	ACTION_TYPE : 1,
 	COUNT : 0,
 	RAW_DATA : [],
@@ -336,7 +337,7 @@ Idex.Module.prototype={
 		return ['<div class="idex-module-item idex-shadow-box">',
 						'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
 						'<div class="idex-mini-tbar" data-id="',item.id,'">',
-							'<a href="/module/',this.MODULE_TYPE,'/',item.id,'" target="_blank">',
+							'<a href="/module/',this.MODULE_TYPE,'/',item.id,'" target="',this.LINK_TARGET,'">',
 								'<div class="edit idex-icon"></div>',
 							'</a>',
 							(isAdd ?  '<div class="copy idex-icon"></div>' : '' ), 
