@@ -1,5 +1,6 @@
 (function(CF,$){
-
+	window.name="_IDEX_HOME";
+	
 	(function(){	
 		var sig,
 			homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
