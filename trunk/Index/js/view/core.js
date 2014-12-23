@@ -35,7 +35,7 @@
 			}*/],
 		bottombar : [{
 				type:'comment',
-				target : '_idex_popu',
+				target : '_IDEX_COMMENT',
 				href:'http://item.taobao.com/item.htm?id=27018556087'
 			}/*,{
 				type:'sync'
@@ -130,7 +130,7 @@
 				if(item.type=="home"){
 					html.push('<a href="/">');
 				}else{
-					html.push('<a href="/#',item.type,'">');
+					html.push('<a href="/#',item.type,'" ',(item.target?'target="'+item.target+'"':''),'>');
 				}
 				html.push( '<div class="idex-icon"></div>',
 						  '</a>');
@@ -142,7 +142,7 @@
 			return {
 				href : item.href,
 				type : item.type,
-				target : '_IDEX_HOME'
+				target : item.target || '_IDEX_HOME'
 			};
 		},
 		printNavHTML : function(){
@@ -268,7 +268,7 @@
 		Idex.triggerAndRemoveEvent('initHomeCount');
 		initBar();
 		Idex.triggerAndRemoveEvent('ready');
-		delete window.Idex;
+		//delete window.Idex;
 	});
 
 
