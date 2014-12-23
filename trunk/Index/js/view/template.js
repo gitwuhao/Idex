@@ -71,12 +71,14 @@ Idex.view.template.init=function(tab){
 				this.$owner.onSearch(this.getValue(),this.$elem[0]);
 			}
 		},
-		onShowAfter : function(){
-			this.$floatbox.show();
+		onShowBefore : function(){
 			if(this.currentKeyWord){
 				this.search.setValue('');
 				this.rerenderList();
 			}
+		},
+		onShowAfter : function(){
+			this.$floatbox.show();
 		},
 		onHideAfter : function(){
 			this.$floatbox.hide();

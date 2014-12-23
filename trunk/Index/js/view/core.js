@@ -272,8 +272,7 @@
 		'js/view/list.js',
 		'js/view/list.form.js',
 		'js/view/template.js',
-		'js/view/custom.js',
-		'js/view/renovation.js'
+		'js/view/custom.js'
 	);
 
 })(CF,jQuery);
