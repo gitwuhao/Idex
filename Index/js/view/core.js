@@ -138,6 +138,13 @@
 			html.push('</div>');
 			return html;
 		},
+		getPrintNavItem : function(item){
+			return {
+				href : item.href,
+				type : item.type,
+				target : '_IDEX_HOME'
+			};
+		},
 		printNavHTML : function(){
 
 			var html=['<div class="idex-navigation border-box uns">',
@@ -145,14 +152,14 @@
 
 			for(var i=0,len=Idex.topbar.length;i<len;i++){
 				var item=Idex.topbar[i];
-				html.push.apply(html,this.getNavItemHTML(item));
+				html.push.apply(html,this.getNavItemHTML(this.getPrintNavItem(item)));
 			}
 
 			html.push('</div>',
 					  '<div class="idex-nav-bottombar">');
 			for(var i=0,len=Idex.bottombar.length;i<len;i++){
 				var item=Idex.bottombar[i];
-				html.push.apply(html,this.getNavItemHTML(item));
+				html.push.apply(html,this.getNavItemHTML(this.getPrintNavItem(item)));
 			}
 			html.push('</div>',
 					'</div>');
