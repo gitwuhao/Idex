@@ -3,8 +3,10 @@
 var TAB;
 
 function onShowBefore(){
+	if(this.search){
+		this.search.setValue('');
+	}
 	if(this.currentKeyWord){
-		this.$owner.getItem('search').setValue('');
 		this.rerenderList();
 	}
 };
@@ -44,7 +46,7 @@ function initTab(render){
 			},
 			submit : function(){
 				var tab=this.$owner.currentTab;
-				if(tab && tab.search){
+				if(tab && tab.onSearch){
 					tab.onSearch(this.getValue(),this.$elem[0]);
 				}
 			}
@@ -74,6 +76,8 @@ function initTab(render){
 				CF.merger(this,module);
 
 				this.initModule();
+
+				this.search=this.$owner.getItem('search');
 			},
 			onShowBefore : onShowBefore
 		},{
@@ -90,6 +94,9 @@ function initTab(render){
 				CF.merger(this,module);
 
 				this.initModule();
+
+				
+				this.search=this.$owner.getItem('search');
 			},
 			onShowBefore : onShowBefore
 		}]

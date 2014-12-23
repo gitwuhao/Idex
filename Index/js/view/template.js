@@ -72,8 +72,10 @@ Idex.view.template.init=function(tab){
 			}
 		},
 		onShowBefore : function(){
-			if(this.currentKeyWord){
+			if(this.search){	
 				this.search.setValue('');
+			}
+			if(this.currentKeyWord){
 				this.rerenderList();
 			}
 		},
