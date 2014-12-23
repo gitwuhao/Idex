@@ -82,6 +82,10 @@ Idex.Module.prototype={
 		this.saveCache();
 	},
 	query : function(){
+		if(this.currentKeyWord){
+			this.rerenderList();
+			return;
+		}
 		$.ajax({
 			url:'/module.s',
 			data : 'method=query&type=' + this.ACTION_TYPE,
@@ -366,6 +370,16 @@ Idex.Module.prototype={
 			});
 			this.rerenderList();
 		}
+	},
+	onShowBefore : function(){
+		if(this.search){
+			this.search.setValue('');
+		}
+		/*
+		if(this.currentKeyWord){
+			this.rerenderList();
+		}
+		*/
 	}
 };
 

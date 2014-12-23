@@ -49,6 +49,9 @@ Idex.view.template.init=function(tab){
 					return;
 				}
 				this.$owner.query();
+				if(this.$owner.search){
+					this.$owner.search.setValue('');
+				}
 			}
 		},
 		search : {
@@ -69,14 +72,6 @@ Idex.view.template.init=function(tab){
 			},
 			submit : function(){
 				this.$owner.onSearch(this.getValue(),this.$elem[0]);
-			}
-		},
-		onShowBefore : function(){
-			if(this.search){	
-				this.search.setValue('');
-			}
-			if(this.currentKeyWord){
-				this.rerenderList();
 			}
 		},
 		onShowAfter : function(){
