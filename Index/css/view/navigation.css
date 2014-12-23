@@ -45,10 +45,10 @@
 .idex-navigation .list.active .idex-icon{
 	background-position: -40px -115px;
 }
-.idex-navigation .module .idex-icon{
+.idex-navigation .custom .idex-icon{
 	background-position: -80px -75px;
 }
-.idex-navigation .module.active .idex-icon{
+.idex-navigation .custom.active .idex-icon{
 	background-position: -80px -115px;
 }
 .idex-navigation .timing .idex-icon{

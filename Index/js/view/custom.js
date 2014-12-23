@@ -1,4 +1,4 @@
-(function(CF,$){
+(function(CF,$,Idex){
 	var TAB;
 
 	function initTab(render){
@@ -113,4 +113,4 @@
 	});
 
 
-})(CF,jQuery);
+})(CF,jQuery,Idex);
