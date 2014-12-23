@@ -22,7 +22,7 @@
 			},{
 				type:'list'
 			},{
-				type:'custom'
+				type:'module'
 			}/*,{
 				type:'editor',
 				init : function(){
@@ -240,8 +240,8 @@
 				anchor='template';
 			}else if($.hasClass(parentElement,'custom')){
 				anchor='custom';
-			}else if($.hasClass(parentElement,'renovation')){
-				anchor='renovation';
+			}else if($.hasClass(parentElement,'module')){
+				anchor='module';
 			}
 			$(target).click({
 				anchor : anchor
@@ -268,11 +268,11 @@
 
 	$.loadJSQueue(
 		'js/view/home.js',
-		'js/view/module.js',
+		'js/view/Idex.Module.js',
 		'js/view/list.js',
 		'js/view/list.form.js',
 		'js/view/template.js',
-		'js/view/custom.js'
+		'js/view/module.js'
 	);
 
 })(CF,jQuery);
