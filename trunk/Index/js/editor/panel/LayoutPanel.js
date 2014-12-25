@@ -346,7 +346,6 @@
 				return;
 			}
 			this.descbox.firstElementChild.click();
-			this.app.$eventElement.trigger('viewconfig');
 			this.disabled('home');
 		},
 		onBack:function(){
