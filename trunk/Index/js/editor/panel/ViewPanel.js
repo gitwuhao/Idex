@@ -107,10 +107,6 @@
 			style.setProperty('overflow-x','hidden');
 			style.setProperty('overflow-y','auto');
 		},
-		getHTML : function(){
-			this.logger(this);
-			return this.descbox.innerHTML;
-		},
 		__OUTPUT_RULES__ : {
 			isRemoveEmptyAttr : true,
 			'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
@@ -177,6 +173,10 @@
 			this.logger(this);
 			return HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
 		},
+		getHTML : function(){
+			this.logger(this);
+			return this.descbox.innerHTML;
+		},
 		setHTML : function(HTML){
 			this.logger(this);
 			this.$descbox.empty();
@@ -188,13 +188,11 @@
 		getContent: function(){
 			this.logger(this);
 			return {
-				html : this.getHTML(),
-				data : this.getUserData()
+				html : this.getHTML()
 			};
 		},
 		setContent: function(content){
 			this.logger(this);
-			this.setUserData(content.data);
 			this.setHTML(content.html);
 		}
 	});

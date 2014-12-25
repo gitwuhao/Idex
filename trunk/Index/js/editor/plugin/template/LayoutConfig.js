@@ -293,6 +293,18 @@
 					this.setStylecolor(data.stylecolor);
 					this.setUid(data.uid);
 					this.setWidth(data.width);
+				},
+				getContent: function(){
+					this.logger(this);
+					return {
+						html : this.getHTML(),
+						data : this.getUserData()
+					};
+				},
+				setContent: function(content){
+					this.logger(this);
+					this.setUserData(content.data);
+					this.setHTML(content.html);
 				}
 			});
 
