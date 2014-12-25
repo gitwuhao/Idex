@@ -2,8 +2,6 @@
 
 	$.push({
 		_name_ : 'ViewPanel',
-		MIN_WIDTH:750,
-		MAX_WIDTH:1200,
 		__events__ : ['click','mousedown'].join(' '),
 		initEvents : function(){
 			this.logger(this);
@@ -34,16 +32,7 @@
 			this.addEventListener('resize',function(width,height){
 				this.viewPanel.style.height=(height- margin) + 'px';
 			});
-/*
-			this.app.$eventElement.on('viewconfig',{
-				panel : this,
-			},function(event){
-				var panel=event.data.panel,
-					app;
-				app=panel.app;
-				app.PropertyPanel.setActive(panel);
-			});
-*/
+
 		},
 		eventDispatch:function(event){
 			this.logger(this);
