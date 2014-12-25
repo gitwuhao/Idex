@@ -1,12 +1,6 @@
 (function(CF,$){
 $.push({
 	_name_ : 'SaveAs',
-	initModule : function(){
-		this.logger(this);
-		this.app.addEventListener('saveAs',function(config){
-			this.SaveAs.show(config);
-		});
-	},
 	show : function(config){
 		this.logger(this);
 		var me=this;
