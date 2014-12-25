@@ -106,8 +106,8 @@
 		createUIModule : CF.emptyFunction,
 		createLayoutModule : CF.emptyFunction,
 		pushModule : function(module){
-			if(module.initPlugin){
-				module.initPlugin(this);
+			if(module.overwrite){
+				module.overwrite(this);
 				return;
 			}else if(!module._name_){
 				return;
