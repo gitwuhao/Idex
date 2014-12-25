@@ -194,7 +194,22 @@ $.push({
 						},{
 							value : 'style4',
 							label :'4'
-						}]
+						}],
+						onRenderAfter : function(){
+							this.callPrototypeMethod();
+							var div=$.createElement('<div class="idex-ui-radio-group"><span>More</span></div>');
+							this.items[0].$elem.parent().append(div);
+
+							$(div).click(function(event){
+								ui.quicktip.show({
+									html : '更多风格还在开发<br/>敬请期待...',
+									px : 'idex-ui',
+									offset : 'lt',
+									align :'lc',
+									target : this
+								});
+							});
+						}
 					}]
 				});
 				this.mainPanel=this.form.$elem[0];
