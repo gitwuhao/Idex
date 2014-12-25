@@ -37,6 +37,7 @@
 		ui:{},
 		layout : {},
 		_module_list_:[],
+		_module_map_:{},
 		_init_ : function(){
 			if(!this._isReady_){
 				this.$viewPanel=$('.idex-view-panel:first');
@@ -62,6 +63,7 @@
 			delete this.ready;
 			delete this._init_;
 			delete this._module_list_;
+			delete this._module_map_;
 			this.triggerAndRemoveEvent('readyafter');
 			this.trigger('resize');
 		},
@@ -101,11 +103,16 @@
 		createUIModule : CF.emptyFunction,
 		createLayoutModule : CF.emptyFunction,
 		pushModule : function(module){
-			if(!module._name_){
+			if(module.overwrite){
+				module.overwrite(this);
+				return;
+			}else if(!module._name_){
 				return;
 			}
+
 			if(!this._isReady_){
 				this._module_list_.push(module);
+				this._module_map_[module._name_]=module;
 			}else{
 				this._initModule_(module);
 			}
