@@ -202,7 +202,7 @@ $.push({
 
 							$(div).click(function(event){
 								ui.quicktip.show({
-									html : '更多风格还在设计<br/>敬请期待...',
+									html : '<em style="color:#49A0E1;">更多风格还在设计ing<br/>敬请期待...</em>',
 									px : 'idex-ui',
 									offset : 'lt',
 									align :'lc',
