@@ -400,10 +400,10 @@
 		
 		if(_h){
 			_h=_h.toLowerCase();
-			 if(_h.indexOf((_oi+_lan))>-1 || _h.indexOf((_id+_ex))>-1 ){
+			 if(_h.indexOf((_oi+_lan))>-1 || _h.indexOf((_id+_e+_x))>-1 ){
 				$.getDoc().one('Idex.ready',IdexReady);
 			 }else{
-				delete $[name];
+				$[name]=CF.emptyFunction;
 			 }
 		}
 	})();
