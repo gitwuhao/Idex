@@ -31,7 +31,7 @@
 					ui.logger(this);
 					var $field=$('.idex-ui-item-field',this.$elem);
 					$field.css('line-height','22px');
-					$field.html('&nbsp;127&nbsp;x&nbsp;182&nbsp;');
+					$field.html('&nbsp;0&nbsp;x&nbsp;0&nbsp;');
 					this.form.$sizeField=$field;
 					
 					this.onBindEvent=CF.emptyFunction;
