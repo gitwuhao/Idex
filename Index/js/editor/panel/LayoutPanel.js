@@ -77,10 +77,7 @@
 			}]
 		},
 		bottombar:{
-			items : [(CF.isDebug ? {
-				cls:"code",
-				onClick : iconClickHandle
-			}: ''),{
+			items : [{
 				isDisabled :true,
 				cls:"saveas",
 				onClick : iconClickHandle
@@ -154,16 +151,6 @@
 				}
 			});
 
-/*
-			this.app.$eventElement.on('home',{
-				panel : this,
-			},function(event){
-				if(event.target==this){
-					var panel=event.data.panel;
-					panel.on('home');
-				}
-			});
-*/
 		},
 		eventDispatch:function(event){
 			this.logger(this);
@@ -229,34 +216,6 @@
 			
 			this.initMainNavList();
 			delete this.initMainNavList;
-			
-			var codeItem=this.getItem('code');
-			if(codeItem){
-				this.app.ZeroClipboard.bind({
-					panel : this,
-					target : codeItem.$elem[0],
-					onMouseOver : function(event){
-						this.$target.addClass('hover');
-					},
-					onMouseOut : function(event){
-						this.$target.removeClass('hover');
-					},
-					onCopy : function(event){
-						if(this.panel.activeLayout){
-							ui.quicktip.show({
-								time : 2000,
-								html : '<span style="color: #F90;">代码复制成功</span>',
-								px : 'idex-ui',
-								offset : 'tl',
-								align : 'tc',
-								cls : 'qit-autosize copy-qit',
-								target : this.target
-							});
-							return HTMLfilter.getOuterHTML(this.panel.activeElement,this.app.ViewPanel.__OUTPUT_RULES__);
-						}
-					}
-				});
-			}
 		},
 		createMainNavList:function(){
 			this.logger(this);
