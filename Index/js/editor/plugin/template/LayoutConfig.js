@@ -89,6 +89,15 @@ $.push({
 					id : this.__PROPERTY_PANEL_ID__,
 					render : box,
 					items : [{
+						label:'名称',
+						name : 'name',
+						placeholder :'填写模板名称',
+						maxlength : 10,
+						value: '未命名描述模板',
+						xtype:'text',
+						getDesc : '设置模板名称'
+
+					},{
 						label:'宽度',
 						name : 'width',
 						placeholder :'填写画布宽度',
