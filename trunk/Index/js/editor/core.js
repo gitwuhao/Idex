@@ -355,8 +355,8 @@
 	$(window).resize(function(event){
 		Idex.trigger('resize');
 	});
-
-	$.getDoc().ready(function(){
+	
+	function IdexReady(){
 		Idex.ready();
 		document.body.spellcheck=false;
 		
@@ -368,8 +368,11 @@
 			$.unloadAlert();
 		}
 		delete $[name];
-	});
+	};
 
+	$.getDoc().one('Idex.ready',IdexReady);
+
+	//$.getDoc().ready(IdexReady);
 
 	function _A_(){
 		var caller=arguments.callee.caller,
