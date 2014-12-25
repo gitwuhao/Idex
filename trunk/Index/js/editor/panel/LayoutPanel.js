@@ -321,7 +321,7 @@
 		},
 		onSaveas:function(){
 			this.logger(this);
-			this.app.trigger('saveAsTemplate',{
+			this.app.trigger('saveAs',{
 				layout : this.activeLayout,
 				title : this.getNavItemTitle(this.activeNavItem),
 				html : this.activeLayout.getHTML(this.activeElement)
