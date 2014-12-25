@@ -99,12 +99,15 @@
 				this[module._name_]=module;
 			}
 
+			if(module.initPlugin){
+				module.initPlugin();
+			}
 		},
 		createUIModule : CF.emptyFunction,
 		createLayoutModule : CF.emptyFunction,
 		pushModule : function(module){
-			if(module.overwrite){
-				module.overwrite(this);
+			if(module.initPlugin){
+				module.initPlugin(this);
 				return;
 			}else if(!module._name_){
 				return;
