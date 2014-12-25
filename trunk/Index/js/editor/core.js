@@ -1,17 +1,4 @@
 (function(CF,$){
-	
-	var loca=window.location,
-		_NAME_,
-		ROOTPATH;
-	if(loca.host=='www.oilan.com.cn'){
-		_NAME_='ide/';
-	}else if(loca.host=='idex.oilan.com.cn'){
-		_NAME_='/';
-	}else{
-		_NAME_='';
-	}
-	$.ROOTPATH=[loca.protocol,'/','/',loca.host,'/',_NAME_].join('');
-
 	var ObjectHasOwnProperty=Object.prototype.hasOwnProperty,
 		ObjectConstructor={}.constructor,
 		logger = function(ref){
@@ -33,7 +20,6 @@
 		Idex={
 		_name_ : 'Idex',
 		_isReady_:false,
-		href : window.location.href,
 		ui:{},
 		layout : {},
 		_module_list_:[],
@@ -152,9 +138,6 @@
 			});		
 		}
 	};
-
- 
-
 
 	Idex.module=function(prototype){
 		CF.merger(this,prototype);
@@ -366,23 +349,6 @@
 		Idex.trigger('resize');
 	});
 	
-	function IdexReady(){
-		Idex.ready();
-		document.body.spellcheck=false;
-		
-		$.Idex=Idex;
-
-		if(!CF.isDebug){
-			$.disabledRightButton();
-			$.unloadMsg=' ';
-			$.unloadAlert();
-		}
-		delete $[name];
-	};
-
-	$.getDoc().one('Idex.ready',IdexReady);
-
-	//$.getDoc().ready(IdexReady);
 
 	function _A_(){
 		var caller=arguments.callee.caller,
@@ -400,4 +366,46 @@
 	};
 
 	
+	function IdexReady(){
+		Idex.ready();
+		document.body.spellcheck=false;
+		
+		$.Idex=Idex;
+
+		if(!CF.isDebug){
+			$.disabledRightButton();
+			$.unloadMsg=' ';
+			$.unloadAlert();
+		}
+		delete $[name];
+	};
+
+
+	//$.getDoc().ready(IdexReady);
+
+	(function(){
+		
+		var win=window,
+		_l='location',
+		_id='id',
+		_oi='oi',
+		_h='host',
+		_e='e',
+		_lan='lan',
+		_x='x';
+
+		_l=win[_l]; 
+
+		_h=_l[_h]; 
+		
+		if(_h){
+			_h=_h.toLowerCase();
+			 if(_h.indexOf((_oi+_lan))>-1 || _h.indexOf((_id+_ex))>-1 ){
+				$.getDoc().one('Idex.ready',IdexReady);
+			 }else{
+				delete $[name];
+			 }
+		}
+	})();
+
 })(CF,jQuery);

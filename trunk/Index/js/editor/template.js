@@ -1,5 +1,19 @@
 (function(CF,$){
 
+	(function(){
+		var loca=window.location,
+			_NAME_,
+			ROOTPATH;
+		if(loca.host=='www.oilan.com.cn'){
+			_NAME_='ide/';
+		}else if(loca.host=='idex.oilan.com.cn'){
+			_NAME_='/';
+		}else{
+			_NAME_='';
+		}
+		$.ROOTPATH=[loca.protocol,'/','/',loca.host,'/',_NAME_].join('');
+	}());
+
 	var systemTemplates,
 		templateData={
 			__DATA_MAP__ : null,
