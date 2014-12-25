@@ -4,22 +4,23 @@ $.push({
 	initModule : function(){
 		this.logger(this);
 		this.app.addEventListener('saveAs',function(config){
-			this.Template.saveAs(config);
+			this.SaveAs.show(config);
 		});
 	},
-	saveAs : function(config){
+	show : function(config){
 		this.logger(this);
 		var me=this;
 		this.win=new ui.window({
 			title : '另存为',
-			width: 300,
+			width: '230px',
+			padding: '10px 30px 10px 10px',
 			item : {
 				xtype:'form',
+				notLabelPadding : true,
 				autocomplete : 'off',
 				items : [{
 					label:'名称',
 					clear:true,
-					required:true,
 					maxlength : 6,
 					name: 'name',
 					value: config.title || ''
