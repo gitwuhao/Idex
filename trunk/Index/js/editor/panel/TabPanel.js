@@ -36,10 +36,10 @@
 				key : 'S',
 				ctrlKey : true,
 				title : '保存'
-			},{
+			},/*{
 				type:'publish',
 				title : '发布'
-			},'|',{
+			},*/'|',{
 				type:'guide',
 				key : 'F1',
 				title : '指南'
