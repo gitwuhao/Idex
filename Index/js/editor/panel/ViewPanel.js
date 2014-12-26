@@ -95,9 +95,46 @@
 			style.setProperty('overflow-x','hidden');
 			style.setProperty('overflow-y','auto');
 		},
+		__OUTPUT_RULES__ : {
+			isRemoveEmptyAttr : true,
+			'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
+			'*' : {
+				'^id$ ^on ^name$' : function(attr){
+					if(/^on|^name$/i.test(attr.name)){
+						this.removeAttribute(attr.name);
+					}else if(/^id$/i.test(attr.name)){
+						if(window.isLayoutID(attr.value)){
+						}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
+						}else{
+							this.removeAttribute('id');
+						}
+					}
+					attr.value='';
+				},
+				'class' : function(attr){
+					attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
+				}
+			},
+			'img' : {
+				':before' : function(){
+					var key='src',
+						i_key=IDEX_ATTR_MAP.SRC,
+						src,
+						_src_;
+					src=this.getAttribute(key);
+					_src_=this.getAttribute(i_key);
+					if(_src_ && src){
+						this.setAttribute(key,'');
+					}
+				},
+				'src' : function(attr){
+					attr.name=IDEX_ATTR_MAP.SRC;
+				}
+			}
+		},
 		getAllHTML : function(){
 			this.logger(this);
-			return HTMLfilter.getOuterHTML(this.descbox,this.app.layout.__OUTPUT_RULES__);
+			return HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
 		},
 		getHTML : function(){
 			this.logger(this);

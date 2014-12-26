@@ -779,8 +779,6 @@
 			__LAYOUT_INDEX_TYPE_MAP__ :{},
 			__LAYOUT_INSTANCE_MAP__ : {},
 			__OUTPUT_RULES__ : {
-				isRemoveEmptyAttr : true,
-				'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
 				'*' : {
 					'^id$ ^on ^name$' : function(attr){
 						if(/^on|^name$/i.test(attr.name)){
@@ -796,22 +794,6 @@
 					},
 					'class' : function(attr){
 						attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
-					}
-				},
-				'img' : {
-					':before' : function(){
-						var key='src',
-							i_key=IDEX_ATTR_MAP.SRC,
-							src,
-							_src_;
-						src=this.getAttribute(key);
-						_src_=this.getAttribute(i_key);
-						if(_src_ && src){
-							this.setAttribute(key,'');
-						}
-					},
-					'src' : function(attr){
-						attr.name=IDEX_ATTR_MAP.SRC;
 					}
 				}
 			},
