@@ -10,10 +10,21 @@ $.push({
 	*/
 	initModule : function(){	
 		this.app.addEventListener('readyafter',function(event){
-			var outRules = this.layout.__OUTPUT_RULES__;
+			var tempRules={
+					img:{},
+					div:{},
+				},
+				outRules = this.layout.__OUTPUT_RULES__;
 			this.SaveAs.DEFAULT_OUTPUT_RULES=outRules;
-			CF.merger(this.SaveAs.CLEAN_OUTPUT_RULES,outRules,this.SaveAs.CLEAN_OUTPUT_RULES);
+ 
 
+			tempRules.img[IDEX_ATTR_MAP.SRC]=HTMLfilter.removeAttrHandle;
+				
+			tempRules.img.src=HTMLfilter.removeAttrHandle;
+
+			tempRules.div[IDEX_ATTR_MAP.HREF]=HTMLfilter.removeAttrHandle;
+		 
+			this.SaveAs.CLEAN_OUTPUT_RULES=CF.merger({},outRules,tempRules);
 		});
 	},
 	show : function(config){
@@ -58,19 +69,7 @@ $.push({
 		});
 		this.win.show();
 	},
-	CLEAN_OUTPUT_RULES : {
-		'img' : {
-			':before' : function(){
-				this.removeAttribute('src');
-				this.removeAttribute(IDEX_ATTR_MAP.SRC);
-			}
-		},
-		'div' : {
-			':before' : function(){
-				this.removeAttribute(IDEX_ATTR_MAP.HREF);
-			}
-		}
-	},
+	CLEAN_OUTPUT_RULES : null,
 	DEFAULT_OUTPUT_RULES : null,
 	submit : function(){
 		var form=this.win.form,
@@ -83,7 +82,7 @@ $.push({
 		title=form.getItem('title').getValue();
 		
 
-		if(isClean){
+		if(!isClean){
 			filterRule=this.CLEAN_OUTPUT_RULES;
 		}else{
 			filterRule=this.DEFAULT_OUTPUT_RULES;
