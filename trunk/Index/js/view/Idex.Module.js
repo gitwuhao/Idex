@@ -89,7 +89,7 @@ Idex.Module.prototype={
 		}
 		$.ajax({
 			url:'/module.s',
-			data : 'method=query&type=' + this.ACTION_TYPE,
+			data : 'method=query&_t=' + this.ACTION_TYPE,
 			$owner : this,
 			type : 'POST',
 			dataType : 'jsonp',
@@ -109,7 +109,7 @@ Idex.Module.prototype={
 		}
 		$.ajax({
 			url:'/module.s',
-			data : 'method=copy&id='+item.id+'&type='+this.ACTION_TYPE,
+			data : 'method=copy&id='+item.id+'&_t='+this.ACTION_TYPE,
 			$owner : this,
 			item : item,
 			type : 'POST',
@@ -144,7 +144,7 @@ Idex.Module.prototype={
 		}
 		$.ajax({
 			url:'/module.s',
-			data : 'method=insert&type='+this.ACTION_TYPE,
+			data : 'method=insert&_t='+this.ACTION_TYPE,
 			_$owner : this,
 			_target : target,
 			type : 'POST',
@@ -205,7 +205,7 @@ Idex.Module.prototype={
 	confirmDel : function(item){
 		$.ajax({
 			url:'/module.s',
-			data : 'method=delete&id='+item.id+'&type='+this.ACTION_TYPE,
+			data : 'method=delete&id='+item.id+'&_t='+this.ACTION_TYPE,
 			$owner : this,
 			item : item,
 			type : 'POST',

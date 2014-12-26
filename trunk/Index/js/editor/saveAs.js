@@ -35,7 +35,7 @@ $.push({
 		this.logger(this);
 		this.config=config;
 		this.win=new ui.window({
-			title : '另存为',
+			title : '另存为自定义布局',
 			$owner : this,
 			width: '230px',
 			padding: '10px 30px 10px 10px',
@@ -80,6 +80,8 @@ $.push({
 			title,
 			isClean,
 			html,
+			data,
+			type,
 			config=this.config,
 			filterRule;
 		isClean=form.getItem('isClean').getValue();
@@ -91,10 +93,39 @@ $.push({
 		}else{
 			filterRule=this.DEFAULT_OUTPUT_RULES;
 		}
+		
+		type=config.layout._type_index_;
 
 		html = HTMLfilter.getOuterHTML(config.activeElement,filterRule);
 
-		console.info(html);
+
+		data={
+			method : 'insert',
+			_t : '2',
+			title : title,
+			type : type,
+			code : html
+		};
+
+
+		$.ajax({
+			url:'/module.s',
+			data : $.param(data),
+			_$owner : this,
+			type : 'POST',
+			dataType : 'jsonp',
+			success : function(json){
+				 
+			},
+			error : function(){
+			},
+			complete : function(){
+			}
+		});
+	},
+	_save_ : function(data){
+	
+
 	},
 	close:function(){
 		this.logger(this);
