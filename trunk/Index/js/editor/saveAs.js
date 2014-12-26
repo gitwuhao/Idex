@@ -18,9 +18,13 @@ $.push({
 			this.SaveAs.DEFAULT_OUTPUT_RULES=outRules;
  
 
-			tempRules.img[IDEX_ATTR_MAP.SRC]=HTMLfilter.removeAttrHandle;
+			tempRules.img.src=function(attr){
+				attr.name=IDEX_ATTR_MAP.SRC;
+				attr.value='/s.gif';
+			};
+
+			tempRules.img[IDEX_ATTR_MAP.SRC]=tempRules.img.src;
 				
-			tempRules.img.src=HTMLfilter.removeAttrHandle;
 
 			tempRules.div[IDEX_ATTR_MAP.HREF]=HTMLfilter.removeAttrHandle;
 		 
