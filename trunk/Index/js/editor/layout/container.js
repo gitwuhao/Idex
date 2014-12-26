@@ -76,14 +76,14 @@
 				this.form.setItemValue('title',value);
 			}
 			var $elem=$(this.activeElement);
-			$elem.attr('d-t',value);
+			$elem.attr(this.attrKey.title,value);
 			$elem.children('.text-title').text(value);
 			var navItem=this.app.LayoutPanel.getNavItemByLayout(this.activeElement);
 			this.app.LayoutPanel.setNavItemTitle(navItem,value);
 		},
 		getTitle:function(){
 			this.logger(this);
-			return $(this.activeElement).attr('d-t');
+			return $(this.activeElement).attr(this.attrKey.title);
 		},
 		setDisplay:function(value){
 			this.logger(this);

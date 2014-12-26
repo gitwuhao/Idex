@@ -251,12 +251,20 @@
 		},
 		onRenderAfter:function(config){
 			ui.logger(this);
-			var $panel=this.$elem;
-			var children=$panel.children().children();
-			var items=config.items;
+			var $panel,
+				children,
+				items,
+				layout=this.$owner;
+			
+			$panel=this.$elem;
+			children=$panel.children().children();
+			items=config.items;
+
+			layout.attrKey={};
 	
 			for(var i=0,len=items.length;i<len;i++){
-				var item=items[i];
+				var name,
+					item=items[i];
 				if(item){
 					if(item.onChange){
 					
@@ -268,8 +276,13 @@
 							this.form.on('change',this,this.getValue());
 						};
 					}
+					name=item.name;
+
+					if(name){
+						layout.attrKey[name]=layout._attr_px_+name;
+					}
 					item.form=this;
-					item.layout=this.$owner;
+					item.layout=layout;
 					item.app=this.app;
 					item=ui.getXTypeItem(item,children[i]);
 					if(item.$text){
