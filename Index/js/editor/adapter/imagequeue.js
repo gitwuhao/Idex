@@ -33,11 +33,13 @@
 					$.addClass(img,this.css.load_error);
 				}
 			});
+
+			this.ATTR_KEY_IMG_SRC=this.ImageQueue.attrName;
 			
 			this.addEventListener('contentupdate runimagequeue',function(){
 				this.ImageQueue.clear();
 
-				this.ImageQueue.pushList($('img['+this.ImageQueue.attrName+']',this.$viewPanel));
+				this.ImageQueue.pushList($('img['+this.ATTR_KEY_IMG_SRC+']',this.$viewPanel));
 				this.ImageQueue.run();
 			});
 
