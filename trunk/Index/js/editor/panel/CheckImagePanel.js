@@ -100,20 +100,20 @@
 		check : function(img){
 			this.logger(this);
 			var src=img.src,
-				_s_=img.getAttribute('_s_'),
+				_src_=img.getAttribute(this.app.ATTR_KEY_IMG_SRC),
 				item,
 				naturalHeight=img.naturalHeight,
 				naturalWidth=img.naturalWidth,
 				clientHeight=img.clientHeight,
 				clientWidth=img.clientWidth;
 
-			if(!src && !_s_){
+			if(!src && !_src_){
 				img.src='images/s.gif';
 				item={
 					type : 'error',
 					title : '未设置图片'
 				};
-			}else if(/s\.gif$/g.test(src) || /s\.gif$/g.test(_s_) || naturalHeight==1 && naturalHeight==naturalWidth){
+			}else if(/s\.gif$/g.test(src) || /s\.gif$/g.test(_src_) || naturalHeight==1 && naturalHeight==naturalWidth){
 				item={
 					type : 'error',
 					title : '未设置图片'
@@ -129,10 +129,10 @@
 					type : 'warning',
 					title : '缩放['+naturalWidth+'&nbsp;x&nbsp;'+naturalHeight+']'
 				};
-			}else if(!src && _s_){
+			}else if(!src && _src_){
 				var me=this;
 				
-				src=_s_;
+				src=_src_;
 
 				img.removeAttribute('src');
 
