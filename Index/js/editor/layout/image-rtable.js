@@ -32,10 +32,7 @@
 					},{
 						label : '4列',
 						value : '4'
-					}/*,{
-						label : '5列',
-						value : '5'
-					}*/],
+					}],
 					getDesc : '修改列数'
 				},{
 					label:'列高',
@@ -85,7 +82,7 @@
 					});
 				});
 			}
-			this.app.LayoutPanel.on('reloadNavList',this.activeElement);
+			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
 		},
 		getCol : function(){
 			this.logger(this);

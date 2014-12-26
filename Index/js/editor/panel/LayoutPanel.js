@@ -534,6 +534,19 @@
 			}
 			$target.remove();
 		},
+		removeChildrenNavList : function(targetElement){
+			var $target=$(),
+				me=this,
+				_list_=$('[id]',targetElement);
+			_list_.push(targetElement);
+			_list_.each(function(index,elem){
+				var navList=me.get(getParentNavID(elem.id));
+				if(navList){
+					$target.push(navList);
+				}
+			});
+			$target.remove();
+		},
 		removeNavList : function(targetElement){
 			this.logger(this);
 			var navItem=this.getNavItemByLayout(targetElement);
