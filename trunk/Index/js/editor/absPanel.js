@@ -35,10 +35,10 @@
 					var layout=this.layout;
 					if(!layout.setLink){		
 						layout.setLink = function(value){
-							$.attr(this.activeElement,this._attr_px_+'link',value);
+							$.attr(this.activeElement,this.attrKey.link,value);
 						};
 						layout.getLink = function(){
-							return $.attr(this.activeElement,this._attr_px_+'link');
+							return $.attr(this.activeElement,this.attrKey.link);
 						};
 					}
 				}
