@@ -15,7 +15,7 @@ $.push({
 				items : [{
 					label:'名称',
 					clear:true,
-					maxlength : 6,
+					maxlength : 10,
 					name: 'name',
 					value: config.title || ''
 				},{
