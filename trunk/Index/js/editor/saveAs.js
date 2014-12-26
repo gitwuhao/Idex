@@ -121,7 +121,7 @@ $.push({
 			success : function(id){
 				var html;
 				if(id && id>0){
-					$.cache.put('custom_code',_data.code);
+					$.cache.put('custom_code',this._data.code);
 				}else if(id==-1){
 					html='保存失败，超出限制!';
 				}else{
