@@ -13,7 +13,7 @@
 				content : this.$viewPanel,
 				/*insertContent : this.app.$descBox[0],*/
 				spacing : 100,
-				attrName : '_s_',
+				attrName : 'idex-src',
 				css : {
 					item : 'idex-r-imagequeueitem',
 					load_error : 'idex-r-imagequeueloaderror'
@@ -36,7 +36,8 @@
 			
 			this.addEventListener('contentupdate runimagequeue',function(){
 				this.ImageQueue.clear();
-				this.ImageQueue.pushList($('img[_s_]',this.$viewPanel));
+
+				this.ImageQueue.pushList($('img['+this.ImageQueue.attrName+']',this.$viewPanel));
 				this.ImageQueue.run();
 			});
 
