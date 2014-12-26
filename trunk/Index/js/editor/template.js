@@ -1,19 +1,5 @@
 (function(CF,$){
 
-	(function(){
-		var loca=window.location,
-			_NAME_,
-			ROOTPATH;
-		if(loca.host=='www.oilan.com.cn'){
-			_NAME_='ide/';
-		}else if(loca.host=='idex.oilan.com.cn'){
-			_NAME_='/';
-		}else{
-			_NAME_='';
-		}
-		$.ROOTPATH=[loca.protocol,'/','/',loca.host,'/',_NAME_].join('');
-	}());
-
 	var systemTemplates,
 		templateData={
 			__DATA_MAP__ : null,
@@ -117,7 +103,7 @@
 
 			this.data.system=getSystemTemplates();
 
-			loadTemplateData(true);
+			this.loadTemplateData(true);
 
 
 			var node,
@@ -138,6 +124,62 @@
 					}
 					delete node.parent;
 				}
+			}
+		},
+		loadTemplateData : function(isAsync,callback){
+			$.ajax({
+				url:'/module.s',
+				data : 'method=query&_t=2',
+				type : 'POST',
+				_$owner : this,
+				dataType : 'jsonp',
+				jsonpCallback : $.getJSONPName(),
+				async : isAsync ,
+				success : function(json){
+					this._$owner.setTemplateData(json,callback);
+				},
+				error : function(){
+					
+				}
+			});
+		},
+		setTemplateData : function (json,callback){
+			var array=json||[],
+				containerList=[],
+				layoutList=[],
+				dataMap={};
+
+			for(var i=0,len=array.length;i<len;i++){
+				var _layout_,
+					item=array[i];
+				item.uid=getLayoutID();
+				dataMap[item.uid]=item;
+				_layout_=this.app.layout.getLayoutByIndex(item.type);
+				if(_layout_ && _layout_._name_){
+					item.type=_layout_._name_;
+				}else{
+					item.type='container';
+				}
+				if(item.type=='container'){
+					containerList.push(item.uid);
+				}else{
+					layoutList.push(item.uid);
+				}
+			}
+
+			templateData.custom={};
+			templateData.custom.containerList=containerList;
+			templateData.custom.layoutList=layoutList;
+
+			var system=templateData.system;
+			for(var key in system){
+				var item=system[key];
+				dataMap[item.id]=item;
+			}
+			templateData.__DATA_MAP__=dataMap;
+
+			if(callback){
+				callback();
 			}
 		},
 		getSystemTemplate : function(parentLayoutType){
@@ -403,7 +445,7 @@
 
 			this.clearSelectedItem();
 
-			loadTemplateData(false,function(){
+			this.loadTemplateData(false,function(){
 				if(me.win && tab && tab.getTab){
 					tab.getTab('custom').$tabview.html(me.getCustomTemplate(parentLayoutType));
 					tab.getTab('share').$tabview.html(me.getShareTemplate(parentLayoutType));
@@ -775,81 +817,4 @@
 		return layoutMAP;
 	};
 
-	var __ERROR_INDEX__=0;
-	function loadTemplateData(isAsync,callback){
-		$.ajax({
-			url : $.ROOTPATH + 'loadtemplate.jsp',
-			dataType : 'jsonp',
-			async : isAsync ,
-			success : function(data){
-				setTimeout(function(){
-					setTemplateData(data,callback);
-				},100);
-				__ERROR_INDEX__=0;
-			},
-			error : function(){
-				__ERROR_INDEX__++;
-				if(__ERROR_INDEX__<3){
-					setTimeout(function(){
-						loadTemplateData(isAsync,callback);
-					},3000 * __ERROR_INDEX__);
-				}
-			}
-		});
-	};
-
-	function setTemplateData(data,callback){
-		var array=data.custom||[],
-			containerList=[],
-			layoutList=[],
-			dataMap={};
-
-		for(var i=0,len=array.length;i<len;i++){
-			var item=array[i];
-			item.uid=getLayoutID();
-			dataMap[item.uid]=item;
-			if(item.type=='container'){
-				containerList.push(item.uid);
-			}else{
-				layoutList.push(item.uid);
-			}
-		}
-
-		templateData.custom={};
-		templateData.custom.containerList=containerList;
-		templateData.custom.layoutList=layoutList;
-
-
-		array=data.share||[];
-		containerList=[];
-		layoutList=[];
-
-		for(var i=0,len=array.length;i<len;i++){
-			var item=array[i];
-			item.uid=getLayoutID();
-			dataMap[item.uid]=item;
-			if(item.type=='container'){
-				containerList.push(item.uid);
-			}else{
-				layoutList.push(item.uid);
-			}
-		}
-
-		templateData.share={};
-		templateData.share.containerList=containerList;
-		templateData.share.layoutList=layoutList;
-
-
-		var system=templateData.system;
-		for(var key in system){
-			var item=system[key];
-			dataMap[item.id]=item;
-		}
-		templateData.__DATA_MAP__=dataMap;
-
-		if(callback){
-			callback();
-			//setTimeout(callback,5000);
-		}
-	};
 })(CF,jQuery);
