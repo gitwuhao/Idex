@@ -344,42 +344,9 @@
 				html :  this.getCustomTemplate(parentLayoutType),
 				onTagClick : onTagClick,
 				onLoad : onLoad
-			}/*,{
-				cls:'share',
-				label:'共享',
-				html : this.getShareTemplate(parentLayoutType),
-				onTagClick : onTagClick,
-				onLoad : onLoad
-			}*/];
+			}];
 
-			var floatbar = [/*{
-				xtype : 'button',
-				icon : true,
-				isDisabled : true,
-				cls : 'share',
-				title : "共享",
-				onClick:function(){
-					me.on('shareClick',this,this.$owner);
-				}
-			},{
-				xtype : 'button',
-				icon : true,
-				isDisabled : true,
-				cls : 'unshare',
-				title : "取消共享",
-				onClick:function(){
-					me.on('unshareClick',this,this.$owner);
-				}
-			},*/{
-				xtype : 'button',
-				icon : true,
-				isDisabled : true,
-				cls : 'del',
-				title : "删除",
-				onClick:function(){
-					me.on('delClick',this,this.$owner);
-				}
-			},{
+			var floatbar = [{
 				xtype : 'button',
 				icon : true,
 				cls : 'refresh',
@@ -420,18 +387,6 @@
 			this.win.show();
 			this.win.item.$floatbar.hide();
 			this.clearSelectedItem();
-		},
-		onShareClick:function(button,tab){
-			this.logger(this);
-
-		},
-		onUnShareClick:function(button,tab){
-			this.logger(this);
-
-		},
-		onDelClick:function(button,tab){
-			this.logger(this);
-
 		},
 		onRefreshClick:function(button,tab){
 			this.logger(this);
@@ -476,19 +431,6 @@
 
 			data=this.getSelectedData();
 
-			if(type=='custom'){
-				tab.show('del');
-				tab.enabled('del');
-				if(data.isShare){
-					tab.show('unshare');
-					tab.enabled('unshare');
-					tab.hide('share');
-				}else{
-					tab.show('share');
-					tab.enabled('share');
-					tab.hide('unshare');
-				}
-			}
 		},
 		getSelectedData:function(){
 			this.logger(this);
@@ -526,10 +468,6 @@
 
 			if(type=='custom'){
 				$floatbar.show();
-				$floatbar.children('.del,.share,.unshare').hide();
-			}else if(type=='share'){
-				$floatbar.show();
-				$floatbar.children('.del,.share,.unshare').hide();
 			}else{
 				$floatbar.hide();
 			}
