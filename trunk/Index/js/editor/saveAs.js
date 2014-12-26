@@ -123,9 +123,9 @@ $.push({
 				if(id && id>0){
 					$.cache.put('custom_code',_data.code);
 				}else if(id==-1){
-					html='创建失败，超出限制!';
+					html='保存失败，超出限制!';
 				}else{
-					html='创建失败';
+					html='保存失败...';
 				}
 				
 				if(html){
@@ -133,7 +133,6 @@ $.push({
 						px : 'idex-ui',
 						align : 'tc',
 						offset : 'lt',
-						cls : 'c3',
 						html : '<em style="color:#FC7100;">'+html+'</em>',
 						time : 3000,
 						target :  this._target
