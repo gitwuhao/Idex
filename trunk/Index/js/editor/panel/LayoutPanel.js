@@ -1,5 +1,6 @@
 (function(CF,$){
-	var getNavID,
+	var	IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
+		getNavID,
 		getLayoutID,
 		getParentNavID,
 		getNavListToLayoutID,
@@ -670,7 +671,7 @@
 						  '</div>');
 			}
 			html.push(	'<div class="idex-list-item-title">',
-							(target.getAttribute('d-t') || layout.title),
+							(target.getAttribute(IDEX_ATTR_MAP.TITLE) || layout.title),
 						'</div>');
 
 			if(!layout.isFixedLayout){

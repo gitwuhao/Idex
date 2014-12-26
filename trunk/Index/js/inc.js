@@ -4,7 +4,8 @@
 		SRC : 'idex-src',
 		TYPE : 'idex-type',
 		ID : 'idex-id',
-		NAME : 'idex-id',
+		NAME : 'idex-name',
+		TITLE : 'idex-title',
 		CLASS : 'idex-class'
 	};
 })();
