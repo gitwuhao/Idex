@@ -62,6 +62,7 @@ Idex.view.list.getForm= function(){
 					$owner : this,
 					type : 'POST',
 					dataType : 'jsonp',
+					jsonpCallback : $.getJSONPName(),
 					success : function(json){
 						json=$.cache.buildTreeData(json);
 						$.cache.put(key,JSON.stringify(json),new Date());
@@ -162,6 +163,7 @@ Idex.view.list.getForm= function(){
 				$owner : this,
 				type : 'POST',
 				dataType : 'jsonp',
+				jsonpCallback : $.getJSONPName(),
 				success : function(json){
 					if(!this.$owner.pageSize){
 						this.$owner.pageSize=$.toNumber(localStorage[this.$owner.KEY_PAGE_SIZE]);
