@@ -1,5 +1,6 @@
 (function(CF,$){
-	var ImageQueue=window.ImageQueue;
+	var ImageQueue=window.ImageQueue,
+		IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 	$.push({
 		_name_ : '_temp_module_',
 		initModule : function(){
@@ -13,7 +14,7 @@
 				content : this.$viewPanel,
 				/*insertContent : this.app.$descBox[0],*/
 				spacing : 100,
-				attrName : 'idex-src',
+				attrName : IDEX_ATTR_MAP.SRC,
 				css : {
 					item : 'idex-r-imagequeueitem',
 					load_error : 'idex-r-imagequeueloaderror'
@@ -34,12 +35,11 @@
 				}
 			});
 
-			this.ATTR_KEY_IMG_SRC=this.ImageQueue.attrName;
 			
 			this.addEventListener('contentupdate runimagequeue',function(){
 				this.ImageQueue.clear();
 
-				this.ImageQueue.pushList($('img['+this.ATTR_KEY_IMG_SRC+']',this.$viewPanel));
+				this.ImageQueue.pushList($('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel));
 				this.ImageQueue.run();
 			});
 

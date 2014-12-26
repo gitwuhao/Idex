@@ -1,5 +1,6 @@
 (function(CF,$){
 	var ide={},
+		IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
 		_LAYOUT_CLASS_MAP_={},
 		_CONTAINER_PROTOTYPE_,
 		_LAYOUT_TYPE_MAP_={
@@ -220,81 +221,13 @@
 			var element=$(target).before(html);
 			return element.prev();
 		},
-		__OUTPUT_RULES__ : {
-			isRemoveEmptyAttr : true,
-			'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
-			'*' : {
-				'^id$ ^on ^name$' : function(attr){
-					if(/^on|^name$/i.test(attr.name)){
-						this.removeAttribute(attr.name);
-					}else if(/^id$/i.test(attr.name)){
-						if(window.isLayoutID(attr.value)){
-						}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
-						}else{
-							this.removeAttribute('id');
-						}
-					}
-					attr.value='';
-				},
-				'style' : function(attr){
-					var value;
-					if(this.style.length>0){
-						HTMLfilter.removeStyle(this,{
-							'@remove' : ['position','background-image','widows','^_','^-','orphans','image$']
-						});
-						value=HTMLfilter.getStyleText(this.style);
-					}else{
-						value='';
-					}
-					attr.value=value;
-				},
-				'class' : function(attr){
-					attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
-				}
-			},
-			'img' : {
-				':before' : function(){
-					var src=this.getAttribute('src'),
-						_s_=this.getAttribute('_s_');
-					if(!src){
-						if(_s_){
-							this.setAttribute('src',_s_);
-						}						
-					}
-					this.removeAttribute('_s_');
-				}
-			},
-			'a'  : {
-				':before' : function(){
-					var href=this.getAttribute('href'),
-						_h_=this.getAttribute('_h_');
-					
-					if(/^javascript:/i.test(href)){
-						this.removeAttribute('href');
-					}else if(/^javascript:/i.test(_h_)){
-						this.removeAttribute('_h_');
-					}else if(href){
-						this.setAttribute('_h_',href);
-						this.removeAttribute('href');
-					}
-				}
-			},
-			'input'  : {
-				':before' : function(){
-					if(/^submit$/i.test(this.type)){
-						$.addClass(this,'_s-t_');
-						this.type='button';
-					}
-				}
-			}
-		},
 		getHTML : function(target){
 			this.logger(this);
-			return HTMLfilter.getOuterHTML(target,this.__OUTPUT_RULES__);
+			return HTMLfilter.getOuterHTML(target,this.app.layout.__OUTPUT_RULES__);
 		},
 		getInnerHTML : function(target){
 			this.logger(this);
-			return HTMLfilter.getInnerHTML(target,this.__OUTPUT_RULES__);
+			return HTMLfilter.getInnerHTML(target,this.app.layout.__OUTPUT_RULES__);
 		},
 		getPropertyForm : function (box){
 			this.logger(this);
@@ -845,6 +778,43 @@
 		_layout_:{
 			__LAYOUT_INDEX_TYPE_MAP__ :{},
 			__LAYOUT_INSTANCE_MAP__ : {},
+			__OUTPUT_RULES__ : {
+				isRemoveEmptyAttr : true,
+				'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
+				'*' : {
+					'^id$ ^on ^name$' : function(attr){
+						if(/^on|^name$/i.test(attr.name)){
+							this.removeAttribute(attr.name);
+						}else if(/^id$/i.test(attr.name)){
+							if(window.isLayoutID(attr.value)){
+							}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
+							}else{
+								this.removeAttribute('id');
+							}
+						}
+						attr.value='';
+					},
+					'class' : function(attr){
+						attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
+					}
+				},
+				'img' : {
+					':before' : function(){
+						var key='src',
+							i_key=IDEX_ATTR_MAP.SRC,
+							src,
+							_src_;
+						src=this.getAttribute(key);
+						_src_=this.getAttribute(i_key);
+						if(_src_ && src){
+							this.setAttribute(key,'');
+						}
+					},
+					'src' : function(attr){
+						attr.name=IDEX_ATTR_MAP.SRC;
+					}
+				}
+			},
 			getLayout : function(_name_){
 				return this.__LAYOUT_INSTANCE_MAP__[_name_];
 			},

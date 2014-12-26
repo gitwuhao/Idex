@@ -1,5 +1,4 @@
 (function(CF,$){
-
 	$.push({
 		_name_ : 'ViewPanel',
 		__events__ : ['click','mousedown'].join(' '),
@@ -96,71 +95,9 @@
 			style.setProperty('overflow-x','hidden');
 			style.setProperty('overflow-y','auto');
 		},
-		__OUTPUT_RULES__ : {
-			isRemoveEmptyAttr : true,
-			'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
-			'*' : {
-				'^id$ ^on ^name$' : function(attr){
-					if(/^on|^name$/i.test(attr.name)){
-						this.removeAttribute(attr.name);
-					}else if(/^id$/i.test(attr.name)){
-						if(window.isLayoutID(attr.value)){
-						}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
-						}else{
-							this.removeAttribute('id');
-						}
-					}
-					attr.value='';
-				},
-				'style' : function(attr){
-					HTMLfilter.removeStyle(this,{
-						'@remove' : ['position','background-image','widows','^_','^-','orphans','image$']
-					});
-					attr.value=HTMLfilter.getStyleText(this.style);
-				},
-				'class' : function(attr){
-					attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
-				}
-			},
-			'img' : {
-				':before' : function(){
-					var src=this.getAttribute('src'),
-						_s_=this.getAttribute('_s_');
-					if(_s_ && src){
-						this.setAttribute('src','');
-					}
-				},
-				'src' : function(attr){
-					attr.name='_s_';
-				}
-			},
-			'a'  : {
-				':before' : function(){
-					var href=this.getAttribute('href'),
-						_h_=this.getAttribute('_h_');
-					
-					if(/^javascript:/i.test(href)){
-						this.removeAttribute('href');
-					}else if(/^javascript:/i.test(_h_)){
-						this.removeAttribute('_h_');
-					}else if(href){
-						this.setAttribute('_h_',href);
-						this.removeAttribute('href');
-					}
-				}
-			},
-			'input'  : {
-				':before' : function(){
-					if(/^submit$/i.test(this.type)){
-						$.addClass(this,'_s-t_');
-						this.type='button';
-					}
-				}
-			}
-		},
 		getAllHTML : function(){
 			this.logger(this);
-			return HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
+			return HTMLfilter.getOuterHTML(this.descbox,this.app.layout.__OUTPUT_RULES__);
 		},
 		getHTML : function(){
 			this.logger(this);
