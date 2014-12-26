@@ -109,7 +109,7 @@
 			this.descbox.innerHTML=HTML;
 			$('.idex-r-active',this.descbox).removeClass('idex-r-active');
 			this.app.LayoutPanel.on('reloadNavList');
-			this.app.trigger('contentupdate');
+			this.app.trigger('contentUpdate');
 		},
 		getContent: function(){
 			this.logger(this);

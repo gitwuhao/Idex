@@ -46,13 +46,15 @@
 .idex-desc-box .layout-box{
 	min-height:100px;
 }
-.idex-desc-box img.idex-r-imagequeueitem{
+.idex-desc-box img.idex-r-iq-item{
 	visibility: hidden;
 }
-.idex-desc-box img.idex-r-imageloaderror{
+/*
+.idex-desc-box img.idex-r-iq-error{
 	background-color: #F00;
 	opacity: 0.1;
 }
+*/
 .idex-desc-box .image-ctable .image-col{
 	height:100%;
 }
