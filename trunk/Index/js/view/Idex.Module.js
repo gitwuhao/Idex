@@ -93,6 +93,7 @@ Idex.Module.prototype={
 			$owner : this,
 			type : 'POST',
 			dataType : 'jsonp',
+			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				this.$owner.initRawData(json||[]);
 				this.$owner.saveCache();
@@ -114,6 +115,7 @@ Idex.Module.prototype={
 			item : item,
 			type : 'POST',
 			dataType : 'jsonp',
+			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				if(json && json.id>0){
 					this.$owner.copyItem(this.item,json);
@@ -149,6 +151,7 @@ Idex.Module.prototype={
 			_target : target,
 			type : 'POST',
 			dataType : 'jsonp',
+			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				if(json && json.id>0){
 					this._$owner.newItem(json);
@@ -210,6 +213,7 @@ Idex.Module.prototype={
 			item : item,
 			type : 'POST',
 			dataType : 'jsonp',
+			jsonpCallback : $.getJSONPName(),
 			success : function(data){
 				if(data==1){
 					this.$owner.delItem(this.item);

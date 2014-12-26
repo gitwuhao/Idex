@@ -114,6 +114,7 @@ $.push({
 			_$owner : this,
 			type : 'POST',
 			dataType : 'jsonp',
+			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				 
 			},
