@@ -4,6 +4,7 @@ $.push({
 	_name_ : 'SaveAs',
 	/*{
 	*	title : title,
+	*	target : target
 	*	layout : layout,
 	*	activeElement : activeElement
 	* }
@@ -112,11 +113,32 @@ $.push({
 			url:'/module.s',
 			data : $.param(data),
 			_$owner : this,
+			_data : data,
+			_target : config.target,
 			type : 'POST',
 			dataType : 'jsonp',
 			jsonpCallback : $.getJSONPName(),
-			success : function(json){
-				 
+			success : function(id){
+				var html;
+				if(id && id>0){
+					$.cache.put('custom_code',_data.code);
+				}else if(id==-1){
+					html='创建失败，超出限制!';
+				}else{
+					html='创建失败';
+				}
+				
+				if(html){
+					ui.quicktip.show({
+						px : 'idex-ui',
+						align : 'tc',
+						offset : 'lt',
+						cls : 'c3',
+						html : '<em style="color:#FC7100;">'+html+'</em>',
+						time : 3000,
+						target :  this._target
+					});
+				}
 			},
 			error : function(){
 			},

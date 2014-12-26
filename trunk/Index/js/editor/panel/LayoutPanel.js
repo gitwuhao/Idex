@@ -57,8 +57,8 @@
 
 	var __NAV_ITEM_MAP__={};
 
-	function iconClickHandle(){
-		this.$owner.$owner.on(this.cls);
+	function iconClickHandle(event){
+		this.$owner.$owner.on(this.cls,event);
 	};
 
 	$.push({
@@ -320,9 +320,10 @@
 				parentLayout.click();
 			}
 		},
-		onSaveas:function(){
+		onSaveas:function(event){
 			this.logger(this);
 			this.app.SaveAs.show({
+				target : event.target,
 				title : this.getNavItemTitle(this.activeNavItem),
 				layout : this.activeLayout,
 				activeElement : this.activeElement
