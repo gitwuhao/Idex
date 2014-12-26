@@ -1,5 +1,5 @@
 (function(CF,$){
-
+	var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 	$.push({
 		_isUIModule_:true,
 		_className_ : 'FloatTabPanel',
@@ -100,7 +100,7 @@
 		check : function(img){
 			this.logger(this);
 			var src=img.src,
-				_src_=img.getAttribute(this.app.ATTR_KEY_IMG_SRC),
+				_src_=img.getAttribute(IDEX_ATTR_MAP.SRC),
 				item,
 				naturalHeight=img.naturalHeight,
 				naturalWidth=img.naturalWidth,

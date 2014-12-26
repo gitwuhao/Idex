@@ -1,4 +1,5 @@
 (function(CF,$){
+	var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 
 	var ideui={
 		__isIDEUI__ : true,
@@ -35,10 +36,10 @@
 					var layout=this.layout;
 					if(!layout.setLink){		
 						layout.setLink = function(value){
-							$.attr(this.activeElement,this.attrKey.link,value);
+							$.attr(this.activeElement,IDEX_ATTR_MAP.HREF,value);
 						};
 						layout.getLink = function(){
-							return $.attr(this.activeElement,this.attrKey.link);
+							return $.attr(this.activeElement,IDEX_ATTR_MAP.HREF);
 						};
 					}
 				}
