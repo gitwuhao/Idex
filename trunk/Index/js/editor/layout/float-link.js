@@ -8,14 +8,11 @@
 			this.logger(this);
 			var me=this;
 			var items=this.getBasePropertyForm();
-			items.push({
-				xtype:'text',
-				label:'链接',
-				vtype:['autoselect'],
+			items.push(
+			CF.merger({
 				placeholder :'填写链接地址',
-				name: 'link',
-				getDesc : '修改浮动层的链接'
-			});
+				getDesc : '修改链接地址'
+			},this.app.ui.FORMITEM.link));
 
 
 			this.form=this.app.CreatePropertyForm({
@@ -25,12 +22,6 @@
 				items : items
 			});
 			return this.form;
-		},
-		setLink : function(value){
-			$.attr(this.activeElement,'_l',value);
-		},
-		getLink : function(){
-			return $.attr(this.activeElement,'_l');
 		}
 	});
 

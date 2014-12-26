@@ -28,6 +28,7 @@
 
 	CF.defineClass(ide.container,{
 		_type_:'ide.layout',
+		_attr_px_ : 'idex-',
 		_name_ : 'AbsContainer',
 		ready : function(){},
 		initModule : function(){

@@ -10,14 +10,11 @@
 			this.logger(this);
 			var me=this;
 			var items=this.getBasePropertyForm();
-			items.push({
-				xtype:'text',
-				label:'链接',
-				vtype:['autoselect'],
+			items.push(
+			CF.merger({
 				placeholder :'填写链接地址',
-				name: 'link',
 				getDesc : '修改链接地址'
-			},
+			},this.app.ui.FORMITEM.link),
 			CF.merger({
 				placeholder :'填写图片地址',
 				getDesc : '修改图片地址'
@@ -31,37 +28,7 @@
 				onClick : function(){
 					me.onAutoSize();
 				}
-			}
-/*			,{
-				label:' ',
-				width: 'auto',
-				xtype:'checkitem',
-				name : 'imgBorder',
-				value : true,
-				text : '边框',
-				getDesc : function(value){
-					if(this.value){
-						return '设置图片边框';
-					}else{
-						return '取消图片边框';
-					}
-				}
-			},{
-				width: 'auto',
-				xtype:'checkitem',
-				cls: 'idex-ui-boolean-item',
-				name : 'imgPadding',
-				value : true,
-				text : '填充',
-				getDesc : function(value){
-					if(this.value){
-						return '设置图片填充';
-					}else{
-						return '取消图片填充';
-					}
-				}
-			}
-*/			);
+			});
 
 			this.form=this.app.CreatePropertyForm({
 				$owner : this,
@@ -70,12 +37,6 @@
 				items : items
 			});
 			return this.form;
-		},
-		setLink : function(value){
-			$.attr(this.activeElement,'_l_',value);
-		},
-		getLink : function(){
-			return $.attr(this.activeElement,'_l_');
 		},
 		setHeight :function(value){
 			this.callPrototypeMethod();

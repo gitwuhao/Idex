@@ -62,14 +62,11 @@
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
-				items : [{
-					xtype:'text',
-					label:'链接',
-					vtype:['autoselect'],
+				items : [
+				CF.merger({
 					placeholder :'填写链接地址',
-					name: 'link',
 					getDesc : '修改链接地址'
-				},
+				},this.app.ui.FORMITEM.link),
 				CF.merger({
 					placeholder :'填写图片地址',
 					getDesc : '修改图片地址'
@@ -77,12 +74,6 @@
 				'SIZE']
 			});
 			return this.form;
-		},
-		setLink : function(value){
-			$.attr(this.activeElement,'_l_',value);
-		},
-		getLink : function(){
-			return $.attr(this.activeElement,'_l_');
 		},
 		setSrc : function(value){
 			var img=this.activeElement.firstElementChild;
