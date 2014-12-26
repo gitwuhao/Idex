@@ -53,7 +53,7 @@
 						label : '6张',
 						value : '6'
 					}],
-					getDesc : '修改链接地址',
+					getDesc : '修改拼图模板',
 					onClick : function(item){
 						me.setPicture(item.value,item);
 					},

@@ -150,14 +150,11 @@
 					vtype : ['spin','required'],
 					xtype:'text',
 					getDesc : '修改图片高度'
-				},{
-					xtype:'text',
-					label:'链接',
-					vtype:['autoselect'],
-					placeholder :'填写链接地址',
-					name: 'link',
-					getDesc : '修改链接地址'
 				},
+				CF.merger({
+					placeholder :'填写链接地址',
+					getDesc : '修改链接地址'
+				},this.app.ui.FORMITEM.link),
 				CF.merger({
 					placeholder :'填写图片地址',
 					getDesc : '修改图片地址'
@@ -196,12 +193,6 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
-		},
-		setLink : function(value){
-			$.attr(this.activeElement,'_l_',value);
-		},
-		getLink : function(){
-			return $.attr(this.activeElement,'_l_');
 		},
 		setSrc : function(value){
 			var img=this.activeElement.firstElementChild;

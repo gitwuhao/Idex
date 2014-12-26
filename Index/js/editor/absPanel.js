@@ -23,6 +23,26 @@
 					}
 				}
 			},
+			'link' :{
+				xtype:'text',
+				label:'链接',
+				vtype:['autoselect'],
+				placeholder :'填写链接地址',
+				name: 'link',
+				getDesc : '修改链接地址',
+				onRenderAfter : function(){
+					this.callPrototypeMethod();
+					var layout=this.layout;
+					if(!layout.setLink){		
+						layout.setLink = function(value){
+							$.attr(this.activeElement,this._attr_px_+'link',value);
+						};
+						layout.getLink = function(){
+							return $.attr(this.activeElement,this._attr_px_+'link');
+						};
+					}
+				}
+			},
 			'imgsizing' : {
 				label : '尺寸',
 				isHelp : false,
