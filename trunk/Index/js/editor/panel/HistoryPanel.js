@@ -248,7 +248,7 @@
 				$.removeClass(item.firstElementChild,'check');
 			}
 			this.activeCommand=command;
-			this.app.trigger('contentupdate');
+			this.app.trigger('contentUpdate');
 			if(this.applySnapCommand && this.applySnapCommand!=command){
 				this.applySnapCommand=null;
 				this.on('deActiveLocalSnap');

@@ -16,8 +16,8 @@
 				spacing : 100,
 				attrName : IDEX_ATTR_MAP.SRC,
 				css : {
-					item : 'idex-r-imagequeueitem',
-					load_error : 'idex-r-imagequeueloaderror'
+					item : 'idex-r-iq-item',
+					load_error : 'idex-r-iq-error'
 				},
 				retry : 5,
 				onComplete : function(img){
@@ -36,14 +36,14 @@
 			});
 
 			
-			this.addEventListener('contentupdate runimagequeue',function(){
+			this.addEventListener('contentUpdate runImageQueue',function(){
 				this.ImageQueue.clear();
 
 				this.ImageQueue.pushList($('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel));
 				this.ImageQueue.run();
 			});
 
-			this.triggerAndRemoveEvent('runimagequeue');
+			this.triggerAndRemoveEvent('runImageQueue');
 		}
 	});
 	delete window.ImageQueue;
