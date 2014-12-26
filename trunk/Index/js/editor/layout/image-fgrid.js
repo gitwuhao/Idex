@@ -126,6 +126,8 @@
 			array.index=index;
 
 			this.form.getItem('height').setValue(offsetHeight);
+			
+			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
 
 			this.addUndo(undoValue);
 
@@ -167,6 +169,8 @@
 					var element=this.app.get(this.elementID);
 					element.style.height=value.height;
 					element.innerHTML=value.html;
+					
+					this.app.LayoutPanel.removeChildrenNavList(element);
 					element.click();
 				}
 			});
