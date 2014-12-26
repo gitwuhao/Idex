@@ -322,9 +322,9 @@
 		onSaveas:function(){
 			this.logger(this);
 			this.app.SaveAs.show({
-				layout : this.activeLayout,
 				title : this.getNavItemTitle(this.activeNavItem),
-				html : this.activeLayout.getHTML(this.activeElement)
+				layout : this.activeLayout,
+				activeElement : this.activeElement
 			});
 		},
 		onCopy:function(){
