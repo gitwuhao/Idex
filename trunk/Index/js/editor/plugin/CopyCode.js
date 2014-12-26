@@ -91,7 +91,7 @@ $.push({
 								cls : 'qit-autosize copy-qit',
 								target : this.target
 							});
-							var html=HTMLfilter.getOuterHTML(this.panel.activeElement,this.app.layout.__OUTPUT_RULES__);
+							var html=HTMLfilter.getOuterHTML(this.panel.activeElement,this.app.ViewPanel.__OUTPUT_RULES__);
 							return html;
 						}
 					}
