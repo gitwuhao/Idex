@@ -108,7 +108,7 @@
 				clientWidth=img.clientWidth;
 
 			if(!src && !_src_){
-				img.src='images/s.gif';
+				img.src='/s.gif';
 				item={
 					type : 'error',
 					title : '未设置图片'
