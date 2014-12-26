@@ -83,6 +83,7 @@
 				});
 			}
 			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
+			this.activeElement.click();
 		},
 		getCol : function(){
 			this.logger(this);
