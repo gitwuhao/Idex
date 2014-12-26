@@ -346,6 +346,7 @@
 				onLoad : onLoad
 			}];
 
+
 			var floatbar = [{
 				xtype : 'button',
 				icon : true,
