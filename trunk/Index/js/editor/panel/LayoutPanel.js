@@ -210,11 +210,10 @@
 			this.__CONTAINER_LAYOUT__=this.app.layout.getLayout('container');
 			this.descbox=this.app.$descBox[0];
 			this.descbox.id=__DESC_BOX_ID__;
-			this.createMainNavList();
+			this.on('home');
 		},
 		onAppReadyAfter:function(){
 			this.logger(this);
-			
 			this.initMainNavList();
 			delete this.initMainNavList;
 		},
@@ -226,7 +225,6 @@
 			var html=this.getNavListHTML(navListId,layout,list);
 			this.$layoutTabView.append(html);
 			this.bindItemSortBarHover(this.get(navListId));
-			this.on('home');
 		},
 		onMousedown:function(navItem){
 			this.logger(this);
@@ -305,6 +303,8 @@
 			if(this.getItem('home').isDisabled){
 				return;
 			}
+			this.$layoutTabView.empty();
+			this.createMainNavList();
 			this.descbox.firstElementChild.click();
 			this.disabled('home');
 		},
@@ -571,8 +571,7 @@
 		onReloadNavList:function(targetElement){
 			this.logger(this);
 			if(!targetElement){
-				this.$layoutTabView.empty();
-				this.createMainNavList();
+				this.on('home');
 				return;
 			}else{
 				this.removeNavList(targetElement);
@@ -747,7 +746,10 @@
 				navItem=this.get(navId);
 			}
 			if(!navItem){
-				console.error('navItem of null ');
+				this.$layoutTabView.empty();
+				this.createMainNavList();
+				target.click();
+				//console.error('navItem of null ');
 				return;
 			}
 			this.setActiveNavItem(navItem);
