@@ -310,6 +310,6 @@ templateList=[{
 	type : 'html-item',
 	html : '<div class="layout html-item">标题<br>描述.....<br/><br/><br/></div>'
 }];
-localStorage['Idex_Layout_Relation']=JSON.stringify(layoutRelation);
-localStorage['Idex_Template_List']=JSON.stringify(templateList);
+localStorage['IDEX_LAYOUT_RELATION']=JSON.stringify(layoutRelation);
+localStorage['IDEX_SYSTEM_TEMPLATE_LIST']=JSON.stringify(templateList);
 })();

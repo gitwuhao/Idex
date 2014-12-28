@@ -1,11 +1,9 @@
 (function(CF,$){
 
-	var systemTemplates;
+	var __INDEX__,
+		__SUFFIX__='TP'+$.randomChar(3);
 
-
-	var __SUFFIX__='TP'+$.randomChar(3);
-
-	var __INDEX__=parseInt((''+$.timestamp()).match(/(\d{5}$)/)[0]);
+	__INDEX__=parseInt((''+$.timestamp()).match(/(\d{5}$)/)[0]);
 
 	function getLayoutID(){
 		return (__INDEX__ ++ )  + __SUFFIX__;
@@ -20,20 +18,33 @@
 				this.Template.getTemplate(config);
 			});
 
-
 			this.app.addEventListener('readyafter',function(event){
-				this.Template.initData();
-				delete this.Template.initData;
+				$.setTimeout(function(){
+					//this.initData();
+					//delete this.initData;
+				},1000,this.Template);
 			});
 		},
-		data : templateData,
-		initData:function(){
+		CACHE_KEY : {
+			LAYOUT_RELATION : 'IDEX_LAYOUT_RELATION',
+			SYSTEM_TEMPLATE_LIST : 'IDEX_SYSTEM_TEMPLATE_LIST',
+			CUSTOM_TEMPLATE_LIST : 'custom_list',
+		},
+		initSystemData:function(){
 			this.logger(this);
-
-			this.data.system=getSystemTemplates();
-
-			this.loadTemplateData(true);
-
+			if(!localStorage[this.CACHE_KEY.SYSTEM_TEMPLATE_LIST]){
+				var me=this;
+				$.getScript("/js/SystemData.js",function(){
+					me.buildSystemTemplate();
+				});
+			}else{
+				this.buildSystemTemplate();
+			}
+		},
+		buildSystemTemplate : {
+			
+			var tList=this.CACHE_KEY.SYSTEM_TEMPLATE_LIST,
+				relation=this.CACHE_KEY.LAYOUT_RELATION;
 
 			var node,
 				parent,
@@ -54,33 +65,66 @@
 					delete node.parent;
 				}
 			}
-		},
-		loadTemplateData : function(isAsync,callback){
-			$.ajax({
-				url:'/module.s',
-				data : 'method=query&_t=2',
-				type : 'POST',
-				_$owner : this,
-				dataType : 'jsonp',
-				jsonpCallback : $.getJSONPName(),
-				async : isAsync ,
-				success : function(json){
-					this._$owner.setTemplateData(json,callback);
-				},
-				error : function(){
-					
-				}
-			});
-		},
-		getSystemTemplates : function (){
-			$.getScript("/js/SystemData.js");
-			var layoutMAP={};
+
+			
 			for(var i=0,len=systemTemplates.length;i<len;i++){
 				var item=systemTemplates[i];
 				item.id=getLayoutID();
 				layoutMAP[item.type]=item;
 			}
-			return layoutMAP;
+
+		},
+		initCustomData:function(){
+			this.logger(this);
+			var customList=$.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
+			if(!customList){
+				$.ajax({
+					url:'/module.s',
+					data : 'method=query&_t=2',
+					type : 'POST',
+					_$owner : this,
+					dataType : 'jsonp',
+					jsonpCallback : $.getJSONPName(),
+					async : isAsync ,
+					success : function(json){
+						this._$owner.setTemplateData(json,callback);
+					},
+					error : function(){
+						
+					}
+				});
+			}else{
+				this.buildCustomTemplate();
+			}
+		},
+		buildCustomTemplate : function(){
+			var array=json||[],
+				containerList=[],
+				layoutList=[],
+				dataMap={};
+
+			for(var i=0,len=array.length;i<len;i++){
+				var _layout_,
+					item=array[i];
+				item.uid=getLayoutID();
+				dataMap[item.uid]=item;
+				_layout_=this.app.layout.getLayoutByIndex(item.type);
+				if(_layout_ && _layout_._name_){
+					item.type=_layout_._name_;
+				}else{
+					item.type='container';
+				}
+				if(item.type=='container'){
+					containerList.push(item.uid);
+				}else{
+					layoutList.push(item.uid);
+				}
+			}
+
+			templateData.custom={};
+			templateData.custom.containerList=containerList;
+			templateData.custom.layoutList=layoutList;
+
 		},
 		setTemplateData : function (json,callback){
 			var array=json||[],
