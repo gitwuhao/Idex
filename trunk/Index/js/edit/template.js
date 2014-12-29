@@ -149,50 +149,16 @@
 			this.data.customTemplate.Map=layoutMAP;
 			this.data.customTemplate.containerList=containerList;
 			this.data.customTemplate.layoutList=layoutList;
-
 		},
-		setTemplateData : function (json,callback){
-			var array=json||[],
-				containerList=[],
-				layoutList=[],
-				dataMap={};
-
-			for(var i=0,len=array.length;i<len;i++){
-				var _layout_,
-					item=array[i];
-				item.uid=getLayoutID();
-				dataMap[item.uid]=item;
-				_layout_=this.app.layout.getLayoutByIndex(item.type);
-				if(_layout_ && _layout_._name_){
-					item.type=_layout_._name_;
-				}else{
-					item.type='container';
-				}
-				if(item.type=='container'){
-					containerList.push(item.uid);
-				}else{
-					layoutList.push(item.uid);
-				}
-			}
-
-			templateData.custom={};
-			templateData.custom.containerList=containerList;
-			templateData.custom.layoutList=layoutList;
-
-			var system=templateData.system;
-			for(var key in system){
-				var item=system[key];
-				dataMap[item.id]=item;
-			}
-			templateData.__DATA_MAP__=dataMap;
-
-			if(callback){
-				callback();
-			}
+		getLayoutTemplateItemHTML : function(){		
+			return ['<div id="',layout.id,'" class="layout-template-item ',layout.type,'-icon">',
+						'<div class="idex-icon"></div>',
+						'<span>',layout.title,'</span>',
+					'</div>'].join('');
 		},
-		getSystemTemplate : function(parentLayoutType){
+		getSystemTemplateHTML : function(parentLayoutType){
 			this.logger(this);
-			var tree=this.roleTree,
+			var tree=this.data.layoutRelationTree,
 				layoutChilds,
 				html=[];
 
@@ -203,7 +169,7 @@
 			}
 			for(var i=0,len=layoutChilds.length;i<len;i++){
 				var layoutType=layoutChilds[i];
-				var layout=this.data.system[layoutType];
+				var layout=this.data.systemTemplateMap[layoutType];
 				if(layout){
 					if(!layout.title){
 						var layoutObject=this.app.layout.getLayout(layoutType);
@@ -213,43 +179,28 @@
 					}
 
 					if(layout.title){
-						html.push('<div id="',layout.id,'" class="layout-template-item ',layout.type,'-icon">',
-										'<div class="idex-icon"></div>',
-										'<span>',layout.title,'</span>',
-									'</div>');
+						html.push(this.getLayoutTemplateItemHTML(layout));
 					}
 				}
 			}
 			return html.join('');
 		},
-		_getTemplate : function(parentLayoutType,dataArray){
+		getCustomTemplateHTML : function(parentLayoutType){
+			this.logger(this);
 			var layout,
-			list,
-			html=[];
+				customTemplate=this.data.customTemplate,
+				list,
+				html=[];
 			if(parentLayoutType){
-				list=dataArray.layoutList;
+				list=customTemplate.layoutList;
 			}else {
-				list=dataArray.containerList;
+				list=customTemplate.containerList;
 			}
 			for(var i=0,len=list.length;i<len;i++){
-				layout=this.data.__DATA_MAP__[list[i]];
-				html.push('<div id="',layout.uid,'" class="layout-template-item ',layout.type,'-icon">',
-							'<div class="idex-icon"></div>',
-							'<span>',layout.title,'</span>');
-				if(layout.isShare){
-					//html.push('<div class="share-tag idex-icon"></div>');
-				}
-				html.push('</div>');
+				layout=customTemplate.Map[list[i]];
+				html.push(this.getLayoutTemplateItemHTML(layout));
 			}
 			return html.join('');
-		},
-		getCustomTemplate : function(parentLayoutType){
-			this.logger(this);
-			return this._getTemplate(parentLayoutType,this.data.custom);
-		},
-		getShareTemplate : function(parentLayoutType){
-			this.logger(this);
-			return this._getTemplate(parentLayoutType,this.data.share);
 		},
 		getTemplate:function(config){
 			this.logger(this);
@@ -297,7 +248,7 @@
 					items : [{
 						active:true,
 						label:'系统',
-						html : this.getSystemTemplate(parentLayoutType),
+						html : this.getSystemTemplateHTML(parentLayoutType),
 						onLoad : function(){
 							me.bindTabViewEvent(this);
 						}
@@ -343,13 +294,13 @@
 				active:true,
 				cls:'system',
 				label:'系统',
-				html : this.getSystemTemplate(parentLayoutType),
+				html : this.getSystemTemplateHTML(parentLayoutType),
 				onTagClick : onTagClick,
 				onLoad : onLoad
 			},{
 				cls:'custom',
 				label:'自定义',
-				html :  this.getCustomTemplate(parentLayoutType),
+				html :  this.getCustomTemplateHTML(parentLayoutType),
 				onTagClick : onTagClick,
 				onLoad : onLoad
 			}];
