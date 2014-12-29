@@ -66,7 +66,7 @@
 				return;
 			}
 			var me=this;
-			$.getScript("/js/SystemData.js",function(){
+			$.getScript("/js/edit/SystemData.js",function(){
 				me.buildSystemTemplate();
 			});
 		},
