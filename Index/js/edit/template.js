@@ -19,6 +19,7 @@
 			});
 
 			this.app.addEventListener('readyafter',function(event){
+				this.Template.CustomModule=this.CustomModule;
 				$.setTimeout(function(){
 					this.initData();
 					delete this.initData;
@@ -121,9 +122,7 @@
 			});
 		},
 		getCustomTemplateCode : function(data){
-			var html,
-				cache_key=this.CACHE_KEY.CUSTOM_CODE + '_' + data.id;
-			html=$.cache.get(cache_key);
+			var html=this.CustomModule.getCustomCode(data.id);
 			if(html){
 				data.html=html;
 				this.on('callback',data);
@@ -139,7 +138,7 @@
 				success : function(_html){
 					var _data=this._data;
 					_data.html=_html;
-					$.cache.put(cache_key,_html);
+					this._$owner.CustomModule.saveCustomCode(_data.id,_html);
 					this._$owner.on('callback',_data);
 				},
 				error : function(){

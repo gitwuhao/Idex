@@ -1,5 +1,24 @@
 (function(CF,$){
 var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+
+$.push({
+	_name_ : 'CustomModule',
+	CACHE_KEY : {
+		CUSTOM_CODE : 'custom_code'
+	},
+	getCustomCodeKey : function(id){
+		return this.CACHE_KEY.CUSTOM_CODE + '_' + id;
+	},
+	saveCustomCode : function(id,code){
+		var date=new Date();
+		date.addDays(7);
+		$.cache.put(this.getCustomCodeKey(id),code,date);
+	},
+	getCustomCode : function(id){
+		return $.cache.get(this.getCustomCodeKey(id));
+	}
+});
+
 $.push({
 	_name_ : 'SaveAs',
 	/*{
@@ -113,6 +132,7 @@ $.push({
 			url:'/module.s',
 			data : $.param(data),
 			_$owner : this,
+			_customModule : this.app.CustomModule,
 			_data : data,
 			_target : config.target,
 			type : 'POST',
@@ -121,7 +141,7 @@ $.push({
 			success : function(id){
 				var html;
 				if(id && id>0){
-					$.cache.put('custom_code',this._data.code);
+					this._customModule.saveCustomCode(id,this._data.code);
 				}else if(id==-1){
 					html='保存失败，超出限制!';
 				}else{
