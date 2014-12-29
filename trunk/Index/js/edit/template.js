@@ -41,7 +41,7 @@
 				this.buildSystemTemplate();
 			}
 		},
-		buildSystemTemplate : {
+		buildSystemTemplate :function(){
 			
 			var tList=this.CACHE_KEY.SYSTEM_TEMPLATE_LIST,
 				relation=this.CACHE_KEY.LAYOUT_RELATION;

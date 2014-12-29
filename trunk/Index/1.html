@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Idex - 模版设计</title>
-<link type="text/css" href="/css/editor/import.css" rel="stylesheet" />
+<link type="text/css" href="/css/edit/import.css" rel="stylesheet" />
 <link type="text/css" href="/css/theme/idex-desc-default.css" rel="stylesheet" />
 </head>
 <body data-numiid="101010744">
@@ -46,52 +46,52 @@
 		var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 			list=[
 			'js/inc.js',
-			'js/editor/core.js',
-			'js/editor/event.js',
-			'js/editor/absPanel.js',
-			'js/editor/absLayout.js',
-			'js/editor/panel/TabPanel.js',
-			'js/editor/panel/ViewPanel.js',
-			'js/editor/panel/LayoutPanel.js',
-			'js/editor/panel/PropertyPanel.js',
-			'js/editor/panel/HistoryPanel.js',
-			'js/editor/panel/CheckImagePanel.js',
-			'js/editor/layout/container.js',
-			'js/editor/layout/text-item.js',
-			'js/editor/layout/html-item.js',
-			'js/editor/layout/float-box.js',
-			'js/editor/layout/float-link.js',
-			'js/editor/layout/float-image.js',
-			'js/editor/layout/float-text.js',
-			'js/editor/layout/float-html.js',
-			'js/editor/layout/image-fgrid.js',
-			'js/editor/layout/image-fglink.js',
-			'js/editor/layout/image-rtable.js',
-			'js/editor/layout/image-row.js',
-			'js/editor/layout/image-rlink.js',
-			'js/editor/layout/image-ctable.js',
-			'js/editor/layout/image-col.js',
-			'js/editor/layout/image-clink.js',
-			'js/editor/layout/property-table.js',
-			'js/editor/layout/property-itable.js',
-			'js/editor/layout/user-table.js',
-			'js/editor/layout/list-table.js',
-			'js/editor/layout/image-list.js',
-			'js/editor/layout/image-item.js',
-			'js/editor/template.js',
-			'js/editor/SystemData.js',
-			'js/editor/saveAs.js',
-			'js/editor/adapter/SelectImage.js',
-			'js/editor/adapter/DragDrop.js',
-			'js/editor/adapter/ImageQueue.js',
-			'js/editor/adapter/TextEditor.js',
-			'js/editor/adapter/HTMLEditor.js',
-			'js/editor/adapter/TableEditor.js',
+			'js/edit/core.js',
+			'js/edit/event.js',
+			'js/edit/absPanel.js',
+			'js/edit/absLayout.js',
+			'js/edit/panel/TabPanel.js',
+			'js/edit/panel/ViewPanel.js',
+			'js/edit/panel/LayoutPanel.js',
+			'js/edit/panel/PropertyPanel.js',
+			'js/edit/panel/HistoryPanel.js',
+			'js/edit/panel/CheckImagePanel.js',
+			'js/edit/layout/container.js',
+			'js/edit/layout/text-item.js',
+			'js/edit/layout/html-item.js',
+			'js/edit/layout/float-box.js',
+			'js/edit/layout/float-link.js',
+			'js/edit/layout/float-image.js',
+			'js/edit/layout/float-text.js',
+			'js/edit/layout/float-html.js',
+			'js/edit/layout/image-fgrid.js',
+			'js/edit/layout/image-fglink.js',
+			'js/edit/layout/image-rtable.js',
+			'js/edit/layout/image-row.js',
+			'js/edit/layout/image-rlink.js',
+			'js/edit/layout/image-ctable.js',
+			'js/edit/layout/image-col.js',
+			'js/edit/layout/image-clink.js',
+			'js/edit/layout/property-table.js',
+			'js/edit/layout/property-itable.js',
+			'js/edit/layout/user-table.js',
+			'js/edit/layout/list-table.js',
+			'js/edit/layout/image-list.js',
+			'js/edit/layout/image-item.js',
+			'js/edit/template.js',
+			'js/edit/SystemData.js',
+			'js/edit/saveAs.js',
+			'js/edit/adapter/SelectImage.js',
+			'js/edit/adapter/DragDrop.js',
+			'js/edit/adapter/ImageQueue.js',
+			'js/edit/adapter/TextEditor.js',
+			'js/edit/adapter/HTMLEditor.js',
+			'js/edit/adapter/TableEditor.js',
 			/*
 			--------------------------------------------
 			*/
-			'js/editor/plugin/template/LayoutConfig.js',
-			'js/editor/plugin/CopyCode.js'
+			'js/edit/plugin/template/LayoutConfig.js',
+			'js/edit/plugin/CopyCode.js'
 		];
 		for(var i=0,len=list.length;i<len;i++){
 			var u=list[i];
@@ -105,9 +105,9 @@
 			
 			setTimeout(function(){
 				$.loadJSQueue(
-					IDEX_LIB_PATH+'js/editor/style.js',
-					IDEX_LIB_PATH+'js/editor/help.js',
-					IDEX_LIB_PATH+'js/editor/guide.js'
+					IDEX_LIB_PATH+'js/edit/style.js',
+					IDEX_LIB_PATH+'js/edit/help.js',
+					IDEX_LIB_PATH+'js/edit/guide.js'
 				);
 			},1000);
 		});
