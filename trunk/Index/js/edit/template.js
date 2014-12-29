@@ -80,7 +80,7 @@
 			for(var i=0,len=systemTemplates.length;i<len;i++){
 				var item=systemTemplates[i];
 				item.id=getLayoutID();
-				layoutMAP[item.id]=item;
+				layoutMAP[item.type]=item;
 			}
 			this.data.systemTemplateMap=layoutMAP;
 		},
