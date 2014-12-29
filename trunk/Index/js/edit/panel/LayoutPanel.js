@@ -329,7 +329,7 @@
 				activeElement : this.activeElement
 			});
 		},
-		onCopy:function(){
+		onCopy:function(event){
 			this.logger(this);
 			if(this.activeElement){
 				if(this.activeLayout.on('copy',this.activeElement)!=false){
@@ -340,7 +340,7 @@
 				}
 			}
 		},
-		onNew:function(){
+		onNew:function(event){
 			this.logger(this);
 			var target,
 				parentLayout;
@@ -365,6 +365,7 @@
 			this.app.trigger('getTemplate',{
 				parentLayout : parentLayout,
 				target : target,
+				event : event,
 				parent : parent,
 				callback : function(template){
 					if(!this.parentLayout){

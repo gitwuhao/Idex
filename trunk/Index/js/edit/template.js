@@ -136,19 +136,27 @@
 				_$owner : this,
 				_data : data,
 				success : function(_html){
-					var _data=this._data;
-					_data.html=_html;
-					this._$owner.CustomModule.saveCustomCode(_data.id,_html);
-					this._$owner.on('callback',_data);
+					if(_html){
+						var _data=this._data;
+						_data.html=_html;
+						this._$owner.CustomModule.saveCustomCode(_data.id,_html);
+						this._$owner.on('callback',_data);
+					}else{
+						this.error();
+					}
 				},
 				error : function(){
 					ui.quicktip.show({
 						px : 'idex-ui',
 						align : 'tc',
 						offset : 'lt',
+						css : {
+							'margin-top' : '-25px',
+							'margin-right' : '5px'
+						},
 						html : '<em style="color:#FC7100;">获取自定义模块代码失败...</em>',
 						time : 3000,
-						target :  this._target
+						target :  this._$owner.config.event.target
 					});
 				}
 			});
