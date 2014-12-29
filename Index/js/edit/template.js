@@ -142,7 +142,14 @@
 					this._$owner.on('callback',_data);
 				},
 				error : function(){
-					
+					ui.quicktip.show({
+						px : 'idex-ui',
+						align : 'tc',
+						offset : 'lt',
+						html : '<em style="color:#FC7100;">获取自定义模块代码失败...</em>',
+						time : 3000,
+						target :  this._target
+					});
 				}
 			});
 		},
@@ -247,9 +254,9 @@
 		},
 		getTemplate:function(config){
 			this.logger(this);
-			var me=this,
-				parentLayout=config.parentLayout,
-				parentLayoutType;
+			var parentLayout=config.parentLayout,
+				parentLayoutType,
+				roleTree=this.data.layoutRelationTree;
 
 			if(parentLayout && parentLayout._name_){
 				parentLayoutType=parentLayout._name_;
@@ -257,9 +264,9 @@
 
 			this.config=config||null;
 			if(!parentLayout || parentLayout._className_=='AbsContainer'){
-				this.createWin(parentLayoutType);
+				this.createMainWin(parentLayoutType);
 			}else if(parentLayoutType){
-				var node=this.roleTree[parentLayoutType];
+				var node=roleTree[parentLayoutType];
 				if(node.child){
 					if(node.child.length==1){
 						this.config=config;
@@ -279,24 +286,77 @@
 		},
 		createBaseWin:function(parentLayoutType){
 			this.logger(this);
+			var me=this,
+				itemConfig;
+
+			itemConfig={
+				xtype:'tab',
+				cls:'idex-template-tabpanle',
+				items : [{
+					active:true,
+					label:'系统',
+					html : this.getSystemTemplateHTML(parentLayoutType),
+					onLoad : function(){
+						me.bindTabViewEvent(this);
+					}
+				}]
+			};
+			
+			this.createWin(parentLayoutType,itemConfig);
+		},
+		createMainWin:function(parentLayoutType){
+			this.logger(this);
+			var onLoad,
+				onTagClick,
+				itemConfig,
+				me=this;
+			onLoad=function(){
+				me.bindTabViewEvent(this);
+			};
+			onTagClick=function(){
+				me.on('tagClick',this);
+			};
+			itemConfig = {
+				xtype:'tab',
+				cls:'idex-template-tabpanle',
+				floatbar : [{
+					xtype : 'button',
+					icon : true,
+					cls : 'refresh',
+					title : "刷新",
+					onClick : function(){
+						this.disabled();
+						me.on('refreshClick',this,this.$owner);
+					}
+				}],
+				items : [{
+					active:true,
+					cls:'system',
+					label:'系统',
+					html : this.getSystemTemplateHTML(parentLayoutType),
+					onTagClick : onTagClick,
+					onLoad : onLoad
+				},{
+					cls:'custom',
+					label:'自定义',
+					html :  this.getCustomTemplateHTML(parentLayoutType),
+					onTagClick : onTagClick,
+					onLoad : onLoad
+				}]
+			};
+
+			this.createWin(parentLayoutType,itemConfig);
+		},
+		createWin:function(parentLayoutType,itemConfig){
+			this.logger(this);
 			var me=this;
+
 			this.win=new ui.window({
 				title : '请选择布局',
 				parentLayoutType : parentLayoutType,
 				width: 450,
 				cls:'idex-template-win uns',
-				item:{
-					xtype:'tab',
-					cls:'idex-template-tabpanle',
-					items : [{
-						active:true,
-						label:'系统',
-						html : this.getSystemTemplateHTML(parentLayoutType),
-						onLoad : function(){
-							me.bindTabViewEvent(this);
-						}
-					}]
-				},
+				item : itemConfig,
 				buttons:[{
 					label:'确定',
 					cls:'submit',
@@ -311,9 +371,13 @@
 					me.close();
 				}
 			});
+
 			this.win.show();
+			itemConfig=this.win.item;
+			if(itemConfig && itemConfig.$floatbar){
+				itemConfig.$floatbar.hide();
+			}
 			this.clearSelectedItem();
-			this.win.item.$tabbarbox.hide();
 		},
 		bindTabViewEvent:function(tabPanel){
 			this.logger(this);
@@ -323,73 +387,6 @@
 			},function(event){
 				event.data.content.on('tabViewClick',event.data.tabPanel,event);
 			});
-		},
-		createWin:function(parentLayoutType){
-			this.logger(this);
-			var me=this;
-			var onLoad=function(){
-				me.bindTabViewEvent(this);
-			};
-			var onTagClick=function(){
-				me.on('tagClick',this);
-			};
-			var items=[{
-				active:true,
-				cls:'system',
-				label:'系统',
-				html : this.getSystemTemplateHTML(parentLayoutType),
-				onTagClick : onTagClick,
-				onLoad : onLoad
-			},{
-				cls:'custom',
-				label:'自定义',
-				html :  this.getCustomTemplateHTML(parentLayoutType),
-				onTagClick : onTagClick,
-				onLoad : onLoad
-			}];
-
-
-			var floatbar = [{
-				xtype : 'button',
-				icon : true,
-				cls : 'refresh',
-				title : "刷新",
-				onClick:function(){
-					this.disabled();
-					me.on('refreshClick',this,this.$owner);
-				}
-			}];
-
-
-			this.win=new ui.window({
-				title : '请选择布局',
-				parentLayoutType : parentLayoutType,
-				width: 450,
-				cls:'idex-template-win uns',
-				item:{
-					xtype:'tab',
-					cls:'idex-template-tabpanle',
-					floatbar : floatbar,
-					items : items
-				},
-				buttons:[{
-					label:'确定',
-					cls:'submit',
-					onClick : function(event){
-						me.submit();
-					}
-				},{
-					label:'取消',
-					cls:'cancel'
-				}],
-				onCloseAfter : function(){
-					me.close();
-				}
-			});
-
-			this.win.show();
-			this.win.item.$floatbar.hide();
-			this.clearSelectedItem();
 		},
 		onRefreshClick:function(button,tab){
 			this.logger(this);
