@@ -73,6 +73,13 @@ function initTab(render){
 					MODULE_TYPE : 'c',
 					CACHE_KEY : 'custom_list',
 					ACTION_TYPE : 2,
+					copyItemValue : function(item){
+						return {
+							id : item.id,
+							type : item.type,
+							title : item.title
+						};
+					},
 					getItemHTML : function(item){
 						return ['<div class="idex-module-item idex-shadow-box">',
 										'<div class="idex-mini-tbar" data-id="',item.id,'">',

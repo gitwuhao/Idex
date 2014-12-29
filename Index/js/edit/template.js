@@ -20,8 +20,8 @@
 
 			this.app.addEventListener('readyafter',function(event){
 				$.setTimeout(function(){
-					//this.initData();
-					//delete this.initData;
+					this.initData();
+					delete this.initData;
 				},1000,this.Template);
 			});
 		},
@@ -30,26 +30,18 @@
 			SYSTEM_TEMPLATE_LIST : 'IDEX_SYSTEM_TEMPLATE_LIST',
 			CUSTOM_TEMPLATE_LIST : 'custom_list',
 		},
-		initSystemData:function(){
-			this.logger(this);
-			if(!localStorage[this.CACHE_KEY.SYSTEM_TEMPLATE_LIST]){
-				var me=this;
-				$.getScript("/js/SystemData.js",function(){
-					me.buildSystemTemplate();
-				});
-			}else{
-				this.buildSystemTemplate();
-			}
+		initData : function(){
+			this.data={};
+			this.initLayoutRelation();
+			this.initSystemTemplate();
+			this.initCustomTemplate(true);
 		},
-		buildSystemTemplate :function(){
-			
-			var tList=this.CACHE_KEY.SYSTEM_TEMPLATE_LIST,
-				relation=this.CACHE_KEY.LAYOUT_RELATION;
-
+		initLayoutRelation : function(){
 			var node,
 				parent,
 				parents,
-				tree=this.roleTree;
+				tree=JSON.parse(localStorage[this.CACHE_KEY.LAYOUT_RELATION]);
+		
 			for(var key in tree){
 				node=tree[key];
 				if(node.parent){
@@ -65,49 +57,81 @@
 					delete node.parent;
 				}
 			}
-
-			
+			this.data.layoutRelationTree=tree;
+		},
+		initSystemTemplate : function(){
+			this.logger(this);
+			if(this.getSystemTemplateStorage()){
+				this.buildSystemTemplate();
+				return;
+			}
+			var me=this;
+			$.getScript("/js/SystemData.js",function(){
+				me.buildSystemTemplate();
+			});
+		},
+		getSystemTemplateStorage : function(){
+			return localStorage[this.CACHE_KEY.SYSTEM_TEMPLATE_LIST];
+		},
+		buildSystemTemplate : function(){
+			this.logger(this);
+			var layoutMAP={},
+				systemTemplates=JSON.parse(this.getSystemTemplateStorage());
 			for(var i=0,len=systemTemplates.length;i<len;i++){
 				var item=systemTemplates[i];
 				item.id=getLayoutID();
-				layoutMAP[item.type]=item;
+				layoutMAP[item.id]=item;
 			}
-
+			this.data.systemTemplateMap=layoutMAP;
 		},
-		initCustomData:function(){
+		getCustomTemplateStorage : function(){
+			return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
+		},
+		saveCustomTemplateStorage : function(json){
+			$.cache.put(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST,JSON.stringify(json),new Date());
+		},
+		initCustomTemplate :function(isAsync){
 			this.logger(this);
-			var customList=$.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
-			if(!customList){
-				$.ajax({
-					url:'/module.s',
-					data : 'method=query&_t=2',
-					type : 'POST',
-					_$owner : this,
-					dataType : 'jsonp',
-					jsonpCallback : $.getJSONPName(),
-					async : isAsync ,
-					success : function(json){
-						this._$owner.setTemplateData(json,callback);
-					},
-					error : function(){
-						
-					}
-				});
-			}else{
+			if(this.getCustomTemplateStorage()){
 				this.buildCustomTemplate();
+				return;
 			}
+			$.ajax({
+				url:'/module.s',
+				data : 'method=query&_t=2',
+				type : 'POST',
+				_$owner : this,
+				dataType : 'jsonp',
+				jsonpCallback : $.getJSONPName(),
+				async : isAsync,
+				success : function(json){
+					if(json && json.length>0){
+						this._$owner.saveCustomTemplateStorage(json);
+						this._$owner.buildCustomTemplate();
+					}
+				},
+				error : function(){
+					
+				}
+			});
 		},
 		buildCustomTemplate : function(){
-			var array=json||[],
+			var array,
+				ts=this.getCustomTemplateStorage(),
 				containerList=[],
 				layoutList=[],
-				dataMap={};
+				layoutMAP={};
+			if(!ts){
+				array=[];
+			}else{
+				array=JSON.parse(ts);
+			}
 
 			for(var i=0,len=array.length;i<len;i++){
 				var _layout_,
 					item=array[i];
 				item.uid=getLayoutID();
-				dataMap[item.uid]=item;
+				layoutMAP[item.uid]=item;
 				_layout_=this.app.layout.getLayoutByIndex(item.type);
 				if(_layout_ && _layout_._name_){
 					item.type=_layout_._name_;
@@ -121,9 +145,10 @@
 				}
 			}
 
-			templateData.custom={};
-			templateData.custom.containerList=containerList;
-			templateData.custom.layoutList=layoutList;
+			this.data.customTemplate={};
+			this.data.customTemplate.Map=layoutMAP;
+			this.data.customTemplate.containerList=containerList;
+			this.data.customTemplate.layoutList=layoutList;
 
 		},
 		setTemplateData : function (json,callback){
