@@ -75,14 +75,18 @@
 		},
 		buildSystemTemplate : function(){
 			this.logger(this);
-			var layoutMAP={},
+			var layoutMap1={},
+				layoutMap2={},
 				systemTemplates=JSON.parse(this.getSystemTemplateStorage());
 			for(var i=0,len=systemTemplates.length;i<len;i++){
 				var item=systemTemplates[i];
 				item.id=getLayoutID();
-				layoutMAP[item.type]=item;
+				layoutMap1[item.id]=item;
+				layoutMap2[item.type]=item;
 			}
-			this.data.systemTemplateMap=layoutMAP;
+			this.data.systemTemplate={};
+			this.data.systemTemplate.Map=layoutMap1;
+			this.data.systemTemplate.layoutMap=layoutMap2;
 		},
 		getCustomTemplateStorage : function(){
 			return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
@@ -150,7 +154,16 @@
 			this.data.customTemplate.containerList=containerList;
 			this.data.customTemplate.layoutList=layoutList;
 		},
-		getLayoutTemplateItemHTML : function(){		
+		getLayoutTemplateDataById : function(id){
+			var data=this.data,
+				html;
+			html=data.systemTemplate.Map[id];
+			if(!html){
+				html=data.customTemplate.Map[id]
+			}
+			return html;
+		},
+		getLayoutTemplateItemHTML : function(layout){		
 			return ['<div id="',layout.id,'" class="layout-template-item ',layout.type,'-icon">',
 						'<div class="idex-icon"></div>',
 						'<span>',layout.title,'</span>',
@@ -159,6 +172,7 @@
 		getSystemTemplateHTML : function(parentLayoutType){
 			this.logger(this);
 			var tree=this.data.layoutRelationTree,
+				layoutMap=this.data.systemTemplate.layoutMap,
 				layoutChilds,
 				html=[];
 
@@ -169,7 +183,7 @@
 			}
 			for(var i=0,len=layoutChilds.length;i<len;i++){
 				var layoutType=layoutChilds[i];
-				var layout=this.data.systemTemplateMap[layoutType];
+				var layout=layoutMap[layoutType];
 				if(layout){
 					if(!layout.title){
 						var layoutObject=this.app.layout.getLayout(layoutType);
@@ -189,15 +203,17 @@
 			this.logger(this);
 			var layout,
 				customTemplate=this.data.customTemplate,
+				layoutMap,
 				list,
 				html=[];
+			layoutMap=customTemplate.Map;
 			if(parentLayoutType){
 				list=customTemplate.layoutList;
 			}else {
 				list=customTemplate.containerList;
 			}
 			for(var i=0,len=list.length;i<len;i++){
-				layout=customTemplate.Map[list[i]];
+				layout=layoutMap[list[i]];
 				html.push(this.getLayoutTemplateItemHTML(layout));
 			}
 			return html.join('');
