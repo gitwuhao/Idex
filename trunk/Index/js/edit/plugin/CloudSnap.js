@@ -29,49 +29,49 @@ $.push({
 			},
 			addCloudSnapItem:function(item){
 				this.logger(this);
-
-				var	div=$.createElement(['<div class="idex-list-item idex-cloud-snap-item">',
-											'<div class="idex-list-item-icon idex-list-check-item check">',
-												'<div class="idex-icon"></div>',
-											'</div>',
-											'<div class="idex-list-item-icon idex-snap-icon">',
-												'<div class="idex-icon"></div>',
-											'</div>',
-											'<div class="idex-list-item-title">',item.title,'</div>',
-										'</div>'].join(''));
+				var div,
+					$elem,
+					html=['<div class="idex-list-item idex-cloud-snap-item" id="',item.id,'">',
+							'<div class="idex-list-item-icon idex-list-check-item check">',
+								'<div class="idex-icon"></div>',
+							'</div>',
+							'<div class="idex-list-item-icon idex-snap-icon">',
+								'<div class="idex-icon"></div>',
+							'</div>',
+							'<div class="idex-list-item-title">',item.title,'</div>',
+						'</div>'].join('');
+				
+				div=$.createElement(html);
 
 				this.$cloudSnapBox.append(div);
 
-				var $elem=$(div);
+				$elem=$(div);
 				
 				$elem.children('.idex-list-check-item:first').click({
 					panel : this,
-					event : this.app.event,
-					snapID : item.id
+					id : item.id
 				},function(event){
 					var data=event.data;
 					event.data=null;
-					data.panel.on('cloudSnapCheck',this,data.snapID);
+					data.panel.on('cloudSnapCheck',this,data.id);
 				});
 				
 				$elem.click({
 					panel : this,
-					event : this.app.event
+					id : item.id
 				},function(event){
 					var data=event.data;
 					event.data=null;
-					data.panel.on('cloudSnapClick',this);
+					data.panel.on('cloudSnapClick',this,data.id);
 				});
 
-				
 				this.cloudsnapList[item.id]=item;
-
 			},
 			onCloudSnapCheck : function(target,snapID){
 				this.logger(this);
 				console.info('onCloudSnapCheck');
 			},
-			onCloudSnapClick : function(target){
+			onCloudSnapClick : function(target,snapID){
 				this.logger(this);
 				console.info('onCloudSnapClick');
 			}
