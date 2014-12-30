@@ -80,15 +80,22 @@
 
 			
 			this.app.addEventListener('readyafter',function(event){
-				me.addUndo({
-					undo : CF.emptyFunction,
-					redo : CF.emptyFunction,
-					type : 'open',
-					title:'打开'
-				});
-				me.on('snap');
+				me.on('appReadyAfter');
 			});
 		},
+		onAppReadyAfter : function(){
+			this.addUndo({
+				undo : function(){
+					console.info('open undo...');
+				},
+				redo : function(){
+					console.info('open redo...');
+				},
+				type : 'open',
+				title:'打开'
+			});
+			//this.on('snap');
+		},	
 		addCloudSnapItem:function(item){
 			this.logger(this);
 
@@ -248,7 +255,7 @@
 				$.removeClass(item.firstElementChild,'check');
 			}
 			this.activeCommand=command;
-			this.app.trigger('contentUpdate');
+			//this.app.trigger('contentUpdate');
 			if(this.applySnapCommand && this.applySnapCommand!=command){
 				this.applySnapCommand=null;
 				this.on('deActiveLocalSnap');
