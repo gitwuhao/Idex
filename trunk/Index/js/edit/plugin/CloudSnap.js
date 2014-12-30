@@ -31,7 +31,7 @@ $.push({
 				this.logger(this);
 
 				var	div=$.createElement(['<div class="idex-list-item idex-cloud-snap-item">',
-											'<div class="idex-list-item-icon check">',
+											'<div class="idex-list-item-icon idex-list-check-item check">',
 												'<div class="idex-icon"></div>',
 											'</div>',
 											'<div class="idex-list-item-icon idex-snap-icon">',
@@ -44,31 +44,36 @@ $.push({
 
 				var $elem=$(div);
 				
-				item.$elem=$elem;
-
-				var itemId=item.id;
-				var me=this;
-				$elem.children('.check:first').click({
+				$elem.children('.idex-list-check-item:first').click({
 					panel : this,
-					id : itemId
+					event : this.app.event,
+					snapID : item.id
 				},function(event){
-					var id=event.data.id;
-					console.info('cloud snap check');
-					event.stopBubble();
+					var data=event.data;
+					event.data=null;
+					data.panel.on('cloudSnapCheck',this,data.snapID);
 				});
 				
 				$elem.click({
 					panel : this,
-					id : itemId
+					event : this.app.event
 				},function(event){
-					var id=event.data.id;
-					console.info('cloud snap title');
+					var data=event.data;
+					event.data=null;
+					data.panel.on('cloudSnapClick',this);
 				});
+
 				
 				this.cloudsnapList[item.id]=item;
 
-				//this.$cloudSnapBox.show();
-
+			},
+			onCloudSnapCheck : function(target,snapID){
+				this.logger(this);
+				console.info('onCloudSnapCheck');
+			},
+			onCloudSnapClick : function(target){
+				this.logger(this);
+				console.info('onCloudSnapClick');
 			}
 		});
  

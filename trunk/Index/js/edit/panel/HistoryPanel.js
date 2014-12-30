@@ -82,6 +82,20 @@
 				me.on('appReadyAfter');
 			});
 		},
+		onCreatePanel:function(){
+			this.logger(this);
+			this.disabled('del');
+			var historyTab=this.getTab('history');
+			var children=historyTab.$tabview.children();
+
+			this.$localSnapBox=$(children[0]);
+			this.localsnapList={};
+			this.localSnapCount=0;
+			this.localSnapQueue=-1;
+
+			this.$undoListBox=$(children[1]);
+
+		},
 		onAppReadyAfter : function(){
 			this.addUndo({
 				undo : CF.emptyFunction,
@@ -115,27 +129,72 @@
 			
 			$elem.children('.idex-list-check-item:first').click({
 				panel : this,
-				event : this.app.event,
 				snapID : item.id
 			},function(event){
 				var data=event.data;
 				event.data=null;
-				data.panel.on('snapCheck',event,this,data.snapID);
+				data.panel.on('localSnapCheck',this,data.snapID);
 			});
 			
 			$elem.click({
-				panel : this,
-				event : this.app.event
+				panel : this
 			},function(event){
 				var data=event.data;
 				event.data=null;
-				data.panel.on('snapClick',event,this);
+				data.panel.on('localSnapClick',this);
 			});
 
 			this.localsnapList[item.id]=item;
 
 			this.$localSnapBox.show();
 
+		},
+		onLocalSnapCheck : function(target,snapID){
+			this.logger(this);
+			var snap=this.localsnapList[snapID];
+			if(this.brushSnap==snap){
+				return;
+			}else if(this.brushSnap){
+				this.on('deActiveBrush');
+			}
+			$.addClass(target,'brush');
+			$.removeClass(target,'check');
+			this.brushSnap=snap;
+
+			
+			if(this.applySnapCommand){
+				this.applySnapCommand.redoContext=snap.context;
+			}else{
+				this.applySnapCommand={
+					title : '应用'+snap.title,
+					type : 'brushsnap',
+					undoContext: this.app.ViewPanel.getHTML(),
+					redoContext: snap.context,
+					undo : function(){
+						this.app.ViewPanel.setHTML(this.undoContext);
+					},
+					redo : function(){
+						this.app.ViewPanel.setHTML(this.redoContext);
+					}
+				};
+				this.addUndo(this.applySnapCommand);
+			}
+			this.applySnapCommand.redo();
+
+			this.setCommandCheckStyle(this.applySnapCommand);
+			//this.on('deActiveBrush');
+		},
+		onLocalSnapClick : function(target){
+			this.logger(this);
+			var snap=this.localsnapList[target.id];
+			if(this.activeSnap==snap){
+				return;
+			}else if(this.activeSnap){
+				this.on('deActiveSnap');
+			}
+			$.addClass(target,'active');
+			this.activeSnap=snap;
+			this.enabled('del');
 		},
 		addUndoItem:function(command){
 			this.logger(this);
@@ -264,67 +323,6 @@
 				index++;
 			}
 			this.undo.execute(index);
-		},
-		onCreatePanel:function(){
-			this.logger(this);
-			this.disabled('del');
-			var historyTab=this.getTab('history');
-			var children=historyTab.$tabview.children();
-
-			this.$localSnapBox=$(children[0]);
-			this.localsnapList={};
-			this.localSnapCount=0;
-			this.localSnapQueue=-1;
-
-			this.$undoListBox=$(children[1]);
-
-		},
-		onSnapCheck : function(event,target,snapID){
-			this.logger(this);
-			var snap=this.localsnapList[snapID];
-			if(this.brushSnap==snap){
-				return;
-			}else if(this.brushSnap){
-				this.on('deActiveBrush');
-			}
-			$.addClass(target,'brush');
-			$.removeClass(target,'check');
-			this.brushSnap=snap;
-
-			
-			if(this.applySnapCommand){
-				this.applySnapCommand.redoContext=snap.context;
-			}else{
-				this.applySnapCommand={
-					title : '应用'+snap.title,
-					type : 'brushsnap',
-					undoContext: this.app.ViewPanel.getHTML(),
-					redoContext: snap.context,
-					undo : function(){
-						this.app.ViewPanel.setHTML(this.undoContext);
-					},
-					redo : function(){
-						this.app.ViewPanel.setHTML(this.redoContext);
-					}
-				};
-				this.addUndo(this.applySnapCommand);
-			}
-			this.applySnapCommand.redo();
-
-			this.setCommandCheckStyle(this.applySnapCommand);
-			//this.on('deActiveBrush');
-		},
-		onSnapClick : function(event,target){
-			this.logger(this);
-			var snap=this.localsnapList[target.id];
-			if(this.activeSnap==snap){
-				return;
-			}else if(this.activeSnap){
-				this.on('deActiveSnap');
-			}
-			$.addClass(target,'active');
-			this.activeSnap=snap;
-			this.enabled('del');
 		},
 		onDeActiveBrush:function(){
 			this.logger(this);
