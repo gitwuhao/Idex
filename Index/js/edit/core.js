@@ -28,7 +28,7 @@
 			if(!this._isReady_){
 				this.$viewPanel=$('.idex-view-panel:first');
 				this.$navigation=$('.idex-navigation:first');
-				this.$descBox=$('.idex-desc-box:first',this.$viewPanel);
+				this.$contextBox=$('.idex-view-context-box:first',this.$viewPanel);
 				this.$body=$.getBody();
 
 				this.$viewPanel.append('<div class="idex-event-listener"></div>');

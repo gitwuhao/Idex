@@ -2,10 +2,28 @@
 	$.push({
 		_name_ : 'ViewPanel',
 		__events__ : ['click','mousedown'].join(' '),
+		initModule : function(){
+			this.logger(this);
+			
+			this.viewPanel=this.app.$viewPanel[0];
+			this.$contextBox=this.app.$contextBox;
+			
+			this.getDescBox();
+
+			var div,
+				html='<div class="idex-view-panel-popu-box"></div>';
+
+			div=$.createElement(html);
+			this.$contextBox.after(div);
+			this.$popuBox=$(div);
+
+
+			this.initEvents();
+		},
 		initEvents : function(){
 			this.logger(this);
 
-			this.$descbox.on(this.__events__,{
+			this.$contextBox.on(this.__events__,{
 				panel : this,
 				event : this.app.event
 			},function(event){
@@ -56,22 +74,10 @@
 			}
 			this.lastEvent=event;
 		},
-		initModule : function(){
-			this.logger(this);
-			var div,
-				html='<div class="idex-view-panel-popu-box"></div>';
-
-			this.$descbox=this.app.$descBox;
+		getDescBox : function(){
+			this.$descbox=this.$contextBox.children('.idex-desc-box:first');
 			this.descbox=this.$descbox[0];
-			this.viewPanel=this.app.$viewPanel[0];
-
-
-			div=$.createElement(html);
-			this.$descbox.after(div);
-			this.$popuBox=$(div);
-
-
-			this.initEvents();
+			return this.$descbox;
 		},
 		onSrcollTop:function(element){
 			this.logger(this);

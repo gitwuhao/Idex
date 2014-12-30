@@ -12,7 +12,6 @@
 			this.ImageQueue=new ImageQueue({
 				_name_ : 'ImageQueue',
 				content : this.$viewPanel,
-				/*insertContent : this.app.$descBox[0],*/
 				spacing : 100,
 				attrName : IDEX_ATTR_MAP.SRC,
 				css : {

@@ -115,6 +115,12 @@
 		getRender:function(){
 			return this.app.TabPanel.$tabPanel;
 		},
+		getDescBox : function(){
+			return this.app.ViewPanel.$descbox;
+		},
+		getDescBoxElement : function(){
+			return this.app.ViewPanel.descbox;
+		},
 		createPanel:function(){
 			if(!this.isRender){
 				this.$render=this.getRender();
