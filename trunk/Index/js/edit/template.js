@@ -36,7 +36,7 @@
 			this.data={};
 			this.initLayoutRelation();
 			this.initSystemTemplate();
-			this.initCustomTemplate(true);
+			this.initCustomTemplate();
 		},
 		initLayoutRelation : function(){
 			var node,
@@ -96,28 +96,36 @@
 		saveCustomTemplateStorage : function(json){
 			$.cache.put(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST,JSON.stringify(json),new Date());
 		},
-		initCustomTemplate :function(isAsync){
+		initCustomTemplate :function(){
 			this.logger(this);
 			if(this.getCustomTemplateStorage()){
 				this.buildCustomTemplate();
 				return;
 			}
+			this.loadCustomTemplateList();
+		},
+		loadCustomTemplateList : function(config){
 			$.ajax({
 				url:'/module.s',
 				data : 'method=query&_t=2',
 				type : 'POST',
 				_$owner : this,
+				_config : config,
 				dataType : 'jsonp',
 				jsonpCallback : $.getJSONPName(),
-				async : isAsync,
 				success : function(json){
 					if(json && json.length>0){
 						this._$owner.saveCustomTemplateStorage(json);
 						this._$owner.buildCustomTemplate();
+						if(this._config && this._config.success){
+							this._config.success();
+						}
 					}
 				},
 				error : function(){
-					
+					if(this._config && this._config.error){
+						this._config.error();
+					}
 				}
 			});
 		},
@@ -398,25 +406,32 @@
 		},
 		onRefreshClick:function(button,tab){
 			this.logger(this);
-			var me=this;
+			var $tabview=tab.getTab('custom').$tabview;
 
-			var parentLayoutType=this.win.parentLayoutType;
-
-			this.loading=new ui.loading({
-				target: tab.$tabviewbox[0]
-			});
-
-			this.clearSelectedItem();
-
-			this.loadTemplateData(false,function(){
-				if(me.win && tab && tab.getTab){
-					tab.getTab('custom').$tabview.html(me.getCustomTemplate(parentLayoutType));
-					tab.getTab('share').$tabview.html(me.getShareTemplate(parentLayoutType));
+			ui.popu.createInnerLoadingAnimation({
+				$elem : $tabview,
+				css : {
+					'margin': '0px',
+					'height': '200px',
+					'text-align': 'center',
+					'overflow': 'hidden',
+					'width': '100%'
 				}
-				me.loading.remove();
-				delete me.loading;
 			});
-
+			
+			this.loadCustomTemplateList({
+				me : this,
+				parentLayoutType : this.win.parentLayoutType,
+				$tabview : $tabview,
+				success : function(){
+					$.setTimeout(function(){
+						this.$tabview.html(this.me.getCustomTemplateHTML(this.parentLayoutType));
+					},1000,this);
+				},
+				error : function(){
+					this.$tabview.html('<div style="padding-top: 25%;text-align: center;">加载失败...</div>');
+				}
+			});
 		},
 		onTabViewClick:function(tabPanel,event){
 			this.logger(this);
