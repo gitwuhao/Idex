@@ -1,4 +1,13 @@
 (function(CF,$){
+var MIN_WIDTH=750,
+	MAX_WIDTH=1200,
+	STYLE_KEY_MAP = {
+		CONTEXT_PADDING : 'p-l-r'
+	},
+	ATTR_KEY_MAP = {
+		STYLE_COLOR : 'idex-style-color'
+	};
+
 $.push({
 	overwrite : function(app){
 		var LayoutPanel=app._module_map_.LayoutPanel,
@@ -22,40 +31,8 @@ $.push({
 		});
 
 		CF.merger(ViewPanel,{
-			MIN_WIDTH:750,
-			MAX_WIDTH:1200,
 			initPlugin : function(){
-
 				this.initPluginEvent();
-
-				var stylecolor,
-					width,
-					uid;
-
-				stylecolor=this.$descbox.attr('stylecolor');
-				stylecolor=$.getHexColor(stylecolor);
-
-				if(!stylecolor){
-					stylecolor='#49A0E1';
-					this.$descbox.attr('stylecolor',stylecolor);
-				}
-
-				width=this.descbox.clientWidth;
-				uid=this.$descbox.attr('uid');
-
-
-				this.userdata={
-					stylecolor: stylecolor,
-					style : 'style1',
-					width: width,
-					padding : true,
-					imgborder : true,
-					imgpadding : true,
-					mainimg: '',
-					uid: uid || ''
-				};
-
-				this.setUid(uid);
 			},
 			initPluginEvent : function(){
 				this.app.$eventElement.on('viewconfig',{
@@ -74,7 +51,7 @@ $.push({
 				});
 			},
 			styleReady : function(){
-				this.setStylecolor(this.userdata.stylecolor);
+				this.setStylecolor(this.getStylecolor());
 			},
 			getPropertyForm : function (box){
 				this.logger(this);
@@ -217,12 +194,15 @@ $.push({
 			},
 			setStyle : function(value){
 				this.logger(this);
-				this.$descbox.replaceClass(this.userdata.style,value);
-				this.userdata.style=value;
+				var cls=' '+this.descbox.className+' ';
+				this.descbox.className=$.trim(cls.replace(/\s+style\d?\s+/,' '+value+' '));
 			},
 			getStyle : function(){
 				this.logger(this);
-				return this.userdata.style;
+				var array,
+					cls=' '+this.descbox.className+' ';
+				array=cls.match(/\s+(style\d?)\s+/)||[];
+				return $.trim(array[0] || '');
 			},
 			setStylecolor:function(value){
 				this.logger(this);
@@ -230,102 +210,52 @@ $.push({
 					path:'idex-desc-default.css',
 					color : value
 				});
-				this.userdata.stylecolor=value;
-				this.$descbox.attr('stylecolor',value);
+				this.$descbox.attr(ATTR_KEY_MAP.STYLE_COLOR,value);
 			},
 			getStylecolor:function(){
 				this.logger(this);
-				return this.userdata.stylecolor;
+				return this.$descbox.attr(ATTR_KEY_MAP.STYLE_COLOR);
 			},
 			setPadding:function(value){
 				this.logger(this);
 				if(value==false){
-					this.$descbox.removeClass('p-l-r');
+					this.$descbox.removeClass(STYLE_KEY_MAP.CONTEXT_PADDING);
 				}else{
 					value=true;
-					this.$descbox.addClass('p-l-r');
+					this.$descbox.addClass(STYLE_KEY_MAP.CONTEXT_PADDING);
 				}
-				this.userdata.padding=value;
 			},
 			getPadding:function(){
 				this.logger(this);
-				return this.userdata.padding;
+				return this.$descbox.hasClass(STYLE_KEY_MAP.CONTEXT_PADDING);
 			},
 			setWidth:function(value){
 				this.logger(this);
-				if(value=='' || value < this.MIN_WIDTH || value > this.MAX_WIDTH || isNaN(value)){
-					this.form.setItemValue('width',this.userdata.width);
+				if(value=='' || value < MIN_WIDTH || value > MAX_WIDTH || isNaN(value)){
+					this.form.setItemValue('width',this.getWidth());
 					this.form.quickTip({
 						target:'width',
-						html:'宽度只能在' + this.MIN_WIDTH + 'px至' + this.MAX_WIDTH + 'px之间'
+						html:'宽度只能在' + MIN_WIDTH + 'px至' + MAX_WIDTH + 'px之间'
 					});
 					return false;
 				}
-				this.userdata.width=value;
 				this.descbox.style.width=value+'px';
 			},
 			getWidth:function(){
 				this.logger(this);
-				return this.userdata.width;
-			},
-			setUid:function(value){
-				this.logger(this);
-				if(value){
-					var newValue=value.toWordChar();
-					if(newValue!=value && this.form){
-						this.form.quickTip({
-							target:'uid',
-							html:'编号只能由数字和字母组成<br/>如:37202200543'
-						});
-					}
-					value=newValue;
-				}else{
-					value='';
-				}
-				if(value.length>20){
-					value=value.substring(0,20);
-				}
-				if(this.form){
-					this.form.setItemValue('uid',value);
-				}
-				var oldUID=this.userdata.uid;
-				if(oldUID=='' && value==''){
-					return false;
-				}
-				this.userdata.uid=value;
-				this.$descbox.attr('uid',value);
-			},
-			getUid:function(){
-				this.logger(this);
-				return this.userdata.uid;
+				return this.descbox.offsetWidth;
 			},
 			onPropertyFormShow : CF.emptyFunction,
 			setValue : CF.emptyFunction,
 			getValue : CF.emptyFunction,
-			getUserData:function(){
-				this.logger(this);
-				return {
-					stylecolor: this.userdata.stylecolor,
-					uid: this.userdata.uid,
-					width: this.userdata.width
-				};
-			},
-			setUserData:function(data){
-				this.logger(this);
-				this.setStylecolor(data.stylecolor);
-				this.setUid(data.uid);
-				this.setWidth(data.width);
-			},
 			getContent: function(){
 				this.logger(this);
 				return {
-					html : this.getHTML(),
-					data : this.getUserData()
+					html : this.getHTML()
 				};
 			},
 			setContent: function(content){
 				this.logger(this);
-				this.setUserData(content.data);
 				this.setHTML(content.html);
 			}
 		});
