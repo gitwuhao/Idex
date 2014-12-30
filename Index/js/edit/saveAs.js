@@ -78,7 +78,7 @@ $.push({
 					value : true,
 					text : '保留图片和链接'
 				},{
-					html : '<div style="padding-left: 60px;">10K/15K</div>'
+					html : '<div style="padding-left: 21px;">长度：超出120字/15K</div>'
 				}]
 			},
 			buttons:[{
