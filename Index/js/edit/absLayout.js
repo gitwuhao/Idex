@@ -797,6 +797,7 @@
 					}
 				}
 			},
+			getLayoutID : getID,
 			getLayout : function(_name_){
 				return this.__LAYOUT_INSTANCE_MAP__[_name_];
 			},

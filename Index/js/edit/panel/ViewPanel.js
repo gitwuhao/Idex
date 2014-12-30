@@ -12,7 +12,6 @@
 			
 			this.originalHTML=this.descbox.outerHTML;
 
-
 			var div,
 				html='<div class="idex-view-panel-popu-box"></div>';
 
