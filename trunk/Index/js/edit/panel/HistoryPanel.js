@@ -340,7 +340,7 @@
 				this.applySnapCommand.redoContext=snap.context;
 			}else{
 				this.applySnapCommand={
-					title : '应用快照',
+					title : '应用'+snap.title,
 					type : 'brushsnap',
 					undoContext: this.app.ViewPanel.getHTML(),
 					redoContext: snap.context,
