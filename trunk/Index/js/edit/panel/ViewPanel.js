@@ -9,6 +9,9 @@
 			this.$contextBox=this.app.$contextBox;
 			
 			this.getDescBox();
+			
+			this.originalHTML=this.descbox.outerHTML;
+
 
 			var div,
 				html='<div class="idex-view-panel-popu-box"></div>';
@@ -144,25 +147,19 @@
 		},
 		getHTML : function(){
 			this.logger(this);
-			return this.descbox.innerHTML;
+			return this.descbox.outerHTML;
 		},
 		setHTML : function(HTML){
 			this.logger(this);
-			this.$descbox.empty();
-			this.descbox.innerHTML=HTML;
+			this.$contextBox.innerHTML=HTML;
+			this.getDescBox();
 			$('.idex-r-active',this.descbox).removeClass('idex-r-active');
-			this.app.LayoutPanel.on('reloadNavList');
 			this.app.trigger('contentUpdate');
+			this.app.LayoutPanel.home();
 		},
-		getContent: function(){
+		getOriginalHTML : function(){
 			this.logger(this);
-			return {
-				html : this.getHTML()
-			};
-		},
-		setContent: function(content){
-			this.logger(this);
-			this.setHTML(content.html);
+			return this.originalHTML;
 		}
 	});
 	

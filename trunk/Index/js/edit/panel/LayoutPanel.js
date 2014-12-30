@@ -208,7 +208,7 @@
 		initMainNavList : function(){
 			this.logger(this);
 			this.__CONTAINER_LAYOUT__=this.app.layout.getLayout('container');
-			this.on('home');
+			this.home();
 		},
 		onAppReadyAfter:function(){
 			this.logger(this);
@@ -301,6 +301,10 @@
 			if(this.getItem('home').isDisabled){
 				return;
 			}
+			this.home();
+		},
+		home : function(){
+			this.logger(this);
 			this.$layoutTabView.empty();
 			this.createMainNavList();
 			this.getDescBoxElement().firstElementChild.click();
@@ -571,7 +575,7 @@
 		onReloadNavList:function(targetElement){
 			this.logger(this);
 			if(!targetElement){
-				this.on('home');
+				this.home();
 				return;
 			}else{
 				this.removeNavList(targetElement);
