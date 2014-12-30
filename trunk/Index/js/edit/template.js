@@ -15,7 +15,7 @@
 			this.logger(this);
 			
 			this.app.addEventListener('getTemplate',function(config){
-				this.Template.getTemplate(config);
+				this.Template.show(config);
 			});
 
 			this.app.addEventListener('readyafter',function(event){
@@ -30,11 +30,10 @@
 			CUSTOM_CODE : 'custom_code',
 			LAYOUT_RELATION : 'IDEX_LAYOUT_RELATION',
 			SYSTEM_TEMPLATE_LIST : 'IDEX_SYSTEM_TEMPLATE_LIST',
-			CUSTOM_TEMPLATE_LIST : 'custom_list',
+			CUSTOM_TEMPLATE_LIST : 'custom_list'
 		},
 		initData : function(){
 			this.data={};
-			this.initLayoutRelation();
 			this.initSystemTemplate();
 			this.initCustomTemplate();
 		},
@@ -89,6 +88,8 @@
 			this.data.systemTemplate={};
 			this.data.systemTemplate.Map=layoutMap1;
 			this.data.systemTemplate.layoutMap=layoutMap2;
+			
+			this.initLayoutRelation();
 		},
 		getCustomTemplateStorage : function(){
 			return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
@@ -268,7 +269,7 @@
 			}
 			return html.join('');
 		},
-		getTemplate:function(config){
+		show : function(config){
 			this.logger(this);
 			var parentLayout=config.parentLayout,
 				parentLayoutType,

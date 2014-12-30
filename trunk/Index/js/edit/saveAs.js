@@ -4,7 +4,8 @@ var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 $.push({
 	_name_ : 'CustomModule',
 	CACHE_KEY : {
-		CUSTOM_CODE : 'custom_code'
+		CUSTOM_CODE : 'custom_code',
+		CUSTOM_TEMPLATE_LIST : 'custom_list'
 	},
 	getCustomCodeKey : function(id){
 		return this.CACHE_KEY.CUSTOM_CODE + '_' + id;
@@ -13,6 +14,7 @@ $.push({
 		var date=new Date();
 		date.addDays(7);
 		$.cache.put(this.getCustomCodeKey(id),code,date);
+		$.cache.remove(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
 	},
 	getCustomCode : function(id){
 		return $.cache.get(this.getCustomCodeKey(id));
