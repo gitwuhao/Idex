@@ -247,17 +247,7 @@ $.push({
 			},
 			onPropertyFormShow : CF.emptyFunction,
 			setValue : CF.emptyFunction,
-			getValue : CF.emptyFunction,
-			getContent: function(){
-				this.logger(this);
-				return {
-					html : this.getHTML()
-				};
-			},
-			setContent: function(content){
-				this.logger(this);
-				this.setHTML(content.html);
-			}
+			getValue : CF.emptyFunction
 		});
 
 		
