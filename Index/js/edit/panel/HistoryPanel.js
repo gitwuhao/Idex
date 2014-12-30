@@ -85,16 +85,17 @@
 		},
 		onAppReadyAfter : function(){
 			this.addUndo({
-				undo : function(){
-					console.info('open undo...');
-				},
-				redo : function(){
-					console.info('open redo...');
-				},
+				undo : CF.emptyFunction,
+				redo : CF.emptyFunction,
 				type : 'open',
 				title:'打开'
 			});
-			//this.on('snap');
+
+			this.createSnap({
+				title : '本地快照[默认]',
+				id : getLocalSnapID(),
+				context : this.app.ViewPanel.getOriginalHTML()
+			});
 		},	
 		addCloudSnapItem:function(item){
 			this.logger(this);
@@ -255,7 +256,7 @@
 				$.removeClass(item.firstElementChild,'check');
 			}
 			this.activeCommand=command;
-			//this.app.trigger('contentUpdate');
+			//this.app.trigger('contextUpdate');
 			if(this.applySnapCommand && this.applySnapCommand!=command){
 				this.applySnapCommand=null;
 				this.on('deActiveLocalSnap');
@@ -311,21 +312,20 @@
 
 			
 			if(this.applySnapCommand){
-				this.applySnapCommand.redoContent=snap.content;
+				this.applySnapCommand.redoContext=snap.context;
 			}else{
 				this.applySnapCommand={
 					title : '应用快照',
 					type : 'brushsnap',
-					undoContent: this.app.ViewPanel.getContent(),
-					redoContent: snap.content,
+					undoContext: this.app.ViewPanel.getHTML(),
+					redoContext: snap.context,
 					undo : function(){
-						this.app.ViewPanel.setContent(this.undoContent);
+						this.app.ViewPanel.setHTML(this.undoContext);
 					},
 					redo : function(){
-						this.app.ViewPanel.setContent(this.redoContent);
+						this.app.ViewPanel.setHTML(this.redoContext);
 					}
 				};
-			
 				this.addUndo(this.applySnapCommand);
 			}
 			this.applySnapCommand.redo();
@@ -368,23 +368,28 @@
 			this.on('deActiveSnap');
 			this.disabled('del');
 		},
+		localSnapQueue : 0,
 		onSnap : function(){
 			this.logger(this);
-
-			var title;
-
 			if(this.localSnapQueue==-1){
-				title='本地快照[默认]';
 				this.localSnapQueue=0;
 			}else{
 				title='本地快照['+this.localSnapQueue+']';
 			}
-
-			this.addLocalSnapItem({
+			this.createSnap({
 				title : title,
 				id : getLocalSnapID(),
-				content : this.app.ViewPanel.getContent()
+				context : this.app.ViewPanel.getHTML()
 			});
+		},
+		createSnap : function(snapItem){
+			this.logger(this);
+			
+			if(this.localSnapCount>=5){
+				return;
+			}
+
+			this.addLocalSnapItem(snapItem);
 
 			this.localSnapCount++;
 			this.localSnapQueue++;

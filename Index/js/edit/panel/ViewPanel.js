@@ -151,7 +151,7 @@
 		},
 		setHTML : function(HTML){
 			this.logger(this);
-			this.$contextBox.innerHTML=HTML;
+			this.$contextBox.html(HTML);
 			this.getDescBox();
 			$('.idex-r-active',this.descbox).removeClass('idex-r-active');
 			this.app.trigger('contentUpdate');
