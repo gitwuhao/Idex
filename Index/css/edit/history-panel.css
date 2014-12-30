@@ -50,6 +50,7 @@
 */
 .idex-history-tab-panel .idex-list-item-title{
 	height: 15px;
-	width: 130px;
+	width: 170px;
+	margin-right: 0px;
 	cursor: pointer;
 }
