@@ -69,11 +69,55 @@ $.push({
 			},
 			onCloudSnapCheck : function(target,snapID){
 				this.logger(this);
-				console.info('onCloudSnapCheck');
+				this.logger(this);
+				var snap=this.cloudsnapList[snapID];
+				if(this.brushSnap==snap){
+					return;
+				}else if(this.brushSnap){
+					this.on('deActiveBrush');
+				}
+				$.addClass(target,'brush');
+				$.removeClass(target,'check');
+				this.brushSnap=snap;
+
+				
+				if(this.applySnapCommand){
+					this.applySnapCommand.redoContext=snap.context;
+					var item=this.get(this.applySnapCommand.id);
+
+					if(item){
+						$(item).children('.idex-list-item-title:first').html('应用'+snap.title);
+					}
+				}else{
+					this.applySnapCommand={
+						title : '应用'+snap.title,
+						type : 'brushsnap',
+						undoContext: this.app.ViewPanel.getHTML(),
+						redoContext: snap.context,
+						undo : function(){
+							console.info('云端快照【undo】...');
+						},
+						redo : function(){
+							console.info('云端快照【redo】...');
+						}
+					};
+					this.addUndo(this.applySnapCommand);
+				}
+				this.applySnapCommand.redo();
+
+				this.setCommandCheckStyle(this.applySnapCommand);
 			},
 			onCloudSnapClick : function(target,snapID){
 				this.logger(this);
-				console.info('onCloudSnapClick');
+				var snap=this.cloudsnapList[snapID];
+				if(this.activeSnap==snap){
+					return;
+				}else if(this.activeSnap){
+					this.on('deActiveSnap');
+				}
+				$.addClass(target,'active');
+				this.activeSnap=snap;
+				this.disabled('del');
 			}
 		});
  
