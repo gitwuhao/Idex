@@ -15,15 +15,15 @@ $.push({
 
 				this.addCloudSnapItem({
 					id : '10000',
-					title : '2014-09-12【系统】'
+					title : '09月12日'
 				});
 				this.addCloudSnapItem({
 					id : '10001',
-					title : '前天18:01【系统】'
+					title : '前天18:01'
 				});
 				this.addCloudSnapItem({
 					id : '10002',
-					title : '昨天19:01【系统】'
+					title : '昨天19:01'
 				});
 				this.$cloudSnapBox.show();
 			},
@@ -38,7 +38,7 @@ $.push({
 							'<div class="idex-list-item-icon idex-snap-icon">',
 								'<div class="idex-icon"></div>',
 							'</div>',
-							'<div class="idex-list-item-title">',item.title,'</div>',
+							'<div class="idex-list-item-title">云端快照【',item.title,'】</div>',
 						'</div>'].join('');
 				
 				div=$.createElement(html);
