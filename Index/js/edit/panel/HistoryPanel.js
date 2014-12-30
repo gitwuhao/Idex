@@ -42,9 +42,8 @@
 			cls:'history',
 			active:true,
 			label:'历史记录',
-			html:['<div class="idex-cloud-snap-box"></div>',
-				'<div class="idex-local-snap-box"></div>',
-				'<div class="idex-undo-list-box"></div>'].join('')
+			html:['<div class="idex-local-snap-box"></div>',
+				  '<div class="idex-undo-list-box"></div>'].join('')
 		}],
 		initModule : function(){
 			this.logger(this);
@@ -92,53 +91,10 @@
 			});
 
 			this.createSnap({
-				title : '本地快照[默认]',
+				title : '本地快照【默认】',
 				id : getLocalSnapID(),
 				context : this.app.ViewPanel.getOriginalHTML()
 			});
-		},	
-		addCloudSnapItem:function(item){
-			this.logger(this);
-
-			var	div=$.createElement(['<div class="idex-list-item idex-cloud-snap-item">',
-										'<div class="idex-list-item-icon check">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-icon idex-snap-icon">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-title">',item.title,'</div>',
-									'</div>'].join(''));
-
-			this.$cloudSnapBox.append(div);
-
-			var $elem=$(div);
-			
-			item.$elem=$elem;
-
-			var itemId=item.id;
-			var me=this;
-			$elem.children('.check:first').click({
-				panel : this,
-				id : itemId
-			},function(event){
-				var id=event.data.id;
-				console.info('cloud snap check');
-				event.stopBubble();
-			});
-			
-			$elem.click({
-				panel : this,
-				id : itemId
-			},function(event){
-				var id=event.data.id;
-				console.info('cloud snap title');
-			});
-			
-			this.cloudsnapList[item.id]=item;
-
-			this.$cloudSnapBox.show();
-
 		},
 		addLocalSnapItem:function(item){
 			this.logger(this);
@@ -315,12 +271,12 @@
 			var historyTab=this.getTab('history');
 			var children=historyTab.$tabview.children();
 
-			this.$localSnapBox=$(children[1]);
+			this.$localSnapBox=$(children[0]);
 			this.localsnapList={};
 			this.localSnapCount=0;
 			this.localSnapQueue=-1;
 
-			this.$undoListBox=$(children[2]);
+			this.$undoListBox=$(children[1]);
 
 		},
 		onSnapCheck : function(event,target,snapID){
@@ -402,7 +358,7 @@
 			if(this.localSnapQueue==-1){
 				this.localSnapQueue=0;
 			}else{
-				title='本地快照['+this.localSnapQueue+']';
+				title='本地快照【'+(this.localSnapQueue+1)+'】';
 			}
 			this.createSnap({
 				title : title,
