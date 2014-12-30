@@ -59,7 +59,7 @@ $.push({
 		this.win=new ui.window({
 			title : '另存为自定义布局',
 			$owner : this,
-			width: '230px',
+			width: '280px',
 			padding: '10px 30px 10px 10px',
 			item : {
 				xtype:'form',
@@ -78,7 +78,9 @@ $.push({
 					value : true,
 					text : '保留图片和链接'
 				},{
-					html : '<div style="padding-left: 21px;">长度：超出120字/15K</div>'
+					html : '<div style="padding-left: 21px;">长度：超出120字/1.5万字</div>'
+				},{
+					html : '<div style="padding-left: 21px;">长度：可输入15000字/1.5万字</div>'
 				}]
 			},
 			buttons:[{
