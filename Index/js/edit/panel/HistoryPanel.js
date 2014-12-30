@@ -246,14 +246,34 @@
 			}
 			this.onExecuteAfter(this.undo.getCommand());
 		},
+		setCommandBrushStyle : function(command){
+			this.logger(this);
+			if(command){
+				var item=this.app.get(command.id),
+					check;
+				check=item.firstElementChild;
+				$.addClass(item,'active');
+				$.addClass(check,'brush');
+				$.removeClass(check,'check');
+			}
+		},
+		setCommandCheckStyle : function(command){
+			this.logger(this);
+			if(command){
+				var item=this.app.get(command.id),
+					check;
+				check=item.firstElementChild;
+				$.removeClass(item,'active');
+				$.removeClass(check,'brush');
+				$.addClass(check,'check');
+			}
+		},
 		onExecuteAfter : function(command){
 			this.logger(this);
 			if(command){
 				var item=this.app.get(command.id);
-				$.addClass(item,'active');
 				$.removeClass(item,'disabled');
-				$.addClass(item.firstElementChild,'brush');
-				$.removeClass(item.firstElementChild,'check');
+				this.setCommandBrushStyle(command);
 			}
 			this.activeCommand=command;
 			//this.app.trigger('contextUpdate');
@@ -275,6 +295,11 @@
 		onExecuteUndoIndex :function(element){
 			this.logger(this);
 			if(this.activeCommand && this.activeCommand.id==element.id){
+				if(this.applySnapCommand==this.activeCommand){
+					this.applySnapCommand=null;
+					this.on('deActiveLocalSnap');
+					this.setCommandBrushStyle(this.activeCommand);
+				}
 				return;
 			}
 			var index=0;
@@ -329,6 +354,9 @@
 				this.addUndo(this.applySnapCommand);
 			}
 			this.applySnapCommand.redo();
+
+			this.setCommandCheckStyle(this.applySnapCommand);
+			//this.on('deActiveBrush');
 		},
 		onSnapClick : function(event,target){
 			this.logger(this);
