@@ -309,8 +309,26 @@
 			$.addClass(target,'brush');
 			$.removeClass(target,'check');
 			this.brushSnap=snap;
+
 			
-			this.app.ViewPanel.setHTML(snap.context);
+			if(this.applySnapCommand){
+				this.applySnapCommand.redoContext=snap.context;
+			}else{
+				this.applySnapCommand={
+					title : '应用快照',
+					type : 'brushsnap',
+					undoContext: this.app.ViewPanel.getHTML(),
+					redoContext: snap.context,
+					undo : function(){
+						this.app.ViewPanel.setHTML(this.undoContext);
+					},
+					redo : function(){
+						this.app.ViewPanel.setHTML(this.redoContext);
+					}
+				};
+				this.addUndo(this.applySnapCommand);
+			}
+			this.applySnapCommand.redo();
 		},
 		onSnapClick : function(event,target){
 			this.logger(this);
@@ -356,7 +374,7 @@
 			if(this.localSnapQueue==-1){
 				this.localSnapQueue=0;
 			}else{
-				title='本地快照['+(this.localSnapQueue+1)+']';
+				title='本地快照['+this.localSnapQueue+']';
 			}
 			this.createSnap({
 				title : title,

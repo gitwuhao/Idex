@@ -4,18 +4,12 @@
 		getLayoutID,
 		getParentNavID,
 		getNavListToLayoutID,
-		__DESC_BOX_ID__,
 		__INDEX__=parseInt('1'+(''+$.timestamp()).match(/(\d{3}$)/)[0]);
 	(function(){
 
-		var __SUFFIX__='N'+$.randomChar(2);
-
-		var __LAYOUT__SUFFIX__=null;
-		var __NAV_LIST_ID_INDEX__= __INDEX__ * 13;
-
-
-		__DESC_BOX_ID__=(__INDEX__ * 23) + 'XDESC';
-
+		var __SUFFIX__='N'+$.randomChar(2),
+			__LAYOUT__SUFFIX__=null,
+			__NAV_LIST_ID_INDEX__= __INDEX__ * 13;
 
 		getNavID=function (layoutID){
 			if(!layoutID){
@@ -217,7 +211,9 @@
 		},
 		createMainNavList:function(){
 			this.logger(this);
-			var navListId=getParentNavID(__DESC_BOX_ID__);
+			var descbox=this.getDescBoxElement();
+			descbox.id=this.app.layout.getLayoutID();
+			var navListId=getParentNavID(descbox.id);
 			var layout=this.__CONTAINER_LAYOUT__;
 			var list=layout.getAll(this.getDescBoxElement().firstElementChild);
 			var html=this.getNavListHTML(navListId,layout,list);
