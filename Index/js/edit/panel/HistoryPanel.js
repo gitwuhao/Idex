@@ -112,36 +112,40 @@
 		},
 		addLocalSnapItem:function(item){
 			this.logger(this);
-
-			var	div=$.createElement(['<div class="idex-list-item idex-local-snap-item" id="',item.id,'">',
-										'<div class="idex-list-item-icon idex-list-check-item check">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-icon idex-snap-icon">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-title">',item.title,'</div>',
-									'</div>'].join(''));
+			var div,
+				$elem,
+				html=['<div class="idex-list-item idex-local-snap-item" id="',item.id,'">',
+						'<div class="idex-list-item-icon idex-list-check-item check">',
+							'<div class="idex-icon"></div>',
+						'</div>',
+						'<div class="idex-list-item-icon idex-snap-icon">',
+							'<div class="idex-icon"></div>',
+						'</div>',
+						'<div class="idex-list-item-title">',item.title,'</div>',
+					'</div>'].join('');
+			
+			div=$.createElement(html);
 
 			this.$localSnapBox.append(div);
 
-			var $elem=$(div);
+			$elem=$(div);
 			
 			$elem.children('.idex-list-check-item:first').click({
 				panel : this,
-				snapID : item.id
+				id : item.id
 			},function(event){
 				var data=event.data;
 				event.data=null;
-				data.panel.on('localSnapCheck',this,data.snapID);
+				data.panel.on('localSnapCheck',this,data.id);
 			});
 			
 			$elem.click({
-				panel : this
+				panel : this,
+				id : item.id
 			},function(event){
 				var data=event.data;
 				event.data=null;
-				data.panel.on('localSnapClick',this);
+				data.panel.on('localSnapClick',this,data.id);
 			});
 
 			this.localsnapList[item.id]=item;
@@ -164,6 +168,11 @@
 			
 			if(this.applySnapCommand){
 				this.applySnapCommand.redoContext=snap.context;
+				var item=this.get(this.applySnapCommand.id);
+
+				if(item){
+					$(item).children('.idex-list-item-title:first').html('应用'+snap.title);
+				}
 			}else{
 				this.applySnapCommand={
 					title : '应用'+snap.title,
@@ -184,9 +193,9 @@
 			this.setCommandCheckStyle(this.applySnapCommand);
 			//this.on('deActiveBrush');
 		},
-		onLocalSnapClick : function(target){
+		onLocalSnapClick : function(target,snapID){
 			this.logger(this);
-			var snap=this.localsnapList[target.id];
+			var snap=this.localsnapList[snapID];
 			if(this.activeSnap==snap){
 				return;
 			}else if(this.activeSnap){
@@ -198,16 +207,18 @@
 		},
 		addUndoItem:function(command){
 			this.logger(this);
-			
-			var	div=$.createElement(['<div class="idex-list-item idex-undo-item active" id="',command.id,'">',
-										'<div class="idex-list-item-icon brush">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-icon idex-undo-icon">',
-											'<div class="idex-icon"></div>',
-										'</div>',
-										'<div class="idex-list-item-title">',command.title,'</div>',
-									'</div>'].join(''));
+			var div,
+				html=['<div class="idex-list-item idex-undo-item active" id="',command.id,'">',
+						'<div class="idex-list-item-icon brush">',
+							'<div class="idex-icon"></div>',
+						'</div>',
+						'<div class="idex-list-item-icon idex-undo-icon">',
+							'<div class="idex-icon"></div>',
+						'</div>',
+						'<div class="idex-list-item-title">',command.title,'</div>',
+					'</div>'].join('');
+
+			div=$.createElement(html);
 
 			this.$undoListBox.append(div);
 

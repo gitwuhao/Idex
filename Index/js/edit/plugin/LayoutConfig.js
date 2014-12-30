@@ -157,7 +157,7 @@ $.push({
 						width: 'auto',
 						name: 'style',
 						cls: 'breakline',
-						getDesc : '更换配色',
+						getDesc : '更换风格',
 						items:[{
 							checked : true,
 							value : 'style1',
