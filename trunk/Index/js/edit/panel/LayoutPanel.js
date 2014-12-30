@@ -208,8 +208,6 @@
 		initMainNavList : function(){
 			this.logger(this);
 			this.__CONTAINER_LAYOUT__=this.app.layout.getLayout('container');
-			this.descbox=this.app.$descBox[0];
-			this.descbox.id=__DESC_BOX_ID__;
 			this.on('home');
 		},
 		onAppReadyAfter:function(){
@@ -219,9 +217,9 @@
 		},
 		createMainNavList:function(){
 			this.logger(this);
-			var navListId=getParentNavID(this.descbox.id);
+			var navListId=getParentNavID(__DESC_BOX_ID__);
 			var layout=this.__CONTAINER_LAYOUT__;
-			var list=layout.getAll(this.descbox.firstElementChild);
+			var list=layout.getAll(this.getDescBoxElement().firstElementChild);
 			var html=this.getNavListHTML(navListId,layout,list);
 			this.$layoutTabView.append(html);
 			this.bindItemSortBarHover(this.get(navListId));
@@ -305,7 +303,7 @@
 			}
 			this.$layoutTabView.empty();
 			this.createMainNavList();
-			this.descbox.firstElementChild.click();
+			this.getDescBoxElement().firstElementChild.click();
 			this.disabled('home');
 		},
 		onBack:function(){
@@ -346,7 +344,7 @@
 				parentLayout;
 
 			if(this.activeLayout==this.__CONTAINER_LAYOUT__){
-				parent=this.descbox;
+				parent=this.getDescBoxElement();
 				target=this.activeElement;
 			}else if(this.activeLayout){
 				parentLayout=this.activeLayout.getParentLayout(this.activeElement);

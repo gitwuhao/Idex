@@ -762,7 +762,7 @@
 		_name_ : '_temp_module_',
 		initModule : function(){
 			this.logger(this);
-			this._layout_.descbox=this.app.$descBox[0];
+			this._layout_.app=this.app;
 			this.app.layout=this._layout_;
 			this.app.createLayoutModule=this.createLayoutModule;
 			//this.app.cleanHTML=this._layout_.getClass('AbsContainer').prototype.cleanHTML;
@@ -770,7 +770,7 @@
 			var LAYOUTID='\\d{'+__INDEX_LEN___+'}'+__SUFFIX__,
 				APP=this.app;
 			window.isLayoutID=function(_id_){
-				var reg=new RegExp(LAYOUTID+'|'+APP.ViewPanel.descbox.id,'gi');
+				var reg=new RegExp(LAYOUTID,'gi');
 				return reg.test(_id_);
 			};
 		
@@ -818,7 +818,7 @@
 				console.info(h.join(';')+';');
 			},
 			__findParent__ : function(target){
-				if(this.descbox==target || !target){
+				if(this.app.ViewPanel.descbox==target || !target){
 					return;
 				}
 				var item=this.getItem(target);

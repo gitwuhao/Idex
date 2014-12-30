@@ -67,7 +67,7 @@
 			this.app.isLocked=true;
 			this.currentTab.$tabview.html('');
 			ui.popu.createLoading();
-			this.$imgList=$('img',this.app.ViewPanel.descbox);
+			this.$imgList=$('img',this.getDescBoxElement());
 			this.index=0;
 			this.isChecked=true;
 			delete this.activeItem;
