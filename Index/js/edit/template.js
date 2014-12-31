@@ -62,7 +62,7 @@
 		},
 		initSystemTemplate : function(){
 			this.logger(this);
-			if(this.getSystemTemplateStorage()){
+			if(this.getSystemTemplateData()){
 				this.buildSystemTemplate();
 				return;
 			}
@@ -71,14 +71,14 @@
 				me.buildSystemTemplate();
 			});
 		},
-		getSystemTemplateStorage : function(){
+		getSystemTemplateData : function(){
 			return localStorage[this.CACHE_KEY.SYSTEM_TEMPLATE_LIST];
 		},
 		buildSystemTemplate : function(){
 			this.logger(this);
 			var layoutMap1={},
 				layoutMap2={},
-				systemTemplates=JSON.parse(this.getSystemTemplateStorage());
+				systemTemplates=JSON.parse(this.getSystemTemplateData());
 			for(var i=0,len=systemTemplates.length;i<len;i++){
 				var item=systemTemplates[i];
 				item.lid=getLayoutID();
@@ -91,15 +91,15 @@
 			
 			this.initLayoutRelation();
 		},
-		getCustomTemplateStorage : function(){
+		getCustomTemplateData : function(){
 			return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
 		},
-		saveCustomTemplateStorage : function(json){
+		saveCustomTemplateData : function(json){
 			$.cache.put(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST,JSON.stringify(json),new Date());
 		},
 		initCustomTemplate :function(){
 			this.logger(this);
-			if(this.getCustomTemplateStorage()){
+			if(this.getCustomTemplateData()){
 				this.buildCustomTemplate();
 				return;
 			}
@@ -116,7 +116,7 @@
 				jsonpCallback : $.getJSONPName(),
 				success : function(json){
 					if(json && json.length>0){
-						this._$owner.saveCustomTemplateStorage(json);
+						this._$owner.saveCustomTemplateData(json);
 						this._$owner.buildCustomTemplate();
 						if(this._config && this._config.success){
 							this._config.success();
@@ -172,7 +172,7 @@
 		},
 		buildCustomTemplate : function(){
 			var array,
-				ts=this.getCustomTemplateStorage(),
+				ts=this.getCustomTemplateData(),
 				containerList=[],
 				layoutList=[],
 				layoutMAP={};
