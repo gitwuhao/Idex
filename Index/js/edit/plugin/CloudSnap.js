@@ -80,7 +80,6 @@ $.push({
 				$.removeClass(target,'check');
 				this.brushSnap=snap;
 
-				
 				if(this.applySnapCommand){
 					this.applySnapCommand.redoContext=snap.context;
 					var item=this.get(this.applySnapCommand.id);
