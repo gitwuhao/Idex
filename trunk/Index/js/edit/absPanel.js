@@ -15,7 +15,7 @@
 				placeholder :'填写图片地址',
 				getDesc : '修改图片地址',
 				onIconmousedown : function(){
-					this.app.SelectImage.show(this);
+					this.app.SelectPicture.show(this);
 					return false;
 				},
 				onChangeBefore : function(value){
