@@ -31,7 +31,6 @@ $.push({
 			},
 			addCloudSnapItem:function(item){
 				this.logger(this);
-				item._id=item.id;
 
 				item.id=getCloudSnapID();
 				
@@ -57,26 +56,25 @@ $.push({
 				
 				$elem.children('.idex-list-check-item:first').click({
 					panel : this,
-					id : item._id
+					snapId : item.snapId
 				},function(event){
 					var data=event.data;
 					event.data=null;
-					data.panel.on('cloudSnapCheck',this,data.id);
+					data.panel.on('cloudSnapCheck',this,data.snapId);
 				});
 				
 				$elem.click({
 					panel : this,
-					id : item._id
+					snapId : item.snapId
 				},function(event){
 					var data=event.data;
 					event.data=null;
-					data.panel.on('cloudSnapClick',this,data.id);
+					data.panel.on('cloudSnapClick',this,data.snapId);
 				});
 
-				this.cloudsnapList[item._id]=item;
+				this.cloudsnapList[item.snapId]=item;
 			},
 			onCloudSnapCheck : function(target,snapID){
-				this.logger(this);
 				this.logger(this);
 				var snap=this.cloudsnapList[snapID];
 				if(this.brushSnap==snap){
@@ -92,8 +90,9 @@ $.push({
 
 				if(this.applySnapCommand){
 					this.applySnapCommand.redoContext=snap.context;
-					var item=this.get(this.applySnapCommand.id);
+					this.applySnapCommand._cloudSnap=snap;
 
+					var item=this.get(this.applySnapCommand.id);
 					if(item){
 						$(item).children('.idex-list-item-title:first').html(snapTitle);
 					}
@@ -104,20 +103,21 @@ $.push({
 						undoContext: this.app.ViewPanel.getHTML(),
 						redoContext: snap.context,
 						_cloudSnap: snap,
+						_$owner : this,
 						undo : function(){
 							this.app.ViewPanel.setHTML(this.undoContext);
 						},
 						redo : function(){
 							if(this.redoContext){
-								this.onRedoViewPanelHTML();
+								this.app.ViewPanel.setHTML(this.redoContext);
 								return;
 							}
+							this._$owner.loadCloudSnapCode(this._cloudSnap,this.responseHandle,this);
 						},
-						responseHandle : function(){
-							
-						},
-						onRedoViewPanelHTML : function(){
-							this.app.ViewPanel.setHTML(this.redoContext);
+						responseHandle : function(html){
+							this.redoContext=html;
+							this._cloudSnap.context=html;
+							this.app.ViewPanel.setHTML(html);
 						}
 					};
 					this.addUndo(this.applySnapCommand);
@@ -138,17 +138,39 @@ $.push({
 				this.activeSnap=snap;
 				this.disabled('del');
 			},
-			getCloudSnapCode : function(cloudSnap,callback){
+			loadCloudSnapCode : function(cloudSnap,callback,callback$owner){
+				var html=this.getCloudSnapCodeData(cloudSnap.id);
+				if(html){
+					callback.call(callback$owner,html);
+					return;
+				}
+				ui.popu.createLoading();
+
+				
+				var _temp_context = {
+					_$owner : this,
+					cloudSnapID : cloudSnap.snapId,
+					callback : callback,
+					callback$owner : callback$owner,
+				};
 				$.ajax({
 					url:'/module.s',
-					data : 'method=getCode&_t=4&id='+cloudSnap.id,
+					data : 'method=getCode&_t=4&id='+cloudSnap.snapId,
 					type : 'POST',
 					dataType : 'text',
 					success : function(response_html){
-						callback(response_html);
+						if(response_html){
+							_temp_context._$owner.saveCloudSnapCodeData(_temp_context.cloudSnapID,response_html);
+							_temp_context.callback.call(_temp_context.callback$owner,response_html);
+						}
 					},
 					error : function(){
 						
+					},
+					complete : function(){
+						$.setTimeout(function(){
+							ui.popu.removeLoading();
+						},1000);
 					}
 				});
 			},
@@ -156,16 +178,25 @@ $.push({
 				SNAP_LIST : 'cloud_snap_list',
 				SNAP_CODE : 'cloud_snap_code'
 			},
-			getCloudSnapListStorage : function(){
-				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_LIST);
-			},
-			saveCloudSnapListStorage : function(json){
+			getExpiredDate : function(){
 				var date=new Date();
 				date.addDays(7);
-				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),date);
+				return date;
+			},
+			getCloudSnapListData : function(){
+				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_LIST);
+			},
+			saveCloudSnapListData : function(json){
+				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),this.getExpiredDate());
+			},
+			getCloudSnapCodeData : function(id){
+				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id);
+			},
+			saveCloudSnapCodeData : function(id,html){
+				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,this.getExpiredDate());
 			},
 			initCloudSnapList : function(){
-				if(this.getCloudSnapListStorage()){
+				if(this.getCloudSnapListData()){
 					this.buildCloudSnapList();
 					return;
 				}
@@ -181,7 +212,7 @@ $.push({
 					jsonpCallback : $.getJSONPName(),
 					success : function(json){
 						if(json && json.length>0){
-							this._$owner.saveCloudSnapListStorage(json);
+							this._$owner.saveCloudSnapListData(json);
 							this._$owner.buildCloudSnapList();
 						}
 					},
@@ -194,7 +225,7 @@ $.push({
 			},
 			buildCloudSnapList : function(){
 				var array,
-					json=this.getCloudSnapListStorage();
+					json=this.getCloudSnapListData();
 				if(!json){
 					array=[];
 				}else{
@@ -202,7 +233,9 @@ $.push({
 					this.$cloudSnapBox.show();
 				}
 				for(var i=0,len=array.length;i<len;i++){
-					this.addCloudSnapItem(array[i]);
+					var item=array[i];
+					item.snapId=item.id;
+					this.addCloudSnapItem(item);
 				}
 			},
 			getShotTimeTitle : function(date){
