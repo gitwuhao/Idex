@@ -165,17 +165,19 @@
 			$.addClass(target,'brush');
 			$.removeClass(target,'check');
 			
+			var snapTitle='应用'+snap.title;
+
 			this.brushSnap=snap;
 
 			if(this.applySnapCommand){
 				this.applySnapCommand.redoContext=snap.context;
 				var item=this.get(this.applySnapCommand.id);
 				if(item){
-					$(item).children('.idex-list-item-title:first').html('应用'+snap.title);
+					$(item).children('.idex-list-item-title:first').html(snapTitle);
 				}
 			}else{
 				this.applySnapCommand={
-					title : '应用'+snap.title,
+					title : snapTitle,
 					type : 'brushsnap',
 					undoContext: this.app.ViewPanel.getHTML(),
 					redoContext: snap.context,

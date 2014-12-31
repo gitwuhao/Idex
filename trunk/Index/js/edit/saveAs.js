@@ -171,10 +171,6 @@ $.push({
 			}
 		});
 	},
-	_save_ : function(data){
-	
-
-	},
 	close:function(){
 		this.logger(this);
 		this.win.remove();
