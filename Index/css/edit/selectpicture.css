@@ -1,0 +1,24 @@
+.idex-select-picture-win{
+
+}
+.idex-select-picture-win .x-ui-win-body{
+	width: 600px;
+	padding: 5px;
+}
+.idex-select-picture-win .x-ui-tab-panel .x-ui-tabview{
+	height: 400px;
+	padding: 5px 0px;
+}
+.idex-select-picture-win .x-ui-tabview .idex-picture-tree{
+	width: 200px;
+	height: 100%;
+	float: left;
+}
+.idex-select-picture-win .x-ui-tabview .idex-picture-list{
+	float: left;
+	border-left: 1px solid #E9E9E9;
+	margin-left: 10px;
+	padding-left: 10px;
+	width: 370px;
+	height: 100%;
+}
