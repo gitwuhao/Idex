@@ -1,4 +1,15 @@
 (function(CF,$){
+
+var __SNAP__SUFFIX__='CS'+$.randomChar(3);
+
+var __UNDO_INDEX__=parseInt((''+$.timestamp()).match(/(\d{4}$)/)[0]);
+
+var __SNAP_INDEX__=__UNDO_INDEX__ * 5;
+
+function getCloudSnapID(){
+	return (__SNAP_INDEX__ ++ )  + __SNAP__SUFFIX__;
+};
+
 $.push({
 	overwrite : function(app){
 		var HistoryPanel=app._module_map_.HistoryPanel;
@@ -29,6 +40,10 @@ $.push({
 			},
 			addCloudSnapItem:function(item){
 				this.logger(this);
+				item._id=item.id;
+
+				item.id=getCloudSnapID();
+
 				var div,
 					$elem,
 					html=['<div class="idex-list-item idex-cloud-snap-item" id="',item.id,'">',
@@ -49,7 +64,7 @@ $.push({
 				
 				$elem.children('.idex-list-check-item:first').click({
 					panel : this,
-					id : item.id
+					id : item._id
 				},function(event){
 					var data=event.data;
 					event.data=null;
@@ -58,14 +73,14 @@ $.push({
 				
 				$elem.click({
 					panel : this,
-					id : item.id
+					id : item._id
 				},function(event){
 					var data=event.data;
 					event.data=null;
 					data.panel.on('cloudSnapClick',this,data.id);
 				});
 
-				this.cloudsnapList[item.id]=item;
+				this.cloudsnapList[item._id]=item;
 			},
 			onCloudSnapCheck : function(target,snapID){
 				this.logger(this);
@@ -93,11 +108,22 @@ $.push({
 						type : 'brushsnap',
 						undoContext: this.app.ViewPanel.getHTML(),
 						redoContext: snap.context,
+						_cloudSnap: snap,
 						undo : function(){
-							console.info('云端快照【undo】...');
+							this.app.ViewPanel.setHTML(this.undoContext);
 						},
 						redo : function(){
-							console.info('云端快照【redo】...');
+							if(this.redoContext){
+								this.onRedoViewPanelHTML();
+								return;
+							}
+							
+						},
+						responseHandle : function(){
+							
+						},
+						onRedoViewPanelHTML : function(){
+							this.app.ViewPanel.setHTML(this.redoContext);
 						}
 					};
 					this.addUndo(this.applySnapCommand);
@@ -117,6 +143,38 @@ $.push({
 				$.addClass(target,'active');
 				this.activeSnap=snap;
 				this.disabled('del');
+			},
+			getCloudSnapCode : function(cloudSnap,callback){
+				$.ajax({
+					url:'/module.s',
+					data : 'method=getCode&_t=4&id='+cloudSnap.id,
+					type : 'POST',
+					dataType : 'text',
+					success : function(response_html){
+						callback(response_html);
+					},
+					error : function(){
+						
+					}
+				});
+			},
+			getCloudSnapList : function(){
+				$.ajax({
+					url:'/module.s',
+					data : 'method=query&_t=4&numIID=132676017',
+					type : 'POST',
+					_$owner : this,
+					dataType : 'jsonp',
+					jsonpCallback : $.getJSONPName(),
+					success : function(json){
+						
+					},
+					error : function(){
+						if(this._config && this._config.error){
+							this._config.error();
+						}
+					}
+				});
 			}
 		});
  
