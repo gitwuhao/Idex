@@ -16,6 +16,7 @@ $.push({
  
 		CF.merger(HistoryPanel,{
 			initPlugin : function(){
+				
 				var historyTab=this.getTab('history'),
 					div=$.createElement('<div class="idex-cloud-snap-box"></div>');
 
@@ -23,23 +24,10 @@ $.push({
 				
 				this.$cloudSnapBox=$(div);
 				this.cloudsnapList={};
-
-				this.addCloudSnapItem({
-					id : '10000',
-					ctime : '2014-12-31 00:00:00',
-					title : '09月12日'
-				});
-				this.addCloudSnapItem({
-					id : '10001',
-					ctime : '2014-12-30 00:00:00',
-					title : '前天18:01'
-				});
-				this.addCloudSnapItem({
-					id : '10002',
-					ctime : '2014-12-02 00:00:00',
-					title : '昨天19:01'
-				});
-				this.$cloudSnapBox.show();
+				
+				$.setTimeout(function(){
+					this.initCloudSnapList();
+				},500,this);
 			},
 			addCloudSnapItem:function(item){
 				this.logger(this);
@@ -100,16 +88,18 @@ $.push({
 				$.removeClass(target,'check');
 				this.brushSnap=snap;
 
+				var snapTitle ='应用快照【'+snap.title+'】';
+
 				if(this.applySnapCommand){
 					this.applySnapCommand.redoContext=snap.context;
 					var item=this.get(this.applySnapCommand.id);
 
 					if(item){
-						$(item).children('.idex-list-item-title:first').html('应用'+snap.title);
+						$(item).children('.idex-list-item-title:first').html(snapTitle);
 					}
 				}else{
 					this.applySnapCommand={
-						title : '应用'+snap.title,
+						title : snapTitle,
 						type : 'brushsnap',
 						undoContext: this.app.ViewPanel.getHTML(),
 						redoContext: snap.context,
@@ -162,16 +152,38 @@ $.push({
 					}
 				});
 			},
-			getCloudSnapList : function(){
+			CLOUD_CACHE_KEY : {
+				SNAP_LIST : 'cloud_snap_list',
+				SNAP_CODE : 'cloud_snap_code'
+			},
+			getCloudSnapListStorage : function(){
+				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_LIST);
+			},
+			saveCloudSnapListStorage : function(json){
+				var date=new Date();
+				date.addDays(7);
+				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),date);
+			},
+			initCloudSnapList : function(){
+				if(this.getCloudSnapListStorage()){
+					this.buildCloudSnapList();
+					return;
+				}
+				this.loadCloudSnapList();
+			},
+			loadCloudSnapList : function(){
 				$.ajax({
 					url:'/module.s',
-					data : 'method=query&_t=4&numIID=132676017',
+					data : 'method=query&_t=4&numIID='+this.app.data.id,
 					type : 'POST',
 					_$owner : this,
 					dataType : 'jsonp',
 					jsonpCallback : $.getJSONPName(),
 					success : function(json){
-						
+						if(json && json.length>0){
+							this._$owner.saveCloudSnapListStorage(json);
+							this._$owner.buildCloudSnapList();
+						}
 					},
 					error : function(){
 						if(this._config && this._config.error){
@@ -180,6 +192,19 @@ $.push({
 					}
 				});
 			},
+			buildCloudSnapList : function(){
+				var array,
+					json=this.getCloudSnapListStorage();
+				if(!json){
+					array=[];
+				}else{
+					array=JSON.parse(json);
+					this.$cloudSnapBox.show();
+				}
+				for(var i=0,len=array.length;i<len;i++){
+					this.addCloudSnapItem(array[i]);
+				}
+			},
 			getShotTimeTitle : function(date){
 				var today=new Date(),
 					curdate=new Date(date.getTime()),
@@ -187,6 +212,7 @@ $.push({
 					_day = date.getDate(),
 					_hours = date.getHours(),
 					_minutes = date.getMinutes(),
+					time,
 					day;
 				
 				today.setHours(0);
@@ -207,21 +233,23 @@ $.push({
 				
 				day=parseInt(day[0]);
 
+				if(_hours<10){
+					_hours='0'+_hours;
+				}
+				if(_minutes<10){
+					_minutes='0'+_minutes;
+				}
+				time=_hours + ':' + _hours;
+
 				//今天、昨天、前天
-				if(today==day){
-					if(_hours<10){
-						_hours='0'+_hours;
-					}
-					if(_minutes<10){
-						_minutes='0'+_minutes;
-					}
-					return _hours + ':' + _minutes;
+				if(today ==day){
+					return time;
 				}else if(today==day + 1){
-					return  '昨天';
+					return  '昨天 '+time;
 				}else if(today==day + 2){
-					return  '前天';
+					return  '前天 '+time;
 				}else{
-					return _month+'月'+_day+'日';
+					return _month+'月'+_day+'日'+time;
 				}
 			}
 		});

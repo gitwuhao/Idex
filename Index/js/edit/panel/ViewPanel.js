@@ -1,4 +1,18 @@
 (function(CF,$){
+	var current_id,
+		current_type;
+	
+	(function(){
+		var $context=$('.idex-view-context-box');
+
+		current_id= $context.attr('idex-id');
+		$context.removeAttr('idex-id');
+
+		current_type= $context.attr('idex-type');
+		$context.removeAttr('idex-type');
+
+	})();
+
 	$.push({
 		_name_ : 'ViewPanel',
 		__events__ : ['click','mousedown'].join(' '),
@@ -19,8 +33,13 @@
 			this.$contextBox.after(div);
 			this.$popuBox=$(div);
 
+			this.app.data=this.data;
 
 			this.initEvents();
+		},
+		data : {
+			id : current_id,
+			type : current_type
 		},
 		initEvents : function(){
 			this.logger(this);
