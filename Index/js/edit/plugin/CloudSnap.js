@@ -26,14 +26,17 @@ $.push({
 
 				this.addCloudSnapItem({
 					id : '10000',
+					ctime : '2014-12-31 00:00:00',
 					title : '09月12日'
 				});
 				this.addCloudSnapItem({
 					id : '10001',
+					ctime : '2014-12-29 00:00:00',
 					title : '前天18:01'
 				});
 				this.addCloudSnapItem({
 					id : '10002',
+					ctime : '2014-12-02 00:00:00',
 					title : '昨天19:01'
 				});
 				this.$cloudSnapBox.show();
@@ -43,6 +46,8 @@ $.push({
 				item._id=item.id;
 
 				item.id=getCloudSnapID();
+				
+				item.title=this.getShotTimeTitle(new Date(Date.parse(item.ctime)-Date.ONE_DAY_OF_MILLISECONDS));
 
 				var div,
 					$elem,
@@ -117,7 +122,6 @@ $.push({
 								this.onRedoViewPanelHTML();
 								return;
 							}
-							
 						},
 						responseHandle : function(){
 							
@@ -175,9 +179,52 @@ $.push({
 						}
 					}
 				});
+			},
+			getShotTimeTitle : function(date){
+				var today=new Date(),
+					curdate=new Date(date.getTime()),
+					_month = date.getMonth() + 1,
+					_day = date.getDate(),
+					_hours = date.getHours(),
+					_minutes = date.getMinutes(),
+					day;
+				
+				today.setHours(0);
+				today.setMinutes(0);
+				today.setSeconds(0);
+				today.setMilliseconds(0);
+
+				curdate.setHours(0);
+				curdate.setMinutes(0);
+				curdate.setSeconds(0);
+				curdate.setMilliseconds(0);
+
+				today=((today.getTime()/Date.ONE_DAY_OF_MILLISECONDS)+"").split('.');
+
+				day=((curdate.getTime()/Date.ONE_DAY_OF_MILLISECONDS)+"").split('.');
+			
+				today=parseInt(today[0]);
+				
+				day=parseInt(day[0]);
+
+				//今天、昨天、前天
+				if(today==day){
+					if(_hours<10){
+						_hours='0'+_hours;
+					}
+					if(_minutes<10){
+						_minutes='0'+_minutes;
+					}
+					return _hours + ':' + _minutes;
+				}else if(today==day + 1){
+					return  '昨天';
+				}else if(today==day + 2){
+					return  '前天';
+				}else{
+					return _month+'月'+_day+'日';
+				}
 			}
 		});
- 
 	}
 });
 })(CF,jQuery);
