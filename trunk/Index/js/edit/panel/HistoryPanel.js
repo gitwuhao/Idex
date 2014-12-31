@@ -161,15 +161,15 @@
 			}else if(this.brushSnap){
 				this.on('deActiveBrush');
 			}
+
 			$.addClass(target,'brush');
 			$.removeClass(target,'check');
+			
 			this.brushSnap=snap;
 
-			
 			if(this.applySnapCommand){
 				this.applySnapCommand.redoContext=snap.context;
 				var item=this.get(this.applySnapCommand.id);
-
 				if(item){
 					$(item).children('.idex-list-item-title:first').html('应用'+snap.title);
 				}
@@ -189,9 +189,7 @@
 				this.addUndo(this.applySnapCommand);
 			}
 			this.applySnapCommand.redo();
-
 			this.setCommandCheckStyle(this.applySnapCommand);
-			//this.on('deActiveBrush');
 		},
 		onLocalSnapClick : function(target,snapID){
 			this.logger(this);
