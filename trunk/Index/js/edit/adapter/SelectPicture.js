@@ -16,10 +16,87 @@
 				$owner : this,
 				item : {
 					xtype:'tab',
+					floatbar : [{
+						xtype : 'button',
+						icon : true,
+						cls : 'refresh',
+						title : '刷新',
+						onClick:function(){
+						}
+					},{
+						xtype : 'button',
+						icon : true,
+						cls : 'refresh',
+						title : '自动匹配',
+						onClick:function(){
+						}
+					}],
 					items : [{
 						label: '图片库',
 						name : 'picList',
-						html : '<div class="idex-picture-tree"></div><div class="idex-picture-list"></div>',
+						html : ['<div class="idex-picture-tree"></div>',
+								'<div class="idex-picture-list">',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+									'<div class="idex-picture-item">',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_200x200.jpg"/>',
+									'</div>',
+								'</div>'].join(''),
 						$context : this,
 						onLoad:function(){
 							var me=this;
@@ -28,6 +105,12 @@
 							this.$context.loadTreeData(function(json){
 								me.createTree(json);
 							});
+						},
+						onShowAfter : function(){
+							this.$owner.$floatbar.show();
+						},
+						onHideAfter : function(){
+							this.$owner.$floatbar.hide();
 						},
 						createTree : function(json){
 							this.tree=new ui.tree({
