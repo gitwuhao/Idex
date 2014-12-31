@@ -31,7 +31,7 @@ $.push({
 				});
 				this.addCloudSnapItem({
 					id : '10001',
-					ctime : '2014-12-29 00:00:00',
+					ctime : '2014-12-30 00:00:00',
 					title : '前天18:01'
 				});
 				this.addCloudSnapItem({
