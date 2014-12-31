@@ -86,12 +86,11 @@
 				},
 				onResize : function(x,y,w,h){
 					var $target=this.$target;
-					$target.css({
-						'height': this.instance.getHeight() + y + 'px'
-					});
 					if(this.event){
 						if(y!=0){
-							this.instance.changeFormItemValue('height',this.instance.getHeight());
+							var newHeight=this.instance.getHeight() + y;
+							this.instance.changeFormItemValue('height',newHeight);
+							this.instance.setFormItemValue('height',newHeight);
 							this.instance.updateParentBox();
 						}
 					}
