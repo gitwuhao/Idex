@@ -410,6 +410,16 @@
 				});
 			}
 		},
+		changeItemValue : function(key,value){
+			ui.logger(this);
+			var item=this.getItem(key);
+			if(item){
+				this.onChange(item,value);
+				if(item.setValue){
+					item.setValue(value);
+				}
+			}
+		},
 		setItemValue:function(key,value){
 			ui.logger(this);
 			var item=this.getItem(key);
