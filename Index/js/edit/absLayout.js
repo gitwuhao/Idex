@@ -251,10 +251,11 @@
 		},
 		setFormItemValue : function(key,value){
 			this.logger(this);
-			var item=this.form.getItem(key);
-			if(item && item.setValue){
-				item.setValue(value);
-			}
+			this.form.setItemValue(key,value);
+		},
+		changeFormItemValue : function(key,value){
+			this.logger(this);
+			this.form.changeItemValue(key,value);
 		},
 		setPropertyItemValue:function(key,value){
 			this.logger(this);

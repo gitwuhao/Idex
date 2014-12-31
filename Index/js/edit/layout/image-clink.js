@@ -91,7 +91,7 @@
 					});
 					if(this.event){
 						if(y!=0){
-							this.instance.setFormItemValue('height',this.instance.getHeight());
+							this.instance.changeFormItemValue('height',this.instance.getHeight());
 							this.instance.updateParentBox();
 						}
 					}
