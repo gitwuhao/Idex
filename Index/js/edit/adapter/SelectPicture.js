@@ -26,7 +26,7 @@
 					},{
 						xtype : 'button',
 						icon : true,
-						cls : 'refresh',
+						cls : 'auto-select',
 						title : '自动匹配',
 						onClick:function(){
 						}
