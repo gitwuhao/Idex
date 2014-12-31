@@ -12,7 +12,7 @@
 			
 			this.win=new ui.window({
 				title : '选择图片',
-				cls : 'idex-select-picture-win',
+				cls : 'idex-select-picture-win x-ui-scrollbar',
 				$owner : this,
 				item : {
 					xtype:'tab',
