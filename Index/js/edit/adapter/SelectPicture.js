@@ -82,8 +82,10 @@
 				success : function(json){
 					if(json && json.length>0){
 						json=$.cache.buildTreeData(json);
-						this._$owner.saveTreeData(json);
-						this._$callback(json);
+						if(json && json.length>0){
+							this._$owner.saveTreeData(json);
+							this._$callback(json);
+						}
 					}
 				},
 				error : function(){
