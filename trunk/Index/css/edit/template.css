@@ -58,21 +58,3 @@
 .idex-template-tabpanle .x-ui-floatbar-box .x-ui-button{
 	padding: 2px;
 }
-.idex-template-tabpanle .x-ui-floatbar-box .share .x-ui-icon{
-	background-position: -300px -60px;
-}
-.idex-template-tabpanle .x-ui-floatbar-box .del .x-ui-icon{
-	background-position: -320px -60px;
-}
-.idex-template-tabpanle .x-ui-floatbar-box .refresh .x-ui-icon{
-	background-position: -300px -80px;
-	/* width: 18px; */
-	/* height: 18px; */
-}
-.idex-template-tabpanle .x-ui-floatbar-box .refresh2 .x-ui-icon{
-	background-position: -320px -80px;
-}
-
-.idex-template-tabpanle .x-ui-floatbar-box .unshare .x-ui-icon{
-	background-position: -320px -80px;
-}
