@@ -259,7 +259,7 @@
 				$.removeClass(item.firstElementChild,'brush');
 				$.addClass(item.firstElementChild,'check');
 			}
-			this.onExecuteAfter(this.undo.getCommand());
+			this.onExecuteAfter(this.undo.getCommand(),'redo');
 		},
 		onExecuteUndo:function(command){
 			this.logger(this);
@@ -270,7 +270,7 @@
 				$.removeClass(item.firstElementChild,'brush');
 				$.addClass(item.firstElementChild,'check');
 			}
-			this.onExecuteAfter(this.undo.getCommand());
+			this.onExecuteAfter(this.undo.getCommand(),'undo');
 		},
 		setCommandBrushStyle : function(command){
 			this.logger(this);
@@ -294,7 +294,7 @@
 				$.addClass(check,'check');
 			}
 		},
-		onExecuteAfter : function(command){
+		onExecuteAfter : function(command,type){
 			this.logger(this);
 			if(command){
 				var item=this.app.get(command.id);
@@ -308,6 +308,9 @@
 				this.on('deActiveLocalSnap');
 			}else if(command.type == 'brushsnap'){
 				this.applySnapCommand=command;
+				if(type=='redo'){
+					this.undo.setLastCommand(command);
+				}
 			}
 		},
 		onRemoveUndo:function(commands){
