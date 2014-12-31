@@ -178,22 +178,19 @@ $.push({
 				SNAP_LIST : 'cloud_snap_list',
 				SNAP_CODE : 'cloud_snap_code'
 			},
-			getExpiredDate : function(){
-				var date=new Date();
-				date.addDays(7);
-				return date;
-			},
 			getCloudSnapListData : function(){
 				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_LIST);
 			},
 			saveCloudSnapListData : function(json){
-				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),this.getExpiredDate());
+				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),new Date());
 			},
 			getCloudSnapCodeData : function(id){
 				return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id);
 			},
 			saveCloudSnapCodeData : function(id,html){
-				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,this.getExpiredDate());
+				var date=new Date();
+				date.addDays(7);
+				$.cache.put(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,date);
 			},
 			initCloudSnapList : function(){
 				if(this.getCloudSnapListData()){
