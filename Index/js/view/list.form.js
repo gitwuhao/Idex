@@ -264,7 +264,7 @@ Idex.view.list.getForm= function(){
 			$.it(json,function(i,item){
 				html.push(
 				'<div class="idex-list-item">',
-					'<div class="idex-item-img"><img src="',item.pic_url,'_200x200.jpg"/></div>',
+					'<div class="idex-item-img"><img src="',item.pic_url,'_150x150.jpg"/></div>',
 					'<div class="idex-item-content">',
 						'<div class="idex-item-title">',
 							'<a href="http://item.taobao.com/item.htm?id=',item.num_iid,'" target="_TB_ITEM">',
