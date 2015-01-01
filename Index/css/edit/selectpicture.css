@@ -43,14 +43,17 @@
 	float: left;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(200, 200, 200, 0.5);
+	background-color: rgba(255, 255, 255, 0.5);
 	color: #00A8FF;
 	opacity: 0;
 	margin-top: -144px;
-	font-size: 18px;
+	font-size: 32px;
 	line-height: 150px;
 	text-align: center;
 	font-family: "Microsoft YaHei";
+}
+.idex-select-picture-win .idex-picture-list .idex-picture-item:hover{
+	border-color: #32B8EA;
 }
 .idex-select-picture-win .idex-picture-list .idex-picture-item:hover .item-title{
 	opacity: 1;
