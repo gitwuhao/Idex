@@ -25,7 +25,7 @@
 						name : 'picList',
 						html : ['<div class="idex-picture-tree uns"></div>',
 								'<div class="idex-picture-list uns">',
-									'<div class="idex-picture-item">',
+									'<div class="idex-picture-item" title="【11.11特供款】韩都衣舍韩版2014秋冬新款女拼接针织衫MM3002悜">',
 										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="pic-title">200 x 120</div>',
 										'<div class="select-title">选择</div>',
