@@ -10,10 +10,14 @@
 				return;
 			}
 			
-			this.win=new ui.window({
+			this.win=new ui.window(this.getWinConfig());
+			this.win.$owner = this;
+			this.win.show();
+		},
+		getWinConfig : function(){
+			return {
 				title : '选择图片',
 				cls : 'idex-select-picture-win x-ui-scrollbar',
-				$owner : this,
 				item : {
 					xtype:'tab',
 					floatbar : [{
@@ -138,9 +142,9 @@
 										'<div class="item-title">选择</div>',
 									'</div>',
 								'</div>'].join(''),
-						$context : this,
 						onLoad:function(){
 							var me=this;
+							this.$context = this.$owner.$owner.$owner,
 							this.$pictureTree=this.$tabview.children('.idex-picture-tree:first');
 							this.$pictureList=this.$tabview.children('.idex-picture-list:first');
 							this.$context.loadTreeData(function(json){
@@ -180,8 +184,7 @@
 				onCloseAfter : function(){
 					this.$owner.close();
 				}
-			});
-			this.win.show();
+			};
 		},
 		CACHE_KEY : {
 			PICTURE_TREE : 'picture_category_tree',
