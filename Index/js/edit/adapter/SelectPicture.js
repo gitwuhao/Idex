@@ -98,7 +98,7 @@
 											'<div class="idex-page-button num">3</div>',
 											'<div class="idex-page-button num">4</div>',
 											'<div class="idex-page-button num">5</div>',
-											'<div class="idex-page-button more">...</div>',
+											'<div class="more">...</div>',
 											'<div class="idex-page-button next">下一页</div>',
 										'</div>',
 									  '</div>'];

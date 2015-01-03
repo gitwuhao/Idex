@@ -35,6 +35,15 @@
 	cursor: pointer;
 }
 
+.idex-select-picture-win .idex-picture-right-box .more{
+	float: left;
+	line-height: 24px;
+	margin-left: 10px;
+	text-align: center;
+	font-weight: bold;
+	color: #999;
+}
+
 .idex-select-picture-win .idex-page-button:hover{
 	box-shadow: 0px 1px 2px #DBDBDB;
 	border-bottom-color: #CECECE;
