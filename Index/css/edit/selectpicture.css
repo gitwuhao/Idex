@@ -2,7 +2,7 @@
 
 }
 .idex-select-picture-win .x-ui-win-body{
-	width: 890px;
+	width: 855px;
 	padding: 5px;
 }
 .idex-select-picture-win .x-ui-tab-panel .x-ui-tabview{
@@ -21,7 +21,7 @@
 }
 .idex-select-picture-win .x-ui-floatbar-box .idex-picture-right-box{
 	float: right;
-	/* margin-right: 10px; */
+	margin-right: 4px;
 }
 .idex-select-picture-win .idex-page-button{
 	float: left;
@@ -30,7 +30,7 @@
 	padding: 3px 11px;
 	line-height: 22px;
 	height: 28px;
-	margin-right: 10px;
+	margin-left: 10px;
 	color: #999;
 	cursor: pointer;
 }
@@ -45,10 +45,9 @@
 .idex-select-picture-win .x-ui-tabview .idex-picture-list{
 	float: left;
 	border-left: 1px solid #E9E9E9;
-	margin-left: 10px;
-	width: 660px;
+	width: 645px;
 	height: 100%;
-	overflow: auto;
+	overflow: hidden;
 }
 .idex-select-picture-win .idex-picture-list .idex-picture-item{
 	width: 150px;
