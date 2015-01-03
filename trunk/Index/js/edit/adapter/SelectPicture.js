@@ -27,8 +27,8 @@
 					items : [{
 						label: '图片库',
 						name : 'picList',
-						html : ['<div class="idex-picture-tree"></div>',
-								'<div class="idex-picture-list">',
+						html : ['<div class="idex-picture-tree uns"></div>',
+								'<div class="idex-picture-list uns">',
 									'<div class="idex-picture-item">',
 										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="item-title">选择</div>',
@@ -154,10 +154,13 @@
 							this.$owner.$floatbar.hide();
 						},
 						createTree : function(json){
+							if(json && json.insert){
+								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
+							}
 							this.tree=new ui.tree({
 								$owner : this,
 								render: this.$pictureTree,
-								cls : 'idex-tree-box',
+								cls : 'idex-tree-box none-icon',
 								items : json,
 								onNodeClick : function(node,event){
 									this.$owner.on('nodeClick',node);
@@ -181,7 +184,8 @@
 			this.win.show();
 		},
 		CACHE_KEY : {
-			PICTURE_TREE : 'picture_category_tree'
+			PICTURE_TREE : 'picture_category_tree',
+			LAST_UPLOAD_PICTURE_VALUE : '$L_U_P_V'
 		},
 		getTreeData : function(){
 			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
