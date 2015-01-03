@@ -159,7 +159,7 @@
 						},
 						createTree : function(json){
 							if(json && json.insert){
-								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
+								json.insert(0,{label : '<span style="color: #FF6100;">最近上传100张</span>',cid : '-100',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
 							}
 							this.tree=new ui.tree({
 								$owner : this,
@@ -172,9 +172,12 @@
 							});
 						},
 						onNodeClick : function(node){
+							console.info('node click:'+node.cid);
+						},
+						loadPictureList : function(){
 							
+						
 						}
-
 					},{
 						label: '上传图片',
 						name : 'upload',
