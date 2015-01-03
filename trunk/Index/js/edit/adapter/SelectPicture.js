@@ -20,14 +20,6 @@
 				cls : 'idex-select-picture-win x-ui-scrollbar',
 				item : {
 					xtype:'tab',
-					floatbar : [{
-						xtype : 'button',
-						icon : true,
-						cls : 'auto-select',
-						title : '自动匹配',
-						onClick:function(){
-						}
-					}],
 					items : [{
 						label: '图片库',
 						name : 'picList',
@@ -62,79 +54,19 @@
 										'<div class="item-title">选择</div>',
 									'</div>',
 									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1VkHSGFXXXXbNXFXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="item-title">选择</div>',
 									'</div>',
 									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
+										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="item-title">选择</div>',
 									'</div>',
 									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
+										'<img src="http://img01.taobaocdn.com/bao/uploaded/i1/TB1Mg2WGFXXXXbLXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="item-title">选择</div>',
 									'</div>',
 									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="item-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
+										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1fc9CGFXXXXbVXpXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
 										'<div class="item-title">选择</div>',
 									'</div>',
 									'<div class="idex-picture-item">',
@@ -143,19 +75,63 @@
 									'</div>',
 								'</div>'].join(''),
 						onLoad:function(){
-							var me=this;
-							this.$context = this.$owner.$owner.$owner,
+							var div,
+								html=['<div class="x-ui-floatbar-box">',
+										'<div class="idex-picture-left-box">',
+										'</div>',
+										'<div class="idex-picture-right-box">',
+											'<div class="idex-page-button prev">上一页</div>',
+											'<div class="idex-page-button num">1</div>',
+											'<div class="idex-page-button num">2</div>',
+											'<div class="idex-page-button num">3</div>',
+											'<div class="idex-page-button num">4</div>',
+											'<div class="idex-page-button num">5</div>',
+											'<div class="idex-page-button more">...</div>',
+											'<div class="idex-page-button next">下一页</div>',
+										'</div>',
+									  '</div>'];
+
+									 
+							div=$.createElement(html.join(''));
+
+							this.$owner.$tabbarbox.before(div);
+							
+							this.$floatbar=$(div);
+							this.$pictureLeftBox=this.$floatbar.children('.idex-picture-left-box:first');
+							this.$pictureRightBox=this.$floatbar.children('.idex-picture-right-box:first');
+
+
 							this.$pictureTree=this.$tabview.children('.idex-picture-tree:first');
 							this.$pictureList=this.$tabview.children('.idex-picture-list:first');
+							
+							this.$context = this.$owner.$owner.$owner;
+
+							this.initUI();
+
+						},
+						initUI : function(){
+							this.autoSelect.render = this.$pictureLeftBox[0];
+							this.autoSelect=new ui.button(this.autoSelect);
+							
+							var me=this;
 							this.$context.loadTreeData(function(json){
 								me.createTree(json);
 							});
 						},
+						autoSelect :{
+							xtype : 'button',
+							icon : true,
+							cls : 'auto-select',
+							title : '自动匹配',
+							onClick:function(){
+
+							}
+						},
 						onShowAfter : function(){
-							this.$owner.$floatbar.show();
+							this.$floatbar.show();
 						},
 						onHideAfter : function(){
-							this.$owner.$floatbar.hide();
+							this.$floatbar.hide();
 						},
 						createTree : function(json){
 							if(json && json.insert){

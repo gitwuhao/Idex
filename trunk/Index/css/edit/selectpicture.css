@@ -6,7 +6,7 @@
 	padding: 5px;
 }
 .idex-select-picture-win .x-ui-tab-panel .x-ui-tabview{
-	height: 450px;
+	height: 480px;
 	padding: 5px 0px;
 }
 .idex-select-picture-win .x-ui-tabview .idex-picture-tree{
@@ -14,6 +14,33 @@
 	height: 100%;
 	float: left;
 	overflow: auto;
+}
+.idex-select-picture-win .x-ui-floatbar-box{
+	margin-left: 10px;
+	width: 660px;
+}
+.idex-select-picture-win .x-ui-floatbar-box .idex-picture-right-box{
+	float: right;
+	/* margin-right: 10px; */
+}
+.idex-select-picture-win .idex-page-button{
+	float: left;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	padding: 3px 11px;
+	line-height: 22px;
+	height: 28px;
+	margin-right: 10px;
+	color: #999;
+	cursor: pointer;
+}
+
+.idex-select-picture-win .idex-page-button:hover{
+	box-shadow: 0px 1px 2px #DBDBDB;
+	border-bottom-color: #CECECE;
+}
+.idex-select-picture-win .idex-page-button.prev,.idex-select-picture-win .idex-page-button.next{
+	padding: 3px 8px;
 }
 .idex-select-picture-win .x-ui-tabview .idex-picture-list{
 	float: left;
