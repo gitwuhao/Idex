@@ -52,6 +52,7 @@
 .idex-select-picture-win .idex-page-toolbar .idex-page-button.active{
 	background-color: #00B2FF;
 	color: #FFF;
+	border-color: #00B2FF;
 }
 .idex-select-picture-win .idex-page-toolbar .more{
 	float: left;
