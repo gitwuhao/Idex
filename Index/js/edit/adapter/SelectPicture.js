@@ -106,7 +106,10 @@
 						},
 						PAGE_SIZE : 12,
 						loadPictureList : function(paramObject){
-							
+							if(this.isBuilding){
+								return;
+							}
+							this.isBuilding=true;
 							this.removePageToolBar();
 
 							ui.popu.createInnerLoadingAnimation({
@@ -165,6 +168,7 @@
 								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">没有找到图片...</div>';
 							}
 							this.$pictureList.html(html);
+							this.isBuilding=false;
 						},
 						buildPageToolBar : function(total){
 							this.getPageToolBarHTML({
