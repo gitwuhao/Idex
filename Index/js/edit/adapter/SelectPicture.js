@@ -80,7 +80,7 @@
 						},
 						createTree : function(json){
 							if(json && json.insert){
-								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>',cid : '-100',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
+								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>'});
 							}
 							this.tree=new ui.tree({
 								$owner : this,
@@ -98,10 +98,10 @@
 						},
 						onNodeClick : function(node){
 							//console.info('node click:'+node.cid);
-							this.currentCID=node.cid;
+							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
 							this.loadPictureList({
-								cid : this.currentCID || ''
+								cid : this.currentCID
 							});
 						},
 						PAGE_SIZE : 12,
@@ -119,15 +119,15 @@
 								}
 							});
 
-							var args='&pageSize='+this.PAGE_SIZE;
+							var args='method=query&pageSize='+this.PAGE_SIZE;
 
 							if(paramObject){
-								args=args + '&'+$.param(paramObject);
+								args=args +'&'+$.param(paramObject);
 							}
 
 							$.ajax({
-								url:'/module.s',
-								data : 'method=query&_t=5'+args,
+								url:'/picture.s',
+								data : args,
 								type : 'POST',
 								dataType : 'jsonp',
 								jsonpCallback : $.getJSONPName(),
@@ -267,8 +267,7 @@
 			};
 		},
 		CACHE_KEY : {
-			PICTURE_TREE : 'picture_category_tree',
-			LAST_UPLOAD_PICTURE_VALUE : '$L_U_P_V'
+			PICTURE_TREE : 'picture_category_tree'
 		},
 		getTreeData : function(){
 			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
