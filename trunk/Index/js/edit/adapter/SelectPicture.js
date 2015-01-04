@@ -100,9 +100,12 @@
 							//console.info('node click:'+node.cid);
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
+							/*
 							this.loadPictureList({
 								cid : this.currentCID
 							});
+							*/
+							this.getPictureData();
 						},
 						PAGE_SIZE : 12,
 						loadPictureList : function(paramObject){
@@ -144,6 +147,10 @@
 									this.$owner.buildPictureList(-1);
 								}
 							});
+						},
+						getPictureData : function(){
+							this.removePageToolBar();
+							this.buildPictureList({total:"231",result:[{title:"1 (18)",pixel:"800x1200",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB24MxhbFXXXXbQXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (16)",pixel:"267x400",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2l9hkbFXXXXcQXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (17)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2T3FjbFXXXXapXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (15)",pixel:"800x800",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (14)",pixel:"800x1000",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2oz8mbFXXXXbpXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (13)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2K.XmbFXXXXbEXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (12)",pixel:"800x1200",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2jL4ibFXXXXbgXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (11)",pixel:"267x400",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2wxNhbFXXXXbMXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (10)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2qgBnbFXXXXbaXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (9)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2boxlbFXXXXccXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (7)",pixel:"267x400",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2d2lkbFXXXXXyXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (8)",pixel:"267x400",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2YcNrbFXXXXXkXXXXXXXXXXXX-1646439371.jpg"}]});
 						},
 						buildPictureList : function(json){
 							var html;
