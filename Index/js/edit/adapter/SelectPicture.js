@@ -14,6 +14,53 @@
 			this.win.$owner = this;
 			this.win.show();
 		},
+		onSelect : function(img){
+			var src=img.src.replace(this.PIC_SIZING,'');
+			console.info('select:' + src);
+		},
+		PIC_SIZING : '_150x150.jpg',
+		CACHE_KEY : {
+			PICTURE_TREE : 'picture_category_tree'
+		},
+		getTreeData : function(){
+			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
+		},
+		saveTreeData : function(json){
+			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json),new Date());
+		},
+		loadTreeData : function(callback){
+			var treeData=this.getTreeData();
+			if(treeData){
+				callback(JSON.parse(treeData));
+				return;
+			}
+			$.ajax({
+				url:'/config.s',
+				data : 'method=get&type=2',
+				_$owner : this,
+				_$callback : callback,
+				type : 'POST',
+				dataType : 'jsonp',
+				jsonpCallback : $.getJSONPName(),
+				success : function(json){
+					if(json && json.length>0){
+						json=$.cache.buildTreeData(json);
+						if(json && json.length>0){
+							this._$owner.saveTreeData(json);
+							this._$callback(json);
+						}
+					}
+				},
+				error : function(){
+
+				}
+			});
+		},
+		close:function(){
+			this.logger(this);
+			this.win.remove();
+			delete this.win;
+		},
 		getWinConfig : function(){
 			return {
 				title : '选择图片',
@@ -164,7 +211,7 @@
 								for(var i=0,len=result.length;i<len;i++){
 									var item=result[i];
 									html.push('<div class="idex-picture-item" title="',item.title,'">',
-												'<img src="',item.path,'_150x150.jpg"/>',
+												'<img src="',item.path,this.$context.PIC_SIZING,'"/>',
 												'<div class="pic-title">',item.pixel,'</div>',
 												'<div class="select-title">选择</div>',
 											  '</div>');
@@ -175,7 +222,17 @@
 								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">没有找到图片...</div>';
 							}
 							this.$pictureList.html(html);
+							if(json.total>0){
+								this.bindPictureItemEvent();
+							}
 							this.isBuilding=false;
+						},
+						bindPictureItemEvent : function(){
+							this.$pictureList.children('.idex-picture-item').click({
+								$context : this.$context
+							},function(event){
+								event.data.$context.onSelect($(this).children('img')[0]);
+							});
 						},
 						buildPageToolBar : function(total){
 							this.getPageToolBarHTML({
@@ -301,48 +358,6 @@
 					this.$owner.close();
 				}
 			};
-		},
-		CACHE_KEY : {
-			PICTURE_TREE : 'picture_category_tree'
-		},
-		getTreeData : function(){
-			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
-		},
-		saveTreeData : function(json){
-			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json),new Date());
-		},
-		loadTreeData : function(callback){
-			var treeData=this.getTreeData();
-			if(treeData){
-				callback(JSON.parse(treeData));
-				return;
-			}
-			$.ajax({
-				url:'/config.s',
-				data : 'method=get&type=2',
-				_$owner : this,
-				_$callback : callback,
-				type : 'POST',
-				dataType : 'jsonp',
-				jsonpCallback : $.getJSONPName(),
-				success : function(json){
-					if(json && json.length>0){
-						json=$.cache.buildTreeData(json);
-						if(json && json.length>0){
-							this._$owner.saveTreeData(json);
-							this._$callback(json);
-						}
-					}
-				},
-				error : function(){
-
-				}
-			});
-		},
-		close:function(){
-			this.logger(this);
-			this.win.remove();
-			delete this.win;
 		}
 	});
 })(CF,jQuery);
