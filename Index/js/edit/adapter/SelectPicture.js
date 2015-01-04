@@ -146,12 +146,12 @@
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
 
+							/*
 							if(this.currentCID==''){
 								this.$pictureLeftBox.show();
 							}else{
 								this.$pictureLeftBox.hide();
 							}
-							/*
 							this.loadPictureList({
 								cid : this.currentCID
 							});
