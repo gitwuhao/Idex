@@ -193,12 +193,12 @@
 						*/
 						getPageToolBarHTML : function(config){
 							
-							var total=config.total,
+							var total=parseInt(config.total),
 								startPageNo,
 								endPageNo,
 								pageCount,
-								pageSize=config.pageSize,
-								pageNo=config.pageNo,
+								pageSize=parseInt(config.pageSize),
+								pageNo=parseInt(config.pageNo),
 								html;
 							
 							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
@@ -262,6 +262,24 @@
 							html.push('</div>');
 							
 							this.$pictureRightBox.html(html.join(''));
+							this.bindPageToolBarEvent();
+						},
+						bindPageToolBarEvent : function(){
+							var $toolbar=this.$pictureRightBox.children('.idex-page-toolbar:first');
+							$toolbar.children('.idex-page-button').click({
+								$owner : this
+							},function(event){
+								var $owner=event.data.$owner,
+									pageNo=this.innerText;
+								if(pageNo==$owner.currentPageNo){
+									return;
+								}
+								$owner.currentPageNo=pageNo;
+								$owner.loadPictureList({
+									cid : $owner.currentCID,
+									pageNo : pageNo
+								});
+							});
 						},
 						removePageToolBar : function(){
 							this.$pictureRightBox.empty();
