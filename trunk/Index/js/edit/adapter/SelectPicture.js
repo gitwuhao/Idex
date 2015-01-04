@@ -52,8 +52,6 @@
 
 							this.initUI();
 
-							
-							this.buildPageToolBar(200);
 
 						},
 						initUI : function(){
@@ -82,7 +80,7 @@
 						},
 						createTree : function(json){
 							if(json && json.insert){
-								json.insert(0,{label : '<span style="color: #FF6100;">最近上传100张</span>',cid : '-100',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
+								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>',cid : '-100',value : this.$context.CACHE_KEY.LAST_UPLOAD_PICTURE_VALUE});
 							}
 							this.tree=new ui.tree({
 								$owner : this,
@@ -156,102 +154,12 @@
 							}
 							this.$pictureList.html(html);
 						},
-						/*
-							'<div class="idex-page-button prev">上一页</div>',
-							'<div class="idex-page-button num">1</div>',
-							'<div class="idex-page-button num">2</div>',
-							'<div class="idex-page-button num">3</div>',
-							'<div class="idex-page-button num">4</div>',
-							'<div class="idex-page-button num">5</div>',
-							'<div class="more">...</div>',
-							'<div class="idex-page-button next">下一页</div>',
-						*/
 						buildPageToolBar : function(total){
-							var pageCount,
-								pageNo=this.currentPageNo;
-							
-							var html=[];
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 1,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 2,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 3,
-								pageSize : 12,
-								total : 233
-							}));
-
-
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 4,
-								pageSize : 12,
-								total : 233
-							}));
-
-								
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 5,
-								pageSize : 12,
-								total : 233
-							}));
-
-								
-							html.push(this.getPageToolBarHTML({
-								pageNo : 9,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 16,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 17,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 18,
-								pageSize : 12,
-								total : 233
-							}));
-
-							html.push(this.getPageToolBarHTML({
-								pageNo : 19,
-								pageSize : 12,
-								total : 233
-							}));
- 
-								
-							html.push(this.getPageToolBarHTML({
-								pageNo : 2,
-								pageSize : 12,
-								total : 20
-							}));
-								
-							html.push(this.getPageToolBarHTML({
-								pageNo : 6,
-								pageSize : 12,
-								total : 72
-							}));
-
-							this.$pictureList.html(html.join(''));
-							
+							this.getPageToolBarHTML({
+								pageNo : this.currentPageNo,
+								pageSize : this.PAGE_SIZE,
+								total : total
+							});
 						},
 						/*
 						{
@@ -261,19 +169,31 @@
 						}
 						*/
 						getPageToolBarHTML : function(config){
+							
 							var total=config.total,
 								startPageNo,
 								endPageNo,
 								pageCount,
 								pageSize=config.pageSize,
 								pageNo=config.pageNo,
-								html=['<div class="idex-page-toolbar" style="margin-bottom: 10px;">'];
+								html;
+							
+							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
+							
+							
+							this.$pictureRightBox.empty();
+
+							if(pageCount==1){
+								return;
+							}
+
+							html=['<div class="idex-page-toolbar">'];
+
 							if(!pageNo || pageNo==1){
 								html.push('<div class="idex-page-label">上一页</div>');
 							}else{
 								html.push('<div class="idex-page-button prev">上一页</div>');
 							}
-							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
 							
 							if(1 < pageNo-2){
 								startPageNo=pageNo-2;
@@ -293,6 +213,9 @@
 							
 							if(pageCount > (pageNo+2)){
 								endPageNo=pageNo+2;
+								if(endPageNo<4){
+									endPageNo=4;
+								}
 							}else{
 								endPageNo=pageCount;
 							}
@@ -318,7 +241,7 @@
 							}
 							html.push('</div>');
 
-							return html.join('');
+							this.$pictureRightBox.html(html.join(''));
 						}
 					},{
 						label: '上传图片',
