@@ -28,7 +28,7 @@
 								'</div>'].join(''),
 						onLoad:function(){
 							var div,
-								html=['<div class="x-ui-floatbar-box">',
+								html=['<div class="x-ui-floatbar-box uns">',
 										'<div class="idex-picture-left-box">',
 										'</div>',
 										'<div class="idex-picture-right-box">',
