@@ -270,9 +270,16 @@
 								$owner : this
 							},function(event){
 								var $owner=event.data.$owner,
+									pageNo;
+								if($.hasClass(this,'prev')){
+									pageNo=parseInt($owner.currentPageNo)-1;
+								}else if($.hasClass(this,'num')){
 									pageNo=this.innerText;
-								if(pageNo==$owner.currentPageNo){
-									return;
+									if(pageNo==$owner.currentPageNo){
+										return;
+									}
+								}else if($.hasClass(this,'next')){
+									pageNo=parseInt($owner.currentPageNo)+1;
 								}
 								$owner.currentPageNo=pageNo;
 								$owner.loadPictureList({
