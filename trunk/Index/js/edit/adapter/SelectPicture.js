@@ -93,7 +93,7 @@
 							});
 
 							$.setTimeout(function(){
-								this.onNodeClick({});
+								this.tree.items[0].$node.click();
 							},100,this);
 						},
 						onNodeClick : function(node){
@@ -222,8 +222,8 @@
 							
 							if(pageCount > (pageNo+2)){
 								endPageNo=pageNo+2;
-								if(endPageNo<4){
-									endPageNo=4;
+								if(endPageNo<5){
+									endPageNo=5;
 								}
 							}else{
 								endPageNo=pageCount;
