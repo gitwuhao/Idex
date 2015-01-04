@@ -25,66 +25,6 @@
 						name : 'picList',
 						html : ['<div class="idex-picture-tree uns"></div>',
 								'<div class="idex-picture-list uns">',
-									'<div class="idex-picture-item" title="【11.11特供款】韩都衣舍韩版2014秋冬新款女拼接针织衫MM3002悜">',
-										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1PJMbGFXXXXasXpXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200 x 120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img02.taobaocdn.com/bao/uploaded/i2/TB1VkHSGFXXXXbNXFXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200 x 120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img01.taobaocdn.com/bao/uploaded/i1/TB1Mg2WGFXXXXbLXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200 x 120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200 x 120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="http://img04.taobaocdn.com/bao/uploaded/i4/TB1wVEnGFXXXXcJXXXXXXXXXXXX_!!0-item_pic.jpg_150x150.jpg"/>',
-										'<div class="pic-title">200x120</div>',
-										'<div class="select-title">选择</div>',
-									'</div>',
 								'</div>'].join(''),
 						onLoad:function(){
 							var div,
@@ -92,14 +32,6 @@
 										'<div class="idex-picture-left-box">',
 										'</div>',
 										'<div class="idex-picture-right-box">',
-											'<div class="idex-page-button prev">上一页</div>',
-											'<div class="idex-page-button num">1</div>',
-											'<div class="idex-page-button num">2</div>',
-											'<div class="idex-page-button num">3</div>',
-											'<div class="idex-page-button num">4</div>',
-											'<div class="idex-page-button num">5</div>',
-											'<div class="more">...</div>',
-											'<div class="idex-page-button next">下一页</div>',
 										'</div>',
 									  '</div>'];
 
@@ -275,22 +207,18 @@
 							}));
 
 								
-
 							html.push(this.getPageToolBarHTML({
-								pageNo : 6,
+								pageNo : 9,
 								pageSize : 12,
 								total : 233
 							}));
 
-								
-
 							html.push(this.getPageToolBarHTML({
-								pageNo : 7,
+								pageNo : 19,
 								pageSize : 12,
 								total : 233
 							}));
 
-								
 							html.push(this.getPageToolBarHTML({
 								pageNo : 1,
 								pageSize : 12,
@@ -338,7 +266,7 @@
 							}
 							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
 							
-							if(pageNo>=6){
+							if(1 < pageNo-2){
 								startPageNo=pageNo-2;
 							}else{
 								startPageNo=pageNo;
@@ -348,13 +276,15 @@
 								html.push('<div class="idex-page-button num">1</div>');
 							}
 							
-							if(startPageNo>2){
+							if(startPageNo>3){
 								html.push('<div class="more">...</div>');
+							}else if(startPageNo==3){
+								html.push('<div class="idex-page-button num">2</div>');
 							}
 							
-							if(pageCount > (startPageNo+5)){
-								endPageNo=startPageNo+5;
-							}else if(pageCount < (startPageNo+5)){
+							if(pageCount > (pageNo+2)){
+								endPageNo=pageNo+2;
+							}else{
 								endPageNo=pageCount;
 							}
 
