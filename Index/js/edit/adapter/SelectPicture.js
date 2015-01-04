@@ -91,18 +91,24 @@
 									this.$owner.on('nodeClick',node);
 								}
 							});
+
+							$.setTimeout(function(){
+								this.onNodeClick({});
+							},100,this);
 						},
 						onNodeClick : function(node){
 							//console.info('node click:'+node.cid);
 							this.currentCID=node.cid;
 							this.currentPageNo=1;
 							this.loadPictureList({
-								cid : this.currentCID,
-								pageSize : this.PAGE_SIZE
+								cid : this.currentCID || ''
 							});
 						},
 						PAGE_SIZE : 12,
 						loadPictureList : function(paramObject){
+							
+							this.removePageToolBar();
+
 							ui.popu.createInnerLoadingAnimation({
 								$elem : this.$pictureList,
 								css : {
@@ -113,9 +119,15 @@
 								}
 							});
 
+							var args='&pageSize='+this.PAGE_SIZE;
+
+							if(paramObject){
+								args=args + '&'+$.param(paramObject);
+							}
+
 							$.ajax({
 								url:'/module.s',
-								data : 'method=query&_t=5&'+$.param(paramObject),
+								data : 'method=query&_t=5'+args,
 								type : 'POST',
 								dataType : 'jsonp',
 								jsonpCallback : $.getJSONPName(),
@@ -180,9 +192,6 @@
 							
 							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
 							
-							
-							this.$pictureRightBox.empty();
-
 							if(pageCount==1){
 								return;
 							}
@@ -240,8 +249,11 @@
 								html.push('<div class="idex-page-button next">下一页</div>');
 							}
 							html.push('</div>');
-
+							
 							this.$pictureRightBox.html(html.join(''));
+						},
+						removePageToolBar : function(){
+							this.$pictureRightBox.empty();
 						}
 					},{
 						label: '上传图片',
