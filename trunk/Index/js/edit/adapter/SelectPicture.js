@@ -214,26 +214,35 @@
 							}));
 
 							html.push(this.getPageToolBarHTML({
-								pageNo : 19,
+								pageNo : 16,
 								pageSize : 12,
 								total : 233
 							}));
 
 							html.push(this.getPageToolBarHTML({
-								pageNo : 1,
+								pageNo : 17,
 								pageSize : 12,
-								total : 20
+								total : 233
 							}));
 
+							html.push(this.getPageToolBarHTML({
+								pageNo : 18,
+								pageSize : 12,
+								total : 233
+							}));
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 19,
+								pageSize : 12,
+								total : 233
+							}));
+ 
 								
 							html.push(this.getPageToolBarHTML({
 								pageNo : 2,
 								pageSize : 12,
 								total : 20
 							}));
-
-
-								
 								
 							html.push(this.getPageToolBarHTML({
 								pageNo : 6,
@@ -296,7 +305,9 @@
 								html.push('<div class="idex-page-button num',(isActive ? ' active' : ''),'">',i,'</div>');
 							}
 
-							if(pageCount > endPageNo){
+							if(pageCount == endPageNo+1){
+								html.push('<div class="idex-page-button num">',pageCount,'</div>');
+							}else if(pageCount > endPageNo){
 								html.push('<div class="more">...</div>');
 							}
 
