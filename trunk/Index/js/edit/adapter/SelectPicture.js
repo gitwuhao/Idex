@@ -147,16 +147,17 @@
 							this.currentPageNo=1;
 
 							/*
+							this.getPictureData();
 							if(this.currentCID==''){
 								this.$pictureLeftBox.show();
 							}else{
 								this.$pictureLeftBox.hide();
 							}
+							*/
 							this.loadPictureList({
 								cid : this.currentCID
 							});
-							*/
-							this.getPictureData();
+							
 						},
 						PAGE_SIZE : 12,
 						loadPictureList : function(paramObject){
@@ -226,7 +227,7 @@
 								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">没有找到图片...</div>';
 							}
 							this.$pictureList.html(html);
-							if(json.total>0){
+							if(json && json.total>0){
 								this.bindPictureItemEvent();
 							}
 							this.isBuilding=false;
