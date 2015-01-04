@@ -35,8 +35,8 @@
 				return;
 			}
 			$.ajax({
-				url:'/config.s',
-				data : 'method=get&type=2',
+				url:'/picture.s',
+				data : 'method=getCat',
 				_$owner : this,
 				_$callback : callback,
 				type : 'POST',
