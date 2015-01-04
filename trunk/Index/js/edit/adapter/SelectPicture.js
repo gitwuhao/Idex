@@ -99,7 +99,6 @@
 
 							this.initUI();
 
-
 						},
 						initUI : function(){
 							this.autoSelect.render = this.$pictureLeftBox[0];
@@ -144,9 +143,14 @@
 							},100,this);
 						},
 						onNodeClick : function(node){
-							//console.info('node click:'+node.cid);
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
+
+							if(this.currentCID==''){
+								this.$pictureLeftBox.show();
+							}else{
+								this.$pictureLeftBox.hide();
+							}
 							/*
 							this.loadPictureList({
 								cid : this.currentCID
