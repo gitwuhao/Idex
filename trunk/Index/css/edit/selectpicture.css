@@ -23,32 +23,48 @@
 	float: right;
 	margin-right: 4px;
 }
-.idex-select-picture-win .idex-page-button{
+.idex-select-picture-win .idex-page-toolbar{
+	overflow: hidden;
+	color: #999;
+	text-align: center;
+}
+.idex-select-picture-win .idex-page-toolbar .idex-page-label{
 	float: left;
-	border: 1px solid #DDD;
-	border-radius: 3px;
 	padding: 3px 11px;
 	line-height: 22px;
 	height: 28px;
 	margin-left: 10px;
-	color: #999;
+}
+.idex-select-picture-win .idex-page-toolbar .idex-page-button{
+	float: left;
+	padding: 3px 11px;
+	line-height: 22px;
+	height: 28px;
+	margin-left: 10px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
 	cursor: pointer;
 }
-
-.idex-select-picture-win .idex-picture-right-box .more{
+.idex-select-picture-win .idex-page-toolbar .idex-page-button.num{
+	width: 30px;
+	padding: 3px 0px;
+}
+.idex-select-picture-win .idex-page-toolbar .idex-page-button.active{
+	background-color: #00B2FF;
+	color: #FFF;
+}
+.idex-select-picture-win .idex-page-toolbar .more{
 	float: left;
 	line-height: 24px;
 	margin-left: 10px;
-	text-align: center;
 	font-weight: bold;
-	color: #999;
 }
 
-.idex-select-picture-win .idex-page-button:hover{
+.idex-select-picture-win .idex-page-toolbar .idex-page-button:hover{
 	box-shadow: 0px 1px 2px #DBDBDB;
 	border-bottom-color: #CECECE;
 }
-.idex-select-picture-win .idex-page-button.prev,.idex-select-picture-win .idex-page-button.next{
+.idex-select-picture-win .idex-page-toolbar .idex-page-button.prev,.idex-select-picture-win .idex-page-toolbar .idex-page-button.next{
 	padding: 3px 8px;
 }
 .idex-select-picture-win .x-ui-tabview .idex-picture-list{

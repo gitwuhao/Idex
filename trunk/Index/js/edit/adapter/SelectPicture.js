@@ -120,6 +120,9 @@
 
 							this.initUI();
 
+							
+							this.buildPageToolBar(200);
+
 						},
 						initUI : function(){
 							this.autoSelect.render = this.$pictureLeftBox[0];
@@ -160,11 +163,221 @@
 							});
 						},
 						onNodeClick : function(node){
-							console.info('node click:'+node.cid);
+							//console.info('node click:'+node.cid);
+							this.currentCID=node.cid;
+							this.currentPageNo=1;
+							this.loadPictureList({
+								cid : this.currentCID,
+								pageSize : this.PAGE_SIZE
+							});
 						},
-						loadPictureList : function(){
+						PAGE_SIZE : 12,
+						loadPictureList : function(paramObject){
+							ui.popu.createInnerLoadingAnimation({
+								$elem : this.$pictureList,
+								css : {
+									'height': '200px',
+									'width': '400px',
+									'margin': '100px auto',
+									'overflow': 'hidden'
+								}
+							});
+
+							$.ajax({
+								url:'/module.s',
+								data : 'method=query&_t=5&'+$.param(paramObject),
+								type : 'POST',
+								dataType : 'jsonp',
+								jsonpCallback : $.getJSONPName(),
+								$owner : this,
+								success : function(json){
+									$.setTimeout(function(_json){
+										this.buildPictureList(_json);
+									},500,this.$owner,[json]);
+								},
+								error : function(){				
+									this.$owner.buildPictureList(-1);
+								}
+							});
+						},
+						buildPictureList : function(json){
+							var html;
+							if(json==-1){
+								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败...</div>';
+							}else if(json && json.errorMsg){
+								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败【'+json.errorMsg+'】...</div>';
+							}else if(json && json.total>0){
+								html=[];
+								var result=json.result;
+								for(var i=0,len=result.length;i<len;i++){
+									var item=result[i];
+									html.push('<div class="idex-picture-item" title="',item.title,'">',
+												'<img src="',item.path,'_150x150.jpg"/>',
+												'<div class="pic-title">',item.pixel,'</div>',
+												'<div class="select-title">选择</div>',
+											  '</div>');
+								}
+								html=html.join('');
+								this.buildPageToolBar(json.total);
+							}else{
+								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">没有找到图片...</div>';
+							}
+							this.$pictureList.html(html);
+						},
+						/*
+							'<div class="idex-page-button prev">上一页</div>',
+							'<div class="idex-page-button num">1</div>',
+							'<div class="idex-page-button num">2</div>',
+							'<div class="idex-page-button num">3</div>',
+							'<div class="idex-page-button num">4</div>',
+							'<div class="idex-page-button num">5</div>',
+							'<div class="more">...</div>',
+							'<div class="idex-page-button next">下一页</div>',
+						*/
+						buildPageToolBar : function(total){
+							var pageCount,
+								pageNo=this.currentPageNo;
 							
-						
+							var html=[];
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 1,
+								pageSize : 12,
+								total : 233
+							}));
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 2,
+								pageSize : 12,
+								total : 233
+							}));
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 3,
+								pageSize : 12,
+								total : 233
+							}));
+
+
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 4,
+								pageSize : 12,
+								total : 233
+							}));
+
+								
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 5,
+								pageSize : 12,
+								total : 233
+							}));
+
+								
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 6,
+								pageSize : 12,
+								total : 233
+							}));
+
+								
+
+							html.push(this.getPageToolBarHTML({
+								pageNo : 7,
+								pageSize : 12,
+								total : 233
+							}));
+
+								
+							html.push(this.getPageToolBarHTML({
+								pageNo : 1,
+								pageSize : 12,
+								total : 20
+							}));
+
+								
+							html.push(this.getPageToolBarHTML({
+								pageNo : 2,
+								pageSize : 12,
+								total : 20
+							}));
+
+
+								
+								
+							html.push(this.getPageToolBarHTML({
+								pageNo : 6,
+								pageSize : 12,
+								total : 72
+							}));
+
+							this.$pictureList.html(html.join(''));
+							
+						},
+						/*
+						{
+							pageNo : pageNo,
+							pageSize : pageSize,
+							total : total
+						}
+						*/
+						getPageToolBarHTML : function(config){
+							var total=config.total,
+								startPageNo,
+								endPageNo,
+								pageCount,
+								pageSize=config.pageSize,
+								pageNo=config.pageNo,
+								html=['<div class="idex-page-toolbar" style="margin-bottom: 10px;">'];
+							if(!pageNo || pageNo==1){
+								html.push('<div class="idex-page-label">上一页</div>');
+							}else{
+								html.push('<div class="idex-page-button prev">上一页</div>');
+							}
+							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
+							
+							if(pageNo>=6){
+								startPageNo=pageNo-2;
+							}else{
+								startPageNo=pageNo;
+							}
+							
+							if(startPageNo>=2){
+								html.push('<div class="idex-page-button num">1</div>');
+							}
+							
+							if(startPageNo>2){
+								html.push('<div class="more">...</div>');
+							}
+							
+							if(pageCount > (startPageNo+5)){
+								endPageNo=startPageNo+5;
+							}else if(pageCount < (startPageNo+5)){
+								endPageNo=pageCount;
+							}
+
+							for(var i=startPageNo;i<=endPageNo;i++){
+								var isActive=false;
+								if(i==pageNo){
+									isActive=true;
+								}
+								html.push('<div class="idex-page-button num',(isActive ? ' active' : ''),'">',i,'</div>');
+							}
+
+							if(pageCount > endPageNo){
+								html.push('<div class="more">...</div>');
+							}
+
+							if(pageCount==pageNo){
+								html.push('<div class="idex-page-label">下一页</div>');
+							}else{
+								html.push('<div class="idex-page-button next">下一页</div>');
+							}
+							html.push('</div>');
+
+							return html.join('');
 						}
 					},{
 						label: '上传图片',
