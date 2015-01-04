@@ -24,13 +24,12 @@
 	margin-right: 4px;
 }
 .idex-select-picture-win .idex-page-toolbar{
-	overflow: hidden;
 	color: #999;
 	text-align: center;
 }
 .idex-select-picture-win .idex-page-toolbar .idex-page-label{
 	float: left;
-	padding: 3px 11px;
+	padding: 3px 8px;
 	line-height: 22px;
 	height: 28px;
 	margin-left: 5px;
