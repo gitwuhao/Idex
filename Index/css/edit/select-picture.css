@@ -85,12 +85,12 @@
 }
 .idex-select-picture-win .idex-picture-item{
 	float: left;
-	width: 156px;
-	height: 156px;
+	width: 158px;
+	height: 158px;
 	border: 1px solid #DDD;
 	padding: 2px;
 	border-radius: 3px;
-	margin: 0px 10px 10px 0px;
+	margin: 0px 5px 10px 5px;
 	overflow: hidden;
 }
 .idex-select-picture-win .idex-picture-list .idex-picture-item{
@@ -143,9 +143,9 @@
 /************************************************************************************/
 .idex-picture-match-list{
 	position: absolute;
-	left: 10px;
+	left: 5px;
 	top: 75px;
-	right: 14px;
+	right: 10px;
 	bottom: 15px;
 	background-color: #FFF;
 	overflow: auto;
@@ -177,7 +177,7 @@
 	font-size: 14px;
 }
 .idex-picture-match-status-box .progress-l{
-    padding-left: 200px;
+    padding-left: 180px;
 }
 .idex-picture-match-status-box .match-l{
     padding-left: 20px;
