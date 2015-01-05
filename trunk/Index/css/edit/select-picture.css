@@ -169,7 +169,7 @@
 }
 .idex-picture-match-status-box .status-l{
 	color:#59B400;
-	padding-left: 80px;
+	padding-left: 50px;
 }
 .idex-picture-match-status-box .status-l em{
 	font-weight: bold;
@@ -195,8 +195,14 @@
 }
 
 .idex-picture-match-status-box .progress-l{
-    padding-left: 200px;
+    padding-left: 50px;
 }
 .idex-picture-match-status-box .match-l{
     padding-left: 20px;
+}
+.idex-picture-match-status-box .x-ui-button{
+	float: right;
+}
+.idex-picture-match-status-box .x-ui-button .x-ui-label{
+	padding: 0px 5px;
 }

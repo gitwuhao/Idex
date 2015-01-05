@@ -240,6 +240,7 @@
 							this.initTree();
 						},
 						initUI : function(){
+
 							this.refreshTreeButton.render = this.$pictureLeftBox[0];
 							this.refreshTreeButton.$owner=this;
 							this.refreshTreeButton=new ui.button(this.refreshTreeButton);
@@ -248,6 +249,12 @@
 							this.autoMatchButton.$owner=this;
 							this.autoMatchButton.$context=this.$context;
 							this.autoMatchButton=new ui.button(this.autoMatchButton);
+
+							this.cancelMatchButton.render = this.$pictureMatchStatusBox[0];
+							this.cancelMatchButton.$owner=this;
+							this.cancelMatchButton.$context=this.$context;
+							this.cancelMatchButton=new ui.button(this.cancelMatchButton);
+
 						},
 						initTree : function(){
 							var me=this;
@@ -258,6 +265,13 @@
 									me.createTree(json);
 								}
 							});
+						},
+						cancelMatchButton :{
+							xtype : 'button',
+							label : '取消',
+							onClick:function(){
+								
+							}
 						},
 						autoMatchButton :{
 							xtype : 'button',
