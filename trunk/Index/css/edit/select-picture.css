@@ -158,17 +158,21 @@
 .idex-picture-match-status-box em{
 	font-style: normal;
 }
-.idex-picture-match-status-box .status-l{
-	color:#59B400;
-	padding-left: 20px;
-}
-.idex-picture-match-status-box .progress-l{
-    padding-left: 20px;
-}
-.idex-picture-match-status-box .progress-l .num{
+.idex-picture-match-status-box .num{
 	color:#FF7D00;
 }
-.idex-picture-match-status-box .remark-l{
+.idex-picture-match-status-box .status-l{
+	color:#59B400;
+	padding-left: 80px;
+}
+.idex-picture-match-status-box .status-l em{
+	font-weight: bold;
+	font-family: arial;
+	font-size: 14px;
+}
+.idex-picture-match-status-box .progress-l{
+    padding-left: 200px;
+}
+.idex-picture-match-status-box .match-l{
     padding-left: 20px;
-
 }
