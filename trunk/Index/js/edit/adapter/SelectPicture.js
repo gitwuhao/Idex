@@ -9,7 +9,7 @@
 			if(this.win){
 				return;
 			}
-			
+
 			this.win=new ui.window(this.getWinConfig());
 			this.win.$owner = this;
 			this.win.show();
@@ -17,9 +17,6 @@
 		onSelect : function(img){
 			var src=img.src.replace(this.PIC_SIZING,'');
 			console.info('select:' + src);
-		},
-		autoMatch : function(){
-		
 		},
 		PIC_SIZING : '_150x150.jpg',
 		CACHE_KEY : {
@@ -62,7 +59,23 @@
 					}
 				},
 				error : function(){
-					
+
+				}
+			});
+		},
+		loadAutoMatchPictureList : function(cid,callback){
+			$.ajax({
+				url:'/picture.s',
+				data : 'method=query&pageSize=100&cid='+cid,
+				type : 'POST',
+				dataType : 'jsonp',
+				jsonpCallback : $.getJSONPName(),
+				_callback : callback,
+				success : function(json){
+					this._callback.execute(json);
+				},
+				error : function(){
+					this._callback.execute();
 				}
 			});
 		},
@@ -81,8 +94,8 @@
 						label: '图片库',
 						name : 'picList',
 						html : ['<div class="idex-picture-tree uns"></div>',
-								'<div class="idex-picture-list uns">',
-								'</div>'].join(''),
+								'<div class="idex-picture-list uns"></div>',
+								'<div class="idex-picture-match-list uns"></div>'].join(''),
 						onLoad:function(){
 							var div,
 								html=['<div class="x-ui-floatbar-box uns">',
@@ -90,21 +103,32 @@
 										'</div>',
 										'<div class="idex-picture-right-box">',
 										'</div>',
+										'<div class="idex-picture-match-status-box">',
+											'当前分类：','<em class="cat-l cB">最近上传</em>',
+											'<span class="status-l">正在匹配...</span>',
+											'<span class="progress-l">已匹配：',
+												'<em class="num">39</em>&nbsp;/&nbsp;',
+												'<em class="count cB">49</em>',
+											'</span>',
+											'<span class="remark-l">注：出于性能考虑只检索当前分类下，最近上传的前100张图片。</span>',
+										'</div>',
 									  '</div>'];
 
-									 
+
 							div=$.createElement(html.join(''));
 
 							this.$owner.$tabbarbox.before(div);
-							
+
 							this.$floatbar=$(div);
 							this.$pictureLeftBox=this.$floatbar.children('.idex-picture-left-box:first');
 							this.$pictureRightBox=this.$floatbar.children('.idex-picture-right-box:first');
+							this.$pictureMatchStatusBox=this.$floatbar.children('.idex-picture-match-status-box:first');
 
 
 							this.$pictureTree=this.$tabview.children('.idex-picture-tree:first');
 							this.$pictureList=this.$tabview.children('.idex-picture-list:first');
-							
+							this.$pictureMatchList=this.$tabview.children('.idex-picture-match-list:first');
+
 							this.$context = this.$owner.$owner.$owner;
 
 							this.initUI();
@@ -135,7 +159,7 @@
 							icon : 'auto-match',
 							label : '自动匹配',
 							onClick:function(){
-								this.$context.autoMatch();
+								this.$context.loadAutoMatchPictureList(this.$owner.currentCID,CF.getCallback(this.$owner.buildMatchPictureList,this.$owner));
 							}
 						},
 						refreshTreeButton :{
@@ -144,6 +168,11 @@
 							label : '刷新分类',
 							onClick:function(){
 								this.$owner.refreshTree();
+							}
+						},
+						buildMatchPictureList : function(json){
+							if(json && json.length>0){
+								
 							}
 						},
 						refreshTree : function(){
@@ -164,7 +193,7 @@
 						isInitTree : true,
 						createTree : function(json){
 							if(json && json.insert){
-								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>'});
+								json.insert(0,{label : '<span class="cB">最近上传</span>'});
 							}
 							this.tree=new ui.tree({
 								$owner : this,
@@ -186,7 +215,7 @@
 						onNodeClick : function(node){
 
 							this.autoMatchButton.$elem.hide();
-							
+
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
 
@@ -201,7 +230,7 @@
 							this.loadPictureList({
 								cid : this.currentCID
 							});
-							
+
 						},
 						PAGE_SIZE : 12,
 						loadPictureList : function(paramObject){
@@ -239,7 +268,7 @@
 										this.buildPictureList(_json);
 									},500,this.$owner,[json]);
 								},
-								error : function(){				
+								error : function(){
 									this.$owner.buildPictureList(-1);
 								}
 							});
@@ -300,7 +329,7 @@
 						}
 						*/
 						getPageToolBarHTML : function(config){
-							
+
 							var total=parseInt(config.total),
 								startPageNo,
 								endPageNo,
@@ -308,9 +337,9 @@
 								pageSize=parseInt(config.pageSize),
 								pageNo=parseInt(config.pageNo),
 								html;
-							
+
 							pageCount=Math.floor(total/pageSize) + ((total % pageSize) >0 ?  1 : 0);
-							
+
 							if(pageCount==1){
 								return;
 							}
@@ -322,23 +351,23 @@
 							}else{
 								html.push('<div class="idex-page-button prev">上一页</div>');
 							}
-							
+
 							if(1 < pageNo-2){
 								startPageNo=pageNo-2;
 							}else{
 								startPageNo=pageNo;
 							}
-							
+
 							if(startPageNo>=2){
 								html.push('<div class="idex-page-button num">1</div>');
 							}
-							
+
 							if(startPageNo>3){
 								html.push('<div class="more">...</div>');
 							}else if(startPageNo==3){
 								html.push('<div class="idex-page-button num">2</div>');
 							}
-							
+
 							if(pageCount > (pageNo+2)){
 								endPageNo=pageNo+2;
 								if(endPageNo<5){
@@ -368,7 +397,7 @@
 								html.push('<div class="idex-page-button next">下一页</div>');
 							}
 							html.push('</div>');
-							
+
 							this.$pictureRightBox.html(html.join(''));
 							this.bindPageToolBarEvent();
 						},
