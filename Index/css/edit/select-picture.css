@@ -1,6 +1,9 @@
 .idex-select-picture-win{
 
 }
+.idex-select-picture-win .cB{
+	color:#00AFFF;
+}
 .idex-select-picture-win .x-ui-win-body{
 	width: 855px;
 	padding: 5px;
@@ -131,4 +134,41 @@
 }
 .idex-select-picture-win .x-ui-button .x-ui-icon.auto-match{
 	background-position: -300px -60px;
+}
+/************************************************************************************/
+.idex-picture-match-list{
+	position: absolute;
+	left: 10px;
+	top: 75px;
+	right: 10px;
+	bottom: 10px;
+	background-color: #FFF;
+}
+.idex-picture-match-status-box{
+	position: absolute;
+	left: 200px;
+	top: 42px;
+	right: 10px;
+	height: 30px;
+	background-color: #FFF;
+	line-height: 30px;
+	color: #777;
+	font-size: 12px;
+}
+.idex-picture-match-status-box em{
+	font-style: normal;
+}
+.idex-picture-match-status-box .status-l{
+	color:#59B400;
+	padding-left: 20px;
+}
+.idex-picture-match-status-box .progress-l{
+    padding-left: 20px;
+}
+.idex-picture-match-status-box .progress-l .num{
+	color:#FF7D00;
+}
+.idex-picture-match-status-box .remark-l{
+    padding-left: 20px;
+
 }
