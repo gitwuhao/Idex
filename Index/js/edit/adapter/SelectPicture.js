@@ -104,8 +104,13 @@
 
 						},
 						initUI : function(){
+							
+							this.refreshTree.render = this.$pictureLeftBox[0];
+							this.refreshTree=new ui.button(this.refreshTree);
+
 							this.autoSelect.render = this.$pictureLeftBox[0];
 							this.autoSelect=new ui.button(this.autoSelect);
+
 							
 							var me=this;
 							this.$context.loadTreeData(function(json){
@@ -118,9 +123,16 @@
 						},
 						autoSelect :{
 							xtype : 'button',
-							icon : true,
-							cls : 'auto-select',
-							title : '自动匹配',
+							icon : 'auto-select',
+							label : '自动匹配',
+							onClick:function(){
+
+							}
+						},
+						refreshTree :{
+							xtype : 'button',
+							icon : 'refresh',
+							label : '刷新分类',
 							onClick:function(){
 
 							}
@@ -150,6 +162,10 @@
 							},100,this);
 						},
 						onNodeClick : function(node){
+							if(node.value=='refresh'){
+								
+								return;
+							}
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
 
