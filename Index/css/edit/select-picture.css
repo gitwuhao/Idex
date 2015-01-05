@@ -1,37 +1,37 @@
-.idex-select-picture-win{
+.idex-select-pic-win{
 
 }
-.idex-select-picture-win .cB{
+.idex-select-pic-win .cB{
 	color:#00AFFF;
 }
-.idex-select-picture-win .x-ui-win-body{
+.idex-select-pic-win .x-ui-win-body{
 	width: 855px;
 	padding: 5px;
 }
-.idex-select-picture-win .x-ui-tab-panel .x-ui-tabview{
+.idex-select-pic-win .x-ui-tab-panel .x-ui-tabview{
 	height: 480px;
 	padding: 5px 0px;
 }
-.idex-select-picture-win .x-ui-tabview .idex-picture-tree{
+.idex-select-pic-win .x-ui-tabview .idex-pic-tree{
 	width: 190px;
 	margin-right: 10px;
 	height: 100%;
 	float: left;
 	overflow: auto;
 }
-.idex-select-picture-win .x-ui-floatbar-box{
+.idex-select-pic-win .x-ui-floatbar-box{
 	margin-left: 10px;
 	width: 638px;
 }
-.idex-select-picture-win .x-ui-floatbar-box .idex-picture-right-box{
+.idex-select-pic-win .x-ui-floatbar-box .idex-pic-right-box{
 	float: right;
 	margin-right: 4px;
 }
-.idex-select-picture-win .idex-page-toolbar{
+.idex-select-pic-win .idex-page-toolbar{
 	color: #999;
 	text-align: center;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-label,.idex-select-picture-win .idex-page-toolbar .idex-page-button{
+.idex-select-pic-win .idex-page-toolbar .idex-page-label,.idex-select-pic-win .idex-page-toolbar .idex-page-button{
 	float: left;
 	padding: 3px 11px;
 	line-height: 22px;
@@ -41,17 +41,17 @@
 	border-radius: 3px;
 	cursor: pointer;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-label{
+.idex-select-pic-win .idex-page-toolbar .idex-page-label{
 	padding: 3px 8px;
 	background-color: #F5F5F5;
 	cursor: default;
 	box-shadow: inset 0px 1px 2px rgba(130, 130, 130, 0.1);
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-button.num{
+.idex-select-pic-win .idex-page-toolbar .idex-page-button.num{
 	width: 30px;
 	padding: 3px 0px;
 }
-.idex-select-picture-win .idex-page-toolbar .more{
+.idex-select-pic-win .idex-page-toolbar .more{
 	float: left;
 	line-height: 24px;
 	height: 28px;
@@ -60,30 +60,35 @@
 	font-family: arial;
 	font-size: 14px;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-button:hover{
+.idex-select-pic-win .idex-page-toolbar .idex-page-button:hover{
 	box-shadow: 0px 1px 2px #DBDBDB;
 	border-bottom-color: #CECECE;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-button.active:hover{
+.idex-select-pic-win .idex-page-toolbar .idex-page-button.active:hover{
 	box-shadow: none;
 	cursor: default;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-button.active{
+.idex-select-pic-win .idex-page-toolbar .idex-page-button.active{
 	background-color: #00B2FF;
 	color: #FFF;
 	border-color: #00B2FF;
 }
-.idex-select-picture-win .idex-page-toolbar .idex-page-button.prev,.idex-select-picture-win .idex-page-toolbar .idex-page-button.next{
+.idex-select-pic-win .idex-page-toolbar .idex-page-button.prev,.idex-select-pic-win .idex-page-toolbar .idex-page-button.next{
 	padding: 3px 8px;
 }
-.idex-select-picture-win .x-ui-tabview .idex-picture-list{
+.idex-select-pic-win .idex-pic-list{
 	float: left;
 	border-left: 1px solid #E9E9E9;
 	width: 645px;
 	height: 100%;
 	overflow: hidden;
 }
-.idex-select-picture-win .idex-picture-item{
+.idex-select-pic-win .idex-pic-list .error-msg{
+	padding-top: 30%;
+	font-size: 28px;
+	text-align: center;
+}
+.idex-select-pic-win .idex-pic-item{
 	float: left;
 	width: 162px;
 	height: 162px;
@@ -93,18 +98,18 @@
 	margin: 0px 0px 5px 5px;
 	overflow: hidden;
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item{
+.idex-select-pic-win .idex-pic-list .idex-pic-item{
 	width: 150px;
 	height: 150px;
 	margin: 0px 0px 10px 10px;
 	cursor: pointer;
 }
-.idex-select-picture-win .idex-picture-item img{
+.idex-select-pic-win .idex-pic-item img{
 	float: left;
 	width: 100%;
 	height: 100%;
 }
-.idex-select-picture-win .idex-picture-item .pic-title{
+.idex-select-pic-win .idex-pic-item .pic-title{
 	float: left;
 	width: 100%;
 	height: 20px;
@@ -114,7 +119,7 @@
 	line-height: 20px;
 	text-align: center;
 }
-.idex-select-picture-win .idex-picture-list .select-title{
+.idex-select-pic-win .idex-pic-list .select-title{
 	float: left;
 	width: 100%;
 	height: 100%;
@@ -127,21 +132,21 @@
 	text-align: center;
 	font-family: "Microsoft YaHei";
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item:hover{
+.idex-select-pic-win .idex-pic-list .idex-pic-item:hover{
 	border-color: #32B8EA;
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item:hover .pic-title{
+.idex-select-pic-win .idex-pic-list .idex-pic-item:hover .pic-title{
 	display: none;
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item:hover .select-title{
+.idex-select-pic-win .idex-pic-list .idex-pic-item:hover .select-title{
 	opacity: 1;
 	transition: all 0.5s 0s ease;
 }
-.idex-select-picture-win .x-ui-button .x-ui-icon.auto-match{
+.idex-select-pic-win .x-ui-button .x-ui-icon.auto-match{
 	background-position: -300px -60px;
 }
 /************************************************************************************/
-.idex-picture-match-list{
+.idex-pic-match-list{
 	position: absolute;
 	left: 5px;
 	top: 75px;
@@ -149,8 +154,9 @@
 	bottom: 15px;
 	background-color: #FFF;
 	overflow: auto;
+	display: none;
 }
-.idex-picture-match-status-box{
+.idex-pic-match-status-box{
 	position: absolute;
 	left: 200px;
 	top: 42px;
@@ -160,31 +166,32 @@
 	line-height: 30px;
 	color: #777;
 	font-size: 12px;
+	display: none;
 }
-.idex-picture-match-status-box em{
+.idex-pic-match-status-box em{
 	font-style: normal;
 }
-.idex-picture-match-status-box .num{
+.idex-pic-match-status-box .num{
 	color:#FF7D00;
 }
-.idex-picture-match-status-box .status-l{
+.idex-pic-match-status-box .status-l{
 	color:#59B400;
 	padding-left: 50px;
 }
-.idex-picture-match-status-box .status-l em{
+.idex-pic-match-status-box .status-l em{
 	font-weight: bold;
 	font-family: arial;
 	font-size: 14px;
 	opacity:0;
 	-webkit-animation:bounce_circleG 2s infinite;
 }
-.idex-picture-match-status-box .status-l .s1{
+.idex-pic-match-status-box .status-l .s1{
 	-webkit-animation-delay:0.5s;
 }
-.idex-picture-match-status-box .status-l .s2{
+.idex-pic-match-status-box .status-l .s2{
 	-webkit-animation-delay:1s;
 }
-.idex-picture-match-status-box .status-l .s3{
+.idex-pic-match-status-box .status-l .s3{
 	-webkit-animation-delay:1.5s;
 }
 @-webkit-keyframes bounce_circleG{
@@ -194,13 +201,13 @@
 }
 }
 
-.idex-picture-match-status-box .progress-l{
+.idex-pic-match-status-box .progress-l{
     padding-left: 50px;
 }
-.idex-picture-match-status-box .match-l{
+.idex-pic-match-status-box .match-l{
     padding-left: 20px;
 }
-.idex-select-picture-win .x-ui-floatbar-box .x-ui-button.cancel-match{
+.idex-select-pic-win .x-ui-floatbar-box .x-ui-button.cancel-match{
 	float: right;
 	padding: 4px 12px 3px 12px;
 }
