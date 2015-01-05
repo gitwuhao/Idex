@@ -26,7 +26,7 @@
 			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
 		},
 		saveTreeData : function(json){
-			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json),new Date());
+			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json));
 		},
 		loadTreeData : function(callback){
 			var treeData=this.getTreeData();
@@ -47,12 +47,15 @@
 						json=$.cache.buildTreeData(json);
 						if(json && json.length>0){
 							this._$owner.saveTreeData(json);
-							this._$callback(json);
 						}
+						this._$callback(json);
+					}else if(json.errorMsg){
+						console.error('loadTreeData :'+json.errorMsg);
+						this._$callback();
 					}
 				},
 				error : function(){
-
+					
 				}
 			});
 		},
@@ -106,7 +109,11 @@
 							
 							var me=this;
 							this.$context.loadTreeData(function(json){
-								me.createTree(json);
+								if(!json){
+									me.$pictureTree.html('加载失败...');
+								}else{
+									me.createTree(json);
+								}
 							});
 						},
 						autoSelect :{
@@ -209,6 +216,7 @@
 							if(json==-1){
 								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败...</div>';
 							}else if(json && json.errorMsg){
+								console.error('buildPictureList :'+json.errorMsg);
 								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败【'+json.errorMsg+'】...</div>';
 							}else if(json && json.total>0){
 								html=[];
