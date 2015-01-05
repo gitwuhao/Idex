@@ -130,6 +130,6 @@
 	opacity: 1;
 	transition: all 0.5s 0s ease;
 }
-.idex-select-picture-win .auto-select .x-ui-icon{
+.idex-select-picture-win .x-ui-button .x-ui-icon.auto-select{
 	background-position: -300px -60px;
 }
