@@ -1,4 +1,9 @@
 (function(CF,$){
+
+	var CACHE_KEY = {
+		PIC_TREE : 'pic_category_tree'
+	};
+
 	$.push({
 		_name_ : 'SelectPicture',
 		initModule : function(){
@@ -18,7 +23,6 @@
 			if(this.win){
 				return;
 			}
-
 			this.win=new ui.window(this.getWinConfig());
 			this.win.$owner = this;
 			this.win.show();
@@ -28,18 +32,15 @@
 			console.info('select:' + src);
 		},
 		PIC_SIZING : '_150x150.jpg',
-		CACHE_KEY : {
-			PICTURE_TREE : 'picture_category_tree'
-		},
 		getTreeData : function(){
-			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
+			return $.cache.get(CACHE_KEY.PIC_TREE);
 		},
 		saveTreeData : function(json){
 			if(!json){
-				$.cache.remove(this.CACHE_KEY.PICTURE_TREE);
+				$.cache.remove(CACHE_KEY.PIC_TREE);
 				return;
 			}
-			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json));
+			$.cache.put(CACHE_KEY.PIC_TREE,JSON.stringify(json));
 		},
 		loadTreeData : function(callback){
 			var treeData=this.getTreeData();
@@ -72,7 +73,7 @@
 				}
 			});
 		},
-		loadAutoMatchPictureList : function(cid,callback){
+		loadAutoMatchList : function(cid,callback){
 			$.ajax({
 				url:'/picture.s',
 				data : 'method=query&pageSize=100&cid='+cid,
@@ -96,16 +97,16 @@
 		getWinConfig : function(){
 			return {
 				title : '选择图片',
-				cls : 'idex-select-picture-win x-ui-scrollbar',
+				cls : 'idex-select-pic-win x-ui-scrollbar',
 				item : {
 					xtype:'tab',
 					items : [{
 						label: '图片库',
 						name : 'picList',
-						html : ['<div class="idex-picture-tree uns"></div>',
-								'<div class="idex-picture-list uns"></div>',
-								'<div class="idex-picture-match-list uns">',
-									'<div class="idex-picture-item">',
+						html : ['<div class="idex-pic-tree uns"></div>',
+								'<div class="idex-pic-list uns"></div>',
+								'<div class="idex-pic-match-list uns">',
+									'<div class="idex-pic-item">',
 										'<img/>',
 										'<div class="pic-title">0x0</div>',
 									'</div>',
@@ -113,11 +114,11 @@
 						onLoad:function(){
 							var div,
 								html=['<div class="x-ui-floatbar-box uns">',
-										'<div class="idex-picture-left-box">',
+										'<div class="idex-pic-left-box">',
 										'</div>',
-										'<div class="idex-picture-right-box">',
+										'<div class="idex-pic-right-box">',
 										'</div>',
-										'<div class="idex-picture-match-status-box">',
+										'<div class="idex-pic-match-status-box">',
 											'当前分类：<em class="cat-l cB">最近上传</em>',
 											'<span class="status-l">正在匹配',
 												'<em class="s1">.</em>',
@@ -141,14 +142,14 @@
 							this.$owner.$tabbarbox.before(div);
 
 							this.$floatbar=$(div);
-							this.$pictureLeftBox=this.$floatbar.children('.idex-picture-left-box:first');
-							this.$pictureRightBox=this.$floatbar.children('.idex-picture-right-box:first');
-							this.$pictureMatchStatusBox=this.$floatbar.children('.idex-picture-match-status-box:first');
+							this.$picLeftBox=this.$floatbar.children('.idex-pic-left-box:first');
+							this.$picRightBox=this.$floatbar.children('.idex-pic-right-box:first');
+							this.$picMatchStatusBox=this.$floatbar.children('.idex-pic-match-status-box:first');
 
 
-							this.$pictureTree=this.$tabview.children('.idex-picture-tree:first');
-							this.$pictureList=this.$tabview.children('.idex-picture-list:first');
-							this.$pictureMatchList=this.$tabview.children('.idex-picture-match-list:first');
+							this.$picTree=this.$tabview.children('.idex-pic-tree:first');
+							this.$picList=this.$tabview.children('.idex-pic-list:first');
+							this.$picMatchList=this.$tabview.children('.idex-pic-match-list:first');
 
 							this.$context = this.$owner.$owner.$owner;
 
@@ -156,20 +157,22 @@
 							this.initTree();
 						},
 						initUI : function(){
+							var refreshTreeButton=this.refreshTreeButton;
+							refreshTreeButton.render = this.$picLeftBox[0];
+							refreshTreeButton.$owner=this;
+							this.refreshTreeButton=new ui.button(refreshTreeButton);
 
-							this.refreshTreeButton.render = this.$pictureLeftBox[0];
-							this.refreshTreeButton.$owner=this;
-							this.refreshTreeButton=new ui.button(this.refreshTreeButton);
+							var autoMatchButton=this.autoMatchButton;
+							autoMatchButton.render = this.$picLeftBox[0];
+							autoMatchButton.$owner=this;
+							autoMatchButton.$context=this.$context;
+							this.autoMatchButton=new ui.button(autoMatchButton);
 
-							this.autoMatchButton.render = this.$pictureLeftBox[0];
-							this.autoMatchButton.$owner=this;
-							this.autoMatchButton.$context=this.$context;
-							this.autoMatchButton=new ui.button(this.autoMatchButton);
-
-							this.cancelMatchButton.render = this.$pictureMatchStatusBox[0];
-							this.cancelMatchButton.$owner=this;
-							this.cancelMatchButton.$context=this.$context;
-							this.cancelMatchButton=new ui.button(this.cancelMatchButton);
+							var cancelMatchButton=this.autoMatchButton;
+							cancelMatchButton.render = this.$picMatchStatusBox[0];
+							cancelMatchButton.$owner=this;
+							cancelMatchButton.$context=this.$context;
+							this.cancelMatchButton=new ui.button(cancelMatchButton);
 
 						},
 						initTree : function(){
@@ -187,7 +190,7 @@
 							cls : 'cancel-match',
 							label : '取消',
 							onClick:function(){
-								
+
 							}
 						},
 						autoMatchButton :{
@@ -195,7 +198,7 @@
 							icon : 'auto-match',
 							label : '自动匹配',
 							onClick:function(){
-								this.$context.loadAutoMatchPictureList(this.$owner.currentCID,CF.getCallback(this.$owner.buildMatchPictureList,this.$owner));
+								this.$owner.loadAutoMatchList();
 							}
 						},
 						refreshTreeButton :{
@@ -206,9 +209,12 @@
 								this.$owner.refreshTree();
 							}
 						},
-						buildMatchPictureList : function(json){
+						loadAutoMatchList:function(){
+							this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
+						},
+						buildMatchPicList : function(json){
 							if(json && json.length>0){
-								
+
 							}
 						},
 						refreshTree : function(){
@@ -217,7 +223,7 @@
 							}
 							this.autoMatchButton.$elem.hide();
 							this.$context.saveTreeData();
-							this.$pictureTree.empty();
+							this.$picTree.empty();
 							this.initTree();
 						},
 						onShowAfter : function(){
@@ -233,7 +239,7 @@
 							}
 							this.tree=new ui.tree({
 								$owner : this,
-								render: this.$pictureTree,
+								render: this.$picTree,
 								cls : 'idex-tree-box none-icon',
 								items : json,
 								onNodeClick : function(node,event){
@@ -256,20 +262,20 @@
 							this.currentPageNo=1;
 
 							/*
-							this.getPictureData();
+							this.getPicData();
 							if(this.currentCID==''){
-								this.$pictureLeftBox.show();
+								this.$picLeftBox.show();
 							}else{
-								this.$pictureLeftBox.hide();
+								this.$picLeftBox.hide();
 							}
 							*/
-							this.loadPictureList({
+							this.loadPicList({
 								cid : this.currentCID
 							});
 
 						},
 						PAGE_SIZE : 12,
-						loadPictureList : function(paramObject){
+						loadPicList : function(paramObject){
 							if(this.isBuilding){
 								return;
 							}
@@ -277,7 +283,7 @@
 							this.removePageToolBar();
 
 							ui.popu.createInnerLoadingAnimation({
-								$elem : this.$pictureList,
+								$elem : this.$picList,
 								css : {
 									'height': '200px',
 									'width': '400px',
@@ -301,19 +307,19 @@
 								$owner : this,
 								success : function(json){
 									$.setTimeout(function(_json){
-										this.buildPictureList(_json);
+										this.buildPicList(_json);
 									},500,this.$owner,[json]);
 								},
 								error : function(){
-									this.$owner.buildPictureList(-1);
+									this.$owner.buildPicList(-1);
 								}
 							});
 						},
-						getPictureData : function(){
+						getPicData : function(){
 							this.removePageToolBar();
-							this.buildPictureList({total:"231",result:[{title:"1 (18)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB24MxhbFXXXXbQXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (16)",pixel:"267x400",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2l9hkbFXXXXcQXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (17)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2T3FjbFXXXXapXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (15)",pixel:"800x800",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (14)",pixel:"800x1000",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2oz8mbFXXXXbpXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (13)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2K.XmbFXXXXbEXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (12)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2jL4ibFXXXXbgXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (11)",pixel:"267x400",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2wxNhbFXXXXbMXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (10)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2qgBnbFXXXXbaXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (9)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2boxlbFXXXXccXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (7)",pixel:"267x400",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2d2lkbFXXXXXyXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (8)",pixel:"267x400",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2YcNrbFXXXXXkXXXXXXXXXXXX-1646439371.jpg"}]});
+							this.buildPicList({total:"231",result:[{title:"1 (18)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB24MxhbFXXXXbQXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (16)",pixel:"267x400",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2l9hkbFXXXXcQXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (17)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2T3FjbFXXXXapXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (15)",pixel:"800x800",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (14)",pixel:"800x1000",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2oz8mbFXXXXbpXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (13)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2K.XmbFXXXXbEXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (12)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2jL4ibFXXXXbgXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (11)",pixel:"267x400",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2wxNhbFXXXXbMXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (10)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2qgBnbFXXXXbaXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (9)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2boxlbFXXXXccXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (7)",pixel:"267x400",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2d2lkbFXXXXXyXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (8)",pixel:"267x400",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2YcNrbFXXXXXkXXXXXXXXXXXX-1646439371.jpg"}]});
 						},
-						buildPictureList : function(json){
+						buildPicList : function(json){
 							var html,
 								errorMsg;
 							if(json && json.total>0){
@@ -321,7 +327,7 @@
 								var result=json.result;
 								for(var i=0,len=result.length;i<len;i++){
 									var item=result[i];
-									html.push('<div class="idex-picture-item" title="',item.title,'">',
+									html.push('<div class="idex-pic-item" title="',item.title,'">',
 												'<img src="',item.path,this.$context.PIC_SIZING,'"/>',
 												'<div class="pic-title">',item.pixel,'</div>',
 												'<div class="select-title">选择</div>',
@@ -332,7 +338,7 @@
 							}else if(json==-1){
 								errorMsg='加载失败...';
 							}else if(json && json.errorMsg){
-								console.error('buildPictureList :'+json.errorMsg);
+								console.error('buildPicList :'+json.errorMsg);
 								errorMsg='加载失败【'+json.errorMsg+'】';
 							}else{
 								errorMsg='没有找到图片...';
@@ -341,16 +347,16 @@
 								html='<div class="error-msg">'+errorMsg+'</div>';
 							}
 
-							this.$pictureList.html(html);
+							this.$picList.html(html);
 
 							if(json && json.total>0){
-								this.bindPictureItemEvent();
+								this.bindPicItemEvent();
 								this.autoMatchButton.$elem.show();
 							}
 							this.isBuilding=false;
 						},
-						bindPictureItemEvent : function(){
-							this.$pictureList.children('.idex-picture-item').click({
+						bindPicItemEvent : function(){
+							this.$picList.children('.idex-pic-item').click({
 								$context : this.$context
 							},function(event){
 								event.data.$context.onSelect($(this).children('img')[0]);
@@ -373,6 +379,8 @@
 						getPageToolBarHTML : function(config){
 
 							var total=parseInt(config.total),
+								css_label='idex-page-label',
+								css_button='idex-page-button',
 								startPageNo,
 								endPageNo,
 								pageCount,
@@ -389,9 +397,9 @@
 							html=['<div class="idex-page-toolbar">'];
 
 							if(!pageNo || pageNo==1){
-								html.push('<div class="idex-page-label">上一页</div>');
+								html.push('<div class="',css_label,'">上一页</div>');
 							}else{
-								html.push('<div class="idex-page-button prev">上一页</div>');
+								html.push('<div class="',css_button,' prev">上一页</div>');
 							}
 
 							if(1 < pageNo-2){
@@ -401,13 +409,13 @@
 							}
 
 							if(startPageNo>=2){
-								html.push('<div class="idex-page-button num">1</div>');
+								html.push('<div class="',css_button,' num">1</div>');
 							}
 
 							if(startPageNo>3){
 								html.push('<div class="more">...</div>');
 							}else if(startPageNo==3){
-								html.push('<div class="idex-page-button num">2</div>');
+								html.push('<div class="',css_button,' num">2</div>');
 							}
 
 							if(pageCount > (pageNo+2)){
@@ -424,27 +432,27 @@
 								if(i==pageNo){
 									isActive=true;
 								}
-								html.push('<div class="idex-page-button num',(isActive ? ' active' : ''),'">',i,'</div>');
+								html.push('<div class="',css_button,' num',(isActive ? ' active' : ''),'">',i,'</div>');
 							}
 
 							if(pageCount == endPageNo+1){
-								html.push('<div class="idex-page-button num">',pageCount,'</div>');
+								html.push('<div class="',css_button,' num">',pageCount,'</div>');
 							}else if(pageCount > endPageNo){
 								html.push('<div class="more">...</div>');
 							}
 
 							if(pageCount==pageNo){
-								html.push('<div class="idex-page-label">下一页</div>');
+								html.push('<div class="',css_label,'">下一页</div>');
 							}else{
-								html.push('<div class="idex-page-button next">下一页</div>');
+								html.push('<div class="',css_button,' next">下一页</div>');
 							}
 							html.push('</div>');
 
-							this.$pictureRightBox.html(html.join(''));
+							this.$picRightBox.html(html.join(''));
 							this.bindPageToolBarEvent();
 						},
 						bindPageToolBarEvent : function(){
-							var $toolbar=this.$pictureRightBox.children('.idex-page-toolbar:first');
+							var $toolbar=this.$picRightBox.children('.idex-page-toolbar:first');
 							$toolbar.children('.idex-page-button').click({
 								$owner : this
 							},function(event){
@@ -461,20 +469,21 @@
 									pageNo=parseInt($owner.currentPageNo)+1;
 								}
 								$owner.currentPageNo=pageNo;
-								$owner.loadPictureList({
+								$owner.loadPicList({
 									cid : $owner.currentCID,
 									pageNo : pageNo
 								});
 							});
 						},
 						removePageToolBar : function(){
-							this.$pictureRightBox.empty();
+							this.$picRightBox.empty();
 						}
 					},{
-						label: '<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC">上传图片</a>',
+						label: '上传图片',
 						name : 'upload',
 						onBindEvent:function(){
 							this.$tag.bindHover();
+							//<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC"></a>
 						}
 					}]
 				},
