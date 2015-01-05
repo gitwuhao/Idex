@@ -268,6 +268,7 @@
 						},
 						cancelMatchButton :{
 							xtype : 'button',
+							cls : 'cancel-match',
 							label : '取消',
 							onClick:function(){
 								

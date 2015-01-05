@@ -200,9 +200,7 @@
 .idex-picture-match-status-box .match-l{
     padding-left: 20px;
 }
-.idex-picture-match-status-box .x-ui-button{
+.idex-select-picture-win .x-ui-floatbar-box .x-ui-button.cancel-match{
 	float: right;
-}
-.idex-picture-match-status-box .x-ui-button .x-ui-label{
-	padding: 0px 5px;
+	padding: 4px 12px 3px 12px;
 }
