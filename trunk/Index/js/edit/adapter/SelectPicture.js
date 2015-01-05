@@ -525,9 +525,11 @@
 							this.$pictureRightBox.empty();
 						}
 					},{
-						label: '上传图片',
+						label: '<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC">上传图片</a>',
 						name : 'upload',
-						html : '上传'
+						onBindEvent:function(){
+							this.$tag.bindHover();
+						}
 					}]
 				},
 				onCloseAfter : function(){
