@@ -150,6 +150,7 @@
 							if(this.tree && this.tree.remove){
 								this.tree.remove();
 							}
+							this.autoMatchButton.$elem.hide();
 							this.$context.saveTreeData();
 							this.$pictureTree.empty();
 							this.initTree();
@@ -183,10 +184,9 @@
 							delete this.isInitTree;
 						},
 						onNodeClick : function(node){
-							if(node.value=='refresh'){
-								
-								return;
-							}
+
+							this.autoMatchButton.$elem.hide();
+							
 							this.currentCID=node.cid  || '';
 							this.currentPageNo=1;
 
@@ -274,6 +274,7 @@
 							this.$pictureList.html(html);
 							if(json && json.total>0){
 								this.bindPictureItemEvent();
+								this.autoMatchButton.$elem.show();
 							}
 							this.isBuilding=false;
 						},
