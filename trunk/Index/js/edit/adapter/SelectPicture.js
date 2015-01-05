@@ -106,116 +106,8 @@
 								'<div class="idex-picture-list uns"></div>',
 								'<div class="idex-picture-match-list uns">',
 									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
-									'</div>',
-									'<div class="idex-picture-item">',
-										'<img src="/s.gif"/>',
-										'<div class="pic-title">1x1</div>',
+										'<img/>',
+										'<div class="pic-title">0x0</div>',
 									'</div>',
 								'</div>'].join(''),
 						onLoad:function(){
@@ -419,16 +311,12 @@
 						},
 						getPictureData : function(){
 							this.removePageToolBar();
-							this.buildPictureList({total:"231",result:[{title:"1 (18)",pixel:"1x1",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB24MxhbFXXXXbQXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (16)",pixel:"267x400",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2l9hkbFXXXXcQXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (17)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2T3FjbFXXXXapXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (15)",pixel:"800x800",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (14)",pixel:"800x1000",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2oz8mbFXXXXbpXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (13)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2K.XmbFXXXXbEXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (12)",pixel:"1x1",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2jL4ibFXXXXbgXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (11)",pixel:"267x400",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2wxNhbFXXXXbMXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (10)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2qgBnbFXXXXbaXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (9)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2boxlbFXXXXccXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (7)",pixel:"267x400",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2d2lkbFXXXXXyXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (8)",pixel:"267x400",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2YcNrbFXXXXXkXXXXXXXXXXXX-1646439371.jpg"}]});
+							this.buildPictureList({total:"231",result:[{title:"1 (18)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB24MxhbFXXXXbQXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (16)",pixel:"267x400",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2l9hkbFXXXXcQXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (17)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2T3FjbFXXXXapXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (15)",pixel:"800x800",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (14)",pixel:"800x1000",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2oz8mbFXXXXbpXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (13)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2K.XmbFXXXXbEXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (12)",pixel:"0x0",path:"http://img03.taobaocdn.com/imgextra/i3/1646439371/TB2jL4ibFXXXXbgXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (11)",pixel:"267x400",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2wxNhbFXXXXbMXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (10)",pixel:"800x800",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2qgBnbFXXXXbaXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (9)",pixel:"300x300",path:"http://img02.taobaocdn.com/imgextra/i2/1646439371/TB2boxlbFXXXXccXXXXXXXXXXXX-1646439371.jpg"},{title:"1 (7)",pixel:"267x400",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2d2lkbFXXXXXyXpXXXXXXXXXX-1646439371.jpg"},{title:"1 (8)",pixel:"267x400",path:"http://img04.taobaocdn.com/imgextra/i4/1646439371/TB2YcNrbFXXXXXkXXXXXXXXXXXX-1646439371.jpg"}]});
 						},
 						buildPictureList : function(json){
-							var html;
-							if(json==-1){
-								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败...</div>';
-							}else if(json && json.errorMsg){
-								console.error('buildPictureList :'+json.errorMsg);
-								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">加载失败【'+json.errorMsg+'】...</div>';
-							}else if(json && json.total>0){
+							var html,
+								errorMsg;
+							if(json && json.total>0){
 								html=[];
 								var result=json.result;
 								for(var i=0,len=result.length;i<len;i++){
@@ -441,10 +329,20 @@
 								}
 								html=html.join('');
 								this.buildPageToolBar(json.total);
+							}else if(json==-1){
+								errorMsg='加载失败...';
+							}else if(json && json.errorMsg){
+								console.error('buildPictureList :'+json.errorMsg);
+								errorMsg='加载失败【'+json.errorMsg+'】';
 							}else{
-								html='<div style="padding-top: 30%;font-size: 28px;text-align: center;">没有找到图片...</div>';
+								errorMsg='没有找到图片...';
 							}
+							if(errorMsg){
+								html='<div class="error-msg">'+errorMsg+'</div>';
+							}
+
 							this.$pictureList.html(html);
+
 							if(json && json.total>0){
 								this.bindPictureItemEvent();
 								this.autoMatchButton.$elem.show();
