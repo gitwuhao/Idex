@@ -83,18 +83,22 @@
 	height: 100%;
 	overflow: hidden;
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item{
-	width: 150px;
-	height: 150px;
+.idex-select-picture-win .idex-picture-item{
 	float: left;
+	width: 157px;
+	height: 157px;
 	border: 1px solid #DDD;
 	padding: 2px;
 	border-radius: 3px;
 	margin: 0px 0px 10px 10px;
 	overflow: hidden;
+}
+.idex-select-picture-win .idex-picture-list .idex-picture-item{
+	width: 150px;
+	height: 150px;
 	cursor: pointer;
 }
-.idex-select-picture-win .idex-picture-list .idex-picture-item img{
+.idex-select-picture-win .idex-picture-item img{
 	float: left;
 	width: 100%;
 	height: 100%;
@@ -109,7 +113,7 @@
 	line-height: 20px;
 	text-align: center;
 }
-.idex-select-picture-win .idex-picture-item .select-title{
+.idex-select-picture-win .idex-picture-list .select-title{
 	float: left;
 	width: 100%;
 	height: 100%;
@@ -122,13 +126,13 @@
 	text-align: center;
 	font-family: "Microsoft YaHei";
 }
-.idex-select-picture-win .idex-picture-item:hover{
+.idex-select-picture-win .idex-picture-list .idex-picture-item:hover{
 	border-color: #32B8EA;
 }
-.idex-select-picture-win .idex-picture-item:hover .pic-title{
+.idex-select-picture-win .idex-picture-list .idex-picture-item:hover .pic-title{
 	display: none;
 }
-.idex-select-picture-win .idex-picture-item:hover .select-title{
+.idex-select-picture-win .idex-picture-list .idex-picture-item:hover .select-title{
 	opacity: 1;
 	transition: all 0.5s 0s ease;
 }
@@ -138,11 +142,12 @@
 /************************************************************************************/
 .idex-picture-match-list{
 	position: absolute;
-	left: 10px;
+	left: 5px;
 	top: 75px;
 	right: 10px;
-	bottom: 10px;
+	bottom: 15px;
 	background-color: #FFF;
+	overflow: auto;
 }
 .idex-picture-match-status-box{
 	position: absolute;
