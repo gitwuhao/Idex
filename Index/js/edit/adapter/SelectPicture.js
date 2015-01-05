@@ -18,6 +18,9 @@
 			var src=img.src.replace(this.PIC_SIZING,'');
 			console.info('select:' + src);
 		},
+		autoMatch : function(){
+		
+		},
 		PIC_SIZING : '_150x150.jpg',
 		CACHE_KEY : {
 			PICTURE_TREE : 'picture_category_tree'
@@ -26,6 +29,10 @@
 			return $.cache.get(this.CACHE_KEY.PICTURE_TREE);
 		},
 		saveTreeData : function(json){
+			if(!json){
+				$.cache.remove(this.CACHE_KEY.PICTURE_TREE);
+				return;
+			}
 			$.cache.put(this.CACHE_KEY.PICTURE_TREE,JSON.stringify(json));
 		},
 		loadTreeData : function(callback){
@@ -101,17 +108,19 @@
 							this.$context = this.$owner.$owner.$owner;
 
 							this.initUI();
-
+							this.initTree();
 						},
 						initUI : function(){
-							
-							this.refreshTree.render = this.$pictureLeftBox[0];
-							this.refreshTree=new ui.button(this.refreshTree);
+							this.refreshTreeButton.render = this.$pictureLeftBox[0];
+							this.refreshTreeButton.$owner=this;
+							this.refreshTreeButton=new ui.button(this.refreshTreeButton);
 
-							this.autoSelect.render = this.$pictureLeftBox[0];
-							this.autoSelect=new ui.button(this.autoSelect);
-
-							
+							this.autoMatchButton.render = this.$pictureLeftBox[0];
+							this.autoMatchButton.$owner=this;
+							this.autoMatchButton.$context=this.$context;
+							this.autoMatchButton=new ui.button(this.autoMatchButton);
+						},
+						initTree : function(){
 							var me=this;
 							this.$context.loadTreeData(function(json){
 								if(!json){
@@ -121,21 +130,29 @@
 								}
 							});
 						},
-						autoSelect :{
+						autoMatchButton :{
 							xtype : 'button',
-							icon : 'auto-select',
+							icon : 'auto-match',
 							label : '自动匹配',
 							onClick:function(){
-
+								this.$context.autoMatch();
 							}
 						},
-						refreshTree :{
+						refreshTreeButton :{
 							xtype : 'button',
 							icon : 'refresh',
 							label : '刷新分类',
 							onClick:function(){
-
+								this.$owner.refreshTree();
 							}
+						},
+						refreshTree : function(){
+							if(this.tree && this.tree.remove){
+								this.tree.remove();
+							}
+							this.$context.saveTreeData();
+							this.$pictureTree.empty();
+							this.initTree();
 						},
 						onShowAfter : function(){
 							this.$floatbar.show();
@@ -143,6 +160,7 @@
 						onHideAfter : function(){
 							this.$floatbar.hide();
 						},
+						isInitTree : true,
 						createTree : function(json){
 							if(json && json.insert){
 								json.insert(0,{label : '<span style="color: #FF6100;">最近上传</span>'});
@@ -157,9 +175,12 @@
 								}
 							});
 
-							$.setTimeout(function(){
-								this.tree.items[0].$node.click();
-							},100,this);
+							if(this.isInitTree){
+								$.setTimeout(function(){
+									this.tree.items[0].$node.click();
+								},100,this);
+							}
+							delete this.isInitTree;
 						},
 						onNodeClick : function(node){
 							if(node.value=='refresh'){
