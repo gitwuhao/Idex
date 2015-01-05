@@ -175,7 +175,25 @@
 	font-weight: bold;
 	font-family: arial;
 	font-size: 14px;
+	opacity:0;
+	-webkit-animation:bounce_circleG 2s infinite;
 }
+.idex-picture-match-status-box .status-l .s1{
+	-webkit-animation-delay:0.5s;
+}
+.idex-picture-match-status-box .status-l .s2{
+	-webkit-animation-delay:1s;
+}
+.idex-picture-match-status-box .status-l .s3{
+	-webkit-animation-delay:1.5s;
+}
+@-webkit-keyframes bounce_circleG{
+0%{}
+50%{opacity:1;}
+100%{
+}
+}
+
 .idex-picture-match-status-box .progress-l{
     padding-left: 200px;
 }
