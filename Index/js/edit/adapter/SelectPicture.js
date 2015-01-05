@@ -3,6 +3,15 @@
 		_name_ : 'SelectPicture',
 		initModule : function(){
 			this.logger(this);
+
+			this.app.addEventListener('readyafter',function(event){
+				this.SelectPicture.on('readyAfter');
+			});
+		},
+		onReadyAfter : function(){
+			var data=this.app.ViewPanel.data;
+			this.pictureTitlePrefix='idex_'+data.type+'_'+data.id+'_';
+			console.info(this.pictureTitlePrefix);
 		},
 		show : function(){
 			var me=this;
