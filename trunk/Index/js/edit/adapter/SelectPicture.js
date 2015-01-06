@@ -511,9 +511,6 @@ $.push({
 
 			},
 			showMatchBox : function(){
-				this.$floatbar.hide();
-				this.$picTree.hide();
-				this.$picList.hide();
 
 				this.$catL.text(this.currentCatLabel);
 				this.$statusL.html([
@@ -530,6 +527,15 @@ $.push({
 				$l=this.$matchL;
 				$l.children('.num:first').text(0);
 				$l.children('.count:first').text(0);
+
+				
+				this.$floatbar.hide();
+				this.$picTree.hide();
+				this.$picList.hide();
+
+				
+				this.$picMatchList.show();
+				this.$picMatchStatusBox.show();
 			},
 			hideMatchBox : function(){
 				this.$picMatchList.hide();
