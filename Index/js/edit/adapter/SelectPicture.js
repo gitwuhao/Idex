@@ -25,8 +25,8 @@ $.push({
 		this.isSGIF=CheckImagePanel.isSGIF;
 		this.setImageSrc=CheckImagePanel.setImageSrc;
 
-		this.picTitlePrefix='idex_'+data.type+'_'+data.id+'_';
-		console.info(this.picTitlePrefix);
+		this.picTitlePx='idex_'+data.type+'_'+data.id+'_';
+		console.info(this.picTitlePx);
 	},
 	getDescBox : function(){
 		return this.app.ViewPanel.getDescBox();
@@ -521,12 +521,12 @@ $.push({
 								].join(''));
 				var $l=this.$progressL;
 				$l.children('.num:first').text(0);
-				$l.children('.count:first').text(this.descImageList.length);
+				$l.children('.count:first').text(0);
 
 				
 				$l=this.$matchL;
 				$l.children('.num:first').text(0);
-				$l.children('.count:first').text(0);
+				$l.children('.count:first').text(this.descImageList.length);
 
 				
 				this.$floatbar.hide();
@@ -549,7 +549,7 @@ $.push({
 				var list=this.$context.getDescImageList();
 				if(list && list.length>0){
 					$.setTimeout(function(){
-						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
+						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.matchImage,this));
 					},100,this);
 					this.initMatchListUI();
 					this.descImageList=list;
@@ -576,15 +576,92 @@ $.push({
 					disabled : CF.emptyFunction
 				};
 			},
-			buildMatchPicList : function(json){
-				if(json && json.length>0){
-					html.push(
-						'<div class="idex-pic-item">',
-							'<img/>',
-							'<div class="pic-title">0x0</div>',
-						'</div>'
-					);
+			checkMatchArray : function(){
+				$.setTimeout(function(){
+					this.createPicItem();
+				},100,this);
+			},
+			createPicItem : function(){
+				var isCheck=false,
+					item,
+					div,
+					me=this,
+					img,
+					array=me.matchArray,
+					index=array._index,
+					PIC_SIZING=me.$context.PIC_SIZING;
+				
+				if(array.length>0){
+					item=array[index];
+				}else if(!array._isComplete){
+					this.checkMatchArray();
+				}else{
+					return;
 				}
+				if(!item){
+					return
+				}
+				array._index++;
+				div=$.createElement(
+					['<div class="idex-pic-item">',
+						'<img/>',
+						'<div class="pic-title">',item.pixel,'</div>',
+					'</div>'].join(''));
+				this.$picMatchList.append(div);
+
+				img=div.firstElementChild;
+				
+				img.onload=function(){
+					me.checkMatchArray();
+				};
+
+				img.onerror=function(){
+					me.checkMatchArray();
+				};
+				this.$matchL.children('.num:first').text(index);
+				setTimeout(function(){
+					img.src=item.path+PIC_SIZING;
+				},100);
+			},
+			matchImage : function(json){
+				if(!json || json.total<1){
+					return;
+				}
+				var matchArray=[],
+					resultArray={},
+					picPx=this.$context.picTitlePx,
+					M_REG;
+
+				
+				matchArray._index=0;
+				
+				this.matchArray=matchArray;
+
+				M_REG=new RegExp('^'+picPx+'(\\d+)$','i');
+				
+				
+				this.$progressL.children('.count:first').text(json.total);
+				this.checkMatchArray();
+
+				//title:"1 (18)",pixel:"800x1200",path:
+				$.it(json.result,function(i,item){
+					var rs=$.trim(item.title).match(M_REG);
+					if(rs && rs[1]){
+						resultArray[rs[1]]=item;
+					}
+				});
+
+				//i:index,target:img
+				$.it(this.descImageList,function(i,item){
+					var index=item.i,
+						picItem=resultArray[index];
+					if(picItem){
+						picItem.image=item.target;
+						this.matchArray.push(picItem);
+					}
+				},this);
+
+				matchArray._isComplete=true;
 			}
 		};
 	}
