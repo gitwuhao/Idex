@@ -48,14 +48,11 @@ $.push({
 			callback(JSON.parse(treeData));
 			return;
 		}
-		$.ajax({
+		$.jsonp({
 			url:'/picture.s',
 			data : 'method=getCat',
 			_$owner : this,
 			_$callback : callback,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				if(json && json.length>0){
 					json=$.cache.buildTreeData(json);
@@ -304,12 +301,9 @@ $.push({
 					args=args +'&'+$.param(paramObject);
 				}
 
-				$.ajax({
+				$.jsonp({
 					url:'/picture.s',
 					data : args,
-					type : 'POST',
-					dataType : 'jsonp',
-					jsonpCallback : $.getJSONPName(),
 					$owner : this,
 					success : function(json){
 						$.setTimeout(function(_json){
