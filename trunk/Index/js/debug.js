@@ -1,9 +1,9 @@
 (function(){
 var urlMap={
 	'/picture.s' : {
-		'method=query&pageSize=12' : '/picture.query.js',
-		'method=query&pageSize=100' : '/picture.query.100.js',
-		'method=getCat' : '/picture.getcat.js'
+		'method=query&pageSize=12' : '/js/data/picture.query.js',
+		'method=query&pageSize=100' : '/js/data/picture.query.100.js',
+		'method=getCat' : '/js/data/picture.getcat.js'
 	}
 };
 function match(param,data){
