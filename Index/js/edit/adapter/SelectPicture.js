@@ -198,7 +198,7 @@ $.push({
 				cls : 'cancel-match',
 				label : '取消',
 				onClick:function(){
-
+					this.$owner.hideMatchBox();
 				}
 			},
 			autoMatchButton :{
@@ -206,8 +206,8 @@ $.push({
 				icon : 'auto-match',
 				isDisabled : true,
 				label : '自动匹配',
-				onClick:function(event){
-					this.$owner.executeMatch(event.target);
+				onClick:function(){
+					this.$owner.executeMatch();
 				}
 			},
 			refreshTreeButton :{
@@ -217,94 +217,6 @@ $.push({
 				onClick:function(){
 					this.$owner.refreshTree();
 					this.disabled();
-				}
-			},
-			initMatchListUI : function(listLength,picCount){
-				if(this.$picMatchList){
-					return;
-				}
-				var html,
-					div,
-					button,
-					$tab=this.$owner.$elem;
-				html='<div class="idex-pic-match-list uns"></div>';
-
-				div=$.createElement(html);
-				$tab.append(div);
-				this.$picMatchList=$(div);
-					
-				html=['<div class="idex-pic-match-status-box">',
-						'当前分类：<em class="cat-l cB">最近上传</em>',
-						'<span class="status-l">正在匹配',
-							'<em class="s1">.</em>',
-							'<em class="s2">.</em>',
-							'<em class="s3">.</em>',
-						'</span>',
-						'<span class="progress-l">正在检索：',
-							'<em class="num">1</em>&nbsp;/&nbsp;',
-							'<em class="count cB">',picCount,'</em>',
-						'</span>',
-						'<span class="match-l">已匹配：',
-							'<em class="num">0</em>&nbsp;/&nbsp;',
-							'<em class="count cB">',listLength,'</em>',
-						'</span>',
-					'</div>'].join('');
-				div=$.createElement(html);
-				$tab.append(div);
-				this.$picMatchStatusBox=$(div);
-				
-				button=this.cancelMatchButton;
-				button.render = this.$picMatchStatusBox[0];
-				button.$owner=this;
-				button.$context=this.$context;
-				this.cancelMatchButton=new ui.button(button);
-
-				this.$floatbar.hide();
-				this.$picTree.hide();
-				this.$picList.hide();
-			},
-			executeMatch : function(){
-				var list=this.$context.getDescImageList();
-				if(list && list.length>0){
-					$.setTimeout(function(){
-						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
-					},100,this);
-					this.initMatchListUI(list.length,100);
-					/*
-					for(var i=0;i<listLength;i++){
-						html.push(
-							'<div class="idex-pic-item">',
-								'<img/>',
-								'<div class="pic-title">0x0</div>',
-							'</div>'
-						);
-					}
-					*/
-				}else{
-					ui.quicktip.show({
-						time : 5000,
-						html : '<span style="color: #F90;">没有需要自动匹配的图片</span>',
-						offset : 'tl',
-						align : 'tc',
-						css : {
-							opacity : 1,	
-							'margin-top' :'10px'
-						},
-						cls : 'qit-autosize',
-						target : this.autoMatchButton.$elem[0]
-					});
-
-					this.autoMatchButton.remove();
-
-					this.autoMatchButton={
-						enabled : CF.emptyFunction,
-						disabled : CF.emptyFunction
-					};
-				}
-			},
-			buildMatchPicList : function(json){
-				if(json && json.length>0){
-					
 				}
 			},
 			refreshTree : function(){
@@ -322,7 +234,7 @@ $.push({
 			onHideAfter : function(){
 				this.$floatbar.hide();
 			},
-			isInitTree : true,
+			isInitTree : false,
 			createTree : function(json){
 				if(json && json.insert){
 					json.insert(0,{label : '<span class="cB">最近上传</span>'});
@@ -350,6 +262,7 @@ $.push({
 
 				this.currentCID=node.cid  || '';
 				this.currentPageNo=1;
+				this.currentCatLabel=node.$elem.text();
 
 				this.loadPicList({
 					cid : this.currentCID
@@ -551,6 +464,121 @@ $.push({
 			},
 			removePageToolBar : function(){
 				this.$picRightBox.empty();
+			},
+			initMatchListUI : function(){
+				var html,
+					div,
+					$box,
+					button,
+					$tab=this.$owner.$elem;
+					
+				html=['<div class="idex-pic-match-status-box">',
+						'当前分类：<em class="cat-l cB"></em>',
+						'<span class="status-l"></span>',
+						'<span class="progress-l">正在检索：',
+							'<em class="num"></em> / ',
+							'<em class="count cB"></em>',
+						'</span>',
+						'<span class="match-l">已匹配：',
+							'<em class="num"></em> / ',
+							'<em class="count cB"></em>',
+						'</span>',
+					'</div>'].join('');
+				div=$.createElement(html);
+				$tab.append(div);
+				$box=$(div);
+				
+				this.$picMatchStatusBox=$box;
+
+				this.$catL=$box.children('.cat-l:first');
+				this.$statusL=$box.children('.status-l:first');
+				this.$progressL=$box.children('.progress-l:first');
+				this.$matchL=$box.children('.match-l:first');
+				
+				button=this.cancelMatchButton;
+				button.render = this.$picMatchStatusBox[0];
+				button.$owner=this;
+				button.$context=this.$context;
+				this.cancelMatchButton=new ui.button(button);
+
+
+				html='<div class="idex-pic-match-list uns"></div>';
+				div=$.createElement(html);
+				$tab.append(div);
+				this.$picMatchList=$(div);
+
+				this.initMatchListUI=CF.emptyFunction;
+
+			},
+			showMatchBox : function(){
+				this.$floatbar.hide();
+				this.$picTree.hide();
+				this.$picList.hide();
+
+				this.$catL.text(this.currentCatLabel);
+				this.$statusL.html([
+					'正在匹配',
+					'<em class="s1">.</em>',
+					'<em class="s2">.</em>',
+					'<em class="s3">.</em>'
+								].join(''));
+				var $l=this.$progressL;
+				$l.children('.num:first').text(0);
+				$l.children('.count:first').text(this.descImageList.length);
+
+				
+				$l=this.$matchL;
+				$l.children('.num:first').text(0);
+				$l.children('.count:first').text(0);
+			},
+			hideMatchBox : function(){
+				this.$picMatchList.hide();
+				this.$picMatchStatusBox.hide();
+
+				this.$floatbar.show();
+				this.$picTree.show();
+				this.$picList.show();
+			},
+			executeMatch : function(){
+				var list=this.$context.getDescImageList();
+				if(list && list.length>0){
+					$.setTimeout(function(){
+						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
+					},100,this);
+					this.initMatchListUI();
+					this.descImageList=list;
+					this.showMatchBox();
+					return;
+				}
+				ui.quicktip.show({
+					time : 5000,
+					html : '<span style="color: #F90;">没有需要自动匹配的图片</span>',
+					offset : 'tl',
+					align : 'tc',
+					css : {
+						opacity : 1,	
+						'margin-top' :'10px'
+					},
+					cls : 'qit-autosize',
+					target : this.autoMatchButton.$elem[0]
+				});
+
+				this.autoMatchButton.remove();
+
+				this.autoMatchButton={
+					enabled : CF.emptyFunction,
+					disabled : CF.emptyFunction
+				};
+			},
+			buildMatchPicList : function(json){
+				if(json && json.length>0){
+					html.push(
+						'<div class="idex-pic-item">',
+							'<img/>',
+							'<div class="pic-title">0x0</div>',
+						'</div>'
+					);
+				}
 			}
 		};
 	}
