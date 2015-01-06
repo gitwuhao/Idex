@@ -591,13 +591,10 @@ $.push({
 					$plNum,
 					array=me.matchArray,
 					index=array._index,
-					total=array._total,
 					PIC_SIZING=me.$context.PIC_SIZING;
 				
 				if(array.length>0){
 					item=array[index];
-				}else if(!array._isComplete){
-					this.checkMatchArray();
 				}else{
 					return;
 				}
@@ -627,8 +624,10 @@ $.push({
 				};
 				this.$matchL.children('.num:first').text(index);
 				$plNum=this.$progressL.children('.num:first');
-				if($plNum.text()!=total){
-					$plNum.text(index);
+				if(array.length-1==index){
+					$plNum.text(array._total);
+				}else{
+					$plNum.text(index+1);
 				}
 				setTimeout(function(){
 					img.src=item.path+PIC_SIZING;
@@ -639,8 +638,8 @@ $.push({
 					return;
 				}
 				var matchArray=[],
-					resultArray={},
 					total=json.total,
+					resultArray={},
 					$pl=this.$progressL,
 					picPx=this.$context.picTitlePx,
 					M_REG;
@@ -675,9 +674,7 @@ $.push({
 					}
 				},this);
 
-				matchArray._isComplete=true;
 				
-				$pl.children('.num:first').text(total);
 			}
 		};
 	}
