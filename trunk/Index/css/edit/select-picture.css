@@ -158,7 +158,7 @@
 .idex-pic-match-status-box{
 	position: absolute;
 	left: 200px;
-	top: 41px;
+	top: 42px;
 	right: 10px;
 	height: 30px;
 	background-color: #FFF;
@@ -207,10 +207,7 @@
 }
 .idex-pic-match-status-box .cancel-match{
 	float: right;
-	padding: 4px 12px 3px 12px;
-	border: 1px solid #DDD;
-	border-radius: 3px;
-	margin: 0px 3px;
+	padding: 3px 12px;
 }
 .idex-pic-match-status-box .cancel-match:hover{
 	box-shadow: 0px 1px 2px #DBDBDB;
