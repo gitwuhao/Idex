@@ -97,6 +97,21 @@
 				}
 			};
 		})(),
+		isSGIF : function(img){
+			var src=img.src,
+				_src_=img.getAttribute(IDEX_ATTR_MAP.SRC);
+			
+			if((!src && !_src_) 
+				|| (/s\.gif$/g.test(src) || /s\.gif$/g.test(_src_))
+				|| (img.naturalHeight==1 && img.naturalHeight==naturalWidth)
+			){
+				return true;
+			}
+			return false;
+		},
+		setImageSrc : function(img,src){
+			$.attr(img,IDEX_ATTR_MAP.SRC,src);
+		},
 		check : function(img){
 			this.logger(this);
 			var src=img.src,
@@ -113,7 +128,7 @@
 					type : 'error',
 					title : '未设置图片'
 				};
-			}else if(/s\.gif$/g.test(src) || /s\.gif$/g.test(_src_) || naturalHeight==1 && naturalHeight==naturalWidth){
+			}else if(this.isSGIF(img)){
 				item={
 					type : 'error',
 					title : '未设置图片'
