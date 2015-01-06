@@ -2,7 +2,8 @@
 
 var CACHE_KEY = {
 	PIC_TREE : 'pic_category_tree'
-};
+},
+IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 
 $.push({
 	_name_ : 'SelectPicture',
@@ -14,9 +15,37 @@ $.push({
 		});
 	},
 	onReadyAfter : function(){
-		var data=this.app.ViewPanel.data;
+		var app=this.app,
+			ViewPanel,
+			CheckImagePanel,
+			data;
+		ViewPanel=app.ViewPanel;
+		CheckImagePanel=app.CheckImagePanel;
+		data=ViewPanel.data;
+		
+		this.isSGIF=CheckImagePanel.isSGIF;
+		this.setImageSrc=CheckImagePanel.setImageSrc;
+
 		this.picTitlePrefix='idex_'+data.type+'_'+data.id+'_';
 		console.info(this.picTitlePrefix);
+	},
+	getDescBox : function(){
+		return this.app.ViewPanel.getDescBox();
+	},
+	getDescImageList : function(){
+		var list=$('img',this.getDescBox()),
+			array=[],
+			me=this;
+
+		$.it(list,function(i,img){
+			 if(me.isSGIF(img)){
+				array.push({
+					index: i,
+					target : img
+				});
+			 }
+		});
+		return array;
 	},
 	show : function(){
 		var me=this;
@@ -160,7 +189,7 @@ $.push({
 				this.$picTree=$(children[0]);
 				this.$picList=$(children[1]);
 				this.$picMatchList=$(children[2]);
-
+				
 				this.$context = this.$owner.$owner.$owner;
 
 				this.initUI();
@@ -221,11 +250,17 @@ $.push({
 				}
 			},
 			loadAutoMatchList:function(){
-				this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
+				var list=this.$context.getDescImageList();
+				if(list && list.length>0){
+					this.$owner.$elem.addClass('idex-auto-match-mode');
+				}else{
+				
+				}
+				//this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
 			},
 			buildMatchPicList : function(json){
 				if(json && json.length>0){
-
+					
 				}
 			},
 			refreshTree : function(){
