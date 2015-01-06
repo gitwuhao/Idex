@@ -275,16 +275,18 @@ $.push({
 				}
 				this.isBuilding=true;
 				this.removePageToolBar();
-
-				ui.popu.createInnerLoadingAnimation({
-					$elem : this.$picList,
-					css : {
-						'height': '200px',
-						'width': '400px',
-						'margin': '100px auto',
-						'overflow': 'hidden'
-					}
-				});
+				
+				var loadingTimeoutId=$.setTimeout(function(){
+					ui.popu.createInnerLoadingAnimation({
+						$elem : this.$picList,
+						css : {
+							'height': '200px',
+							'width': '400px',
+							'margin': '100px auto',
+							'overflow': 'hidden'
+						}
+					});
+				},300,this);
 
 				var args='method=query&pageSize='+this.PAGE_SIZE;
 
@@ -297,9 +299,11 @@ $.push({
 					data : args,
 					$owner : this,
 					success : function(json){
-						$.setTimeout(function(_json){
-							this.buildPicList(_json);
-						},500,this.$owner,[json]);
+						//$.setTimeout(function(_json){
+						//	this.buildPicList(_json);
+						//},500,this.$owner,[json]);
+						window.clearTimeout(loadingTimeoutId);
+						this.$owner.buildPicList(json);
 					},
 					error : function(){
 						this.$owner.buildPicList(-1);
