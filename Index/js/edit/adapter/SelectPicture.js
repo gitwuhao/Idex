@@ -2,8 +2,7 @@
 
 var CACHE_KEY = {
 	PIC_TREE : 'pic_category_tree'
-},
-IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+};
 
 $.push({
 	_name_ : 'SelectPicture',
@@ -142,35 +141,13 @@ $.push({
 			label: '图片库',
 			name : 'picList',
 			html : ['<div class="idex-pic-tree uns"></div>',
-					'<div class="idex-pic-list uns"></div>',
-					'<div class="idex-pic-match-list uns">',
-						'<div class="idex-pic-item">',
-							'<img/>',
-							'<div class="pic-title">0x0</div>',
-						'</div>',
-					'</div>'].join(''),
+					'<div class="idex-pic-list uns"></div>'].join(''),
 			onLoad:function(){
 				var div,
 					html=['<div class="x-ui-floatbar-box uns">',
 							'<div class="idex-pic-left-box">',
 							'</div>',
 							'<div class="idex-pic-right-box">',
-							'</div>',
-							'<div class="idex-pic-match-status-box">',
-								'当前分类：<em class="cat-l cB">最近上传</em>',
-								'<span class="status-l">正在匹配',
-									'<em class="s1">.</em>',
-									'<em class="s2">.</em>',
-									'<em class="s3">.</em>',
-								'</span>',
-								'<span class="progress-l">正在检索：',
-									'<em class="num">1</em>&nbsp;/&nbsp;',
-									'<em class="count cB">100</em>',
-								'</span>',
-								'<span class="match-l">已匹配：',
-									'<em class="num">39</em>&nbsp;/&nbsp;',
-									'<em class="count cB">49</em>',
-								'</span>',
 							'</div>',
 						  '</div>'];
 
@@ -183,12 +160,10 @@ $.push({
 				var children=this.$floatbar.children();
 				this.$picLeftBox=$(children[0]);
 				this.$picRightBox=$(children[1]);
-				this.$picMatchStatusBox=$(children[2]);
 
 				children=this.$tabview.children();
 				this.$picTree=$(children[0]);
 				this.$picList=$(children[1]);
-				this.$picMatchList=$(children[2]);
 				
 				this.$context = this.$owner.$owner.$owner;
 
@@ -207,11 +182,6 @@ $.push({
 				button.$context=this.$context;
 				this.autoMatchButton=new ui.button(button);
 
-				button=this.cancelMatchButton;
-				button.render = this.$picMatchStatusBox[0];
-				button.$owner=this;
-				button.$context=this.$context;
-				this.cancelMatchButton=new ui.button(button);
 			},
 			initTree : function(){
 				var me=this;
@@ -249,10 +219,59 @@ $.push({
 					this.disabled();
 				}
 			},
+			initMatchListUI : function(){
+				if(this.$picMatchList){
+					return;
+				}
+				var html,
+					div,
+					button,
+					$tab=this.$owner.$elem;
+				html=['<div class="idex-pic-match-list uns">',
+						'<div class="idex-pic-item">',
+							'<img/>',
+							'<div class="pic-title">0x0</div>',
+						'</div>',
+					'</div>'].join('');
+
+				div=$.createElement(html);
+				$tab.append(div);
+				this.$picMatchList=$(div);
+					
+				html=['<div class="idex-pic-match-status-box">',
+						'当前分类：<em class="cat-l cB">最近上传</em>',
+						'<span class="status-l">正在匹配',
+							'<em class="s1">.</em>',
+							'<em class="s2">.</em>',
+							'<em class="s3">.</em>',
+						'</span>',
+						'<span class="progress-l">正在检索：',
+							'<em class="num">1</em>&nbsp;/&nbsp;',
+							'<em class="count cB">100</em>',
+						'</span>',
+						'<span class="match-l">已匹配：',
+							'<em class="num">39</em>&nbsp;/&nbsp;',
+							'<em class="count cB">49</em>',
+						'</span>',
+					'</div>'].join('');
+				div=$.createElement(html);
+				$tab.append(div);
+				this.$picMatchStatusBox=$(div);
+				
+				button=this.cancelMatchButton;
+				button.render = this.$picMatchStatusBox[0];
+				button.$owner=this;
+				button.$context=this.$context;
+				this.cancelMatchButton=new ui.button(button);
+
+				this.$floatbar.hide();
+				this.$picTree.hide();
+				this.$picList.hide();
+			},
 			loadAutoMatchList:function(){
 				var list=this.$context.getDescImageList();
 				if(list && list.length>0){
-					this.$owner.$elem.addClass('idex-auto-match-mode');
+					this.initMatchListUI();
 				}else{
 				
 				}
