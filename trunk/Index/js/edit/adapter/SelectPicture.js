@@ -273,7 +273,7 @@ $.push({
 				this.$picList.hide();
 			},
 			executeMatch : function(){
-				var list;//=this.$context.getDescImageList();
+				var list=this.$context.getDescImageList();
 				if(list && list.length>0){
 					$.setTimeout(function(){
 						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
@@ -289,7 +289,6 @@ $.push({
 						cls : 'qit-autosize',
 						target : this.autoMatchButton.$elem[0]
 					});
-
 					this.autoMatchButton.$elem.hide();
 				}
 			},
