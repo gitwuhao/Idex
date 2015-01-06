@@ -301,9 +301,7 @@ $.push({
 				}
 
 				$.jsonp({
-					url:'/picture.query.js',
-					jsonpCallback : '_test_jsonp_callback',
-					//url:'/picture.s',
+					url:'/picture.s',
 					data : args,
 					$owner : this,
 					success : function(json){
