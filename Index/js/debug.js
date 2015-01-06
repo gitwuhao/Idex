@@ -32,15 +32,17 @@ function findUrl(config){
 $.jsonp=function(config){
 	var url=findUrl(config);
 	if(url){
+		delete config.data;
+		config.cache=true;
+		config.type='GET';
 		config.url=url;
 		config.jsonpCallback='_test_jsonp_callback';
-	}else{
-		config.jsonpCallback=$.getJSONPName();
 	}
 
 	$.ajax(CF.merger({
 		type : 'POST',
-		dataType : 'jsonp'
+		dataType : 'jsonp',
+		jsonpCallback:$.getJSONPName()
 	},config));
 };
 })();
