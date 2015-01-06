@@ -588,8 +588,10 @@ $.push({
 					me=this,
 					img,
 					$list,
+					$plNum,
 					array=me.matchArray,
 					index=array._index,
+					total=array._total,
 					PIC_SIZING=me.$context.PIC_SIZING;
 				
 				if(array.length>0){
@@ -624,6 +626,10 @@ $.push({
 					me.checkMatchArray();
 				};
 				this.$matchL.children('.num:first').text(index);
+				$plNum=this.$progressL.children('.num:first');
+				if($plNum.text()!=total){
+					$plNum.text(index);
+				}
 				setTimeout(function(){
 					img.src=item.path+PIC_SIZING;
 				},100);
@@ -634,18 +640,21 @@ $.push({
 				}
 				var matchArray=[],
 					resultArray={},
+					total=json.total,
+					$pl=this.$progressL,
 					picPx=this.$context.picTitlePx,
 					M_REG;
 
 				
 				matchArray._index=0;
+				matchArray._total=total;
 				
 				this.matchArray=matchArray;
 
 				M_REG=new RegExp('^'+picPx+'(\\d+)$','i');
 				
 				
-				this.$progressL.children('.count:first').text(json.total);
+				$pl.children('.count:first').text(total);
 				this.checkMatchArray();
 
 				//title:"1 (18)",pixel:"800x1200",path:
@@ -667,6 +676,8 @@ $.push({
 				},this);
 
 				matchArray._isComplete=true;
+				
+				$pl.children('.num:first').text(total);
 			}
 		};
 	}
