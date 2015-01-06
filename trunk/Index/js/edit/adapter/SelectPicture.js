@@ -15,8 +15,8 @@ $.push({
 	},
 	onReadyAfter : function(){
 		var data=this.app.ViewPanel.data;
-		this.pictureTitlePrefix='idex_'+data.type+'_'+data.id+'_';
-		console.info(this.pictureTitlePrefix);
+		this.picTitlePrefix='idex_'+data.type+'_'+data.id+'_';
+		console.info(this.picTitlePrefix);
 	},
 	show : function(){
 		var me=this;
@@ -71,12 +71,9 @@ $.push({
 		});
 	},
 	loadAutoMatchList : function(cid,callback){
-		$.ajax({
+		$.jsonp({
 			url:'/picture.s',
 			data : 'method=query&pageSize=100&cid='+cid,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			_callback : callback,
 			success : function(json){
 				this._callback.execute(json);
@@ -191,7 +188,7 @@ $.push({
 				var me=this;
 				this.$context.loadTreeData(function(json){
 					if(!json){
-						me.$pictureTree.html('加载失败...');
+						me.$picTree.html('加载失败...');
 					}else{
 						me.createTree(json);
 					}
@@ -208,6 +205,7 @@ $.push({
 			autoMatchButton :{
 				xtype : 'button',
 				icon : 'auto-match',
+				isDisabled : true,
 				label : '自动匹配',
 				onClick:function(){
 					this.$owner.loadAutoMatchList();
@@ -219,6 +217,7 @@ $.push({
 				label : '刷新分类',
 				onClick:function(){
 					this.$owner.refreshTree();
+					this.disabled();
 				}
 			},
 			loadAutoMatchList:function(){
@@ -233,7 +232,7 @@ $.push({
 				if(this.tree && this.tree.remove){
 					this.tree.remove();
 				}
-				this.autoMatchButton.$elem.hide();
+				this.autoMatchButton.disabled();
 				this.$context.saveTreeData();
 				this.$picTree.empty();
 				this.initTree();
@@ -268,7 +267,7 @@ $.push({
 			},
 			onNodeClick : function(node){
 
-				this.autoMatchButton.$elem.hide();
+				this.autoMatchButton.disabled();
 
 				this.currentCID=node.cid  || '';
 				this.currentPageNo=1;
@@ -302,7 +301,9 @@ $.push({
 				}
 
 				$.jsonp({
-					url:'/picture.s',
+					url:'/picture.query.js',
+					jsonpCallback : '_test_jsonp_callback',
+					//url:'/picture.s',
 					data : args,
 					$owner : this,
 					success : function(json){
@@ -347,7 +348,7 @@ $.push({
 
 				if(json && json.total>0){
 					this.bindPicItemEvent();
-					this.autoMatchButton.$elem.show();
+					this.autoMatchButton.enabled();
 				}
 				this.isBuilding=false;
 			},
