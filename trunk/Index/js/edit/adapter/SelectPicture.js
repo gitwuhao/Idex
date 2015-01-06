@@ -227,18 +227,9 @@ $.push({
 					div,
 					button,
 					$tab=this.$owner.$elem;
-				html=['<div class="idex-pic-match-list uns">'];
-				for(var i=0;i<listLength;i++){
-					html.push(
-							'<div class="idex-pic-item">',
-								'<img/>',
-								'<div class="pic-title">0x0</div>',
-							'</div>'
-					);
-				}
-				html.push('</div>');
+				html='<div class="idex-pic-match-list uns"></div>';
 
-				div=$.createElement(html.join(''));
+				div=$.createElement(html);
 				$tab.append(div);
 				this.$picMatchList=$(div);
 					
@@ -273,15 +264,25 @@ $.push({
 				this.$picList.hide();
 			},
 			executeMatch : function(){
-				var list;//=this.$context.getDescImageList();
+				var list=this.$context.getDescImageList();
 				if(list && list.length>0){
 					$.setTimeout(function(){
 						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
 					},100,this);
 					this.initMatchListUI(list.length,100);
+					/*
+					for(var i=0;i<listLength;i++){
+						html.push(
+							'<div class="idex-pic-item">',
+								'<img/>',
+								'<div class="pic-title">0x0</div>',
+							'</div>'
+						);
+					}
+					*/
 				}else{
 					ui.quicktip.show({
-						time : 50000,
+						time : 5000,
 						html : '<span style="color: #F90;">没有需要自动匹配的图片</span>',
 						offset : 'tl',
 						align : 'tc',
