@@ -290,7 +290,7 @@ $.push({
 						target : this.autoMatchButton.$elem[0]
 					});
 
-					this.autoMatchButton.disabled();
+					this.autoMatchButton.$elem.hide();
 				}
 			},
 			buildMatchPicList : function(json){
