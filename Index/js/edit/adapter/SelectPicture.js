@@ -532,6 +532,8 @@ $.push({
 				$l.children('.num:first').text(0);
 				$l.children('.count:first').text(this.descImageList.length);
 
+ 
+
 				
 				this.$floatbar.hide();
 				this.$picTree.hide();
@@ -677,6 +679,9 @@ $.push({
 						this.matchArray.push(picItem);
 					}
 				},this);
+
+				this.cancelMatchButton.$label('确认并应用');
+				this.cancelMatchButton.isApply=true;
 
 				
 			}
