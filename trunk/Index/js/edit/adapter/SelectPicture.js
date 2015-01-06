@@ -273,7 +273,7 @@ $.push({
 				this.$picList.hide();
 			},
 			executeMatch : function(){
-				var list=this.$context.getDescImageList();
+				var list;//=this.$context.getDescImageList();
 				if(list && list.length>0){
 					$.setTimeout(function(){
 						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
@@ -281,15 +281,24 @@ $.push({
 					this.initMatchListUI(list.length,100);
 				}else{
 					ui.quicktip.show({
-						time : 5000,
+						time : 50000,
 						html : '<span style="color: #F90;">没有需要自动匹配的图片</span>',
-						px : 'idex-ui',
 						offset : 'tl',
 						align : 'tc',
+						css : {
+							opacity : 1,	
+							'margin-top' :'10px'
+						},
 						cls : 'qit-autosize',
 						target : this.autoMatchButton.$elem[0]
 					});
-					this.autoMatchButton.$elem.hide();
+
+					this.autoMatchButton.remove();
+
+					this.autoMatchButton={
+						enabled : CF.emptyFunction,
+						disabled : CF.emptyFunction
+					};
 				}
 			},
 			buildMatchPicList : function(json){
