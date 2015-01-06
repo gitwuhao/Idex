@@ -206,8 +206,8 @@ $.push({
 				icon : 'auto-match',
 				isDisabled : true,
 				label : '自动匹配',
-				onClick:function(){
-					this.$owner.loadAutoMatchList();
+				onClick:function(event){
+					this.$owner.executeMatch(event.target);
 				}
 			},
 			refreshTreeButton :{
@@ -254,7 +254,7 @@ $.push({
 							'<em class="count cB">',picCount,'</em>',
 						'</span>',
 						'<span class="match-l">已匹配：',
-							'<em class="num">39</em>&nbsp;/&nbsp;',
+							'<em class="num">0</em>&nbsp;/&nbsp;',
 							'<em class="count cB">',listLength,'</em>',
 						'</span>',
 					'</div>'].join('');
@@ -272,25 +272,26 @@ $.push({
 				this.$picTree.hide();
 				this.$picList.hide();
 			},
-			loadAutoMatchList:function(){
-				var list=this.$context.getDescImageList();
+			executeMatch : function(){
+				var list;//=this.$context.getDescImageList();
 				if(list && list.length>0){
+					$.setTimeout(function(){
+						this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
+					},100,this);
 					this.initMatchListUI(list.length,100);
-					/*	{	
-							i : index,
-							target : img
-						}
-						
-						$.it(list,function(i,item){
-							
-							
-						});
-					*/
-					
 				}else{
-				
+					ui.quicktip.show({
+						time : 5000,
+						html : '<span style="color: #F90;">没有需要自动匹配的图片</span>',
+						px : 'idex-ui',
+						offset : 'tl',
+						align : 'tc',
+						cls : 'qit-autosize',
+						target : this.autoMatchButton.$elem[0]
+					});
+
+					this.autoMatchButton.disabled();
 				}
-				//this.$context.loadAutoMatchList(this.currentCID,CF.getCallback(this.buildMatchPicList,this));
 			},
 			buildMatchPicList : function(json){
 				if(json && json.length>0){
