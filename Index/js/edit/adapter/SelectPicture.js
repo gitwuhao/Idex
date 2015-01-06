@@ -587,6 +587,7 @@ $.push({
 					div,
 					me=this,
 					img,
+					$list,
 					array=me.matchArray,
 					index=array._index,
 					PIC_SIZING=me.$context.PIC_SIZING;
@@ -607,7 +608,11 @@ $.push({
 						'<img/>',
 						'<div class="pic-title">',item.pixel,'</div>',
 					'</div>'].join(''));
-				this.$picMatchList.append(div);
+				
+				$list=this.$picMatchList;
+				$list.append(div);
+
+				$list[0].scrollTop=$list[0].scrollTop+200;
 
 				img=div.firstElementChild;
 				
