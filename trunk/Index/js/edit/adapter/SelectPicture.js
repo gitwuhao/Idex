@@ -39,7 +39,7 @@ $.push({
 		$.it(list,function(i,img){
 			 if(me.isSGIF(img)){
 				array.push({
-					index: i,
+					i : i,
 					target : img
 				});
 			 }
@@ -219,7 +219,7 @@ $.push({
 					this.disabled();
 				}
 			},
-			initMatchListUI : function(){
+			initMatchListUI : function(listLength,picCount){
 				if(this.$picMatchList){
 					return;
 				}
@@ -227,14 +227,18 @@ $.push({
 					div,
 					button,
 					$tab=this.$owner.$elem;
-				html=['<div class="idex-pic-match-list uns">',
-						'<div class="idex-pic-item">',
-							'<img/>',
-							'<div class="pic-title">0x0</div>',
-						'</div>',
-					'</div>'].join('');
+				html=['<div class="idex-pic-match-list uns">'];
+				for(var i=0;i<listLength;i++){
+					html.push(
+							'<div class="idex-pic-item">',
+								'<img/>',
+								'<div class="pic-title">0x0</div>',
+							'</div>'
+					);
+				}
+				html.push('</div>');
 
-				div=$.createElement(html);
+				div=$.createElement(html.join(''));
 				$tab.append(div);
 				this.$picMatchList=$(div);
 					
@@ -247,11 +251,11 @@ $.push({
 						'</span>',
 						'<span class="progress-l">正在检索：',
 							'<em class="num">1</em>&nbsp;/&nbsp;',
-							'<em class="count cB">100</em>',
+							'<em class="count cB">',picCount,'</em>',
 						'</span>',
 						'<span class="match-l">已匹配：',
 							'<em class="num">39</em>&nbsp;/&nbsp;',
-							'<em class="count cB">49</em>',
+							'<em class="count cB">',listLength,'</em>',
 						'</span>',
 					'</div>'].join('');
 				div=$.createElement(html);
@@ -271,7 +275,18 @@ $.push({
 			loadAutoMatchList:function(){
 				var list=this.$context.getDescImageList();
 				if(list && list.length>0){
-					this.initMatchListUI();
+					this.initMatchListUI(list.length,100);
+					/*	{	
+							i : index,
+							target : img
+						}
+						
+						$.it(list,function(i,item){
+							
+							
+						});
+					*/
+					
 				}else{
 				
 				}
