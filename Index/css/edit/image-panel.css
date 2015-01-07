@@ -12,7 +12,10 @@
 .idex-image-tab-panel .automatch .idex-icon{
 	background-position: -105px -60px;
 }
-.idex-image-tab-panel .checkimg .idex-icon,.idex-image-tab-panel .idex-warning-icon .idex-icon{
+.idex-image-tab-panel .checkimg .idex-icon{
+	background-position: -105px -45px;
+}
+.idex-image-tab-panel .idex-warning-icon .idex-icon{
 	background-position: -15px -60px;
 }
 .idex-image-tab-panel .idex-error-icon .idex-icon{
