@@ -28,7 +28,11 @@ $.push({
 
 		this.picTitlePx='idex_'+data.type+'_'+data.id+'_';
 		console.info(this.picTitlePx);
+		
+		this.U_LABEL = ['<a href="',this.UPLOAD_URL,'" target="_IDEX_TB_PIC">上传图片</a>'].join('');
+	
 	},
+	UPLOAD_URL : 'http://tadget.taobao.com/redaction/manager.htm',
 	show : function(callback){
 		if(this.win){
 			return;
@@ -46,11 +50,10 @@ $.push({
 			item : {
 				xtype:'tab',
 				items : [picListConfig,{
-					label: '上传图片',
+					label: this.U_LABEL,
 					name : 'upload',
 					onBindEvent:function(){
 						this.$tag.bindHover();
-						//<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC"></a>
 					}
 				}]
 			},
