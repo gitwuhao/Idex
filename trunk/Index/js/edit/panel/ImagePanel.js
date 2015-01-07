@@ -95,9 +95,14 @@
 				this.app.isLocked=false;
 				return;
 			}
-			this.setId(img);
-			this.check(img);
 			this.index++;
+			//不可见
+			if(img.offsetParent){
+				this.setId(img);
+				this.check(img);
+			}else{
+				this.iterator();
+			}
 		},
 		setId : (function(){
 			var __SUFFIX__='CI'+$.randomChar(2),
