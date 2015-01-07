@@ -17,14 +17,14 @@ $.push({
 	onReadyAfter : function(){
 		var app=this.app,
 			ViewPanel,
-			CheckImagePanel,
+			ImagePanel,
 			data;
 		ViewPanel=app.ViewPanel;
-		CheckImagePanel=app.CheckImagePanel;
+		ImagePanel=app.ImagePanel;
 		data=ViewPanel.data;
 		
-		this.isSGIF=CheckImagePanel.isSGIF;
-		this.setImageSrc=CheckImagePanel.setImageSrc;
+		this.isSGIF=ImagePanel.isSGIF;
+		this.setImageSrc=ImagePanel.setImageSrc;
 
 		this.picTitlePx='idex_'+data.type+'_'+data.id+'_';
 		console.info(this.picTitlePx);

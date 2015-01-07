@@ -18,7 +18,7 @@
 			},/*{
 				type:'info'
 			},'|',*/{
-				type:'checkimage',
+				type:'image',
 				key : 'F9',
 				title : '图片验证'
 			},'|',{
@@ -369,7 +369,7 @@
 				this.trigger('togglepanel');
 			});
 
-			this.addEventListener('info checkimage history',function(icon){
+			this.addEventListener('info image history',function(icon){
 				if(this.app.isLocked){
 					return;
 				}
@@ -377,8 +377,8 @@
 				if(!item.tabPanelName){
 					if(item.type=='info'){
 						item.tabPanelName='InfoPanel';
-					}else if(item.type=='checkimage'){
-						item.tabPanelName='CheckImagePanel';
+					}else if(item.type=='image'){
+						item.tabPanelName='ImagePanel';
 					}else if(item.type=='history'){
 						item.tabPanelName='HistoryPanel';
 					}
