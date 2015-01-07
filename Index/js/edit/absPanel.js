@@ -18,8 +18,10 @@
 					this.app.SelectPicture.show(CF.getCallback(this.onSelect,this));
 					return false;
 				},
-				onSelect : function(){
-					console.info('on select');
+				onSelect : function(src){
+					//console.info('on select');
+					this.setValue(src);
+					this.on('change',this.value);
 				},
 				onChangeBefore : function(value){
 					/*
