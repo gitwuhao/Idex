@@ -617,6 +617,7 @@ $.push({
 					return
 				}
 				array._index++;
+				index=array._index;
 				div=$.createElement(
 					['<div class="idex-pic-item">',
 						'<img/>',
@@ -637,9 +638,9 @@ $.push({
 				img.onerror=function(){
 					me.checkMatchArray();
 				};
-				this.$matchL.children('.num:first').text((index+1));
+				this.$matchL.children('.num:first').text(index);
 				$plNum=this.$progressL.children('.num:first');
-				if(array.length-1==index){
+				if(array.length==index){
 					$plNum.text(array._total);
 					this.matchComplete();
 				}else{
