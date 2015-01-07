@@ -72,7 +72,7 @@ $.push({
 	onSelect : function(img){
 		var src=img.src.replace(this.PIC_SIZING,'');
 		this.win.callback.execute(src);
-		console.info('select:' + src);
+		this.win.close();
 	},
 	getDescBox : function(){
 		return this.app.ViewPanel.getDescBox();
