@@ -49,6 +49,7 @@
 }
 
 .idex-desc-box img.idex-r-activeimg{
-	outline: 2px dashed #F00;
-	outline-offset: -2px;
+	outline: 1px dashed #FFF;
+	outline-offset: -1px;
+	opacity: 0.7;
 }
