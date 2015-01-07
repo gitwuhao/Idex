@@ -4,10 +4,10 @@
 	cursor: pointer;
 }
 .idex-image-tab-panel .idex-bottombar-box .idex-toolbar-button-box{
-	float:none;
+	/* float:none; */
 }
 .idex-image-tab-panel .idex-button.automatch{
-	float:right;
+	/* float:right; */
 }
 .idex-image-tab-panel .automatch .idex-icon{
 	background-position: -105px -60px;
