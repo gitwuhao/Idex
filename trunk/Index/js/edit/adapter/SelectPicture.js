@@ -620,7 +620,7 @@ $.push({
 					return
 				}
 				div=$.createElement(
-					['<div class="idex-pic-item" index="'+index+'">',
+					['<div class="idex-pic-item">',
 						'<img/>',
 						'<div class="pic-title">',item.pixel,'</div>',
 					'</div>'].join(''));
@@ -632,13 +632,12 @@ $.push({
 
 				img=div.firstElementChild;
 				
-				img.onload=function(){
+				img.onerror=img.onload=function(){
+					this.onerror=null;
+					this.onload=null;
 					me.checkMatchArray();
 				};
-
-				img.onerror=function(){
-					me.checkMatchArray();
-				};
+ 
 				if(array.length-1==index){
 					pNum=array._total;
 					matchNum=index+1;
@@ -651,9 +650,11 @@ $.push({
 				this.$progressL.children('.num:first').text(pNum);
 				array._index++;
 				//index=array._index;
-				setTimeout(function(){
-					img.src=item.path+me.$context.PIC_SIZING;
-				},100);
+				$.setTimeout(function(){
+					if(this.$context){
+						img.src=item.path+this.$context.PIC_SIZING;
+					}
+				},100,this);
 			},
 			matchComplete : function(){
 				var b=this.cancelMatchButton;
