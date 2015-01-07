@@ -238,17 +238,18 @@ $.push({
 				if(this.onTreeLoadAfter){
 					this.onTreeLoadAfter();
 				}
+			},
+			initPicList : function(){
+				this.$picList.html('<div class="error-msg">选择一个图片分类...</div>');
+			},
+			onTreeLoadAfter : function(){
+				this.initPicList();
+				delete this.onTreeLoadAfter;
 			}
 		};
 	},
 	getPicPageConfig : function(){
 		return {
-			onTreeLoadAfter : function(){
-				$.setTimeout(function(){
-					this.tree.items[0].$node.click();
-				},100,this);
-				delete this.onTreeLoadAfter;
-			},
 			onNodeClick : function(node){
 				this.currentCID=node.cid  || '';
 				this.currentPageNo=1;
@@ -463,16 +464,17 @@ $.push({
 				this.initRefreshButton();
 				this.initAutoMatchButton();
 				this.initTree();
-
-				this.$picList.html('<div class="match-message">选择一个图片分类进行自动匹配...</div>')
 			},
 			onNodeClick : function(node){
 				this.autoMatchButton.enabled();
 				this.currentCID=node.cid  || '';
 				this.currentCatLabel=node.$elem.text();
+
+				this.$picList.html('<div class="error-msg">点击开始匹配...</div>');
 			},
 			onRefreshAfter : function(){
 				this.autoMatchButton.disabled();
+				this.initPicList();
 			},
 			cancelMatchButton :{
 				xtype : 'button',
@@ -493,7 +495,7 @@ $.push({
 				xtype : 'button',
 				icon : 'auto-match',
 				isDisabled : true,
-				label : '自动匹配',
+				label : '开始匹配',
 				onClick:function(){
 					this.$owner.executeMatch();
 				}
