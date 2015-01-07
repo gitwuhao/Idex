@@ -497,7 +497,6 @@ $.push({
 					
 				html=['<div class="idex-pic-match-status-box">',
 						'当前分类：<em class="cat-l cB"></em>',
-						'<span class="status-l"></span>',
 						'<span class="progress-l">正在检索：',
 							'<em class="num"></em> / ',
 							'<em class="count cB"></em>',
@@ -506,6 +505,7 @@ $.push({
 							'<em class="num"></em> / ',
 							'<em class="count cB"></em>',
 						'</span>',
+						'<span class="status-l"></span>',
 					'</div>'].join('');
 				div=$.createElement(html);
 				$tab.append(div);
@@ -671,6 +671,7 @@ $.push({
 				var b=this.cancelMatchButton;
 				b.$label.text('应用');
 				b.isApply=true;
+				this.$statusL.empty();
 			},
 			matchImage : function(json){
 				if(!json || json.total<1){
