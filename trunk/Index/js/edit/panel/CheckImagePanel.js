@@ -109,9 +109,6 @@
 			}
 			return false;
 		},
-		setImageSrc : function(img,src){
-			$.attr(img,IDEX_ATTR_MAP.SRC,src);
-		},
 		check : function(img){
 			this.logger(this);
 			var src=img.src,
