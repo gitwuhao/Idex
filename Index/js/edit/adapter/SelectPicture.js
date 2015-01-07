@@ -39,7 +39,7 @@ $.push({
 		$.it(list,function(i,img){
 			 //if(me.isSGIF(img)){
 				array.push({
-					i : i,
+					i : i+1,
 					target : img
 				});
 			 //}
@@ -593,7 +593,9 @@ $.push({
 			},
 			checkMatchArray : function(){
 				$.setTimeout(function(){
-					this.createPicItem();
+					if(this.matchArray && this.createPicItem){
+						this.createPicItem();
+					}
 				},100,this);
 			},
 			createPicItem : function(){
@@ -603,7 +605,8 @@ $.push({
 					me=this,
 					img,
 					$list,
-					$plNum,
+					pNum,
+					matchNum,
 					array=me.matchArray,
 					index;
 				
@@ -616,10 +619,8 @@ $.push({
 				if(!item){
 					return
 				}
-				array._index++;
-				index=array._index;
 				div=$.createElement(
-					['<div class="idex-pic-item">',
+					['<div class="idex-pic-item" index="'+index+'">',
 						'<img/>',
 						'<div class="pic-title">',item.pixel,'</div>',
 					'</div>'].join(''));
@@ -638,14 +639,18 @@ $.push({
 				img.onerror=function(){
 					me.checkMatchArray();
 				};
-				this.$matchL.children('.num:first').text(index);
-				$plNum=this.$progressL.children('.num:first');
-				if(array.length==index){
-					$plNum.text(array._total);
+				if(array.length-1==index){
+					pNum=array._total;
+					matchNum=index+1;
 					this.matchComplete();
 				}else{
-					$plNum.text(index+2);
+					pNum=index+1;
+					matchNum=index;
 				}
+				this.$matchL.children('.num:first').text(matchNum);
+				this.$progressL.children('.num:first').text(pNum);
+				array._index++;
+				//index=array._index;
 				setTimeout(function(){
 					img.src=item.path+me.$context.PIC_SIZING;
 				},100);
@@ -693,6 +698,10 @@ $.push({
 					if(picItem){
 						picItem.image=item.target;
 						this.matchArray.push(picItem);
+					/*
+					}else{
+						console.info('not match:',item,picItem);
+					*/
 					}
 				},this);
 				
