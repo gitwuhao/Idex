@@ -27,7 +27,7 @@ $.push({
 		this.setImageSrc=ImagePanel.setImageSrc;
 
 		this.picTitlePx='idex_'+data.type+'_'+data.id+'_';
-		console.info(this.picTitlePx);
+		//console.info(this.picTitlePx);
 		
 		this.U_LABEL = ['<a href="',this.UPLOAD_URL,'" target="_IDEX_TB_PIC">上传图片</a>'].join('');
 	
