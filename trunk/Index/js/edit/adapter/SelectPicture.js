@@ -37,14 +37,17 @@ $.push({
 		if(this.win){
 			return;
 		}
-		var picListConfig=this.getPicListConfig();
+		var title,
+			picListConfig=this.getPicListConfig();
 		if(callback){
+			title='选择图片';
 			CF.merger(picListConfig,this.getPicPageConfig());
 		}else{
+			title='匹配图片';
 			CF.merger(picListConfig,this.getMatchListConfig());
 		}
 		this.win=new ui.window({
-			title : '选择图片',
+			title : title,
 			callback : callback,
 			cls : 'idex-select-pic-win x-ui-scrollbar',
 			item : {
