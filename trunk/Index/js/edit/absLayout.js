@@ -121,7 +121,7 @@
 		},
 		srcollToActiveElement : function(){
 			this.logger(this);
-			if(!this._isSubLayoutItem_){
+			if(!this._isSubLayoutItem_ && this.activeElement.offsetParent){
 				this.app.ViewPanel.on('srcollTop',this.activeElement);
 			}
 		},
