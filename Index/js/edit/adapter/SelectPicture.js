@@ -2,7 +2,8 @@
 
 var CACHE_KEY = {
 	PIC_TREE : 'pic_category_tree'
-};
+},
+IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 
 $.push({
 	_name_ : 'SelectPicture',
@@ -47,7 +48,15 @@ $.push({
 		return array;
 	},
 	applyMatchImageList : function(array){
-		console.info("applyMatchImageList:",array);
+		//console.info("applyMatchImageList:",array);
+		//img: img,path: ,pixel: "800x1200",title: "idex_1_101010744_1"
+		$.it(array,function(i,item){
+			$.attr(item.img,IDEX_ATTR_MAP.SRC,item.path);
+			item.img.src='';
+		});
+		$.setTimeout(function(){
+			this.trigger('contentUpdate');
+		},100,this.app);
 	},
 	show : function(){
 		var me=this;
@@ -205,8 +214,10 @@ $.push({
 					if(this.isApply){
 						delete this.isApply;
 						$owner.$context.applyMatchImageList($owner.matchArray);
+						$owner.$context.win.close();
+					}else{
+						$owner.hideMatchBox();
 					}
-					$owner.hideMatchBox();
 				}
 			},
 			autoMatchButton :{
@@ -697,7 +708,7 @@ $.push({
 					var index=item.i,
 						picItem=resultArray[index];
 					if(picItem){
-						picItem.image=item.target;
+						picItem.img=item.target;
 						this.matchArray.push(picItem);
 					/*
 					}else{
