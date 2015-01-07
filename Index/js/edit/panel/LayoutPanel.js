@@ -175,8 +175,10 @@
 			}
 
 			if(eye){
+				this.on('click',event,navItem);
 				this.on('hideLayout',navItem,eye);
 			}else if(check){
+				this.on('click',event,navItem);
 				this.on('showLayout',navItem,check);
 			}else if(up){
 				this.on('up',navItem,up);
