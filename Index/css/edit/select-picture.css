@@ -149,7 +149,7 @@
 .idex-pic-match-list{
 	position: absolute;
 	left: 5px;
-	top: 75px;
+	top: 80px;
 	right: 10px;
 	bottom: 15px;
 	background-color: #FFF;
@@ -207,7 +207,7 @@
 }
 .idex-pic-match-status-box .cancel-match{
 	float: right;
-	padding: 3px 12px;
+	padding: 4px 12px;
 	margin-right: 15px;
 }
 .idex-pic-match-status-box .cancel-match:hover{
