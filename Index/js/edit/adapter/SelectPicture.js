@@ -37,12 +37,12 @@ $.push({
 			me=this;
 
 		$.it(list,function(i,img){
-			 if(me.isSGIF(img)){
+			 //if(me.isSGIF(img)){
 				array.push({
 					i : i,
 					target : img
 				});
-			 }
+			 //}
 		});
 		return array;
 	},
@@ -637,13 +637,13 @@ $.push({
 				img.onerror=function(){
 					me.checkMatchArray();
 				};
-				this.$matchL.children('.num:first').text(index);
+				this.$matchL.children('.num:first').text((index+1));
 				$plNum=this.$progressL.children('.num:first');
 				if(array.length-1==index){
 					$plNum.text(array._total);
 					this.matchComplete();
 				}else{
-					$plNum.text(index+1);
+					$plNum.text(index+2);
 				}
 				setTimeout(function(){
 					img.src=item.path+me.$context.PIC_SIZING;

@@ -103,8 +103,7 @@
 			
 			if((!src && !_src_)
 				|| (/s\.gif$/.test(src) || /s\.gif$/.test(_src_))
-				|| (/^http/.test(src))
-				|| (img.naturalHeight==1 && img.naturalHeight==naturalWidth)
+				/*|| (/^http/.test(src))*/
 			){
 				return true;
 			}
