@@ -29,6 +29,48 @@ $.push({
 		this.picTitlePx='idex_'+data.type+'_'+data.id+'_';
 		console.info(this.picTitlePx);
 	},
+	show : function(callback){
+		if(this.win){
+			return;
+		}
+		var picListConfig=this.getPicListConfig();
+		if(callback){
+			CF.merger(picListConfig,this.getPicPageConfig());
+		}else{
+			CF.merger(picListConfig,this.getMatchListConfig());
+		}
+		this.win=new ui.window({
+			title : '选择图片',
+			callback : callback,
+			cls : 'idex-select-pic-win x-ui-scrollbar',
+			item : {
+				xtype:'tab',
+				items : [picListConfig,{
+					label: '上传图片',
+					name : 'upload',
+					onBindEvent:function(){
+						this.$tag.bindHover();
+						//<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC"></a>
+					}
+				}]
+			},
+			onCloseAfter : function(){
+				this.$owner.close();
+			}
+		});
+		this.win.$owner = this;
+		this.win.show();
+	},
+	close:function(){
+		this.logger(this);
+		this.win.remove();
+		delete this.win;
+	},
+	onSelect : function(img){
+		var src=img.src.replace(this.PIC_SIZING,'');
+		this.win.callback.execute(src);
+		console.info('select:' + src);
+	},
 	getDescBox : function(){
 		return this.app.ViewPanel.getDescBox();
 	},
@@ -57,19 +99,6 @@ $.push({
 		$.setTimeout(function(){
 			this.trigger('contentUpdate');
 		},100,this.app);
-	},
-	show : function(){
-		var me=this;
-		if(this.win){
-			return;
-		}
-		this.win=new ui.window(this.getWinConfig());
-		this.win.$owner = this;
-		this.win.show();
-	},
-	onSelect : function(img){
-		var src=img.src.replace(this.PIC_SIZING,'');
-		console.info('select:' + src);
 	},
 	PIC_SIZING : '_150x150.jpg',
 	getTreeData : function(){
@@ -123,31 +152,6 @@ $.push({
 			}
 		});
 	},
-	close:function(){
-		this.logger(this);
-		this.win.remove();
-		delete this.win;
-	},
-	getWinConfig : function(){
-		return {
-			title : '选择图片',
-			cls : 'idex-select-pic-win x-ui-scrollbar',
-			item : {
-				xtype:'tab',
-				items : [this.getPicListConfig(),{
-					label: '上传图片',
-					name : 'upload',
-					onBindEvent:function(){
-						this.$tag.bindHover();
-						//<a href="http://tadget.taobao.com/redaction/manager.htm" target="_IDEX_TB_PIC"></a>
-					}
-				}]
-			},
-			onCloseAfter : function(){
-				this.$owner.close();
-			}
-		};
-	},
 	getPicListConfig : function(){
 		return {
 			label: '图片库',
@@ -180,20 +184,16 @@ $.push({
 				this.$context = this.$owner.$owner.$owner;
 
 				this.initUI();
-				this.initTree();
 			},
 			initUI : function(){
+				this.initRefreshButton();
+				this.initTree();
+			},
+			initRefreshButton : function(){
 				var button=this.refreshTreeButton;
 				button.render = this.$picLeftBox[0];
 				button.$owner=this;
 				this.refreshTreeButton=new ui.button(button);
-
-				button=this.autoMatchButton;
-				button.render = this.$picLeftBox[0];
-				button.$owner=this;
-				button.$context=this.$context;
-				this.autoMatchButton=new ui.button(button);
-
 			},
 			initTree : function(){
 				var me=this;
@@ -205,55 +205,23 @@ $.push({
 					}
 				});
 			},
-			cancelMatchButton :{
-				xtype : 'button',
-				cls : 'cancel-match',
-				label : '取消',
-				onClick:function(){
-					var $owner=this.$owner;
-					if(this.isApply){
-						delete this.isApply;
-						$owner.$context.applyMatchImageList($owner.matchArray);
-						$owner.$context.win.close();
-					}else{
-						$owner.hideMatchBox();
-					}
-				}
-			},
-			autoMatchButton :{
-				xtype : 'button',
-				icon : 'auto-match',
-				isDisabled : true,
-				label : '自动匹配',
-				onClick:function(){
-					this.$owner.executeMatch();
-				}
-			},
 			refreshTreeButton :{
 				xtype : 'button',
 				icon : 'refresh',
 				label : '刷新分类',
 				onClick:function(){
-					this.$owner.refreshTree();
+					this.$owner.on('refresh');
 					this.disabled();
 				}
 			},
-			refreshTree : function(){
+			onRefresh : function(){
 				if(this.tree && this.tree.remove){
 					this.tree.remove();
 				}
-				this.autoMatchButton.disabled();
 				this.$context.saveTreeData();
 				this.$picTree.empty();
 				this.initTree();
 			},
-			onShowAfter : function(){
-				this.$floatbar.show();
-			},
-			onHideAfter : function(){
-				this.$floatbar.hide();
-			},
-			isInitTree : false,
 			createTree : function(json){
 				if(json && json.insert){
 					json.insert(0,{label : '<span class="cB">最近上传</span>'});
@@ -267,18 +235,21 @@ $.push({
 						this.$owner.on('nodeClick',node);
 					}
 				});
-
-				if(this.isInitTree){
-					$.setTimeout(function(){
-						this.tree.items[0].$node.click();
-					},100,this);
+				if(this.onTreeLoadAfter){
+					this.onTreeLoadAfter();
 				}
-				delete this.isInitTree;
+			}
+		};
+	},
+	getPicPageConfig : function(){
+		return {
+			onTreeLoadAfter : function(){
+				$.setTimeout(function(){
+					this.tree.items[0].$node.click();
+				},100,this);
+				delete this.onTreeLoadAfter;
 			},
 			onNodeClick : function(node){
-
-				this.autoMatchButton.disabled();
-
 				this.currentCID=node.cid  || '';
 				this.currentPageNo=1;
 				this.currentCatLabel=node.$elem.text();
@@ -318,9 +289,6 @@ $.push({
 					data : args,
 					$owner : this,
 					success : function(json){
-						//$.setTimeout(function(_json){
-						//	this.buildPicList(_json);
-						//},500,this.$owner,[json]);
 						window.clearTimeout(loadingTimeoutId);
 						this.$owner.buildPicList(json);
 					},
@@ -361,7 +329,6 @@ $.push({
 
 				if(json && json.total>0){
 					this.bindPicItemEvent();
-					this.autoMatchButton.enabled();
 				}
 				this.isBuilding=false;
 			},
@@ -487,6 +454,56 @@ $.push({
 			},
 			removePageToolBar : function(){
 				this.$picRightBox.empty();
+			}
+		};
+	},
+	getMatchListConfig : function(){
+		return {
+			initUI : function(){
+				this.initRefreshButton();
+				this.initAutoMatchButton();
+				this.initTree();
+
+				this.$picList.html('<div class="match-message">选择一个图片分类进行自动匹配...</div>')
+			},
+			onNodeClick : function(node){
+				this.autoMatchButton.enabled();
+				this.currentCID=node.cid  || '';
+				this.currentCatLabel=node.$elem.text();
+			},
+			onRefreshAfter : function(){
+				this.autoMatchButton.disabled();
+			},
+			cancelMatchButton :{
+				xtype : 'button',
+				cls : 'cancel-match',
+				label : '取消',
+				onClick:function(){
+					var $owner=this.$owner;
+					if(this.isApply){
+						delete this.isApply;
+						$owner.$context.applyMatchImageList($owner.matchArray);
+						$owner.$context.win.close();
+					}else{
+						$owner.hideMatchBox();
+					}
+				}
+			},
+			autoMatchButton :{
+				xtype : 'button',
+				icon : 'auto-match',
+				isDisabled : true,
+				label : '自动匹配',
+				onClick:function(){
+					this.$owner.executeMatch();
+				}
+			},
+			initAutoMatchButton : function(){
+				var button=this.autoMatchButton;
+				button.render = this.$picLeftBox[0];
+				button.$owner=this;
+				button.$context=this.$context;
+				this.autoMatchButton=new ui.button(button);
 			},
 			initMatchListUI : function(){
 				var html,
@@ -648,7 +665,7 @@ $.push({
 					this.onload=null;
 					me.checkMatchArray();
 				};
- 
+
 				if(array.length-1==index){
 					pNum=array._total;
 					matchNum=index+1;
