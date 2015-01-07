@@ -67,6 +67,7 @@
 			this.removeActiveItem();
 		},
 		onAutomatch : function(){
+			//CF.getCallback(this.)
 			this.app.SelectPicture.show();
 		},
 		onCheckimg : function(){
