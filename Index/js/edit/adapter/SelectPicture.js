@@ -46,6 +46,9 @@ $.push({
 		});
 		return array;
 	},
+	applyMatchImageList : function(array){
+		console.info("applyMatchImageList:",array);
+	},
 	show : function(){
 		var me=this;
 		if(this.win){
@@ -198,7 +201,12 @@ $.push({
 				cls : 'cancel-match',
 				label : '取消',
 				onClick:function(){
-					this.$owner.hideMatchBox();
+					var $owner=this.$owner;
+					if(this.isApply){
+						delete this.isApply;
+						$owner.$context.applyMatchImageList($owner.matchArray);
+					}
+					$owner.hideMatchBox();
 				}
 			},
 			autoMatchButton :{
@@ -502,7 +510,6 @@ $.push({
 				button=this.cancelMatchButton;
 				button.render = this.$picMatchStatusBox[0];
 				button.$owner=this;
-				button.$context=this.$context;
 				this.cancelMatchButton=new ui.button(button);
 
 
@@ -532,8 +539,6 @@ $.push({
 				$l.children('.num:first').text(0);
 				$l.children('.count:first').text(this.descImageList.length);
 
- 
-
 				
 				this.$floatbar.hide();
 				this.$picTree.hide();
@@ -544,8 +549,12 @@ $.push({
 				this.$picMatchStatusBox.show();
 			},
 			hideMatchBox : function(){
+				this.$picMatchList.empty();
 				this.$picMatchList.hide();
 				this.$picMatchStatusBox.hide();
+				
+				delete this.matchArray;
+				delete this.descImageList;
 
 				this.$floatbar.show();
 				this.$picTree.show();
@@ -596,10 +605,10 @@ $.push({
 					$list,
 					$plNum,
 					array=me.matchArray,
-					index=array._index,
-					PIC_SIZING=me.$context.PIC_SIZING;
+					index;
 				
-				if(array.length>0){
+				if(array && array.length>0){
+					index=array._index;
 					item=array[index];
 				}else{
 					return;
@@ -632,12 +641,18 @@ $.push({
 				$plNum=this.$progressL.children('.num:first');
 				if(array.length-1==index){
 					$plNum.text(array._total);
+					this.matchComplete();
 				}else{
 					$plNum.text(index+1);
 				}
 				setTimeout(function(){
-					img.src=item.path+PIC_SIZING;
+					img.src=item.path+me.$context.PIC_SIZING;
 				},100);
+			},
+			matchComplete : function(){
+				var b=this.cancelMatchButton;
+				b.$label.text('应用');
+				b.isApply=true;
 			},
 			matchImage : function(json){
 				if(!json || json.total<1){
@@ -679,10 +694,6 @@ $.push({
 						this.matchArray.push(picItem);
 					}
 				},this);
-
-				this.cancelMatchButton.$label('确认并应用');
-				this.cancelMatchButton.isApply=true;
-
 				
 			}
 		};
