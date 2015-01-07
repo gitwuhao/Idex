@@ -101,8 +101,9 @@
 			var src=img.src,
 				_src_=img.getAttribute(IDEX_ATTR_MAP.SRC);
 			
-			if((!src && !_src_) 
-				|| (/s\.gif$/g.test(src) || /s\.gif$/g.test(_src_))
+			if((!src && !_src_)
+				|| (/s\.gif$/.test(src) || /s\.gif$/.test(_src_))
+				|| (/^http/.test(src))
 				|| (img.naturalHeight==1 && img.naturalHeight==naturalWidth)
 			){
 				return true;
