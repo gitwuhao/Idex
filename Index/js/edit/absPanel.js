@@ -22,9 +22,11 @@
 					console.info('on select');
 				},
 				onChangeBefore : function(value){
+					/*
 					if(this.value==''){
 						this.value='images/s.gif';
 					}
+					*/
 				}
 			},
 			'link' :{
