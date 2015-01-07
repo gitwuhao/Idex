@@ -71,10 +71,12 @@
 			var $bg=$('.float-box-bg:first',this.activeElement);
 			if(value==''){
 				$bg.empty();
+				$.removeClass(this.activeElement,'img-b');
 			}else{
 				var $img=$bg.children('img');
 				if($img.length==0){
 					$bg.html('<img src="'+value+'" />');
+					$.addClass(this.activeElement,'img-b');
 				}else{
 					$img.attr('src',value);
 				}
