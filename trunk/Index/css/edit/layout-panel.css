@@ -158,10 +158,10 @@
 .image-list-icon .idex-icon{
 	background-position: -0px -195px;
 }
-.image-item-icon .idex-icon{
+.image-item-icon .idex-icon,.i-image-item-icon .idex-icon{
 	background-position: -40px -195px;
 }
-.text-item-icon .idex-icon,.float-text-icon .idex-icon{
+.text-item-icon .idex-icon,.float-text-icon .idex-icon,.i-text-item-icon .idex-icon{
 	background-position: -80px -195px;
 }
 .html-item-icon .idex-icon,.float-html-icon .idex-icon{

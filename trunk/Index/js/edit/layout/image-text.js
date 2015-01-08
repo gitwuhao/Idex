@@ -86,22 +86,24 @@
 		setPstyle : function(value){
 			var html;
 			if(value==1){
-				html=['<div class="image-item img-b img-p">',
+				html=['<div class="i-image-item img-b img-p">',
 						'<img src="/s.gif">',
 					  '</div>'];
 			}else{
 				html=['<div class="p-r">',
-							'<div class="image-item img-b img-p">',
+							'<div class="i-image-item img-b img-p">',
 								'<img src="/s.gif">',
 							'</div>',
 						'</div>',
 						'<div class="p-n">',
-							'<div class="image-item img-b img-p">',
+							'<div class="i-image-item img-b img-p">',
 								'<img src="/s.gif">',
 							'</div>',
 						'</div>'];
 			}
 			$(this.activeElement).children('.i-box').html(html.join(''));
+			
+			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
 		},
 		getPstyle : function(){
 			this.logger(this);

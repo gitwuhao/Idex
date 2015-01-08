@@ -312,6 +312,16 @@ templateList=[{
 },{
 	type : 'html-item',
 	html : '<div class="layout html-item">标题<br>描述.....<br/><br/><br/></div>'
+},{
+	type : 'image-text',
+	html : ['<div class="layout image-text w7" style="height:300px;">',
+				'<div class="i-box">',
+					'<div class="i-image-item img-b img-p"><img src="/s.gif"/></div>',
+				'</div>',
+				'<div class="t-box">',
+					'<div class="i-text-item">image-text</div>',
+				'</div>',
+			  '</div>']
 }];
 localStorage['IDEX_LAYOUT_RELATION']=JSON.stringify(layoutRelation);
 localStorage['IDEX_SYSTEM_TEMPLATE_LIST']=JSON.stringify(templateList);
