@@ -306,66 +306,24 @@ table.property-tbody{
 /*------------------------- image-list -------------------------*/
 
 
-/*+++++++++++++++++++++++++ property-text +++++++++++++++++++++++++*/
-.property-text .i-box{
-	width: 60%;
-	height: 100%;
-}
-.property-text .t-box{
-	width: 40%;
-	height: 100%;
-}
-.property-text.w7 .i-box{
-	width: 70%;
-}
-.property-text.w7 .t-box{
-	width: 30%;
-}
-.property-text .image-item,.property-text .text-item{
-	width: 100%;
-	height: 100%;
-}
-.property-text .image-item img{
-	width : 100%;
-	height:100%;
-	border: 0;
-	vertical-align: top;
-}
-/*------------------------- property-text -------------------------*/
-
-
-/*+++++++++++++++++++++++++ property-text +++++++++++++++++++++++++*/
-.split-line.s1{
-	border-bottom: 1px solid #DDD;
-	margin: 5px 0px;
-}
-.split-line.s2{
-	border-bottom: 1px dotted #DDD;
-	margin: 5px 0px;
-}
-/*------------------------- property-text -------------------------*/
-
 /*+++++++++++++++++++++++++ image-text +++++++++++++++++++++++++*/
-.image-text{
-
-}
 .image-text .i-box{
-	width: 70%;
-	height: 100%;
-}
-.image-text.w4 .i-box{
 	width: 60%;
+	height: 100%;
 }
 .image-text .t-box{
-	width: 30%;
+	width: 40%;
 	height: 100%;
 }
-.image-text.w4 .t-box{
-	width: 40%;
+.image-text.w7 .i-box{
+	width: 70%;
 }
-.image-text .image-item{
-	width: 50%;
-	height: 50%;
+.image-text.w7 .t-box{
+	width: 30%;
+}
+.image-text .image-item,.image-text .text-item{
+	width: 100%;
+	height: 100%;
 }
 .image-text .image-item img{
 	width : 100%;
@@ -376,31 +334,46 @@ table.property-tbody{
 /*------------------------- image-text -------------------------*/
 
 
-
-/*+++++++++++++++++++++++++ text-image +++++++++++++++++++++++++*/
-.text-image{
-
+/*+++++++++++++++++++++++++ image2-text +++++++++++++++++++++++++*/
+.image2-text .i-box{
+	width: 60%;
+	height: 100%;
 }
-.text-image table{
-	width : 100%;
-	height:100%;
+.image2-text .i-box .p-r,.image2-text .i-box .p-n{
+	width: 50%;
+	height: 100%;
 }
-.text-image .text-cell{
-	width : 100%;
-	height:100%;
+.image2-text .t-box{
+	width: 40%;
+	height: 100%;
 }
-.text-image .image-item{
-	width : 100%;
-	height:100%;
+.image2-text.w7 .i-box{
+	width: 70%;
 }
-.text-image .image-item img{
+.image2-text.w7 .t-box{
+	width: 30%;
+}
+.image2-text .image-item,.image2-text .text-item{
+	width: 100%;
+	height: 100%;
+}
+.image2-text .image-item img{
 	width : 100%;
 	height:100%;
 	border: 0;
 	vertical-align: top;
 }
-/*------------------------- text-image -------------------------*/
-
+/*------------------------- image-text -------------------------*/
+/*+++++++++++++++++++++++++ split-line +++++++++++++++++++++++++*/
+.split-line.s1{
+	border-bottom: 1px solid #DDD;
+	margin: 5px 0px;
+}
+.split-line.s2{
+	border-bottom: 1px dotted #DDD;
+	margin: 5px 0px;
+}
+/*------------------------- split-line -------------------------*/
 
 /*+++++++++++++++++++++++++ 覆盖样式 +++++++++++++++++++++++++*/
 .p-r-b,.p-b,.p-r,.p-n{
