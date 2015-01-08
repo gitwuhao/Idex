@@ -323,45 +323,15 @@ table.property-tbody{
 	width: 30%;
 	height: 100%;
 }
+.image-text .i-box .p-r,.image-text .i-box .p-n{
+	width: 50%;
+	height: 100%;
+}
 .image-text .image-item,.image-text .text-item{
 	width: 100%;
 	height: 100%;
 }
 .image-text .image-item img{
-	width : 100%;
-	height:100%;
-	border: 0;
-	vertical-align: top;
-}
-/*------------------------- image-text -------------------------*/
-
-
-/*+++++++++++++++++++++++++ image2-text +++++++++++++++++++++++++*/
-.image2-text.w6 .i-box{
-	width: 60%;
-	height: 100%;
-}
-.image2-text.w6 .t-box{
-	width: 40%;
-	height: 100%;
-}
-.image2-text.w7 .i-box{
-	width: 70%;
-	height: 100%;
-}
-.image2-text.w7 .t-box{
-	width: 30%;
-	height: 100%;
-}
-.image2-text .i-box .p-r,.image2-text .i-box .p-n{
-	width: 50%;
-	height: 100%;
-}
-.image2-text .image-item,.image2-text .text-item{
-	width: 100%;
-	height: 100%;
-}
-.image2-text .image-item img{
 	width : 100%;
 	height:100%;
 	border: 0;
