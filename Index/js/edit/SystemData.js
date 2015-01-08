@@ -63,6 +63,9 @@ layoutRelation={
 	},
 	'image-item' : {
 		parent : 'image-list'
+	},
+	'image-text' : {
+		parent : 'container'
 	}
 };
 templateList=[{
