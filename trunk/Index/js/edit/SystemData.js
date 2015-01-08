@@ -319,7 +319,7 @@ templateList=[{
 					'<div class="i-image-item img-b img-p"><img src="/s.gif"/></div>',
 				'</div>',
 				'<div class="i-text-box">',
-					'<div class="i-text-item">image-text</div>',
+					'<div class="i-text-item">说明...</div>',
 				'</div>',
 			  '</div>']
 }];

@@ -4,6 +4,9 @@ var urlMap={
 		'method=query&pageSize=12' : '/js/data/picture.query.js',
 		'method=query&pageSize=100' : '/js/data/picture.query.100.js',
 		'method=getCat' : '/js/data/picture.getcat.js'
+	},
+	'/module.s' : {
+		'method=query&_t=2' : '/js/data/module.query.2.js'
 	}
 };
 function match(param,data){
