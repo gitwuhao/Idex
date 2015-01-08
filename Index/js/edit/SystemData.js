@@ -321,7 +321,7 @@ templateList=[{
 				'<div class="i-text-box">',
 					'<div class="i-text-item">说明...</div>',
 				'</div>',
-			  '</div>']
+			  '</div>'].join('')
 }];
 localStorage['IDEX_LAYOUT_RELATION']=JSON.stringify(layoutRelation);
 localStorage['IDEX_SYSTEM_TEMPLATE_LIST']=JSON.stringify(templateList);
