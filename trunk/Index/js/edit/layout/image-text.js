@@ -101,7 +101,7 @@
 							'</div>',
 						'</div>'];
 			}
-			$(this.activeElement).children('.i-box').html(html.join(''));
+			$(this.activeElement).children('.i-image-box').html(html.join(''));
 			
 			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
 		},
@@ -118,9 +118,9 @@
 			this.logger(this);
 			var value,
 				div=this.activeElement.firstElementChild;
-			if($.hasClass(div,'i-box')){
+			if($.hasClass(div,'i-image-box')){
 				value='l';
-			}else if($.hasClass(div,'t-box')){
+			}else{
 				value='r';
 			}
 			return value;
