@@ -315,6 +315,14 @@ table.property-tbody{
 	width: 70%;
 	height: 100%;
 }
+.image-text.w4 .i-box{
+	width: 40%;
+	height: 100%;
+}
+.image-text.w4 .t-box{
+	width: 60%;
+	height: 100%;
+}
 .image-text.w5 .i-box{
 	width: 50%;
 	height: 100%;
