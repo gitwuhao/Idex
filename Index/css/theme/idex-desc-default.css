@@ -334,6 +334,17 @@ table.property-tbody{
 /*------------------------- property-text -------------------------*/
 
 
+/*+++++++++++++++++++++++++ property-text +++++++++++++++++++++++++*/
+.split-line.s1{
+	border-bottom: 1px solid #DDD;
+	margin: 5px 0px;
+}
+.split-line.s2{
+	border-bottom: 1px dotted #DDD;
+	margin: 5px 0px;
+}
+/*------------------------- property-text -------------------------*/
+
 /*+++++++++++++++++++++++++ image-text +++++++++++++++++++++++++*/
 .image-text{
 
