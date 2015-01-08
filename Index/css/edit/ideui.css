@@ -57,6 +57,9 @@
 	line-height: 13px;
 	cursor: default;
 }
+.idex-ui-radio.s3 span,.idex-ui-checkbox.s3 span{
+	width: 30px;
+}
 .idex-ui-radio-group .idex-ui-icon{
 	background-position: -303px -103px;
 }
