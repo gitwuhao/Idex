@@ -197,6 +197,9 @@
 .image-col-icon .idex-icon{
 	background-position: -120px -235px;
 }
+.image-text-icon .idex-icon{
+	background-position: -200px -235px;
+}
 .idex-property-panel .idex-tabview-box{
     height: 3500px;
 }
