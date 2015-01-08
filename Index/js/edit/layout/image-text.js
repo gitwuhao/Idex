@@ -84,7 +84,24 @@
 			return this.activeElement.offsetHeight;
 		},
 		setPstyle : function(value){
-		
+			var html;
+			if(value==1){
+				html=['<div class="image-item img-b img-p">',
+						'<img src="/s.gif">',
+					  '</div>'];
+			}else{
+				html=['<div class="p-r">',
+							'<div class="image-item img-b img-p">',
+								'<img src="/s.gif">',
+							'</div>',
+						'</div>',
+						'<div class="p-n">',
+							'<div class="image-item img-b img-p">',
+								'<img src="/s.gif">',
+							'</div>',
+						'</div>'];
+			}
+			$(this.activeElement).children('.i-box').html(html.join(''));
 		},
 		getPstyle : function(){
 			this.logger(this);
@@ -93,7 +110,6 @@
 		setVstyle : function(value){
 			this.logger(this);
 			var activeElement=this.activeElement;
-
 			$(activeElement.firstElementChild).insertAfter(activeElement.lastElementChild);
 		},
 		getVstyle : function(){
