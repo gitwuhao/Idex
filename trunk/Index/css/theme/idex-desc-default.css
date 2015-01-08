@@ -307,6 +307,14 @@ table.property-tbody{
 
 
 /*+++++++++++++++++++++++++ image-text +++++++++++++++++++++++++*/
+.image-text.w3 .i-box{
+	width: 30%;
+	height: 100%;
+}
+.image-text.w3 .t-box{
+	width: 70%;
+	height: 100%;
+}
 .image-text.w6 .i-box{
 	width: 60%;
 	height: 100%;
