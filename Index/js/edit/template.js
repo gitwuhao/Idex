@@ -106,14 +106,11 @@
 			this.loadCustomTemplateList();
 		},
 		loadCustomTemplateList : function(config){
-			$.ajax({
+			$.jsonp({
 				url:'/module.s',
 				data : 'method=query&_t=2',
-				type : 'POST',
 				_$owner : this,
 				_config : config,
-				dataType : 'jsonp',
-				jsonpCallback : $.getJSONPName(),
 				success : function(json){
 					if(json && json.length>0){
 						this._$owner.saveCustomTemplateData(json);
