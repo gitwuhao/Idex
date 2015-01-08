@@ -307,19 +307,21 @@ table.property-tbody{
 
 
 /*+++++++++++++++++++++++++ image-text +++++++++++++++++++++++++*/
-.image-text .i-box{
+.image-text.w6 .i-box{
 	width: 60%;
 	height: 100%;
 }
-.image-text .t-box{
+.image-text.w6 .t-box{
 	width: 40%;
 	height: 100%;
 }
 .image-text.w7 .i-box{
 	width: 70%;
+	height: 100%;
 }
 .image-text.w7 .t-box{
 	width: 30%;
+	height: 100%;
 }
 .image-text .image-item,.image-text .text-item{
 	width: 100%;
@@ -335,23 +337,25 @@ table.property-tbody{
 
 
 /*+++++++++++++++++++++++++ image2-text +++++++++++++++++++++++++*/
-.image2-text .i-box{
+.image2-text.w6 .i-box{
 	width: 60%;
 	height: 100%;
 }
-.image2-text .i-box .p-r,.image2-text .i-box .p-n{
-	width: 50%;
-	height: 100%;
-}
-.image2-text .t-box{
+.image2-text.w6 .t-box{
 	width: 40%;
 	height: 100%;
 }
 .image2-text.w7 .i-box{
 	width: 70%;
+	height: 100%;
 }
 .image2-text.w7 .t-box{
 	width: 30%;
+	height: 100%;
+}
+.image2-text .i-box .p-r,.image2-text .i-box .p-n{
+	width: 50%;
+	height: 100%;
 }
 .image2-text .image-item,.image2-text .text-item{
 	width: 100%;
