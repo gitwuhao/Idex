@@ -134,11 +134,9 @@
 				this.on('callback',data);
 				return;
 			}
-			$.ajax({
+			$.loadText({
 				url:'/module.s',
 				data : 'method=getCode&_t=2&id='+data.id,
-				type : 'POST',
-				dataType : 'text',
 				_$owner : this,
 				_data : data,
 				success : function(_html){
