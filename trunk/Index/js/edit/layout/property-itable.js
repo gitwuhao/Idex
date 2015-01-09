@@ -61,13 +61,8 @@
 			});
 			return this.form;
 		},
-		setSrc : function(value){
-			this.logger(this);
-			$('.property-image:first img',this.activeElement).attr('src',value);
-		},
-		getSrc : function(){
-			this.logger(this);
-			return $('.property-image:first img',this.activeElement).attr('src');
+		getImgElement : function(){
+			return $('.property-image:first img',this.activeElement)[0];
 		},
 		setHeight : function(value){
 			this.logger(this);
