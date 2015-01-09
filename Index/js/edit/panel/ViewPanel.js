@@ -139,7 +139,7 @@
 					attr.value='';
 				},
 				'class' : function(attr){
-					attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
+					attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
 				}
 			},
 			'img' : {
@@ -151,7 +151,7 @@
 					src=this.getAttribute(key);
 					_src_=this.getAttribute(i_key);
 					if(_src_ && src){
-						this.setAttribute(key,'');
+						this.setAttribute(i_key,'');
 					}
 				},
 				'src' : function(attr){

@@ -82,9 +82,8 @@
 				}
 			}
 		},
-		getSrc : function(){
-			this.logger(this);
-			return $('.float-box-bg:first img',this.activeElement).attr('src');
+		getImgElement : function(){
+			return $('.float-box-bg:first img',this.activeElement)[0];
 		}
 	});
 

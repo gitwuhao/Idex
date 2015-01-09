@@ -107,7 +107,7 @@
 				oldValue=value;
 			value=$.trim(value);
 			if(value){
-				var $img=$elem.children('.image-title:first').children('img');
+				var $img=$('.image-title:first img',$elem);
 				if($img.length==0){
 					$elem.children('.text-title:first').remove();
 					$elem.children('.layout-box:first').before('<div class="image-title"><img src="'+value+'" /></div>');
@@ -122,9 +122,8 @@
 				this.form.setItemValue('src',value);
 			}
 		},
-		getSrc:function(){
-			this.logger(this);
-			return $(this.activeElement).children('.image-title:first').children('img').attr('src');
+		getImgElement : function(){
+			return $('.image-title:first img',this.activeElement)[0];
 		}
 	});
 
