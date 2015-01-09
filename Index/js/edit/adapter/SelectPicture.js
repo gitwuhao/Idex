@@ -1,7 +1,8 @@
 (function(CF,$){
 
 var CACHE_KEY = {
-	PIC_TREE : 'pic_category_tree'
+	PIC_TREE : 'pic_category_tree',
+	LAST_LOAD : 'last_load_pic_list'
 },
 IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 
@@ -86,17 +87,14 @@ $.push({
 			me=this;
 
 		$.it(list,function(i,img){
-			 //if(me.isSGIF(img)){
-				array.push({
-					i : i+1,
-					target : img
-				});
-			 //}
+			array.push({
+				i : i+1,
+				target : img
+			});
 		});
 		return array;
 	},
 	applyMatchImageList : function(array){
-		//console.info("applyMatchImageList:",array);
 		//img: img,path: ,pixel: "800x1200",title: "idex_1_101010744_1"
 		$.it(array,function(i,item){
 			$.attr(item.img,IDEX_ATTR_MAP.SRC,item.path);
@@ -116,6 +114,16 @@ $.push({
 			return;
 		}
 		$.cache.put(CACHE_KEY.PIC_TREE,JSON.stringify(json));
+	},
+	getLastLoadPic : function(){
+		return $.cache.get(CACHE_KEY.LAST_LOAD);
+	},
+	saveLastLoadPic : function(json){
+		if(!json){
+			$.cache.remove(CACHE_KEY.LAST_LOAD);
+			return;
+		}
+		$.cache.put(CACHE_KEY.LAST_LOAD,JSON.stringify(json));
 	},
 	loadTreeData : function(callback){
 		var treeData=this.getTreeData();
@@ -259,11 +267,24 @@ $.push({
 			onNodeClick : function(node){
 				this.currentCID=node.cid  || '';
 				this.currentPageNo=1;
-				this.currentCatLabel=node.$elem.text();
 
 				this.loadPicList({
 					cid : this.currentCID
 				});
+			},
+			initPicList : function(){
+				var json=this.$context.getLastLoadPic();
+				if(json){
+					try{
+						json=JSON.parse(json);
+						this.currentCID=json.cid  || '';
+						this.currentPageNo=json.pageNo;
+						json.isLastLoad=true;
+						this.buildPicList(json);
+					}catch(e){
+						this.$context.saveLastLoadPic();
+					};
+				}
 			},
 			PAGE_SIZE : 12,
 			loadPicList : function(paramObject){
@@ -320,6 +341,11 @@ $.push({
 					}
 					html=html.join('');
 					this.buildPageToolBar(json.total);
+					if(!json.isLastLoad){
+						json.cid=this.currentCID;
+						json.pageNo=this.currentPageNo;
+						this.$context.saveLastLoadPic(json);
+					}
 				}else if(json==-1){
 					errorMsg='加载失败...';
 				}else if(json && json.errorMsg){
