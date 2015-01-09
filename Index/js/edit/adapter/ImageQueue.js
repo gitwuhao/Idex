@@ -32,7 +32,11 @@ $.push({
 		this.triggerAndRemoveEvent('runImageQueue');
 	},
 	isLoadAfterImage : function(img){
-		return (img.src && img.naturalHeight>0 && img.naturalWidth>0)||false;
+		//return (img.src && img.naturalHeight>0 && img.naturalWidth>0)||false;
+		if($.attr(img,'src')){
+			return true;
+		}
+		return false;
 	},
 	init : function(content){
 		this.$content=$(content);
