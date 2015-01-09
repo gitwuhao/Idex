@@ -259,6 +259,7 @@ $.push({
 			onTreeLoadAfter : function(){
 				this.initPicList();
 				delete this.onTreeLoadAfter;
+				delete this.initPicList;
 			}
 		};
 	},
@@ -272,7 +273,7 @@ $.push({
 					cid : this.currentCID
 				});
 			},
-			initPicList : function(){
+			onTreeLoadAfter : function(){
 				var json=this.$context.getLastLoadPic();
 				if(json){
 					try{
@@ -284,7 +285,11 @@ $.push({
 					}catch(e){
 						this.$context.saveLastLoadPic();
 					};
+				}else{
+					this.initPicList();
 				}
+				delete this.onTreeLoadAfter;
+				delete this.initPicList;
 			},
 			PAGE_SIZE : 12,
 			loadPicList : function(paramObject){
