@@ -283,9 +283,11 @@ $.push({
 						json.isLastLoad=true;
 						this.buildPicList(json);
 					}catch(e){
+						json=null
 						this.$context.saveLastLoadPic();
 					};
-				}else{
+				}
+				if(!json){
 					this.initPicList();
 				}
 				delete this.onTreeLoadAfter;
