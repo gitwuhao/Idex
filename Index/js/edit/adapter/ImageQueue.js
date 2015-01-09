@@ -39,14 +39,14 @@
 				this.ImageQueue.clear();
 				var array=[],
 					imgList=$('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel);
-
+				/*
 				$.it(imgList,function(i,img){
 					if(img.offsetParent){
 						array.push(img);
 					}
 				});
-
-				this.ImageQueue.pushList(array);
+				*/
+				this.ImageQueue.pushList(imgList);
 				this.ImageQueue.run();
 			});
 
