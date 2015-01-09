@@ -134,16 +134,13 @@ $.push({
 		};
 
 
-		$.ajax({
+		$.jsonp({
 			url:'/module.s',
 			data : $.param(data),
 			_$owner : this,
 			_customModule : this.app.CustomModule,
 			_data : data,
 			_target : config.target,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(id){
 				var html;
 				if(id && id>0){
