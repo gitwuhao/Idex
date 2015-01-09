@@ -107,13 +107,20 @@
 				oldValue=value;
 			value=$.trim(value);
 			if(value){
-				var $img=$('.image-title:first img',$elem);
-				if($img.length==0){
+				var $img,
+					$imageTitle=$elem.children('.image-title:first');
+				if($imageTitle.length==0){
 					$elem.children('.text-title:first').remove();
 					$elem.children('.layout-box:first').before('<div class="image-title"><img src="'+value+'" /></div>');
 				}else{
-					$img.attr('src',value);
+					$imageTitle.children('img').attr('src',value);
+					$imageTitle.removeClass('hide');
 				}
+				/*
+				$.setTimeout(function(){
+					this.activeElement.click();
+				},100,this);
+				*/
 			}else if($elem.children('.text-title:first').length==0){
 				$elem.children('.image-title:first').remove();
 				$elem.children('.layout-box:first').before('<div class="text-title">'+this.getTitle()+'</div>');
