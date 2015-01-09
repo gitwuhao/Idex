@@ -192,14 +192,6 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
-		},
-		setSrc : function(value){
-			var img=this.activeElement.firstElementChild;
-			img.src=value;
-		},
-		getSrc : function(){
-			var img=this.activeElement.firstElementChild;
-			return img.src;
 		}
 	});
 

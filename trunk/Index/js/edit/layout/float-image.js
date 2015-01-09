@@ -42,14 +42,6 @@
 			this.callPrototypeMethod();
 			this.getImgsizing();
 		},
-		setSrc : function(value){
-			var img=this.activeElement.firstElementChild;
-			img.src=value;
-		},
-		getSrc : function(){
-			var img=this.activeElement.firstElementChild;
-			return img.src;
-		},
 		onAutoSize : function(){
 			var activeElement,
 				height,
