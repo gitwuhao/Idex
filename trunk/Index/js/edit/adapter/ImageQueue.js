@@ -23,13 +23,10 @@ $.push({
 			this.clear();
 			var imgList=$('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel);
 			$.it(imgList,function(i,img){
-				if(img.offsetParent){
-					this.push(img);
-				}
+				this.push(img);
 			},this);
 			this.run();
 		});
-
 		this.triggerAndRemoveEvent('runImageQueue');
 	},
 	init : function(content){

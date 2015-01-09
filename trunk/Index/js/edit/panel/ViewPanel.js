@@ -144,14 +144,8 @@
 			},
 			'img' : {
 				':before' : function(){
-					var key='src',
-						i_key=IDEX_ATTR_MAP.SRC,
-						src,
-						_src_;
-					src=this.getAttribute(key);
-					_src_=this.getAttribute(i_key);
-					if(_src_ && src){
-						this.setAttribute(i_key,'');
+					if(this.naturalHeight>0 && this.naturalWidth>0){
+						this.setAttribute(IDEX_ATTR_MAP.SRC,'');
 					}
 				},
 				'src' : function(attr){

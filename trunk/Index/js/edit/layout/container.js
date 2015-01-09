@@ -92,6 +92,9 @@
 				$item.addClass('hide');
 			}else{
 				$item.removeClass('hide');
+				if($item.hasClass('image-title')){
+					this.app.trigger('loadImage');
+				}
 			}
 		},
 		getDisplay:function(){
@@ -115,12 +118,8 @@
 				}else{
 					$imageTitle.children('img').attr('src',value);
 					$imageTitle.removeClass('hide');
+					this.app.trigger('loadImage');
 				}
-				/*
-				$.setTimeout(function(){
-					this.activeElement.click();
-				},100,this);
-				*/
 			}else if($elem.children('.text-title:first').length==0){
 				$elem.children('.image-title:first').remove();
 				$elem.children('.layout-box:first').before('<div class="text-title">'+this.getTitle()+'</div>');
