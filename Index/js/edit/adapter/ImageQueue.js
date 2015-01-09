@@ -23,11 +23,16 @@ $.push({
 			this.clear();
 			var imgList=$('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel);
 			$.it(imgList,function(i,img){
-				this.push(img);
+				if(!this.isLoadAfterImage(img)){
+					this.push(img);
+				}
 			},this);
 			this.run();
 		});
 		this.triggerAndRemoveEvent('runImageQueue');
+	},
+	isLoadAfterImage : function(img){
+		return (img.src && img.naturalHeight>0 && img.naturalWidth>0)||false;
 	},
 	init : function(content){
 		this.$content=$(content);
@@ -134,7 +139,7 @@ $.push({
 		}
 	},
 	loadImage:function(img){
-		if(img.src && img.naturalHeight>0 && img.naturalWidth>0){
+		if(this.isLoadAfterImage(img)){
 			$.setTimeout(function(){
 				this.imgLoad(img);
 			},0,this);
