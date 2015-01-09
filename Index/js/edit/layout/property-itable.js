@@ -63,13 +63,11 @@
 		},
 		setSrc : function(value){
 			this.logger(this);
-			var $img=$('.property-image:first img',this.activeElement);
-			$img[0].src=value;
+			$('.property-image:first img',this.activeElement).attr('src',value);
 		},
 		getSrc : function(){
 			this.logger(this);
-			var $img=$('.property-image:first img',this.activeElement);
-			return $img[0].src;
+			return $('.property-image:first img',this.activeElement).attr('src');
 		},
 		setHeight : function(value){
 			this.logger(this);

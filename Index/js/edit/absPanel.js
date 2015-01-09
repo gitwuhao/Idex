@@ -14,6 +14,24 @@
 				vtype:['autoselect'],
 				placeholder :'填写图片地址',
 				getDesc : '修改图片地址',
+				onRenderAfter : function(){
+					this.callPrototypeMethod();
+
+					var layout=this.layout;
+					if(!layout.setSrc){
+						layout.setSrc=function(value){
+							$.attr(this.activeElement.firstElementChild,'src',value);
+						};
+					}
+					if(!layout.getSrc){
+						layout.getSrc = function(){
+							return this.getImgSrc(this.activeElement.firstElementChild);
+						};
+					}
+					this.layout.getImgSrc=function(img){
+						return $.attr(img,'src');
+					};
+				},
 				onIconmousedown : function(){
 					this.app.SelectPicture.show(CF.getCallback(this.onSelect,this));
 					return false;
