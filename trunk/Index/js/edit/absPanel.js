@@ -21,7 +21,7 @@ ideui={
 					layout.setSrc=function(value){
 						var img=this.getImgElement();
 						if(img){
-							$.attr(img,'src',value);
+							$.attr(img,'src',value||'/s.gif');
 						}
 					};
 				}
@@ -49,13 +49,6 @@ ideui={
 				this.setValue(src);
 				this.on('change',this.value);
 				$.removeAttr(this.layout.getImgElement(),IDEX_ATTR_MAP.SRC);
-			},
-			onChangeBefore : function(value){
-				/*
-				if(this.value==''){
-					this.value='images/s.gif';
-				}
-				*/
 			}
 		},
 		'link' :{
