@@ -49,7 +49,6 @@ ideui={
 				this.setValue(src);
 				this.on('change',this.value);
 				$.removeAttr(this.layout.getImgElement(),IDEX_ATTR_MAP.SRC);
-
 			},
 			onChangeBefore : function(value){
 				/*
