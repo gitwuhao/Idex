@@ -362,15 +362,15 @@
 				}
 			}
 
-			var me=this;
 			this.app.trigger('getTemplate',{
 				parentLayout : parentLayout,
+				$owner : this,
 				target : target,
 				event : event,
 				parent : parent,
 				callback : function(template){
 					if(!this.parentLayout){
-						this.parentLayout=me.__CONTAINER_LAYOUT__;
+						this.parentLayout=this.$owner.__CONTAINER_LAYOUT__;
 					}
 					var element;
 					if(this.target){
@@ -380,7 +380,8 @@
 					}
 					template.layout.on('new',element[0]);
 					element.click();
-					me.addNewLayoutUndo();
+					this.$owner.app.trigger('loadImage',element);
+					this.$owner.addNewLayoutUndo();
 				}
 			});
 
