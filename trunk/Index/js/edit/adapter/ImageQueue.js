@@ -9,44 +9,54 @@ $.push({
 			this.ImageQueue.onReadyAfter();
 		});
 
-		this.app.addEventListener('contentUpdate',function(){
-			this.ImageQueue.trigger('contentUpdate');
+		this.app.addEventListener('contextUpdate',function(){
+			this.ImageQueue.trigger('contextUpdate');
 		});
 
-		this.app.addEventListener('loadImage',function(){
-			this.ImageQueue.load();
+		this.app.addEventListener('loadImage',function(context){
+			var IQ=this.ImageQueue;
+			if(context){
+				IQ.pushList(context);
+			}
+			IQ.load();
 		});
 	},
 	onReadyAfter : function(){
 		this.init(this.app.$viewPanel);
-		this.addEventListener('contentUpdate runImageQueue',function(){
+		this.addEventListener('contextUpdate runImageQueue',function(){
 			this.clear();
-			var imgList=$('img['+IDEX_ATTR_MAP.SRC+']',this.$viewPanel);
-			$.it(imgList,function(i,img){
-				if(!this.isLoadAfterImage(img)){
-					this.push(img);
-				}
-			},this);
+			this.pushList(this.context);
 			this.run();
 		});
 		this.triggerAndRemoveEvent('runImageQueue');
 	},
 	isLoadAfterImage : function(img){
 		//return (img.src && img.naturalHeight>0 && img.naturalWidth>0)||false;
-		if($.attr(img,'src')){
-			return true;
+		if(!$.attr(img,'src') && this.getSrc(img)){
+			return false;
 		}
-		return false;
+		return true;
 	},
-	init : function(content){
-		this.$content=$(content);
+	pushList : function(context){
+		if(!context){
+			return;
+		}
+		var imgList=$('img['+IDEX_ATTR_MAP.SRC+']',context);
+		$.it(imgList,function(i,img){
+			if(!this.isLoadAfterImage(img)){
+				this.push(img);
+			}
+		},this);
+	},
+	init : function(context){
+		this.$context=$(context);
 		this.array = [];
 		this.length=0;
-		this.content=this.$content[0];
+		this.context=this.$context[0];
 
-		this.bindContentScroll();
+		this.bindcontextScroll();
 	},
-	content : null,
+	context : null,
 	css : {
 		item : 'idex-r-iq-item',
 		error : 'idex-r-iq-error'
@@ -88,38 +98,38 @@ $.push({
 	SCROLL_EVENT_KEY : 'scroll.IQ',
 	run : function(){
 		if(this.isRun==false){
-			this.bindContentScroll();
+			this.bindcontextScroll();
 		}
 		this.isRun=true;
 
 		this.load();
 	},
 	stop : function(){
-		this.$content.off(this.SCROLL_EVENT_KEY);
+		this.$context.off(this.SCROLL_EVENT_KEY);
 		this.isRun=false;
 	},
 	load : function(top){
 		if(top!=0 && !top){
-			top=this.content.scrollTop;
+			top=this.context.scrollTop;
 		}
 		this.on('check',top);
 	},
-	bindContentScroll:function(){
-		this.$content.on(this.SCROLL_EVENT_KEY,{
+	bindcontextScroll:function(){
+		this.$context.on(this.SCROLL_EVENT_KEY,{
 			instance : this
 		},function(event){
 			event.data.instance.on('check',this.scrollTop);
 		});
 	},
 	onCheck : function(top){
-		if(this.length<=0 || this.isPause || !this.content){
+		if(this.length<=0 || this.isPause || !this.context){
 			return;
 		}
 		var i=0,
 			offsetTop,
 			img;
-		top = top || this.content.scrollTop;
-		offsetTop = top + this.content.clientHeight + this.spacing;
+		top = top || this.context.scrollTop;
+		offsetTop = top + this.context.clientHeight + this.spacing;
 
 		while(img=this.get(i)){
 			var imgOffsetTop=img.offsetTop,

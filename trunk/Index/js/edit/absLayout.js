@@ -113,11 +113,27 @@
 		},
 		onHide:function(element){
 			this.logger(this);
-			$(element).addClass('hide');
+			$.addClass(element,'hide');
 		},
 		onShow:function(element){
 			this.logger(this);
-			$(element).removeClass('hide');
+			$.removeClass(element,'hide');
+		},
+		isHide : function(element){
+			this.logger(this);
+			var parent,
+				isHide=$.hasClass(element,'hide');
+			if(isHide){
+				return true;
+				/*
+			}else{
+				parent=this.getParentElement(element);
+				if(parent){
+					return this.isHide(parent);
+				}
+				*/
+			}
+			return false;
 		},
 		queryPrevLayoutElement : function(){
 			this.logger(this);

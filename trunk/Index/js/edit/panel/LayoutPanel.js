@@ -336,6 +336,7 @@
 					var html=this.activeLayout.getHTML(this.activeElement);
 					var element=this.activeLayout.after(this.activeElement,html);
 					element.click();
+					this.app.trigger('loadImage',element);
 					this.addNewLayoutUndo();
 				}
 			}
@@ -603,8 +604,12 @@
 		},
 		onDbClick : function(event,navItem){
 			this.logger(this);
-			var layout=this.getLayoutElementByNavItem(navItem.id);
-			var list=this.activeLayout.getChildren(layout);
+			var list,
+				layout=this.getLayoutElementByNavItem(navItem.id);
+			if(this.activeLayout.isHide(layout)){
+				return;
+			}
+			list=this.activeLayout.getChildren(layout);
 			if(list){
 				if(list.length>0){
 					list[0].target.click();

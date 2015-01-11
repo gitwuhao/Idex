@@ -39,6 +39,9 @@
 			}else if(this.activePanel){
 				$(this.activePanel).hide();
 			}
+			if(layout.isHide(layout.activeElement)){
+				return;
+			}
 			var panel=this.getPanel(layout);
 			this.activePanel=panel;
 			$(panel).show();
