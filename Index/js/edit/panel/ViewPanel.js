@@ -153,7 +153,7 @@
 			this.$contextBox.html(HTML);
 			this.getDescBox();
 			$('.idex-r-active',this.descbox).removeClass('idex-r-active');
-			this.app.trigger('contentUpdate');
+			this.app.trigger('contextUpdate');
 			this.app.LayoutPanel.home();
 		},
 		getOriginalHTML : function(){
