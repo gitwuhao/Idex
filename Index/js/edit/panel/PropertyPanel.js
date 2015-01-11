@@ -39,7 +39,7 @@
 			}else if(this.activePanel){
 				$(this.activePanel).hide();
 			}
-			if(layout.isHide(layout.activeElement)){
+			if(layout.isHide && layout.isHide(layout.activeElement)){
 				return;
 			}
 			var panel=this.getPanel(layout);
