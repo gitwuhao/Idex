@@ -35,6 +35,8 @@
 
 			this.app.data=this.data;
 
+			this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
+
 			this.initEvents();
 		},
 		data : {
@@ -125,23 +127,8 @@
 		__OUTPUT_RULES__ : {
 			isRemoveEmptyAttr : true,
 			'meta iframe style noscript script link html ^body$ ^head$ ^title$ frame object param' : HTMLfilter.removeElement,
-			'*' : {
-				'^id$ ^on ^name$' : function(attr){
-					if(/^on|^name$/i.test(attr.name)){
-						this.removeAttribute(attr.name);
-					}else if(/^id$/i.test(attr.name)){
-						if(window.isLayoutID(attr.value)){
-						}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
-						}else{
-							this.removeAttribute('id');
-						}
-					}
-					attr.value='';
-				},
-				'class' : function(attr){
-					attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
-				}
-			},
+			/*Refer : app.layout.__OUTPUT_RULES__*/
+			'*' : null,
 			'img' : {
 				':before' : function(){
 					if(this.naturalHeight>0 && this.naturalWidth>0){

@@ -1,14 +1,30 @@
 (function(CF,$){
-	var ide={},
+	var Idex={},
 		IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
 		_LAYOUT_CLASS_MAP_={},
 		_CONTAINER_PROTOTYPE_,
 		_LAYOUT_TYPE_MAP_={
 			'container':0,'text-item':1,'html-item':2,'float-box':3,'float-link':4,'float-image':5,'float-text':6,'float-html':7,'image-fgrid':8,'image-fglink':9,'image-rtable':10,'image-row':11,'image-rlink':12,'image-ctable':13,'image-col':14,'image-clink':15,'property-table':16,'property-itable':17,'user-table':18,'list-table':19,'image-list':20,'image-item':21
 		};
+
+	(function(){
+		var __INDEX_LEN___=6,
+		__INDEX__=parseInt('1'+(''+$.timestamp()).match(new RegExp('(\\d{'+(__INDEX_LEN___ - 1)+'}$)'))[0]),
+		__SUFFIX__='L'+$.randomChar(2),
+		LAYOUTID='\\d{'+__INDEX_LEN___+'}'+__SUFFIX__;
+					
+		Idex.getID=function (){
+			return (__INDEX__++)+__SUFFIX__;
+		};
+
+		Idex.isLayoutID=function (_id_){
+			return new RegExp(LAYOUTID,'gi').test(_id_);
+		};
+	})();
+
 	
 
-	ide.container=function(config){
+	Idex.container=function(config){
 		this.eventmap={};
 		CF.merger(this,config);
 		CF.setOwner(this,this);
@@ -16,19 +32,13 @@
 		this.ready();
 	};
 
-	_CONTAINER_PROTOTYPE_=ide.container.prototype;
+	_CONTAINER_PROTOTYPE_=Idex.container.prototype;
 	CF.extendEventListener(_CONTAINER_PROTOTYPE_);
 
-	var __INDEX_LEN___=6;
-	var __INDEX__=parseInt('1'+(''+$.timestamp()).match(new RegExp('(\\d{'+(__INDEX_LEN___ - 1)+'}$)'))[0]);
-	var __SUFFIX__='L'+$.randomChar(2);
-	function getID(){
-		return (__INDEX__++)+__SUFFIX__;
-	};
 
 
-	CF.defineClass(ide.container,{
-		_type_:'ide.layout',
+	CF.defineClass(Idex.container,{
+		_type_:'Idex.layout',
 		_attr_px_ : 'idex-',
 		_name_ : 'AbsContainer',
 		ready : function(){},
@@ -70,7 +80,7 @@
 		},
 		setID:function(target){
 			if(!target.id && this.app.layout.isLayout(target)!=false){
-				target.id = getID();
+				target.id = Idex.getID();
 			}
 		},
 		onActiveElement : function(activeElement,deActiveElement){
@@ -281,13 +291,13 @@
 		__NO_PROPERTY__ : '__NO_PROPERTY__'
 	});
 
-	addLayout(ide.container);
+	addLayout(Idex.container);
 
-	ide.layout=function(){
+	Idex.layout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.layout,ide.container,{
+	CF.extend(Idex.layout,Idex.container,{
 		_name_ : 'AbsLayout',
 		onActiveElementAfter:function(activeElement,deActiveElement){
 			this.logger(this);
@@ -357,13 +367,13 @@
 		}
 	});
 
-	addLayout(ide.layout);
+	addLayout(Idex.layout);
 
-	ide.subLayoutContainer=function(){
+	Idex.subLayoutContainer=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.subLayoutContainer,ide.layout,{
+	CF.extend(Idex.subLayoutContainer,Idex.layout,{
 		_name_ : 'AbsSubLayoutContainer',
 		queryPrevLayoutElement : _CONTAINER_PROTOTYPE_.queryPrevLayoutElement,
 		queryNextLayoutElement : _CONTAINER_PROTOTYPE_.queryNextLayoutElement,
@@ -371,24 +381,24 @@
 		onMoveNext : _CONTAINER_PROTOTYPE_.onMoveNext
 	});
 
-	addLayout(ide.subLayoutContainer);
+	addLayout(Idex.subLayoutContainer);
 
-	ide.singleLayout=function(){
+	Idex.singleLayout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.singleLayout,ide.layout,{
+	CF.extend(Idex.singleLayout,Idex.layout,{
 		_name_ : 'AbsSingleLayout',
 		getChildren : CF.emptyFunction
 	});
 
-	addLayout(ide.singleLayout);
+	addLayout(Idex.singleLayout);
 
-	ide.subLayout=function(){
+	Idex.subLayout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.subLayout,ide.singleLayout,{
+	CF.extend(Idex.subLayout,Idex.singleLayout,{
 		_name_ : 'AbsSubLayout',
 		_isSubLayoutItem_ : true,
 		onActiveElementAfter:function(activeElement,deActiveElement){
@@ -410,14 +420,14 @@
 		onMoveNext : _CONTAINER_PROTOTYPE_.onMoveNext
 	});
 
-	addLayout(ide.subLayout);
+	addLayout(Idex.subLayout);
 
 
-	ide.fixedLayout=function(){
+	Idex.fixedLayout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.fixedLayout,ide.subLayout,{
+	CF.extend(Idex.fixedLayout,Idex.subLayout,{
 		_name_ : 'AbsFixedLayout',
 		isFixedLayout : true,
 		onHide : function (){
@@ -439,14 +449,14 @@
 		queryNextLayoutElement : CF.emptyFunction
 	});
 
-	addLayout(ide.fixedLayout);
+	addLayout(Idex.fixedLayout);
 
 
-	ide.resizeLayout=function(){
+	Idex.resizeLayout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.resizeLayout,ide.subLayout,{
+	CF.extend(Idex.resizeLayout,Idex.subLayout,{
 		_name_ : 'AbsResizeLayout',
 		onDeActiveLayout : function(activeLayout,deActiveLayout){
 			this.logger(this);
@@ -455,14 +465,14 @@
 		}
 	});
 
-	addLayout(ide.resizeLayout);
+	addLayout(Idex.resizeLayout);
 
 
-	ide.floatLayout=function(){
+	Idex.floatLayout=function(){
 		this.callSuperMethod();
 	};
 
-	CF.extend(ide.floatLayout,ide.resizeLayout,{
+	CF.extend(Idex.floatLayout,Idex.resizeLayout,{
 		_name_ : 'AbsFloatLayout',
 		getBasePropertyForm : function (){
 			this.logger(this);
@@ -751,7 +761,7 @@
 		}
 	});
 
-	addLayout(ide.floatLayout);
+	addLayout(Idex.floatLayout);
 
 	function addLayout(_class_){
 		_LAYOUT_CLASS_MAP_[_class_.prototype._name_]=_class_;
@@ -768,13 +778,6 @@
 			this.app.createLayoutModule=this.createLayoutModule;
 			//this.app.cleanHTML=this._layout_.getClass('AbsContainer').prototype.cleanHTML;
 
-			var LAYOUTID='\\d{'+__INDEX_LEN___+'}'+__SUFFIX__,
-				APP=this.app;
-			window.isLayoutID=function(_id_){
-				var reg=new RegExp(LAYOUTID,'gi');
-				return reg.test(_id_);
-			};
-		
 		},
 		_layout_:{
 			__LAYOUT_INDEX_TYPE_MAP__ :{},
@@ -785,7 +788,7 @@
 						if(/^on|^name$/i.test(attr.name)){
 							this.removeAttribute(attr.name);
 						}else if(/^id$/i.test(attr.name)){
-							if(window.isLayoutID(attr.value)){
+							if(Idex.isLayoutID(attr.value)){
 							}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
 							}else{
 								this.removeAttribute('id');
@@ -794,11 +797,11 @@
 						attr.value='';
 					},
 					'class' : function(attr){
-						attr.value=HTMLfilter.removeClass(attr.value,'idex-r-.+');
+						attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
 					}
 				}
 			},
-			getLayoutID : getID,
+			getLayoutID : Idex.getID,
 			getLayout : function(_name_){
 				return this.__LAYOUT_INSTANCE_MAP__[_name_];
 			},
