@@ -10,12 +10,12 @@ function loadFile(){
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
+		$view=$('.idex-preview-view');
 		if($descBox.length==1){
-			localStorage.removeItem(_CACHE_KEY_);
+			//localStorage.removeItem(_CACHE_KEY_);
 			build();
 			return;
 		}
-		$view=$('.idex-preview-view');
 		loadHTML();
 	};
 
