@@ -60,7 +60,7 @@
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=getWidth(this.children[0]);
+			this._width=getWidth2(this.children[0]);
 		});
 /*
 		$array.each(function(index,elem){
