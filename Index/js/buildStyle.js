@@ -60,13 +60,14 @@
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=getWidth2(this.children[0]);
+			this._width=window.getComputedStyle(this.children[0]).width;
 		});
-/*
+
 		$array.each(function(index,elem){
+			this.style.width=this._width;
 			this._width=this.offsetWidth+'px';
 		});
-*/
+
 		$array.each(function(index,elem){
 			var style=this.style;
 			style.width=this._width;
@@ -76,6 +77,7 @@
 				style.removeProperty('padding');
 			}
 		});
+		
 
 		$('.image-clink').each(function(index,elem){
 			this.style.height=getHeight(this.children[0]);
