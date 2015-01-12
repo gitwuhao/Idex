@@ -209,7 +209,7 @@
 			this.style.removeProperty('box-sizing');
 		});
 
-		$('.property-image,.layout,.layout-box,.i-text-item,.i-image-item').unwrap();
+		$('.property-itable .property-tbody,.property-image,.layout,.layout-box,.i-text-item,.i-image-item').unwrap();
 		$('.image-text .i-image-box .i-image-item').unwrap();
 		/*
 		HTMLfilter.filter({
