@@ -733,6 +733,8 @@ $.push({
 			},
 			matchImage : function(json){
 				if(!json || json.total<1){
+					this.$picMatchList.html('<div class="error-msg">没有找到图片...</div>');
+					this.$statusL.empty();
 					return;
 				}
 				var matchArray=[],
