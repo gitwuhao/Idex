@@ -64,7 +64,7 @@
 		});
 /*
 		$array.each(function(index,elem){
-			this.style.width=getWidth(this);
+			this._width=this.offsetWidth+'px';
 		});
 */
 		$array.each(function(index,elem){
@@ -225,7 +225,7 @@
 		},element);
 		*/
 		
-		HTMLfilter.removeTextBreakLine(element);
+		//HTMLfilter.removeTextBreakLine(element);
 
 		var descStyle=element.style;
 		if(descStyle.boxSizing){
