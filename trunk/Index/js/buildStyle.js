@@ -1,4 +1,6 @@
 (function(CF,$){
+	var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+
 	function getIntValue(val){
 		return parseInt(val.replace('px',''));
 	};
@@ -22,7 +24,7 @@
 	};
 
 	$.CSSApply.buildStyle=function(element,isRemoveClass){
-		var stylecolor=$.attr(element,'stylecolor');
+		var stylecolor=$.attr(element,IDEX_ATTR_MAP.STYLE_COLOR);
 		if(stylecolor){
 			$.getDoc().trigger('changestyle',{
 				path:'idex-desc-default.css',
@@ -30,9 +32,7 @@
 			});
 		}
 
-		$.removeAttr(element,'stylecolor');
-		$.removeAttr(element,'uid');
-		$.removeAttr(element,'id');
+		$.removeAttr(element,IDEX_ATTR_MAP.STYLE_COLOR);
 
 		$('.hide').remove();
 		/*

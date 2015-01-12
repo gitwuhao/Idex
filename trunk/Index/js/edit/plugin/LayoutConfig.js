@@ -4,9 +4,7 @@ var MIN_WIDTH=750,
 	STYLE_KEY_MAP = {
 		CONTEXT_PADDING : 'p-l-r'
 	},
-	ATTR_KEY_MAP = {
-		STYLE_COLOR : 'idex-style-color'
-	};
+	IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
 
 $.push({
 	overwrite : function(app){
@@ -210,11 +208,11 @@ $.push({
 					path:'idex-desc-default.css',
 					color : value
 				});
-				this.$descbox.attr(ATTR_KEY_MAP.STYLE_COLOR,value);
+				this.$descbox.attr(IDEX_ATTR_MAP.STYLE_COLOR,value);
 			},
 			getStylecolor:function(){
 				this.logger(this);
-				return this.$descbox.attr(ATTR_KEY_MAP.STYLE_COLOR);
+				return this.$descbox.attr(IDEX_ATTR_MAP.STYLE_COLOR);
 			},
 			setPadding:function(value){
 				this.logger(this);
