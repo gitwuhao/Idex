@@ -14,11 +14,11 @@
 		var height=element.offsetHeight;
 		return height+'px';
 	};
-	function getWidth2(element){
-		return parseInt(window.getComputedStyle(element).width.replace('px',''))+'px';
+	function getCSWidth(element){
+		return window.getComputedStyle(element).width;
 	};
-	function getHeight2(element){
-		return parseInt(window.getComputedStyle(element).height.replace('px',''))+'px';
+	function getCSHeight(element){
+		return window.getComputedStyle(element).height;
 	};
 
 	$.CSSApply.buildStyle=function(element,isRemoveClass){
@@ -60,7 +60,7 @@
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=window.getComputedStyle(this.children[0]).width;
+			this._width=getCSWidth(this.children[0]);
 		});
 
 		$array.each(function(index,elem){
