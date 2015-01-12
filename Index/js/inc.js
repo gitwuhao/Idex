@@ -6,7 +6,8 @@
 		ID : 'idex-id',
 		NAME : 'idex-name',
 		TITLE : 'idex-title',
-		CLASS : 'idex-class'
+		CLASS : 'idex-class',
+		STYLE_COLOR : 'idex-style-color'
 	};
 
 	window.IDEX_KEY_MAP = {
