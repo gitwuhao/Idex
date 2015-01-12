@@ -115,9 +115,11 @@
 			},function(event){
 				var data=event.data;
 				event.data=null;
+				/*
 				if(data.event.removeTargetHandle(event)){
 					return;
 				}
+				*/
 				data.panel.eventDispatch(event,event.type);
 			});
 

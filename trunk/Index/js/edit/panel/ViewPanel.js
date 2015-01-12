@@ -52,9 +52,11 @@
 			},function(event){
 				var data=event.data;
 				event.data=null;
+				/*
 				if(data.event.removeTargetHandle(event)){
 					return;
 				}
+				*/
 				if(!event.originalEvent || event.screenX==0 && event.screenY==0){
 					event.isCommandTrigger=true;
 				}
