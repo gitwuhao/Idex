@@ -14,7 +14,7 @@ function loadFile(){
 			build();
 			return;
 		}
-		$view=$('.idex-browse-view');
+		$view=$('.idex-preview-view');
 		loadHTML();
 	};
 
@@ -209,14 +209,14 @@ function loadFile(){
 
 	function complete(){
 
-		var html=['<div class="idex-browse-button-box">',
-					'<div class="idex-browse-button">复制</div>',
-					'<div class="idex-browse-button">退出</div>',
+		var html=['<div class="idex-preview-button-box">',
+					'<div class="idex-preview-button">复制</div>',
+					'<div class="idex-preview-button">退出</div>',
 				  '</div>'].join('');
 
 		var isFrame=window.top!=window,
 			div=$.createElement(html),
-			$box=$('.idex-browse-box'),
+			$box=$('.idex-preview-box'),
 			$copy,
 			$qtipbox,
 			$exit,
@@ -227,7 +227,7 @@ function loadFile(){
 		$copy=$(div.firstElementChild);
 		$exit=$copy.next();
 
-		div=$.createElement('<div class="idex-browse-qtipbox">复制成功</div>');
+		div=$.createElement('<div class="idex-preview-qtipbox">复制成功</div>');
 		$.getBody().append(div);
 
 		$qtipbox=$(div);
@@ -264,7 +264,7 @@ function loadFile(){
 		});
 
 
-		$box.append('<div class="idex-browse-count">共：'+getLength(AllHTML.length)+'字</div>');
+		$box.append('<div class="idex-preview-count">共：'+getLength(AllHTML.length)+'字</div>');
 
 
 		var imgQueue=new ImageQueue({
@@ -285,8 +285,8 @@ function loadFile(){
 		imgQueue.pushList($('img[_s_]',$descBox));
 		imgQueue.run();
 
-		$('.idex-browse-button-box').show();
-		$('.idex-browse-loading').remove();
+		$('.idex-preview-button-box').show();
+		$('.idex-preview-loading').remove();
 
 	};
 
@@ -311,7 +311,7 @@ function loadFile(){
 		window._path_ + 'js/ZeroClipboard.js',
 	function(){
 		$(document).ready(function(){
-			$.getBody().append('<div class="idex-browse-loading"><div class="bubbling-g-box"><span class="bubbling-g-1"></span><span class="bubbling-g-2"></span><span class="bubbling-g-3"></span></div></div>');
+			$.getBody().append('<div class="idex-preview-loading"><div class="bubbling-g-box"><span class="bubbling-g-1"></span><span class="bubbling-g-2"></span><span class="bubbling-g-3"></span></div></div>');
 			setTimeout(function(){
 				ready();
 			},500);

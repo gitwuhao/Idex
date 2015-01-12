@@ -3,7 +3,7 @@ body{
 	margin: 0;
 	padding: 0;
 }
-.idex-browse-box{
+.idex-preview-box{
 	background-color: #EEE;
 	position: fixed;
 	top: 0px;
@@ -15,34 +15,34 @@ body{
 	overflow-y: auto;
 	overflow-x: hidden;
 }
-.idex-browse-box::-webkit-scrollbar-thumb:vertical{
+.idex-preview-box::-webkit-scrollbar-thumb:vertical{
 	-webkit-border-radius:7px;
 	outline:5px solid #EEE;
 	outline-offset:-5px;
 	border: 5px solid #EEE;
 }
-.idex-browse-box::-webkit-scrollbar {
+.idex-preview-box::-webkit-scrollbar {
 	 width: 20px;/*对垂直流动条有效*/
 	 height: 8px;/*对水平流动条有效*/
 }
 /*垂直滚动条的按钮*/   /* 垂直滚动条的滑动块*/
-.idex-browse-box::-webkit-scrollbar-button,.idex-browse-box::-webkit-scrollbar-thumb {
+.idex-preview-box::-webkit-scrollbar-button,.idex-preview-box::-webkit-scrollbar-thumb {
 	background: -webkit-linear-gradient(#B6B6B6 0%, #9E9E9E 100%);
 	border-radius: 2px;
 }
-.idex-browse-box::-webkit-resizer,.idex-browse-box::-webkit-scrollbar-resizer,.idex-browse-box::-webkit-scrollbar-corner,.idex-browse-box::-webkit-scrollbar-track {
+.idex-preview-box::-webkit-resizer,.idex-preview-box::-webkit-scrollbar-resizer,.idex-preview-box::-webkit-scrollbar-corner,.idex-preview-box::-webkit-scrollbar-track {
 	background-color: transparent;
 }
 /*CSS的坐标系，左上角为(0,0),往右往下为增加，往上往左为减少*/
 /*显示滚动条上方的渐增按钮*/
-.idex-browse-box::-webkit-scrollbar-button:start:decrement, /*显示滚动条上方的渐减按钮*/
-.idex-browse-box::-webkit-scrollbar-button:end:increment {
+.idex-preview-box::-webkit-scrollbar-button:start:decrement, /*显示滚动条上方的渐减按钮*/
+.idex-preview-box::-webkit-scrollbar-button:end:increment {
 	display: none;
 }
-.idex-browse-view-box{
+.idex-preview-view-box{
 
 }
-.idex-browse-view{
+.idex-preview-view{
 	width: 750px;
 	min-height: 1000px;
 	background-color: #FFF;
@@ -51,7 +51,7 @@ body{
 	border-top: none;
 	border-bottom: none;
 }
-.idex-browse-button-box{
+.idex-preview-button-box{
 	position: fixed;
 	right: 30px;
 	top: 10px;
@@ -59,7 +59,7 @@ body{
 	color: #FFF;
 	display: none;
 }
-.idex-browse-button{
+.idex-preview-button{
 	cursor: pointer;
 	background-color: #9B9A9A;
 	background: -webkit-linear-gradient(#8F8F8F 0%, #707070 100%);
@@ -71,21 +71,21 @@ body{
 	width: 60px;
 	height: 30px;
 }
-.idex-browse-button:hover,.idex-browse-button.hover{
+.idex-preview-button:hover,.idex-preview-button.hover{
 	opacity: 1;
 }
-.idex-browse-button:active{
+.idex-preview-button:active{
 	background: -webkit-linear-gradient(#707070 0%,#8F8F8F 100%);
 	opacity: 1;
 }
-.idex-browse-count{
+.idex-preview-count{
 	font-size: 12px;
 	color: #626262;
 	position: fixed;
 	bottom: 10px;
 	right: 30px;
 }
-.idex-browse-qtipbox{
+.idex-preview-qtipbox{
 	color: #FFF;
 	font-size: 14px;
 	padding: 14px 25px;
@@ -125,7 +125,7 @@ body{
 	-webkit-transform:translateY(-20px)}
 }
 
-.idex-browse-loading{
+.idex-preview-loading{
 	position: absolute;
 	left: 0px;
 	top: 0px;
