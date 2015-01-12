@@ -14,3 +14,5 @@ for(;i<count;i++){
 }
 
 _test_jsonp_callback({total:count,result:result});
+
+//_test_jsonp_callback({errorCode:'s',errorMsg:'sa'});
