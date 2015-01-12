@@ -36,6 +36,9 @@ function loadFile(){
 	function build(){
 		var desc=$descBox[0];
 
+
+		$view.css('width',desc.clientWidth);
+
 		if($descBox.length>0){
 
 			$('.image-title,.text-title',desc).each(function(index,elem){
