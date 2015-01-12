@@ -104,25 +104,30 @@ $.push({
 					undoContext: this.app.ViewPanel.getHTML(),
 					redoContext: snap.context,
 					_cloudSnap: snap,
-					_$owner : this,
 					undo : function(){
 						this.app.ViewPanel.setHTML(this.undoContext);
 					},
-					redo : function(){
-						if(this.redoContext){
-							this.app.ViewPanel.setHTML(this.redoContext);
-							return;
-						}
-						this._$owner.loadCloudSnapCode(this._cloudSnap,this.responseHandle,this);
-					},
-					responseHandle : function(html){
-						this.redoContext=html;
-						this._cloudSnap.context=html;
-						this.app.ViewPanel.setHTML(html);
-					}
+					redo : CF.emptyFunction
 				};
 				this.addUndo(this.applySnapCommand);
 			}
+
+			CF.merger(this.applySnapCommand,{
+				_$owner : this,
+				redo : function(){
+					if(this.redoContext){
+						this.app.ViewPanel.setHTML(this.redoContext);
+						return;
+					}
+					this._$owner.loadCloudSnapCode(this._cloudSnap,this.responseHandle,this);
+				},
+				responseHandle : function(html){
+					this.redoContext=html;
+					this._cloudSnap.context=html;
+					this.app.ViewPanel.setHTML(html);
+				}
+			});
+
 			this.applySnapCommand.redo();
 
 			this.setCommandCheckStyle(this.applySnapCommand);
