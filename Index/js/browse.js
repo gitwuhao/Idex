@@ -1,26 +1,16 @@
 function loadFile(){
-	var $descBox,
+	var IDEX_KEY_MAP=window.IDEX_KEY_MAP,
+		$descBox,
 		AllHTML='',
 		$view,
-		_L_S_KEY_='__browse_html__';
+		_CACHE_KEY_;
 
-
-	window.onbeforeunload = function(event){
-		/*
-		var html=localStorage.getItem(_L_S_KEY_);
-		if(html=='false' || html=='' || !html){
-			localStorage.setItem(_L_S_KEY_,'false');
-			return '  ';
-		}else{
-			return null;
-		}
-		*/
-	};
+	_CACHE_KEY_=IDEX_KEY_MAP.CACHE.PREVIEW;
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
 		if($descBox.length==1){
-			localStorage.removeItem(_L_S_KEY_);
+			localStorage.removeItem(_CACHE_KEY_);
 			build();
 			return;
 		}
@@ -29,7 +19,7 @@ function loadFile(){
 	};
 
 	function loadHTML(){
-		var html=localStorage.getItem(_L_S_KEY_);
+		var html=localStorage.getItem(_CACHE_KEY_);
 		if(html=='false'){
 			return;
 		}else if(!html){
@@ -39,7 +29,7 @@ function loadFile(){
 		$view.html(html);
 		$descBox=$(".idex-desc-box");
 		build();
-		//localStorage.removeItem(_L_S_KEY_);
+		//localStorage.removeItem(_CACHE_KEY_);
 	};
 
 	function build(){
@@ -315,7 +305,7 @@ function loadFile(){
 		}
 		return array.reverse().join('');
 	};
-
+/*
 	$.loadJSQueue(
 		'js/Idex/style.js',
 		window._path_ + 'js/ZeroClipboard.js',
@@ -327,4 +317,5 @@ function loadFile(){
 			},500);
 		});
 	});
+	*/
 };
