@@ -77,7 +77,7 @@ function loadFile(){
 
 			if(isSGIF){
 				style.padding=elem.offsetHeight+"px 0px 0px "+elem.offsetWidth+"px";
-			}else{	
+			}else if(src){
 				elem.setAttribute('src',src);
 			}
 			style.border='none';
