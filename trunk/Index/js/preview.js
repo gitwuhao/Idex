@@ -70,19 +70,17 @@ function loadFile(){
 
 		$('img',desc).each(function(index,elem){
 			var style=elem.style,
-				src=elem.getAttribute(IDEX_ATTR_MAP.SRC);
-			if(!src){
-				style.padding=elem.clientHeight+"px 0px 0px "+elem.clientWidth+"px";
-				style.width='0px';
-				style.height='0px';
-			}else{
-				style.width="100%";
-				style.height="100%";
-			}
-			//style.border='none';
-			if(src && !/s\.gif$/g.test(src)){
+				src=elem.getAttribute(IDEX_ATTR_MAP.SRC),
+				isSGIF;
+
+			isSGIF=/s\.gif$/g.test(src);
+
+			if(isSGIF){
+				style.padding=elem.offsetHeight+"px 0px 0px "+elem.offsetWidth+"px";
+			}else{	
 				elem.setAttribute('src',src);
 			}
+			style.border='none';
 			elem.removeAttribute(IDEX_ATTR_MAP.SRC);
 		});
 
