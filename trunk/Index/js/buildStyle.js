@@ -193,7 +193,6 @@
 			style.removeProperty('box-sizing');
 			var parentElementStyle=this.parentElement.style;
 			style.margin=parentElementStyle.padding;
-			style.float=parentElementStyle.float;
 		});
 
 		$('.image-text .i-image-item').each(function(index,elem){
@@ -207,7 +206,6 @@
 			}else{
 				style.margin=parentElementStyle.padding;
 			}
-			style.float=parentElementStyle.float;
 		});
 
 		$('.image-list').each(function(index,elem){
