@@ -75,9 +75,11 @@ function loadFile(){
 
 			isSGIF=/s\.gif$/g.test(src);
 
-			if(isSGIF){
+			if(isSGIF || !src){
 				style.padding=elem.offsetHeight+"px 0px 0px "+elem.offsetWidth+"px";
-			}else if(src){
+				style.width='';
+				style.height='';
+			}else{
 				elem.setAttribute('src',src);
 			}
 			style.border='none';
