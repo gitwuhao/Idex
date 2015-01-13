@@ -79,7 +79,7 @@ function loadFile(){
 				style.width="100%";
 				style.height="100%";
 			}
-			style.border='none';
+			//style.border='none';
 			if(src && !/s\.gif$/g.test(src)){
 				elem.setAttribute('src',src);
 			}
@@ -94,6 +94,7 @@ function loadFile(){
 				elem.setAttribute('target','_blank');
 			}
 			if(!elem.firstElementChild){
+				//border: none;用于ie下去蓝边框
 				elem.innerHTML=['<img style="border: none;padding:',elem.clientHeight,'px 0px 0px ',elem.clientWidth,'px;',
 								//'width:0px;','height:0px;',
 						   '" />'].join('');
