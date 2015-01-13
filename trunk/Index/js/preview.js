@@ -143,7 +143,14 @@ function loadFile(){
 		if(AllHTML){
 			return AllHTML;
 		}
-		AllHTML='<div align="center">'+$descBox[0].outerHTML+'</div>';
+		var html=HTMLfilter.getOuterHTML($descBox[0],{
+			'*' : {
+				'style' : function(attr){
+					attr.value=HTMLfilter.getStyleText(this.style);
+				}
+			}
+		});
+		AllHTML=['<div align="center">',html,'</div>'].join('');
 		setTimeout(complete,500);
 	};
 
