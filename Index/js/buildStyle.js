@@ -80,8 +80,11 @@
 		
 
 		$('.image-clink').each(function(index,elem){
-			this.style.height=getHeight(this.children[0]);
-			this.style.removeProperty('box-sizing');
+			var style=this.style,
+				img=this.children[0];
+			style.width=getWidth(img);
+			style.height=getHeight(img);
+			style.removeProperty('box-sizing');
 		});
 
 		$('.image-fglink').each(function(index,elem){

@@ -161,6 +161,9 @@
 	padding: 0px;
 }
 .image-ctable .image-clink{
+	float: left;
+	width: 100%;
+	overflow: hidden;
 	margin: 5px 0px 0px 0px;
 }
 .image-ctable .image-col .image-clink:first-child{
@@ -350,14 +353,16 @@ table.property-tbody{
 	height: 100%;
 }
 .image-text .i-image-item{
+	float:left;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
-
 .image-text .i-text-item{
 	float:left;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 .image-text .i-image-item img{
 	width : 100%;

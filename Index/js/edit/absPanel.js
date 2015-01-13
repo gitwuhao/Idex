@@ -55,6 +55,7 @@ ideui={
 			xtype:'text',
 			label:'链接',
 			vtype:['autoselect'],
+			maxlength : 200,
 			placeholder :'填写链接地址',
 			name: 'link',
 			getDesc : '修改链接地址',
