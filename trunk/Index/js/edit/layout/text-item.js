@@ -30,15 +30,9 @@
 					xtype:'text',
 					width:'110px'
 				},{
-					label:'行高',
-					name : 'height',
-					unit:'px',
-					maxlength : 3,
-					vtype : ['spin'],
-					xtype:'text',
-					getDesc : '设置行高',
-					width : '110px'
-				},'',{
+					isPadding : true,
+					width : '55px'
+				},{
 					label:'编辑',
 					xtype:'button',
 					name :'editor',
