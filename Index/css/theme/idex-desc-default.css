@@ -38,6 +38,9 @@
 	clear: both;
 	margin-bottom:5px;
 }
+.idex-desc-box .text-item{
+	padding: 0px 10px 0px 10px;
+}
 /*+++++++++++++++++++++++++ float-box +++++++++++++++++++++++++*/
 .float-box .float-box-bg{
 	float:left;
