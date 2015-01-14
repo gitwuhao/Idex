@@ -32,7 +32,12 @@
 		},
 		setHeight : function(value){
 			this.logger(this);
-			this.activeElement.style.height=value+'px';
+			var style=this.activeElement.style;
+			if(value){
+				style.height=value+'px';
+			}else{
+				style.height='';
+			}
 		},
 		getHeight : function(){
 			this.logger(this);
