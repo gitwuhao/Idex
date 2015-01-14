@@ -31,8 +31,11 @@
 .idex-desc-box td {
 	padding: 0;
 }
-.idex-desc-box .text-item,.idex-desc-box .html-item,.idex-desc-box .image-list,.idex-desc-box .image-list,.idex-desc-box .float-box{
+.idex-desc-box .text-item,.idex-desc-box .html-item,.idex-desc-box .image-list,.idex-desc-box .float-box{
 	min-height: 50px;
+}
+.idex-desc-box .image-list{
+	min-height: 10px;
 }
 .idex-desc-box img {
 	vertical-align: top;
