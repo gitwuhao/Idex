@@ -56,8 +56,48 @@
 					width:'110px',
 					getDesc : '修改右边距'
 				},{
+					label:'边框',
+					name : 'borderWidth',
+					unit:'px',
+					maxlength : 1,
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改边框'
+				},{
+					label:'颜色',
+					name : 'borderColor',
+					width:'110px',
+					css : {
+						'margin-top' : '1px'
+					},
+					xtype:'color',
+					getDesc : '设置边框颜色'
+				},{
+					label:' ',
+					name : 'borderStyle',
+					xtype:'radio',
+					items:[{
+						label : '实线',
+						value : '1'
+					},{
+						label : '虚线',
+						value : '2'
+					},{
+						label : '点状',
+						value : '3'
+					}],
+					getDesc : '修改边框'
+				},{
+					label:'背景',
+					name : 'bgcolor',
+					width:'110px',
+					xtype:'color',
+					getDesc : '设置背景颜色'
+				},{
 					isPadding : true,
-					width : '55px'
+					width : '50px'
 				},{
 					label:'编辑',
 					xtype:'button',
