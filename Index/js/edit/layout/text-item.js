@@ -92,14 +92,7 @@
 			});
 		},
 		setPaddingTop : function(value){
-			var style=this.activeElement.style;
-			if(value){
-				style['padding-top']=value+'px';
-				style['padding-bottom']=value+'px';
-			}else{
-				style.removeProperty('padding-top');
-				style.removeProperty('padding-bottom');
-			}
+			$.style(this.activeElement,'padding-top',value);
 		},
 		getPaddingTop : function(){
 			var padding=this.activeElement.style['padding-top'];
@@ -113,14 +106,7 @@
 			return (padding||'').replace('px','');
 		},
 		setPaddingLeft : function(value){
-			var style=this.activeElement.style;
-			if(value){
-				style['padding-left']=value+'px';
-				style['padding-right']=value+'px';
-			}else{
-				style.removeProperty('padding-left');
-				style.removeProperty('padding-right');
-			}
+			$.style(this.activeElement,'padding-left',value);
 		},
 		getPaddingLeft : function(){
 			var padding=this.activeElement.style['padding-left'];
