@@ -342,6 +342,32 @@
 				}
 			});
 
+			
+			this.instance.addEventListener('queryCommandStateAfter',function(command){
+				if(!this.startCell){
+					return;
+				}
+				var type=command.name,
+					array=this.selectedCellArray,
+					point=array.point||{},
+					startCell=this.startCell,
+					len=array.length,
+					cell;
+				if(type=='width'){
+					if(startCell && len==1){
+						this.getItem('width').setValue(startCell.clientWidth);
+					}else{
+						this.getItem('width').setValue('');
+					}
+				}else if(type=='height'){
+					if(startCell && len==1){
+						this.getItem('height').setValue(startCell.clientHeight);
+					}else{
+						this.getItem('height').setValue('');
+					}
+				}
+			});
+
 			this.commandButtons=this.instance.$buttonbar.children('.'+commands.join(',.')+',.x-ui-separator:last');
 			
 			this.commandButtons.css('display','none');
@@ -514,14 +540,23 @@
 			if(height > window.innerHeight  - 10 ){
 				height = window.innerHeight - 10;
 			}
-			this.instance.$container.css({
+
+			var css={
 				left : offset.left,
 				top : offset.top,
 				width : width,
 				'max-height': '500px',
 				//height : height,
 				'z-index' : zindex
-			});
+			};
+
+			if(height>500){
+				css.height=500;
+			}else{
+				css['min-height']=height;
+			}
+
+			this.instance.$container.css(css);
 
 			this.instance.show();
 
@@ -534,6 +569,9 @@
 			this.instance.$elem.css({
 				'z-index' : zindex
 			});
+
+
+				
 			
 			if(config.isPropertyTable){
 				this.initPropertyTable();
