@@ -39,7 +39,7 @@
 					getDesc : '设置行高'
 				},'||',{
 					isPadding : true,
-					width : '10px'
+					width : '55px'
 				},{
 					label:'编辑',
 					xtype:'button',
