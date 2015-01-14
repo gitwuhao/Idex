@@ -12,6 +12,32 @@
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
 				items : [{
+					label:'左',
+					name : 'paddingLeft',
+					placeholder :'边距',
+					unit:'px',
+					maxlength : 3,
+					vtype : ['spin'],
+					xtype:'text',
+					width:'110px'
+				},{
+					label:'右',
+					name : 'paddingRight',
+					placeholder :'边距',
+					unit:'px',
+					maxlength : 3,
+					vtype : ['spin'],
+					xtype:'text',
+					width:'110px'
+				},{
+					label:'行高',
+					name : 'height',
+					unit:'px',
+					maxlength : 3,
+					vtype : ['spin'],
+					xtype:'text',
+					getDesc : '设置行高'
+				},'||',{
 					isPadding : true,
 					width : '10px'
 				},{
