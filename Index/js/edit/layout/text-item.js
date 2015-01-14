@@ -10,7 +10,7 @@
 			this.form=this.app.CreatePropertyForm({
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
-				render : box,			
+				render : box,
 				items : [{
 					label:'左',
 					name : 'paddingLeft',
@@ -19,7 +19,9 @@
 					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
-					width:'110px'
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改左边距'
 				},{
 					label:'右',
 					name : 'paddingRight',
@@ -28,7 +30,9 @@
 					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
-					width:'110px'
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改右边距'
 				},{
 					isPadding : true,
 					width : '55px'
@@ -64,6 +68,27 @@
 					this.me.addUndo(oldHTML);
 				}
 			});
+		},
+		setPaddingLeft : function(value){
+			var style=this.activeElement.style;
+			if(value){
+				style['padding-left']=value+'px';
+				style['padding-right']=value+'px';
+			}else{
+				style.removeProperty('padding-left');
+				style.removeProperty('padding-right');
+			}
+		},
+		getPaddingLeft : function(){
+			var padding=this.activeElement.style['padding-left'];
+			return (padding||'').replace('px','');
+		},
+		setPaddingRight : function(value){
+			this.activeElement.style['padding-right']=value+'px';
+		},
+		getPaddingRight : function(){
+			var padding=this.activeElement.style['padding-right'];
+			return (padding||'').replace('px','');
 		},
 		addUndo: function(undoValue){
 			this.logger(this);
