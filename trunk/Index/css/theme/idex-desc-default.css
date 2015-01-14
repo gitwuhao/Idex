@@ -38,9 +38,13 @@
 	clear: both;
 	margin-bottom:5px;
 }
+/*+++++++++++++++++++++++++ text-item +++++++++++++++++++++++++*/
+/*
 .idex-desc-box .text-item{
 	padding: 0px 10px 0px 10px;
 }
+*/
+/*------------------------- text-item -------------------------*/
 /*+++++++++++++++++++++++++ float-box +++++++++++++++++++++++++*/
 .float-box .float-box-bg{
 	float:left;
