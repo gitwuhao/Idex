@@ -12,6 +12,28 @@
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,
 				items : [{
+					label:'上',
+					name : 'paddingTop',
+					placeholder :'边距',
+					unit:'px',
+					maxlength : 3,
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改上边距'
+				},{
+					label:'下',
+					name : 'paddingBottom',
+					placeholder :'边距',
+					unit:'px',
+					maxlength : 3,
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改下边距'
+				},{
 					label:'左',
 					name : 'paddingLeft',
 					placeholder :'边距',
@@ -69,6 +91,27 @@
 				}
 			});
 		},
+		setPaddingTop : function(value){
+			var style=this.activeElement.style;
+			if(value){
+				style['padding-top']=value+'px';
+				style['padding-bottom']=value+'px';
+			}else{
+				style.removeProperty('padding-top');
+				style.removeProperty('padding-bottom');
+			}
+		},
+		getPaddingTop : function(){
+			var padding=this.activeElement.style['padding-top'];
+			return (padding||'').replace('px','');
+		},
+		setPaddingBottom : function(value){
+			$.style(this.activeElement,'padding-bottom',value);
+		},
+		getPaddingBottom : function(){
+			var padding=this.activeElement.style['padding-bottom'];
+			return (padding||'').replace('px','');
+		},
 		setPaddingLeft : function(value){
 			var style=this.activeElement.style;
 			if(value){
@@ -84,7 +127,7 @@
 			return (padding||'').replace('px','');
 		},
 		setPaddingRight : function(value){
-			this.activeElement.style['padding-right']=value+'px';
+			$.style(this.activeElement,'padding-right',value);
 		},
 		getPaddingRight : function(){
 			var padding=this.activeElement.style['padding-right'];
