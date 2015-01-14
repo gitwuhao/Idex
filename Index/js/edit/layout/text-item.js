@@ -55,7 +55,7 @@
 					minValue : 1,
 					width:'110px',
 					getDesc : '修改右边距'
-				},{
+				},'|||',{
 					label:'边框',
 					name : 'borderWidth',
 					unit:'px',
@@ -90,7 +90,7 @@
 						value : '3'
 					}],
 					getDesc : '修改边框'
-				},{
+				},'|||',{
 					label:'背景',
 					name : 'bgcolor',
 					width:'110px',
