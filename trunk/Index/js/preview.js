@@ -145,7 +145,7 @@ function loadFile(){
 		}
 		var html=HTMLfilter.getOuterHTML($descBox[0],{
 			'*' : {
-				'style' : function(attr){
+				'^style$' : function(attr){
 					attr.value=HTMLfilter.getStyleText(this.style);
 				}
 			}
