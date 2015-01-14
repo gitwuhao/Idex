@@ -63,6 +63,7 @@
 					vtype : ['spin'],
 					xtype:'text',
 					minValue : 1,
+					maxValue : 9,
 					width:'110px',
 					getDesc : '修改边框'
 				},{
