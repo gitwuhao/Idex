@@ -36,11 +36,9 @@
 					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
-					getDesc : '设置行高'
-				},'||',{
-					isPadding : true,
-					width : '55px'
-				},{
+					getDesc : '设置行高',
+					width : '110px'
+				},'',{
 					label:'编辑',
 					xtype:'button',
 					name :'editor',
