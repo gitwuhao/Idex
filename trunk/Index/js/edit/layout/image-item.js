@@ -10,7 +10,17 @@
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
-				items : [
+				items : [{
+						label:'高度',
+						name : 'height',
+						unit:'px',
+						maxlength : 4,
+						minValue : 10,
+						maxValue : 1500,
+						vtype : ['spin'],
+						xtype:'text',
+						getDesc : '修改高度'
+					},
 					CF.merger({
 						placeholder :'填写图片地址',
 						getDesc : '修改图片地址'
@@ -19,6 +29,14 @@
 				]
 			});
 			return this.form;
+		},
+		setHeight : function(value){
+			this.logger(this);
+			this.activeElement.style.height=value+'px';
+		},
+		getHeight : function(){
+			this.logger(this);
+			return this.activeElement.offsetHeight;
 		}
 	});
 
