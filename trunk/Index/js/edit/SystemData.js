@@ -1,5 +1,7 @@
 (function(){
-var templateList,
+	
+var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
+	templateList,
 	layoutRelation;
 
 layoutRelation={
@@ -71,7 +73,7 @@ layoutRelation={
 templateList=[{
 	type : 'container',
 	title : '未命名模块',
-	html : ['<div class="container" d-t="未命名模块">',
+	html : ['<div class="container" idex-title="未命名模块">',
 				'<div class="text-title">未命名模块</div>',
 				'<div class="layout-box"></div>',
 			'</div> '].join('')

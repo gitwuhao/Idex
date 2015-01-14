@@ -70,7 +70,8 @@
 			var html=this.instance.getContent();
 
 			this.instance.hide();
-
+			
+			this.instance.$container.removeAttr('style');
 			ui.popu.removeMask();
 			
 			this.app.ViewPanel.enabledSrcoll();
@@ -157,16 +158,21 @@
 			});
 			
 			zindex++;
-
-			this.instance.$container.css({
+			var css={
 				left : offset.left,
 				top : offset.top,
 				width : width,
-				height : height,
 				'padding-right' : paddingRight,
 				'padding-bottom' : paddingBottom,
 				'z-index' : zindex
-			});
+			};
+			if(height>500){
+				css.height=500;
+			}else{
+				css['min-height']=height;
+			}
+
+			this.instance.$container.css(css);
 			
 			this.instance.setContent(target.innerHTML);
 
