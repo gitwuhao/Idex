@@ -812,6 +812,9 @@
 						}
 						attr.value='';
 					},
+					'^style$' : function(attr){
+						attr.value=HTMLfilter.getStyleText(this.style);
+					},
 					'class' : function(attr){
 						attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
 					}
