@@ -68,6 +68,9 @@ layoutRelation={
 	},
 	'image-text' : {
 		parent : 'container'
+	},
+	'split-line' : {
+		parent : 'container'
 	}
 };
 templateList=[{
@@ -296,12 +299,6 @@ templateList=[{
 				'<div class="image-item">',
 					'<img src="/s.gif" />',
 				'</div>',
-				'<div class="image-item">',
-					'<img src="/s.gif" />',
-				'</div>',
-				'<div class="image-item">',
-					'<img src="/s.gif" />',
-				'</div>',
 			'</div>'].join('')
 },{
 	type : 'image-item',
@@ -324,6 +321,9 @@ templateList=[{
 					'<div class="i-text-item">说明...</div>',
 				'</div>',
 			  '</div>'].join('')
+},{
+	type : 'split-line',
+	html : '<div class="layout split-line"></div>'
 }];
 localStorage['IDEX_LAYOUT_RELATION']=JSON.stringify(layoutRelation);
 localStorage['IDEX_SYSTEM_TEMPLATE_LIST']=JSON.stringify(templateList);
