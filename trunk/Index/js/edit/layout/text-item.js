@@ -110,9 +110,9 @@
 					name : 'paddingTop',
 					placeholder :'边距',
 					unit:'px',
-					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
+					minValue : 50,
 					minValue : 1,
 					width:'110px',
 					getDesc : '修改上边距'
@@ -121,9 +121,9 @@
 					name : 'paddingBottom',
 					placeholder :'边距',
 					unit:'px',
-					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
+					minValue : 50,
 					minValue : 1,
 					width:'110px',
 					getDesc : '修改下边距'
@@ -132,9 +132,9 @@
 					name : 'paddingLeft',
 					placeholder :'边距',
 					unit:'px',
-					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
+					minValue : 50,
 					minValue : 1,
 					width:'110px',
 					getDesc : '修改左边距'
@@ -143,9 +143,9 @@
 					name : 'paddingRight',
 					placeholder :'边距',
 					unit:'px',
-					maxlength : 3,
 					vtype : ['spin'],
 					xtype:'text',
+					minValue : 50,
 					minValue : 1,
 					width:'110px',
 					getDesc : '修改右边距'
