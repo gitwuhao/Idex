@@ -38,6 +38,11 @@
 	margin: 3px 15px;
 	opacity: 0.5;
 }
+.idex-template-tabpanle .x-ui-tabview-box .layout-template-item.split-line-icon .idex-icon{
+	background-color: #888;
+	height: 1px;
+	margin: 30px 0px 13px 15px;
+}
 .idex-template-tabpanle .x-ui-tabview-box .layout-template-item .share-tag.idex-icon{
 	background-position: -270px -60px;
 	opacity: initial;
