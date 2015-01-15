@@ -206,7 +206,9 @@
 			return value;
 		},
 		setBColor : function(value){
-			$.style(this.activeElement,'border-color',value);
+			var target=this.activeElement;
+			$.style(target,'border-color',value);
+			$.removeClass(target,'idex-r-active');
 		},
 		getBColor : function(){
 			return $.style(this.activeElement,'border-color');
