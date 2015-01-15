@@ -1,17 +1,103 @@
 (function(CF,$){
+
+	function getTextItemConfig(){
+		return {
+			getFormItemConfig : function(){
+				var me=this;
+				return [{
+						isPadding : true,
+						width : '10px'
+					},{
+						label:'编辑',
+						xtype:'button',
+						name :'editor',
+						onClick : function(){
+							me.onEditor();
+						}
+					}];
+			},
+			getPropertyForm : function (box){
+				this.logger(this);
+				this.form=this.app.CreatePropertyForm({
+					$owner : this,
+					id : this.__PROPERTY_PANEL_ID__,
+					render : box,
+					items : this.getFormItemConfig()
+				});
+				return this.form;
+			},
+			onDblclick : function(event){
+				this.editor();
+			},
+			onMouserightdown:function(event){
+				this.editor();
+			},
+			editor : function(){
+				$.setTimeout(function(){
+					this.onEditor();
+				},100,this);
+			},
+			onEditor : function(){
+				this.app.TextEditor.render({
+					me : this,
+					target : this.activeElement,
+					callback : function(html){
+						var oldHTML = this.target.innerHTML;
+						this.target.innerHTML=html;
+						this.me.addUndo(oldHTML);
+					}
+				});
+			},
+			addUndo: function(undoValue){
+				this.logger(this);
+				var elementID=this.activeElement.id,
+					title='编辑文本层',
+					type='changetextitemhtml',
+					redoValue = this.activeElement.innerHTML,
+					lastCommand=this.app.HistoryPanel.getLastCommand();
+
+				if(lastCommand.elementID==elementID &&
+					lastCommand.title==title &&
+					lastCommand.type==type){
+					lastCommand.redoValue=redoValue;
+					this.app.HistoryPanel.updateLastCommand();
+					return lastCommand;
+				}
+
+				this.app.HistoryPanel.addUndo({
+					panel : this ,
+					elementID : elementID,
+					title : title,
+					type : type,
+					undoValue : undoValue,
+					redoValue : redoValue,
+					undo : function(){
+						this.execute(this.undoValue);
+					},
+					redo : function(){
+						this.execute(this.redoValue);
+					},
+					execute : function(html){
+						var element=this.app.get(this.elementID);
+						element.innerHTML=html;
+						element.click();
+					}
+				});
+			}
+		};
+	};
+
 	$.push({
 		_isLayoutModule_ : true,
 		_className_ : 'AbsSingleLayout',
 		_name_ : 'text-item',
 		title : '文本',
-		getPropertyForm : function (box){
-			this.logger(this);
+		initModule : function(){
+			this.extend(this);
+		},
+		getFormItemConfig : function(){
 			var me=this;
-			this.form=this.app.CreatePropertyForm({
-				$owner : this,
-				id : this.__PROPERTY_PANEL_ID__,
-				render : box,
-				items : [{
+			return [{
 					label:'上',
 					name : 'paddingTop',
 					placeholder :'边距',
@@ -79,42 +165,7 @@
 					width:'20px',
 					xtype:'color',
 					getDesc : '设置边框颜色'
-				},/*,{
-					label:'边框',
-					name : 'borderWidth',
-					unit:'px',
-					maxlength : 1,
-					vtype : ['spin'],
-					xtype:'text',
-					minValue : 1,
-					maxValue : 9,
-					width:'110px',
-					getDesc : '修改边框'
-				},{
-					label:'颜色',
-					name : 'borderColor',
-					width:'110px',
-					css : {
-						'margin-top' : '1px'
-					},
-					xtype:'color',
-					getDesc : '设置边框颜色'
-				},{
-					label:' ',
-					name : 'borderStyle',
-					xtype:'radio',
-					items:[{
-						label : '实线',
-						value : '1'
-					},{
-						label : '虚线',
-						value : '2'
-					},{
-						label : '点状',
-						value : '3'
-					}],
-					getDesc : '修改边框'
-				},*/'|||',{
+				},'|||',{
 					label:'背景',
 					name : 'bgColor',
 					width:'110px',
@@ -130,31 +181,7 @@
 					onClick : function(){
 						me.onEditor();
 					}
-				}]
-			});
-			return this.form;
-		},
-		onDblclick : function(event){
-			this.editor();
-		},
-		onMouserightdown:function(event){
-			this.editor();
-		},
-		editor : function(){
-			$.setTimeout(function(){
-				this.onEditor();
-			},100,this);
-		},
-		onEditor : function(){
-			this.app.TextEditor.render({
-				me : this,
-				target : this.activeElement,
-				callback : function(html){
-					var oldHTML = this.target.innerHTML;
-					this.target.innerHTML=html;
-					this.me.addUndo(oldHTML);
-				}
-			});
+				}];
 		},
 		setPaddingTop : function(value){
 			$.style(this.activeElement,'padding-top',value);
@@ -219,41 +246,13 @@
 		getBgColor : function(){
 			return $.style(this.activeElement,'background-color');
 		},
-		addUndo: function(undoValue){
-			this.logger(this);
-			var elementID=this.activeElement.id,
-				title='编辑文本层',
-				type='changetextitemhtml',
-				redoValue = this.activeElement.innerHTML,
-				lastCommand=this.app.HistoryPanel.getLastCommand();
-
-			if(lastCommand.elementID==elementID &&
-				lastCommand.title==title &&
-				lastCommand.type==type){
-				lastCommand.redoValue=redoValue;
-				this.app.HistoryPanel.updateLastCommand();
-				return lastCommand;
+		extend : function(layout){
+			var config=getTextItemConfig();
+			if(layout.getFormItemConfig){
+				delete config.getFormItemConfig;
 			}
-
-			this.app.HistoryPanel.addUndo({
-				panel : this ,
-				elementID : elementID,
-				title : title,
-				type : type,
-				undoValue : undoValue,
-				redoValue : redoValue,
-				undo : function(){
-					this.execute(this.undoValue);
-				},
-				redo : function(){
-					this.execute(this.redoValue);
-				},
-				execute : function(html){
-					var element=this.app.get(this.elementID);
-					element.innerHTML=html;
-					element.click();
-				}
-			});
+			CF.merger(layout,config);
+			CF.setOwner(layout,layout);
 		}
 	});
 

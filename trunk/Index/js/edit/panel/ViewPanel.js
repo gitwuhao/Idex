@@ -66,6 +66,9 @@
 				}
 
 				data.panel.eventDispatch(event);
+				if(event.type=='mouserightdown'){
+					return false;
+				}
 			});
 
 
