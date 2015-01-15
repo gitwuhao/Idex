@@ -37,7 +37,8 @@
 			if(value){
 				style.height=value+'px';
 			}else{
-				style.height=element.offsetWidth+'px';
+				//style.height=element.offsetWidth+'px';
+				style.height='';
 			}
 		},
 		getHeight : function(){
