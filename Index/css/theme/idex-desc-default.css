@@ -305,6 +305,7 @@ table.property-tbody{
 .image-list .image-item{
 	line-height: 0px;
 	overflow: hidden;
+	width:100%;
 }
 .image-list .image-item img{
 	width : 100%;
