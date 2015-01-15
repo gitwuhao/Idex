@@ -9,8 +9,7 @@
 			var textItem=this.app.layout.getLayout('text-item');
 			textItem.extend(this);
 		},
-		getPropertyForm : function (box){
-			this.logger(this);
+		getFormItemConfig : function(){
 			var me=this;
 			var items=this.getBasePropertyForm();
 			items.push({
@@ -34,13 +33,7 @@
 						me.onEditor();
 					}
 				});
-			this.form=this.app.CreatePropertyForm({
-				$owner : this,
-				id : this.__PROPERTY_PANEL_ID__,
-				render : box,
-				items : items
-			});
-			return this.form;
+			return items;
 		},
 		onAutoSize : function(){
 			this.activeElement.style.height='0px'

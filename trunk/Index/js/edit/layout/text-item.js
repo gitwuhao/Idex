@@ -95,6 +95,14 @@
 		initModule : function(){
 			this.extend(this);
 		},
+		extend : function(layout){
+			var config=getTextItemConfig();
+			if(layout.getFormItemConfig){
+				delete config.getFormItemConfig;
+			}
+			CF.merger(layout,config);
+			CF.setOwner(layout,layout);
+		},
 		getFormItemConfig : function(){
 			var me=this;
 			return [{
@@ -245,17 +253,6 @@
 		},
 		getBgColor : function(){
 			return $.style(this.activeElement,'background-color');
-		},
-		extend : function(layout){
-			var config=getTextItemConfig();
-			if(layout.getFormItemConfig){
-				delete config.getFormItemConfig;
-			}
-			if(layout.getPropertyForm){
-				delete config.getPropertyForm;
-			}
-			CF.merger(layout,config);
-			CF.setOwner(layout,layout);
 		}
 	});
 
