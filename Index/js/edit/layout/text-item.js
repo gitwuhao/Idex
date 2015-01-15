@@ -75,7 +75,7 @@
 					}],
 					getDesc : '设置边框'
 				},{
-					name : 'borderColor',
+					name : 'bColor',
 					width:'20px',
 					xtype:'color',
 					getDesc : '设置边框颜色'
@@ -116,7 +116,7 @@
 					getDesc : '修改边框'
 				},*/'|||',{
 					label:'背景',
-					name : 'bgcolor',
+					name : 'bgColor',
 					width:'110px',
 					xtype:'color',
 					getDesc : '设置背景颜色'
@@ -183,6 +183,39 @@
 		getPaddingRight : function(){
 			var padding=this.activeElement.style['padding-right'];
 			return (padding||'').replace('px','');
+		},
+		setBorder : function(value){
+			var target=this.activeElement;
+			$.removeClass(target,'idex-r-active s2 s3 s4');
+			if(value=='2' || value=='3' || value=='4'){
+				$.addClass(target,('s'+value));
+			}else{
+				$.style(target,'border-color','');
+			}
+		},
+		getBorder : function(){
+			var value='1',
+				target=this.activeElement;
+			if($.hasClass(target,'s2')){
+				value='2';
+			}else if($.hasClass(target,'s3')){
+				value='3';
+			}else if($.hasClass(target,'s4')){
+				value='4';
+			}
+			return value;
+		},
+		setBColor : function(value){
+			$.style(this.activeElement,'border-color',value);
+		},
+		getBColor : function(){
+			return $.style(this.activeElement,'border-color');
+		},
+		setBgColor : function(value){
+			$.style(this.activeElement,'background-color',value);
+		},
+		getBgColor : function(){
+			return $.style(this.activeElement,'background-color');
 		},
 		addUndo: function(undoValue){
 			this.logger(this);
