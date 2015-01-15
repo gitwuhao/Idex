@@ -83,6 +83,9 @@ div.idex-desc-box .idex-r-active{
 	outline: 1px dashed #000;  
 	outline-offset: -1px;
 }
+div.idex-desc-box .split-line.idex-r-active{
+	outline:none;
+}
 div.idex-desc-box .image-rlink.idex-r-active,div.idex-desc-box .image-clink.idex-r-active{
 	cursor: move;
 }

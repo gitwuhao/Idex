@@ -379,13 +379,16 @@ table.property-tbody{
 }
 /*------------------------- image-text -------------------------*/
 /*+++++++++++++++++++++++++ split-line +++++++++++++++++++++++++*/
-.split-line.s1{
-	border-bottom: 1px solid #DDD;
-	margin: 5px 0px;
+.split-line{
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #DDD;
 }
 .split-line.s2{
-	border-bottom: 1px dotted #DDD;
-	margin: 5px 0px;
+	border-top-style: dashed;
+}
+.split-line.s3{
+	border-top-style: dotted;
 }
 /*------------------------- split-line -------------------------*/
 
