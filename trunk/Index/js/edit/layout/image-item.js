@@ -44,13 +44,6 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
-		},
-		setSrc : function(value){
-			var img=this.getImgElement();
-			if(img){
-				$.attr(img,'src',value||'/s.gif');
-			}
-			this.setHeight('');
 		}
 	});
 
