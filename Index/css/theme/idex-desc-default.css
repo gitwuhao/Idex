@@ -38,6 +38,26 @@
 	clear: both;
 	margin-bottom:5px;
 }
+
+/*+++++++++++++++++++++++++ text-item +++++++++++++++++++++++++*/
+.text-item{
+}
+.text-item.s2{
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDD;
+}
+.text-item.s3{
+	border-style: dashed;
+	border-width: 1px;
+	border-color: #DDD;
+}
+.text-item.s4{
+	border-style: dotted;
+	border-width: 1px;
+	border-color: #DDD;
+}
+/*------------------------- text-item -------------------------*/
 /*+++++++++++++++++++++++++ float-box +++++++++++++++++++++++++*/
 .float-box .float-box-bg{
 	float:left;
@@ -373,26 +393,6 @@ table.property-tbody{
 }
 /*------------------------- image-text -------------------------*/
 
-
-/*+++++++++++++++++++++++++ text-item +++++++++++++++++++++++++*/
-.text-item{
-}
-.text-item.s2{
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.text-item.s3{
-	border-style: dashed;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.text-item.s4{
-	border-style: dotted;
-	border-width: 1px;
-	border-color: #DDD;
-}
-/*------------------------- text-item -------------------------*/
 
 /*+++++++++++++++++++++++++ split-line +++++++++++++++++++++++++*/
 .split-line{
