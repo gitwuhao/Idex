@@ -110,7 +110,7 @@ $.push({
 		return (padding||'').replace('px','');
 	},
 	setStyle : function(value){
-		$.removeClass(this.activeElement,'s2 s3');
+		$.removeClass(this.activeElement,'idex-r-active s2 s3');
 		if(value=='2' || value=='3'){
 			$.addClass(this.activeElement,('s'+value));
 		}
