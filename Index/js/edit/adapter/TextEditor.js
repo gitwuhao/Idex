@@ -178,6 +178,8 @@
 			
 			this.instance.setContent(target.innerHTML);
 
+			$.removeClass(target,'idex-r-active');
+
 			this.instance.show();
 
 			if(this.initOffset){
