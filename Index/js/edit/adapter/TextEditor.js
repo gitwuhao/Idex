@@ -130,6 +130,7 @@
 				offset=$.getOffsetParentPoint(target,target.offsetParent),
 				width=target.clientWidth,
 				height=target.clientHeight,
+				cStyle=window.getComputedStyle(target),
 				paddingRight=$target.outerWidth() - width,
 				paddingBottom=$target.outerHeight() - height,
 				zindex=0;
@@ -162,8 +163,9 @@
 				left : offset.left,
 				top : offset.top,
 				width : width,
-				'padding-right' : paddingRight,
-				'padding-bottom' : paddingBottom,
+				padding : cStyle.padding,
+				//'padding-right' : paddingRight,
+				//'padding-bottom' : paddingBottom,
 				'z-index' : zindex
 			};
 			if(height>500){
