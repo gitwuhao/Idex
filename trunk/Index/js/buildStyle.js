@@ -134,11 +134,19 @@
 			$(this).unwrap();
 		});
 
-		$('.image-item').each(function(index,elem){
+		$('.image-item img').each(function(index,elem){
 			if(elem.offsetHeight==0){
-				this.style.height=elem.offsetWidth+'px';
+				this.style.height=getWidth(this);
 			}
 		});
+
+		$('.image-item').each(function(index,elem){
+			var style=this.style,
+				img=this.children[0];
+			style.width=getWidth(img);
+			style.height=getHeight(img);
+		});
+
 
 
 		$('.property-itable .property-image').each(function(index,elem){
