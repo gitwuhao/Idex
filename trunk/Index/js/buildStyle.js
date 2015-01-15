@@ -212,6 +212,8 @@
 			this.style.removeProperty('box-sizing');
 		});
 
+		$('hr').replaceWith('<div style="margin: 5px 0px;border-top: 1px solid #DDD;"></div>');
+
 		$('.property-itable .property-tbody,.property-image,.layout,.layout-box,.i-text-item,.i-image-item').unwrap();
 		$('.image-text .i-image-box .i-image-item').unwrap();
 		/*
