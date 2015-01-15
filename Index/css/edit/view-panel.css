@@ -90,6 +90,11 @@ div.idex-desc-box .split-line.idex-r-active{
 div.idex-desc-box .image-rlink.idex-r-active,div.idex-desc-box .image-clink.idex-r-active{
 	cursor: move;
 }
+div.idex-desc-box hr{
+	margin: 5px 0px;
+	border-top: 1px solid #DDD;
+	border-bottom: none;
+}
 .idex-view-panel-popu-box .x-ui-dd-resize-box{
 	z-index:0;
 }
