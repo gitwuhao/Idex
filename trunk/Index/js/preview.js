@@ -71,12 +71,19 @@ function loadFile(){
 		$('img',desc).each(function(index,elem){
 			var style=elem.style,
 				src=elem.getAttribute(IDEX_ATTR_MAP.SRC),
-				isSGIF;
+				isSGIF,
+				height,
+				width;
 
 			isSGIF=/s\.gif$/g.test(src);
 
 			if(isSGIF || !src){
-				style.padding=elem.offsetHeight+"px 0px 0px "+elem.offsetWidth+"px";
+				width=elem.offsetWidth;
+				height=elem.offsetHeight;
+				if(height==0){
+					height=width;				
+				}
+				style.padding=height+"px 0px 0px "+width+"px";
 				style.width='';
 				style.height='';
 			}else{

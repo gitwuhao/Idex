@@ -134,6 +134,13 @@
 			$(this).unwrap();
 		});
 
+		$('.image-item').each(function(index,elem){
+			if(elem.offsetHeight==0){
+				this.style.height=elem.offsetWidth+'px';
+			}
+		});
+
+
 		$('.property-itable .property-image').each(function(index,elem){
 			var style=this.style;
 			style.width=getWidth(this.children[0]);
