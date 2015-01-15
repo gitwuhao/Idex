@@ -134,6 +134,7 @@
 			$(this).unwrap();
 		});
 
+/*
 		$('.image-item img').each(function(index,elem){
 			if(elem.offsetHeight==0){
 				this.style.height=getWidth(this);
@@ -147,7 +148,7 @@
 			style.height=getHeight(img);
 		});
 
-
+*/
 
 		$('.property-itable .property-image').each(function(index,elem){
 			var style=this.style;
