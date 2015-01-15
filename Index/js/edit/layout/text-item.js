@@ -251,6 +251,9 @@
 			if(layout.getFormItemConfig){
 				delete config.getFormItemConfig;
 			}
+			if(layout.getPropertyForm){
+				delete config.getPropertyForm;
+			}
 			CF.merger(layout,config);
 			CF.setOwner(layout,layout);
 		}
