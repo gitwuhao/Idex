@@ -48,6 +48,7 @@ ideui={
 				//console.info('on select');
 				this.setValue(src);
 				this.on('change',this.value);
+				
 				$.removeAttr(this.layout.getImgElement(),IDEX_ATTR_MAP.SRC);
 			}
 		},
