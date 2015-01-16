@@ -1,5 +1,5 @@
 (function(CF,$){
-var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 $.push({
 	_name_ : 'ImageQueue',
@@ -41,7 +41,7 @@ $.push({
 		if(!context){
 			return;
 		}
-		var imgList=$('img['+IDEX_ATTR_MAP.SRC+']',context);
+		var imgList=$('img['+ATTR_KEY_MAP.SRC+']',context);
 		$.it(imgList,function(i,img){
 			if(!this.isLoadAfterImage(img)){
 				this.push(img);
@@ -68,7 +68,7 @@ $.push({
 	isAutoListener : true,
 	errorCount : 0,
 	getSrc : function(img){
-		return $.attr(img,IDEX_ATTR_MAP.SRC);//||$.attr(img,'src');
+		return $.attr(img,ATTR_KEY_MAP.SRC);//||$.attr(img,'src');
 	},
 	push : function(img){
 		var top,
@@ -181,7 +181,7 @@ $.push({
 	
 	},
 	onComplete : function(img){
-		img.removeAttribute(IDEX_ATTR_MAP.SRC);
+		img.removeAttribute(ATTR_KEY_MAP.SRC);
 		$.removeClass(img,this.css.item);
 		if(!img.className){
 			img.removeAttribute('class');

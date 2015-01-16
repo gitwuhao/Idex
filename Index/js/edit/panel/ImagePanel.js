@@ -1,5 +1,5 @@
 (function(CF,$){
-	var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+	var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 	$.push({
 		_isUIModule_:true,
 		_className_ : 'FloatTabPanel',
@@ -115,7 +115,7 @@
 		})(),
 		isSGIF : function(img){
 			var src=img.src,
-				_src_=img.getAttribute(IDEX_ATTR_MAP.SRC);
+				_src_=img.getAttribute(ATTR_KEY_MAP.SRC);
 			
 			if((!src && !_src_)
 				|| (/s\.gif$/.test(src) || /s\.gif$/.test(_src_))
@@ -128,7 +128,7 @@
 		check : function(img){
 			this.logger(this);
 			var src=img.src,
-				_src_=img.getAttribute(IDEX_ATTR_MAP.SRC),
+				_src_=img.getAttribute(ATTR_KEY_MAP.SRC),
 				item,
 				naturalHeight=img.naturalHeight,
 				naturalWidth=img.naturalWidth,

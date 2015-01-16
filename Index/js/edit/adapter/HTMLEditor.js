@@ -1,5 +1,5 @@
 (function(CF,$){
-	var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+	var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 	$.push({
 		_name_ : 'HTMLEditor',
 		initModule : function(){
@@ -27,19 +27,19 @@
 				'*' :{
 					'^id' : function(){
 						if(this.id){
-							this.setAttribute(IDEX_ATTR_MAP.ID,this.id);
+							this.setAttribute(ATTR_KEY_MAP.ID,this.id);
 							this.removeAttribute('id');
 						}
 					}, 
 					'^name' : function(){
 						if(this.name){
-							this.setAttribute(IDEX_ATTR_MAP.NAME,this.name);
+							this.setAttribute(ATTR_KEY_MAP.NAME,this.name);
 							this.removeAttribute('name');
 						}
 					},
 					'^class' : function(){
 						if(this.className){
-							this.setAttribute(IDEX_ATTR_MAP.CLASS,this.className);
+							this.setAttribute(ATTR_KEY_MAP.CLASS,this.className);
 							this.removeAttribute('class');
 						}
 					},
@@ -55,7 +55,7 @@
 				},
 				'a'  :  function(){
 					var key='href',
-						i_key=IDEX_ATTR_MAP.HREF,
+						i_key=ATTR_KEY_MAP.HREF,
 						href,
 						_href_;
 					
@@ -73,7 +73,7 @@
 				},
 				'input'  :  function(){
 					if(/^submit$/i.test(this.type)){
-						this.setAttribute(IDEX_ATTR_MAP.TYPE,'submit');
+						this.setAttribute(ATTR_KEY_MAP.TYPE,'submit');
 						this.type='button';
 					}
 				},

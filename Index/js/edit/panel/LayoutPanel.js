@@ -1,5 +1,5 @@
 (function(CF,$){
-	var	IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
+	var	ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 		getNavID,
 		getLayoutID,
 		getParentNavID,
@@ -694,7 +694,7 @@
 						  '</div>');
 			}
 			html.push(	'<div class="idex-list-item-title">',
-							(target.getAttribute(IDEX_ATTR_MAP.TITLE) || layout.title),
+							(target.getAttribute(ATTR_KEY_MAP.TITLE) || layout.title),
 						'</div>');
 
 			if(!layout.isFixedLayout){

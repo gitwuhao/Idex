@@ -1,12 +1,12 @@
 function loadFile(){
-	var IDEX_KEY_MAP=window.IDEX_KEY_MAP,
-		IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
-		$descBox,
-		AllHTML='',
-		$view,
-		_CACHE_KEY_;
+var KEY_MAP=window.APP_KEY_MAP,
+	ATTR_KEY_MAP=KEY_MAP.ATTR,
+	CACHE_KEY_MAP=KEY_MAP.CACHE,
+	$descBox,
+	AllHTML='',
+	$view,
+	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML;
 
-	_CACHE_KEY_=IDEX_KEY_MAP.CACHE.PREVIEW;
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
@@ -44,16 +44,16 @@ function loadFile(){
 			var parentElement=elem.parentElement;
 			var title=parentElement.getAttribute('d-t');
 			if(title){
-				$(elem).before(['<div '+IDEX_ATTR_MAP.CLASS+'="dm_module" data-id="99143',index,'" data-title="',title,'" _id_="ids-module-99143',index,'" style="line-height:0px;"></div>'].join(''));
+				$(elem).before(['<div '+ATTR_KEY_MAP.CLASS+'="dm_module" data-id="99143',index,'" data-title="',title,'" _id_="ids-module-99143',index,'" style="line-height:0px;"></div>'].join(''));
 			}
 		});
 
 		$.CSSApply.buildStyle(desc,true);
 
-		$('a['+IDEX_ATTR_MAP.HREF+']',desc).each(function(index,elem){
-			var href=elem.getAttribute(IDEX_ATTR_MAP.HREF);
+		$('a['+ATTR_KEY_MAP.HREF+']',desc).each(function(index,elem){
+			var href=elem.getAttribute(ATTR_KEY_MAP.HREF);
 			elem.setAttribute('href',href);
-			elem.removeAttribute(IDEX_ATTR_MAP.HREF);
+			elem.removeAttribute(ATTR_KEY_MAP.HREF);
 			if(/^#/i.test(href)){
 				elem.target='';
 			}else if(elem.href){
@@ -62,15 +62,15 @@ function loadFile(){
 		});
 
 
-		$('input['+IDEX_ATTR_MAP.TYPE+']',desc).each(function(index,elem){
-			var type=elem.getAttribute(IDEX_ATTR_MAP.TYPE);
-			elem.removeAttribute(IDEX_ATTR_MAP.TYPE);
+		$('input['+ATTR_KEY_MAP.TYPE+']',desc).each(function(index,elem){
+			var type=elem.getAttribute(ATTR_KEY_MAP.TYPE);
+			elem.removeAttribute(ATTR_KEY_MAP.TYPE);
 			this.setAttribute('type',type);
 		});
 
 		$('img',desc).each(function(index,elem){
 			var style=elem.style,
-				src=elem.getAttribute(IDEX_ATTR_MAP.SRC),
+				src=elem.getAttribute(ATTR_KEY_MAP.SRC),
 				isSGIF,
 				height,
 				width;
@@ -90,13 +90,13 @@ function loadFile(){
 				elem.setAttribute('src',src);
 			}
 			style.border='none';
-			elem.removeAttribute(IDEX_ATTR_MAP.SRC);
+			elem.removeAttribute(ATTR_KEY_MAP.SRC);
 		});
 
-		$('div['+IDEX_ATTR_MAP.HREF+']',desc).each(function(index,elem){
-			var href=elem.getAttribute(IDEX_ATTR_MAP.HREF);
+		$('div['+ATTR_KEY_MAP.HREF+']',desc).each(function(index,elem){
+			var href=elem.getAttribute(ATTR_KEY_MAP.HREF);
 			elem.setAttribute('href',href);
-			elem.removeAttribute(IDEX_ATTR_MAP.HREF);
+			elem.removeAttribute(ATTR_KEY_MAP.HREF);
 			if(href && !/^#/i.test(href)){
 				elem.setAttribute('target','_blank');
 			}
