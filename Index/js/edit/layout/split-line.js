@@ -20,6 +20,7 @@ $.push({
 				maxlength : 3,
 				vtype : ['spin'],
 				xtype:'text',
+				maxValue : 50,
 				minValue : 1,
 				width:'110px',
 				getDesc : '修改上边距'
@@ -31,6 +32,7 @@ $.push({
 				maxlength : 3,
 				vtype : ['spin'],
 				xtype:'text',
+				maxValue : 50,
 				minValue : 1,
 				width:'110px',
 				getDesc : '修改下边距'
@@ -42,6 +44,7 @@ $.push({
 				maxlength : 3,
 				vtype : ['spin'],
 				xtype:'text',
+				maxValue : 50,
 				minValue : 1,
 				width:'110px',
 				getDesc : '修改左边距'
@@ -53,6 +56,7 @@ $.push({
 				maxlength : 3,
 				vtype : ['spin'],
 				xtype:'text',
+				maxValue : 50,
 				minValue : 1,
 				width:'110px',
 				getDesc : '修改右边距'
