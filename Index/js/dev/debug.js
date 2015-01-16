@@ -1,6 +1,6 @@
 (function(){
 
-var path='/js/data/',
+var path='/js/dev/data/',
 	urlMap={
 	'/picture.s' : {
 		'method=query&pageSize=12' : 'picture.query.js',
