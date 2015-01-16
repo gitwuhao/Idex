@@ -1,7 +1,7 @@
 (function(){
 var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	list=[
-	'js/debug.js',
+	'js/dev/debug.js',
 	'js/inc.js',
 	'js/edit/core.js',
 	'js/edit/KeyMap.js',
