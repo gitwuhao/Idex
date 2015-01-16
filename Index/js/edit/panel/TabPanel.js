@@ -413,6 +413,7 @@ $.push({
 
 		this.app.isLocked=false;
 	},
+	TO_PS_URL : '/tops.html',
 	onExportps:function(){
 		if(this.app.isLocked){
 			return;
@@ -430,11 +431,10 @@ $.push({
 			window[this.lastFrameId]();
 		}
 		
-		var lastFrameId='ide_template_'+_timers_;
+		var me=this,
+			lastFrameId='ide_template_'+_timers_;
 
 		this.lastFrameId=lastFrameId;
-
-		var me=this;
 
 		this.isExportPsIng=true;
 		
@@ -448,9 +448,9 @@ $.push({
 
 		ui.popu.createMask();
 
-		localStorage.setItem('__tops_callback__',lastFrameId);
-		localStorage.setItem('__tops_html__',html);
-		$.getBody().append('<iframe id="'+lastFrameId+'" src="tops.html" style="position: absolute;left: 0px;top: -1000px;width: 1px;height: 1px;"></iframe>');
+		localStorage.setItem(CACHE_KEY_MAP.TO_PS_CALLBACK,lastFrameId);
+		localStorage.setItem(CACHE_KEY_MAP.TO_PS_HTML,html);
+		$.getBody().append(['<iframe id="',lastFrameId,'" src="',this.TO_PS_URL,'" style="position: absolute;left: 0px;top: -1000px;width: 1px;height: 1px;"></iframe>'].join(''));
 	},
 	onHelp : function(){
 		console.info('help');

@@ -1,5 +1,8 @@
 function loadFile(){
-	var _L_S_KEY_='__tops_html__',
+	var KEY_MAP=window.APP_KEY_MAP,
+		ATTR_KEY_MAP=KEY_MAP.ATTR,
+		CACHE_KEY_MAP=KEY_MAP.CACHE,
+		_L_S_KEY_=CACHE_KEY_MAP.TO_PS_HTML,
 		$descBox,
 		time=0,
 		id,
@@ -67,7 +70,7 @@ function loadFile(){
 		$list=$('.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img');
 
 		$list.each(function(index,img){
-			var src=img.getAttribute('_s_'),
+			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
 				parentElement=img.parentElement,
 				_bgcolor_;
 			if(/s\.gif$/g.test(src)){
@@ -117,7 +120,7 @@ function loadFile(){
 				
 				Canvas2Image.saveAsPNG(canvas,'Idex-template-' + tid);
 				
-				var _L_S_C_='__tops_callback__',
+				var _L_S_C_=CACHE_KEY_MAP.TO_PS_CALLBACK,
 					callback=localStorage.getItem(_L_S_C_);
 
 				localStorage.removeItem(_L_S_C_);
