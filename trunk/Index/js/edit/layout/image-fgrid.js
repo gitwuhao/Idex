@@ -1,4 +1,5 @@
 (function(CF,$){
+var CACHE_KEY=window.APP_KEY_MAP.CACHE;
 
 	$.push({
 		_isLayoutModule_ : true,
@@ -6,9 +7,6 @@
 		_name_ : 'image-fgrid',
 		title : '格子拼图',
 		initModule : function(){
-			this.logger(this);
-		},
-		onClick:function(event,target){
 			this.logger(this);
 		},
 		getPropertyForm : function (box){
@@ -73,11 +71,22 @@
 		setPicture : function(value,item){
 			this.logger(this);
 			var index,
-				array=this.templates[value],
-				length=array.length,
+				templates=this.getTemplates(),
+				array,
+				length,
 				html,
 				offsetHeight,
 				$activeElement=$(this.activeElement);
+
+
+			if(!templates){
+				return;
+			}
+
+			array=templates[value];
+			
+			length=array.length;
+
 
 			index=array.index || 0;
 			
@@ -131,7 +140,6 @@
 
 			this.addUndo(undoValue);
 
-			
 		},
 		addUndo: function(undoValue){
 			this.logger(this);
@@ -179,50 +187,20 @@
 			this.logger(this);
 			return this.getChildren(this.activeElement).length;
 		},
-		templates : {
-			'1' : [
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-n" style="width:100%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div></div>'
-				  ],
-			'2' : [
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:70%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:30%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:30%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:70%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>'
-				  ],
-			'3' : [
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:33.5%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:33%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:200px;"><div class="p-r" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:200px;"><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:200px;"><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:50%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:50%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:100%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>'
-				  ],
-			'4' : [
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r" style="width:60%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:40%;height:33%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:40%;height:33%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:40%;height:34%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-b" style="width:100%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:33%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-b" style="width:100%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:50%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n f-r" style="width:33%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:67%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div class="p-r-b" style="width:67%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n f-r" style="width:33%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>'
-				  ],
-			'5' : [
-					'<div class="layout image-fgrid" style="height:600px;"><div class="p-r-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div class="p-r-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div class="p-n f-r" style="width:50%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div style="width:33%;height:100%;" class="p-r"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-r-b"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-b"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-r"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-n"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div style="width:33.5%;height:50%;" class="p-r-b"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-r-b"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33%;height:100%;" class="p-n f-r"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-r"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div><div style="width:33.5%;height:50%;" class="p-r"><div class="image-fglink img-b img-p"><img src="/s.gif"/></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:50%;height:55%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:50%;height:55%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:45%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:45%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:45%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n f-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div class="p-r-b" style="width:70%;height:33.3%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b f-r" style="width:30%;height:66.7%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:30%;height:66.7%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:40%;height:33.4%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:70%;height:33.3%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:75%;height:65%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:65%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:35%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:35%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:35%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div class="p-r-b" style="width:67%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:33%;height: 50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>'
-				  ],
-			'6' : [
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:600px;"><div class="p-r-b" style="width:67%;height:67%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:33%;height:33.5%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:33%;height:33.5%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:33%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:33.5%;height:33%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:33%;height:33%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:300px;"><div class="p-r" style="width:25%;height:100%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:50%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:25%;height:50%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r-b" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:50%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n f-r" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r f-r" style="width:25%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:50%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>',
-					'<div class="layout image-fgrid" style="height:500px;"><div class="p-r-b" style="width:70%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:30%;height:40%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:35%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-r" style="width:35%;height:60%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-b" style="width:30%;height:30%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div><div class="p-n" style="width:30%;height:30%;"><div class="image-fglink img-b img-p"><img src="/s.gif"></div></div></div>'
-				]
+		onPropertyFormShowAfter : function(){
+			this.getTemplates();
+		},
+		getTemplates : function(){
+			if(!this.templates){
+				var data=localStorage[CACHE_KEY.FGRID_TEMPLATE];
+				try{
+					this.templates=JSON.parse(data);
+				}catch(e){
+					this.templates=null;
+					$.loadJSQueue("/js/edit/SystemData.js");
+				}
+			}
+			return this.templates;
 		}
 	});
 
