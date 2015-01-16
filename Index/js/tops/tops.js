@@ -35,7 +35,7 @@ function loadFile(){
 		
 		var fillBgColor='#FAFAFA',
 			bgColor='#F5F5F5';
-		
+		/*
 		$('.float-text div,.text-item div').each(function(index,elem){
 			var child=elem.firstElementChild;
 			if(child){
@@ -43,7 +43,7 @@ function loadFile(){
 				$(child).unwrap();
 			}
 		});
-
+		*/
 		//$('.float-text,.float-html,.property-table,.list-table,.user-table,.float-link').remove();
 		 
 		$('.image-list').html('<div style="height: 500px;background-color: '+bgColor+';"></div>');
@@ -102,7 +102,7 @@ function loadFile(){
 		//getJSX(regions);
 
 		setTimeout(function(){
-		//	toCanvas(desc);
+			toCanvas(desc);
 		},1000);
 	};
 
