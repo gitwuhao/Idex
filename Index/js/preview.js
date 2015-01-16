@@ -2,6 +2,7 @@ function loadFile(){
 var KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
 	CACHE_KEY_MAP=KEY_MAP.CACHE,
+	MDID='idex-dm-id',
 	$descBox,
 	AllHTML='',
 	$view,
@@ -37,14 +38,17 @@ var KEY_MAP=window.APP_KEY_MAP,
 		if(!$descBox[0]){
 			return;	
 		}
-		var desc=$descBox[0];
+		var index=0,
+			desc=$descBox[0];
 
 		$view.css('width',desc.clientWidth);
+		
 		$('.image-title,.text-title',desc).each(function(index,elem){
 			var parentElement=elem.parentElement;
-			var title=parentElement.getAttribute('d-t');
+			var title=parentElement.getAttribute(ATTR_KEY_MAP.TITLE);
 			if(title){
-				$(elem).before(['<div '+ATTR_KEY_MAP.CLASS+'="dm_module" data-id="99143',index,'" data-title="',title,'" _id_="ids-module-99143',index,'" style="line-height:0px;"></div>'].join(''));
+				$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',index,'" style="line-height:0px;"></div>'].join(''));
+				index++;
 			}
 		});
 
@@ -107,6 +111,12 @@ var KEY_MAP=window.APP_KEY_MAP,
 						   '" />'].join('');
 			}
 			$.replaceTag(elem,'a');
+		});
+
+		$('div['+MDID+']',desc).each(function(index,elem){
+			$.attr(elem,'id','ids-module-99143'+index);
+			$.attr(elem,'class','dm_module');
+			$.removeAttr(elem,MDID);
 		});
 
 
