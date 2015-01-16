@@ -13,6 +13,8 @@ function loadFile(){
 		var html=localStorage.getItem(_L_S_KEY_);
 		if(html=='false'){
 			return;
+		}else if($(".idex-desc-box").length>0){
+			
 		}else if(!html){
 			time=(time * 3) + 100;
 			if(time<2000){
@@ -33,26 +35,19 @@ function loadFile(){
 		
 		var fillBgColor='#FAFAFA',
 			bgColor='#F5F5F5';
-		$('.float-text,.float-html,.property-table,.list-table,.user-table,.float-link').remove();
-
-		$('.property-itable .property-tbody').each(function(index,table){
-			var parentElement=table.parentElement;
-			parentElement.setAttribute('style','float: left;width: '+table.offsetWidth+'px;height: 100%;background-color: '+fillBgColor+';');
-			parentElement.removeAttribute('class');
-			$(table).remove();
-		});
 		
-		var $list=$('.text-item,.html-item');
-
-		$list.empty();
-
-		$list.css({
-			'height':'50px',
-			'background-color': fillBgColor
+		$('.float-text div,.text-item div').each(function(index,elem){
+			var child=elem.firstElementChild;
+			if(child){
+				$(elem).append('<br/>');
+				$(child).unwrap();
+			}
 		});
 
+		//$('.float-text,.float-html,.property-table,.list-table,.user-table,.float-link').remove();
+		 
 		$('.image-list').html('<div style="height: 500px;background-color: '+bgColor+';"></div>');
-
+		
 	
 		$list=$('.image-title');
 		
@@ -91,7 +86,7 @@ function loadFile(){
 
 		$IMGList=null;
 
-		CSSApplyStyle.run(desc,true);
+		$.CSSApply.buildStyle(desc,true);
 		
 		var regions=[];
 
@@ -104,10 +99,10 @@ function loadFile(){
 			});
 		});
 		
-		getJSX(regions);
+		//getJSX(regions);
 
 		setTimeout(function(){
-			toCanvas(desc);
+		//	toCanvas(desc);
 		},1000);
 	};
 
