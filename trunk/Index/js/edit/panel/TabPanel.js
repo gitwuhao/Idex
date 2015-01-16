@@ -1,5 +1,7 @@
 (function(CF,$){
-var IDEX_KEY_MAP=window.IDEX_KEY_MAP;
+var KEY_MAP=window.APP_KEY_MAP,
+	ATTR_KEY_MAP=KEY_MAP.ATTR,
+	CACHE_KEY_MAP=KEY_MAP.CACHE;
 $.push({
 	_name_ : 'TabPanel',
 	_items_:[
@@ -402,11 +404,11 @@ $.push({
 			html;
 		
 		html=this.app.ViewPanel.getAllHTML();
-		localStorage.setItem(IDEX_KEY_MAP.CACHE.PREVIEW,html);
+		localStorage.setItem(CACHE_KEY_MAP.PREVIEW_HTML,html);
 
 		link = document.createElement('a');
 		link.href = this.PREVIEW_URL;
-		link.target =IDEX_KEY_MAP.ATTR.PREVIEW;
+		link.target =ATTR_KEY_MAP.PREVIEW;
 		link.click();
 
 		this.app.isLocked=false;

@@ -1,5 +1,8 @@
 (function(){
-	window.IDEX_ATTR_MAP = {
+	
+	var KEY={};
+
+	KEY.ATTR = {
 		HREF : 'idex-href',
 		SRC : 'idex-src',
 		TYPE : 'idex-type',
@@ -7,16 +10,17 @@
 		NAME : 'idex-name',
 		TITLE : 'idex-title',
 		CLASS : 'idex-class',
-		STYLE_COLOR : 'idex-style-color'
+		STYLE_COLOR : 'idex-style-color',
+		PREVIEW : 'IDEX_PREVIEW'
 	};
+ 
 
-	window.IDEX_KEY_MAP = {
-		CACHE : {
-			PREVIEW : '_idex_preview_html_'
-		},
-		ATTR : {
-			PREVIEW : '_idex_preview_'
-		}
+	KEY.CACHE = {
+		FGRID_TEMPLATE : 'IDEX_FIXED_GRID_TEMPLATE',
+		LAYOUT_RELATION :'IDEX_LAYOUT_RELATION',
+		SYSTEM_TEMPLATE : 'IDEX_SYSTEM_TEMPLATE',
+		PREVIEW_HTML : 'IDEX_PREVIEW_HTML'
 	};
-
+	
+	window.APP_KEY_MAP=KEY;
 })();

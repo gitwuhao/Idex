@@ -1,5 +1,5 @@
 (function(CF,$){
-var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
+var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 ideui={
 	__isIDEUI__ : true,
 	_type_ : "ideui",
@@ -29,7 +29,7 @@ ideui={
 					layout.getSrc = function(){
 						var img=this.getImgElement();
 						if(img){
-							return $.attr(img,'src')||$.attr(img,IDEX_ATTR_MAP.SRC);
+							return $.attr(img,'src')||$.attr(img,ATTR_KEY_MAP.SRC);
 						}
 						return '';
 					};
@@ -49,7 +49,7 @@ ideui={
 				this.setValue(src);
 				this.on('change',this.value);
 				
-				$.removeAttr(this.layout.getImgElement(),IDEX_ATTR_MAP.SRC);
+				$.removeAttr(this.layout.getImgElement(),ATTR_KEY_MAP.SRC);
 			}
 		},
 		'link' :{
@@ -65,10 +65,10 @@ ideui={
 				var layout=this.layout;
 				if(!layout.setLink){		
 					layout.setLink = function(value){
-						$.attr(this.activeElement,IDEX_ATTR_MAP.HREF,value);
+						$.attr(this.activeElement,ATTR_KEY_MAP.HREF,value);
 					};
 					layout.getLink = function(){
-						return $.attr(this.activeElement,IDEX_ATTR_MAP.HREF);
+						return $.attr(this.activeElement,ATTR_KEY_MAP.HREF);
 					};
 				}
 			}

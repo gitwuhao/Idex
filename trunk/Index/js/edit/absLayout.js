@@ -1,10 +1,35 @@
 (function(CF,$){
 	var Idex={},
-		IDEX_ATTR_MAP=window.IDEX_ATTR_MAP,
+		ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 		_LAYOUT_CLASS_MAP_={},
 		_CONTAINER_PROTOTYPE_,
 		_LAYOUT_TYPE_MAP_={
-			'container':0,'text-item':1,'html-item':2,'float-box':3,'float-link':4,'float-image':5,'float-text':6,'float-html':7,'image-fgrid':8,'image-fglink':9,'image-rtable':10,'image-row':11,'image-rlink':12,'image-ctable':13,'image-col':14,'image-clink':15,'property-table':16,'property-itable':17,'user-table':18,'list-table':19,'image-list':20,'image-item':21
+			'container':1,
+			'text-item':2,
+			'html-item':3,
+			'float-box':4,
+			'float-link':5,
+			'float-image':6,
+			'float-text':7,
+			'float-html':8,
+			'image-fgrid':9,
+			'image-fglink':10,
+			'image-rtable':11,
+			'image-row':12,
+			'image-rlink':13,
+			'image-ctable':14,
+			'image-col':15,
+			'image-clink':16,
+			'property-table':17,
+			'property-itable':18,
+			'user-table':19,
+			'list-table':20,
+			'image-list':21,
+			'image-item':22,
+			'image-text':23,
+			'i-image-item':24,
+			'i-text-item':25,
+			'split-line':26
 		};
 
 	(function(){
@@ -786,169 +811,179 @@
 
 
 	$.push({
-		_name_ : '_temp_module_',
+		_name_ : 'layout',
 		initModule : function(){
 			this.logger(this);
-			this._layout_.app=this.app;
-			this.app.layout=this._layout_;
-			this.app.createLayoutModule=this.createLayoutModule;
+			//this.app.createLayoutModule=this.createLayoutModule;
 			//this.app.cleanHTML=this._layout_.getClass('AbsContainer').prototype.cleanHTML;
-
 		},
-		_layout_:{
-			__LAYOUT_INDEX_TYPE_MAP__ :{},
-			__LAYOUT_INSTANCE_MAP__ : {},
-			__OUTPUT_RULES__ : {
-				'*' : {
-					'^id$ ^on ^name$' : function(attr){
-						if(/^on|^name$/i.test(attr.name)){
-							this.removeAttribute(attr.name);
-						}else if(/^id$/i.test(attr.name)){
-							if(Idex.isLayoutID(attr.value)){
-							}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
-							}else{
-								this.removeAttribute('id');
-							}
+		__LAYOUT_INDEX_TYPE_MAP__ :{},
+		__LAYOUT_INSTANCE_MAP__ : {},
+		__OUTPUT_RULES__ : {
+			'*' : {
+				'^id$ ^on ^name$' : function(attr){
+					if(/^on|^name$/i.test(attr.name)){
+						this.removeAttribute(attr.name);
+					}else if(/^id$/i.test(attr.name)){
+						if(Idex.isLayoutID(attr.value)){
+						}else if( /^img$/i.test(this.tagName) && /^CI/i.test(attr.value)){
+						}else{
+							this.removeAttribute('id');
 						}
-						attr.value='';
-					},
-					'^style$' : function(attr){
-						attr.value=HTMLfilter.getStyleText(this.style);
-					},
-					'class' : function(attr){
-						attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
+					}
+					attr.value='';
+				},
+				'^style$' : function(attr){
+					attr.value=HTMLfilter.getStyleText(this.style);
+				},
+				'class' : function(attr){
+					attr.value=HTMLfilter.removeClass(attr.value,'^idex-r-');
+				}
+			}
+		},
+		getLayoutID : Idex.getID,
+		getLayout : function(_name_){
+			return this.__LAYOUT_INSTANCE_MAP__[_name_];
+		},
+		getLayoutByIndex : function(_index_){
+			return this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
+		},
+		addClass : function(__className__,_class_){
+			_LAYOUT_CLASS_MAP_[__className__]=_class_;
+		},
+		getClass:function(__className__){
+			return _LAYOUT_CLASS_MAP_[__className__];
+		},
+		__printIndexMap__ : function(){
+			var h=[];
+			var map=this.__LAYOUT_INDEX_TYPE_MAP__;
+			for(var i in map){
+				h.push(i+'.'+map[i]._name_);
+			}
+			console.info(h.join(';')+';');
+		},
+		__findParent__ : function(target){
+			if(this.app.ViewPanel.descbox==target || !target){
+				return;
+			}
+			var item=this.getItem(target);
+			if(item){
+				return item;
+			}
+			return this.__findParent__(target.parentElement);
+		},
+		findParent : function(target){
+			var $target=$(target),
+				htmlTarget,
+				$parent;
+			while($target.length==1){
+				$parent=$target.closest('.html-item,.float-html');
+				if($parent[0]){
+					htmlTarget=$parent[0];
+					$target=$parent.parent();
+				}else{
+					break;
+				}
+			}
+			return this.__findParent__(htmlTarget || target);
+		},
+		findChildren : function(target){
+			var children=target.children,
+				list=[],
+				array,
+				_className_,
+				c,
+				element;
+
+			for(var n=0,len=children.length;n<len;n++){
+				element=children[n];
+				var item=this.getItem(element);
+				if(item){
+					list.push(item);
+				}
+			}
+
+			if(list.length==0){
+				for(var n=0,len=children.length;n<len;n++){
+					var _list_=this.findChildren(children[n]);
+					if(_list_.length>0){
+						list=list.concat(_list_);
 					}
 				}
-			},
-			getLayoutID : Idex.getID,
-			getLayout : function(_name_){
-				return this.__LAYOUT_INSTANCE_MAP__[_name_];
-			},
-			getLayoutByIndex : function(_index_){
-				return this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
-			},
-			addClass : function(__className__,_class_){
-				_LAYOUT_CLASS_MAP_[__className__]=_class_;
-			},
-			getClass:function(__className__){
-				return _LAYOUT_CLASS_MAP_[__className__];
-			},
-			__printIndexMap__ : function(){
-				var h=[];
-				var map=this.__LAYOUT_INDEX_TYPE_MAP__;
-				for(var i in map){
-					h.push(i+'.'+map[i]._name_);
-				}
-				console.info(h.join(';')+';');
-			},
-			__findParent__ : function(target){
-				if(this.app.ViewPanel.descbox==target || !target){
-					return;
-				}
-				var item=this.getItem(target);
+			}
+			return list;
+		},
+		findPrevElement : function(target){
+			var element=target;
+			while(element){
+				element=element.previousElementSibling;
+				var item=this.getItem(element);
 				if(item){
 					return item;
 				}
-				return this.__findParent__(target.parentElement);
-			},
-			findParent : function(target){
-				var $target=$(target),
-					htmlTarget,
-					$parent;
-				while($target.length==1){
-					$parent=$target.closest('.html-item,.float-html');
-					if($parent[0]){
-						htmlTarget=$parent[0];
-						$target=$parent.parent();
-					}else{
-						break;
-					}
-				}
-				return this.__findParent__(htmlTarget || target);
-			},
-			findChildren : function(target){
-				var children=target.children,
-					list=[],
-					array,
-					_className_,
-					c,
-					element;
-
-				for(var n=0,len=children.length;n<len;n++){
-					element=children[n];
-					var item=this.getItem(element);
-					if(item){
-						list.push(item);
-					}
-				}
-
-				if(list.length==0){
-					for(var n=0,len=children.length;n<len;n++){
-						var _list_=this.findChildren(children[n]);
-						if(_list_.length>0){
-							list=list.concat(_list_);
-						}
-					}
-				}
-				return list;
-			},
-			findPrevElement : function(target){
-				var element=target;
-				while(element){
-					element=element.previousElementSibling;
-					var item=this.getItem(element);
-					if(item){
-						return item;
-					}
-				}
-			},
-			findNextElement : function(target){
-				var element=target;
-				while(element){
-					element=element.nextElementSibling;
-					var item=this.getItem(element);
-					if(item){
-						return item;
-					}
-				}
-			},
-			getItem : function(element){
-				if(!element){
-					return;
-				}
-				var className=element.className;
-				if(className){
-					var array=className.split(' ');
-					for(var m=0,len=array.length;m<len;m++){
-						c=array[m];
-						layout=this.getLayout(c);
-						if(layout){
-							return {
-								layout : layout,
-								target : element
-							};
-						}
-					}
-				}
-			},
-			isLayout : function (element){
-				return this.getItem(element).layout || false;
 			}
 		},
-		createLayoutModule:function(module){
+		findNextElement : function(target){
+			var element=target;
+			while(element){
+				element=element.nextElementSibling;
+				var item=this.getItem(element);
+				if(item){
+					return item;
+				}
+			}
+		},
+		getItem : function(element){
+			if(!element){
+				return;
+			}
+			var className=element.className;
+			if(className){
+				var array=className.split(' ');
+				for(var m=0,len=array.length;m<len;m++){
+					c=array[m];
+					layout=this.getLayout(c);
+					if(layout){
+						return {
+							layout : layout,
+							target : element
+						};
+					}
+				}
+			}
+		},
+		isLayout : function (element){
+			return this.getItem(element).layout || false;
+		},
+		createLayoutModule : function(module){
 			if(!module._className_){
 				return;
 			}
-			var _class_=this.layout.getClass(module._className_);
-			var _layout_=new _class_(module);
-			this.layout.__LAYOUT_INSTANCE_MAP__[module._name_]=_layout_;
-
-			_layout_._type_index_=_LAYOUT_TYPE_MAP_[module._name_];
-
-			this.layout.__LAYOUT_INDEX_TYPE_MAP__[_layout_._type_index_]=_layout_;
-
+			var _layout_,
+				_index_,
+				_class_;
 			
-			//this.layout._LAYOUT_TYPE_MAP_.push('\''+module._name_+'\':'+this.layout._LAYOUT_TYPE_MAP_.length);
+			_class_=this.getClass(module._className_);
+			_layout_=new _class_(module);
+
+			this.__LAYOUT_INSTANCE_MAP__[module._name_]=_layout_;
+
+			_index_=_LAYOUT_TYPE_MAP_[module._name_];
+			
+			if(!_index_){
+				console.error('not register layout type:'+module._name_);
+				return _layout_;
+			}
+			
+			this.__LAYOUT_INDEX_TYPE_MAP__[_index_]=_layout_;
+
+			_layout_._type_index_=_index_;
+			
+			/*// 初始化 _LAYOUT_TYPE_MAP_
+			var _LAYOUT_TYPE_ARRAY_=$LAYOUT._LAYOUT_TYPE_ARRAY_||[];
+			_LAYOUT_TYPE_ARRAY_.push('\''+module._name_+'\':'+(_LAYOUT_TYPE_ARRAY_.length+1));
+			$LAYOUT._LAYOUT_TYPE_ARRAY_=_LAYOUT_TYPE_ARRAY_;
+			*/
 			return _layout_;
 		}
 	});

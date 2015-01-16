@@ -1,5 +1,5 @@
 (function(CF,$){
-var IDEX_ATTR_MAP=window.IDEX_ATTR_MAP;
+var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 $.push({
 	_name_ : 'CustomModule',
@@ -41,14 +41,14 @@ $.push({
  
 
 			tempRules.img.src=function(attr){
-				attr.name=IDEX_ATTR_MAP.SRC;
+				attr.name=ATTR_KEY_MAP.SRC;
 				attr.value='/s.gif';
 			};
 
-			tempRules.img[IDEX_ATTR_MAP.SRC]=tempRules.img.src;
+			tempRules.img[ATTR_KEY_MAP.SRC]=tempRules.img.src;
 				
 
-			tempRules.div[IDEX_ATTR_MAP.HREF]=HTMLfilter.removeAttrHandle;
+			tempRules.div[ATTR_KEY_MAP.HREF]=HTMLfilter.removeAttrHandle;
 		 
 			this.SaveAs.CLEAN_OUTPUT_RULES=CF.merger({},outRules,tempRules);
 		});
