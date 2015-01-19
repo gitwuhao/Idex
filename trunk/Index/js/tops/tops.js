@@ -86,7 +86,7 @@ function loadFile(){
 
 		$IMGList=null;
 
-		$.CSSApply.buildStyle(desc,true);
+		//$.CSSApply.buildStyle(desc,false);
 		
 		var regions=[];
 
@@ -102,7 +102,7 @@ function loadFile(){
 		//getJSX(regions);
 
 		setTimeout(function(){
-			toCanvas(desc);
+			//toCanvas(desc);
 		},1000);
 	};
 
