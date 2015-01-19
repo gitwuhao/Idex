@@ -560,10 +560,10 @@ $.push({
 							'<em class="count cB"></em>',
 						'</span>',
 						'<span class="match-l">匹配：',
-							'<em class="num"></em> / ',
+							'<em class="num c2"></em> / ',
 							'<em class="count cB"></em>',
 						'</span>',
-						'<span class="status-l"></span>',
+						'<span class="status-l c2"></span>',
 					'</div>'].join('');
 				div=$.createElement(html);
 				$tab.append(div);

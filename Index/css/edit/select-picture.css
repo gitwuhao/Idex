@@ -172,8 +172,10 @@
 .idex-pic-match-status-box .num{
 	color:#FF7D00;
 }
-.idex-pic-match-status-box .status-l{
+.idex-pic-match-status-box .c2{
 	color:#59B400;
+}
+.idex-pic-match-status-box .status-l{
 	padding-left: 50px;
 }
 .idex-pic-match-status-box .status-l em{
