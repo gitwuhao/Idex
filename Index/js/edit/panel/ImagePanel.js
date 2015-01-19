@@ -27,6 +27,7 @@
 			onTagClick:function(){
 			},
 			onLoad:function(){
+				this.$tabview.html('<div class="uncheck">没有校验信息...</div>');
 			}
 		}],
 		initModule : function(){

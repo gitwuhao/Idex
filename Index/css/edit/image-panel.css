@@ -3,6 +3,10 @@
     line-height: 30px;
 	cursor: pointer;
 }
+.idex-image-tab-panel .uncheck{
+	padding-top: 80px;
+	text-align: center;
+}
 .idex-image-tab-panel .idex-bottombar-box .idex-toolbar-button-box{
 	/* float:none; */
 }
