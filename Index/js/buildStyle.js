@@ -172,7 +172,7 @@
 
 
 		$('.image-text .i-text-item').each(function(index,elem){
-			this._width=this.clientWidth+'px';
+			this._width=$(this).width()+'px';
 			this._height=this.clientHeight+'px';
 		});
 
