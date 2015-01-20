@@ -52,7 +52,9 @@ var KEY_MAP=window.APP_KEY_MAP,
 			}
 		});
 
-		$.CSSApply.buildStyle(desc,true);
+		$.CSSApply.buildStyle(desc);
+
+		$.CSSApply.removeClass(desc);
 
 		$('a['+ATTR_KEY_MAP.HREF+']',desc).each(function(index,elem){
 			var href=elem.getAttribute(ATTR_KEY_MAP.HREF);
