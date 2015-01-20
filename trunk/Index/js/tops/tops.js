@@ -45,8 +45,9 @@ function loadFile(){
 		});
 
 		$('.i-text-item',desc).each(function(index,element){
-			element.style['background-color']=IMAGE_FILL_BG_COLOR;
-			$(element).empty();	
+			var $elem=$(element);
+			$elem.css('background-color',IMAGE_FILL_BG_COLOR);
+			$elem.empty();	
 		});
 
 	};
@@ -54,7 +55,7 @@ function loadFile(){
 	function cleanImage(){
 		var desc=$descBox[0];
 		
-		$('.image-list').html('<div style="height: 500px;background-color: '+IMAGE_BG_COLOR+';"></div>');
+		//$('.image-list').html('<div style="height: 500px;background-color: '+IMAGE_BG_COLOR+';"></div>');
 		
 		var $list=$('.image-title');
 		
@@ -67,11 +68,18 @@ function loadFile(){
 		$(IMAGE_SELECTER,desc).each(function(index,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
 				parentElement=img.parentElement,
+				width,
+				height,
 				_bgcolor_;
 			if(!src || /s\.gif$/g.test(src)){
 				_bgcolor_=IMAGE_BG_COLOR;
 			}else{
 				_bgcolor_='#EDFBFF';
+			}
+			width=img.offsetWidth;
+			height=img.offsetHeight;
+			if(height==0){
+				parentElement.style.height=width+'px';				
 			}
 			var $img=$(img);
 			$img.before('<div img="true" style="width: 100%;height: 100%;background-color: '+_bgcolor_+';"></div>');
