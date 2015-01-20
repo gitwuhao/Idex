@@ -1,6 +1,8 @@
 function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
+		IMAGE_FILL_BG_COLOR='#F9FBFF',
+		IMAGE_BG_COLOR='#F5F5F5',
 		ATTR_KEY_MAP=KEY_MAP.ATTR,
 		CACHE_KEY_MAP=KEY_MAP.CACHE,
 		_L_S_KEY_=CACHE_KEY_MAP.TO_PS_HTML,
@@ -37,26 +39,27 @@ function loadFile(){
 		 
 		$('.property-itable .property-tbody',desc).each(function(index,table){
 			var parentElement=table.parentElement;
-			parentElement.setAttribute('style','float: left;width: '+table.offsetWidth+'px;height: 100%;');
+			parentElement.setAttribute('style','float: left;width: '+table.offsetWidth+'px;height: 100%;background-color: '+IMAGE_FILL_BG_COLOR+';');
 			parentElement.removeAttribute('class');
 			$(table).remove();
 		});
 
-		$('.i-text-item',desc).empty();
+		$('.i-text-item',desc).each(function(index,element){
+			element.style['background-color']=IMAGE_FILL_BG_COLOR;
+			$(element).empty();	
+		});
 
 	};
 
-	
-	
 	function cleanImage(){
 		var desc=$descBox[0];
 		
-		$('.image-list').html('<div style="height: 500px;background-color: '+bgColor+';"></div>');
+		$('.image-list').html('<div style="height: 500px;background-color: '+IMAGE_BG_COLOR+';"></div>');
 		
 		var $list=$('.image-title');
 		
 		$list.css({
-			'background-color': bgColor
+			'background-color': IMAGE_BG_COLOR
 		});
 		
 		$list.empty();
@@ -66,7 +69,7 @@ function loadFile(){
 				parentElement=img.parentElement,
 				_bgcolor_;
 			if(!src || /s\.gif$/g.test(src)){
-				_bgcolor_=bgColor;
+				_bgcolor_=IMAGE_BG_COLOR;
 			}else{
 				_bgcolor_='#EDFBFF';
 			}
@@ -88,14 +91,12 @@ function loadFile(){
 	}
 
 	function build(){
-		var desc=$descBox[0],
-			fillBgColor='#FAFAFA',
-			bgColor='#F5F5F5';
+		var desc=$descBox[0];
 		
-		//cleanText();
+		cleanText();
 
-
-		applyImage();
+		cleanImage();
+		//applyImage();
 
 		$.CSSApply.buildStyle(desc);
 		
@@ -114,9 +115,9 @@ function loadFile(){
 			}
 		});
 		
-		toJSX(desc)
+		//toJSX(desc)
 	
-		toCanvas(desc);
+		//toCanvas(desc);
 	};
 	
 	function toJSX(element){
