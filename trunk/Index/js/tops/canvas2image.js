@@ -70,9 +70,14 @@ var Canvas2Image = (function() {
 			}else if(type=='png'){
 				mime='image/png';
 			}
-			var strData = oCanvas.toDataURL(mime);
-			saveFile(strData.replace(mime, 'image/octet-stream'),type,filename);
-			return true;
+			try{
+				var strData = oCanvas.toDataURL(mime);
+				saveFile(strData.replace(mime, 'image/octet-stream'),type,filename);
+				return true;
+			}catch(e){
+				console.error(e);
+			}
+			return false;
 		}
 	};
 
