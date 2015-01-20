@@ -106,11 +106,9 @@ function loadFile(){
 			});
 		});
 		
-		//getJSX(regions);
+		getJSX(regions);
 		
-		setTimeout(function(){
-			//toCanvas(desc);
-		},1000);
+		toCanvas(desc);
 	};
 
 
