@@ -1,7 +1,7 @@
 function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
-		IMAGE_FILL_BG_COLOR='#F9FBFF',
+		IMAGE_FILL_BG_COLOR='#F4F2FF',
 		IMAGE_BG_COLOR='#F5F5F5',
 		ATTR_KEY_MAP=KEY_MAP.ATTR,
 		CACHE_KEY_MAP=KEY_MAP.CACHE,
