@@ -16,32 +16,16 @@
 		var height=element.offsetHeight;
 		return height+'px';
 	};
-	function getCSWidth(element){
+	
+	$.CSSApply.getCSWidth=function(element){
 		return window.getComputedStyle(element).width;
 	};
-	function getCSHeight(element){
+
+	$.CSSApply.getCSHeight=function (element){
 		return window.getComputedStyle(element).height;
 	};
 
-	$.CSSApply.buildStyle=function(element){
-		var stylecolor=$.attr(element,ATTR_KEY_MAP.STYLE_COLOR);
-		if(stylecolor){
-			$.getDoc().trigger('changestyle',{
-				path:'idex-desc-default.css',
-				color : stylecolor
-			});
-		}
-
-		$.removeAttr(element,ATTR_KEY_MAP.STYLE_COLOR);
-
-		$('.hide').remove();
-		/*
-		$('img[_s_]').each(function(index,elem){
-			elem.src=$.attr(elem,'_s_');
-			$.removeAttr(elem,'_s_');
-		});
-		*/
-		$.CSSApply('idex-desc-default.css').disabled=true;
+	$.CSSApply.computedSizing=function(element){
 
 		$('.float-box').each(function(index,elem){
 			this.style.width=getWidth(this.children[0]);
@@ -60,7 +44,7 @@
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=getCSWidth(this.children[0]);
+			this._width=$.CSSApply.getCSWidth(this.children[0]);
 		});
 
 		$array.each(function(index,elem){
@@ -228,31 +212,39 @@
 			this.style.removeProperty('box-sizing');
 		});
 
-		$('hr').replaceWith('<div style="margin: 5px 0px;border-top: 1px solid #DDD;"></div>');
-
-		$('.property-itable .property-tbody,.property-image,.layout,.layout-box,.i-text-item,.i-image-item').unwrap();
-		$('.image-text .i-image-box .i-image-item').unwrap();
-		/*
-		HTMLfilter.filter({
-			"*":{
-				style:{
-					'box-sizing' : function(){
-						this.style.removeProperty('box-sizing');
-					}
-				},
-				'@remove' : ['d-t','^id','^on','name',(isRemoveClass ? '^class':'')]
-			},
-			'@remove':['#comment']
-		},element);
-		*/
 		
-		//HTMLfilter.removeTextBreakLine(element);
+		$('.property-itable .property-tbody,.property-image,.layout,.layout-box,.i-text-item,.i-image-item,.image-text .i-image-box .i-image-item').unwrap();
+		
 
 		var descStyle=element.style;
 		if(descStyle.boxSizing){
-			descStyle.width=(element.clientWidth - $.getPXValue(descStyle.paddingLeft) - $.getPXValue(descStyle.paddingRight)) +'px';
+			descStyle.width=$(element).width() +'px';
 			descStyle.removeProperty('box-sizing');
 		}
+	};
+
+	$.CSSApply.setStyle=function(element){
+		var stylecolor=$.attr(element,ATTR_KEY_MAP.STYLE_COLOR);
+		if(stylecolor){
+			$.getDoc().trigger('changestyle',{
+				path:'idex-desc-default.css',
+				color : stylecolor
+			});
+		}
+		$.removeAttr(element,ATTR_KEY_MAP.STYLE_COLOR);
+	};
+
+	$.CSSApply.buildStyle=function(element){
+
+		this.setStyle(element);
+
+		$('.hide').remove();
+
+		$.CSSApply('idex-desc-default.css').disabled=true;
+
+		$('hr').replaceWith('<div style="margin: 5px 0px;border-top: 1px solid #DDD;"></div>');
+
+		this.computedSizing(element);
 	};
 
 	$.CSSApply.removeClass=function(element){
