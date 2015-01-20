@@ -44,18 +44,12 @@ function loadFile(){
 		$('.i-text-item',desc).empty();
 
 	};
-
-
-	function build(){
-		var desc=$descBox[0],
-			fillBgColor='#FAFAFA',
-			bgColor='#F5F5F5';
+	
+	function cleanImage(){
+		var desc=$descBox[0];
 		
-		//cleanText();
-
 		$('.image-list').html('<div style="height: 500px;background-color: '+bgColor+';"></div>');
 		
-	
 		var $list=$('.image-title');
 		
 		$list.css({
@@ -64,11 +58,11 @@ function loadFile(){
 		
 		$list.empty();
 
-		$('.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img').each(function(index,img){
+		$('.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img',desc).each(function(index,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
 				parentElement=img.parentElement,
 				_bgcolor_;
-			if(/s\.gif$/g.test(src)){
+			if(!src || /s\.gif$/g.test(src)){
 				_bgcolor_=bgColor;
 			}else{
 				_bgcolor_='#EDFBFF';
@@ -77,6 +71,26 @@ function loadFile(){
 			$img.before('<div img="true" style="width: 100%;height: 100%;background-color: '+_bgcolor_+';"></div>');
 			$img.remove();
 		});
+	};
+
+	
+	function applyImage(){
+		$('.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img',desc).each(function(i,img){
+			var src=img.getAttribute(ATTR_KEY_MAP.SRC);
+			if(src && !/s\.gif$/g.test(src)){
+				$(img).attr('src',src);
+			}
+		});
+	}
+
+	function build(){
+		var desc=$descBox[0],
+			fillBgColor='#FAFAFA',
+			bgColor='#F5F5F5';
+		
+		//cleanText();
+
+
 		 
 		$.CSSApply.buildStyle(desc);
 		
