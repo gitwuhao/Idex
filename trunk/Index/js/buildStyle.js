@@ -169,21 +169,29 @@
 		$('.image-text .i-image-item').each(function(index,elem){
 			var parent,
 				img=this.children[0],
-				parent=this.parentElement;
+				parent=this.parentElement,
+				parentElementStyle=parent.style;
 
 			if(parent._width){
-				var parentElementStyle=parent.style;
 				parentElementStyle.width=parent._width;
 				parentElementStyle.height=parent._height;
 			}
 			
 			this._width=getWidth(img);
 			this._height=getHeight(img);
+
+			this._margin=parentElementStyle.margin;
+			/*
 			parent=this.parentElement;
 			if($.hasClass(parent,'p-n') && !parent.parentElement.previousElementSibling){
 				//this._width=(img.clientWidth-1)+'px';
-				this._margin='0px 5px 0px 0px';
+				if(this.parentElement.previousElementSibling){
+					this._margin=this.parentElement.style.margin;
+				}else{
+					this._margin='0px 5px 0px 0px';
+				}
 			}
+			*/
 		});
 
 		$('.image-text .i-text-item').each(function(index,elem){
