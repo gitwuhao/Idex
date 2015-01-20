@@ -23,7 +23,7 @@
 		return window.getComputedStyle(element).height;
 	};
 
-	$.CSSApply.buildStyle=function(element,isRemoveClass){
+	$.CSSApply.buildStyle=function(element){
 		var stylecolor=$.attr(element,ATTR_KEY_MAP.STYLE_COLOR);
 		if(stylecolor){
 			$.getDoc().trigger('changestyle',{
@@ -253,13 +253,12 @@
 			descStyle.width=(element.clientWidth - $.getPXValue(descStyle.paddingLeft) - $.getPXValue(descStyle.paddingRight)) +'px';
 			descStyle.removeProperty('box-sizing');
 		}
-		if(isRemoveClass){
-			var array=$('[class]',element);
-			array.push(element);
-			array.each(function(i,el){
-				el.removeAttribute('class');
-			});
-		}
 	};
+
+	$.CSSApply.removeClass=function(element){
+		var array=$('[class]',element);
+		array.push(element);
+		array.removeAttr('class');
+	});
 
 })(CF,jQuery);
