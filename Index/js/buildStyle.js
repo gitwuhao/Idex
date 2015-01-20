@@ -259,6 +259,6 @@
 		var array=$('[class]',element);
 		array.push(element);
 		array.removeAttr('class');
-	});
+	};
 
 })(CF,jQuery);
