@@ -1,5 +1,6 @@
 function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
+		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
 		ATTR_KEY_MAP=KEY_MAP.ATTR,
 		CACHE_KEY_MAP=KEY_MAP.CACHE,
 		_L_S_KEY_=CACHE_KEY_MAP.TO_PS_HTML,
@@ -44,6 +45,8 @@ function loadFile(){
 		$('.i-text-item',desc).empty();
 
 	};
+
+	
 	
 	function cleanImage(){
 		var desc=$descBox[0];
@@ -58,7 +61,7 @@ function loadFile(){
 		
 		$list.empty();
 
-		$('.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img',desc).each(function(index,img){
+		$(IMAGE_SELECTER,desc).each(function(index,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
 				parentElement=img.parentElement,
 				_bgcolor_;
@@ -75,7 +78,8 @@ function loadFile(){
 
 	
 	function applyImage(){
-		$('.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img',desc).each(function(i,img){
+		var desc=$descBox[0];
+		$(IMAGE_SELECTER,desc).each(function(i,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC);
 			if(src && !/s\.gif$/g.test(src)){
 				$(img).attr('src',src);
@@ -91,7 +95,8 @@ function loadFile(){
 		//cleanText();
 
 
-		 
+		applyImage();
+
 		$.CSSApply.buildStyle(desc);
 		
 		$('.property-tbody,.list-tbody,.user-tbody').addClass('border');
@@ -109,26 +114,29 @@ function loadFile(){
 			}
 		});
 		
-		var regions=[];
-
-		$('div[img]',desc).each(function(index,element){
-			regions.push({
-				left : element.offsetLeft,
-				top : element.offsetTop,
-				right : element.offsetLeft + element.offsetWidth,
-				bottom : element.offsetTop + element.offsetHeight
-			});
-		});
-		
-		getJSX(regions);
-		
+		//toJSX(element)
+	
 		toCanvas(desc);
 	};
-
+	
+	function toJSX(element){
+		var regions=[];
+		$('div[img],div img',element).each(function(index,img){
+			regions.push({
+				left : img.offsetLeft,
+				top : img.offsetTop,
+				right : img.offsetLeft + img.offsetWidth,
+				bottom : img.offsetTop + img.offsetHeight
+			});
+		});
+		getJSX(regions);
+				
+	};
 
 	function toCanvas(element){
 		html2canvas(element, {
 			onrendered: function(canvas) {
+
 				document.body.innerHTML='';
 				document.body.appendChild(canvas);
 				
