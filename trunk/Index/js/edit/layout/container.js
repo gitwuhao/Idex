@@ -24,7 +24,7 @@
 					xtype:'text',
 					label:'标题',
 					name: 'title',
-					width : '160px',
+					width : '165px',
 					maxlength : 8 ,
 					getDesc : '设置标题名'
 				},'',{

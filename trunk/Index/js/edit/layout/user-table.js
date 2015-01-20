@@ -12,8 +12,9 @@
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
 				items : [{
-					isPadding : true,
-					width : '10px'
+					isPadding: true,
+					width: '10px',
+					height: '30px'
 				},{
 					label:'编辑',
 					xtype:'button',
