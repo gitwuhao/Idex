@@ -51,6 +51,14 @@ var Canvas2Image = (function() {
 			return this.saveAs(oCanvas,'jpg',filename);
 		},
 		saveAs : function(oCanvas,type,filename){
+			var data = this.getImageStreamData(oCanvas,type);
+			if(data){
+				saveFile(data,type,filename);
+				return true;
+			}
+			return false;
+		},
+		getImageStreamData : function(oCanvas,type){
 			var mime;
 			if(type=='jpg'){
 				mime='image/jpeg';
@@ -59,13 +67,11 @@ var Canvas2Image = (function() {
 			}
 			try{
 				var strData = oCanvas.toDataURL(mime);
-				saveFile(strData.replace(mime, 'image/octet-stream'),type,filename);
-				//saveFile(oCanvas.toDataURL(mime),type,filename);
-				return true;
+				return strData.replace(mime, 'image/octet-stream');
 			}catch(e){
 				console.error(e);
 			}
-			return false;
+			return null;
 		}
 	};
 
