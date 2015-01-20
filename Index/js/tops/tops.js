@@ -107,6 +107,8 @@ function loadFile(){
 		//applyImage();
 
 		$.CSSApply.buildStyle(desc);
+
+		//$descBox.css('background-color','');
 		
 		$('.property-tbody,.list-tbody,.user-tbody').addClass('border');
 
@@ -125,7 +127,7 @@ function loadFile(){
 		
 		//toJSX(desc)
 	
-		//toCanvas(desc);
+		toCanvas(desc);
 	};
 	
 	function toJSX(element){
