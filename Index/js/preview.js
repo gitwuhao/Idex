@@ -87,7 +87,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 				width=elem.offsetWidth;
 				height=elem.offsetHeight;
 				if(height==0){
-					height=width;				
+					height=width;
 				}
 				style.padding=height+"px 0px 0px "+width+"px";
 				style.width='';
