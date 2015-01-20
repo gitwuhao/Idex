@@ -26,19 +26,6 @@ var Canvas2Image = (function() {
 		bHasDataURL = !!(oCanvas.toDataURL);
 	//var bHasBase64 = !!(window.btoa);
 
-	var strDownloadMime = "image/octet-stream";
-
-	var saveFile = function(strData,type,filename) {
-		var save_link = document.createElement('a');
-		save_link.href = strData;
-		save_link.download = filename+'.'+type;
-	   
-		//var event = document.createEvent('MouseEvents');
-		//event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-		//save_link.dispatchEvent(event);
-		save_link.click();
-	};
-
 	return {
 		/*
 		{
@@ -73,12 +60,32 @@ var Canvas2Image = (function() {
 			try{
 				var strData = oCanvas.toDataURL(mime);
 				saveFile(strData.replace(mime, 'image/octet-stream'),type,filename);
+				//saveFile(oCanvas.toDataURL(mime),type,filename);
 				return true;
 			}catch(e){
 				console.error(e);
 			}
 			return false;
 		}
+	};
+
+	function saveFile2(strData,type,filename) {
+		var oGrayImg = new Image();
+		oGrayImg.src = strData;
+		$(document.body).empty();
+		$(document.body).append(oGrayImg);
+	}
+
+	function saveFile(strData,type,filename) {
+
+		var save_link = document.createElement('a');
+		save_link.href = strData;
+		save_link.download = filename+'.'+type;
+	   
+		//var event = document.createEvent('MouseEvents');
+		//event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		//save_link.dispatchEvent(event);
+		save_link.click();
 	};
 
 })();

@@ -114,7 +114,7 @@ function loadFile(){
 			}
 		});
 		
-		//toJSX(element)
+		toJSX(desc)
 	
 		toCanvas(desc);
 	};
