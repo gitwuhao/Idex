@@ -353,6 +353,10 @@ $.push({
 				html :  this.getCustomTemplateHTML(parentLayoutType),
 				onTagClick : onTagClick,
 				onLoad : onLoad
+			},{
+				cls:'chuang',
+				label:'好创意',
+				html :  ''
 			}]
 		};
 
