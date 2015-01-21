@@ -48,6 +48,7 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/adapter/TextEditor.js',
 	'js/edit/adapter/HTMLEditor.js',
 	'js/edit/adapter/TableEditor.js',
+	'js/edit/adapter/ExportPS.js',
 	/*
 	--------------------------------------------
 	*/
