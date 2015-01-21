@@ -14,6 +14,13 @@ var path='/js/dev/data/',
 		'method=getCode&_t=2&id=101010806' : 'module.getCode.2.101010806.txt',
 		'method=getCode&_t=2&id=101010827' : 'module.getCode.2.101010827.txt',
 		'method=insert&_t=2' : 'module.insert.js'
+	},
+	'/config.s' : {
+		'method=get&type=1' : 'config.get.1.js'
+	},
+	'/item.s' : {
+		'method=query&pageSize=1' : 'item.query.1.js',
+		'method=get' : 'item.get.js'
 	}
 };
 function match(param,data){
