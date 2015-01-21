@@ -2,8 +2,25 @@
 	$.push({
 		_name_ : 'ExportPS',
 		show : function(callback){
-			
-		
+			if(this.win){
+				return;
+			}
+			this.win=new ui.window({
+				title : '导出',
+				callback : callback,
+				cls : 'idex-export-ps-win x-ui-scrollbar',
+				html : 'dsfsdf',
+				onCloseAfter : function(){
+					this.$owner.close();
+				}
+			});
+			this.win.$owner = this;
+			this.win.show();
+		},
+		close:function(){
+			this.logger(this);
+			this.win.remove();
+			delete this.win;
 		},
 		export : function(){
 			if(this.isExportPsIng){

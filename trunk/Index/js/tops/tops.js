@@ -1,5 +1,6 @@
 function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
+		CSSApply=$.CSSApply,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
 		IMAGE_FILL_BG_COLOR='#F4F2FF',
 		IMAGE_BG_COLOR='#F5F5F5',
@@ -96,7 +97,12 @@ function loadFile(){
 				$(img).attr('src',src);
 			}
 		});
-	}
+	};
+
+	function applyTableBorder(){
+		$('.property-tbody,.list-tbody,.user-tbody').addClass('border');
+		CSSApply('idex_main_style_sheet');
+	};
 
 	function build(){
 		var desc=$descBox[0];
@@ -106,15 +112,11 @@ function loadFile(){
 		cleanImage();
 		//applyImage();
 
-		$.CSSApply.buildStyle(desc);
+		CSSApply.buildStyle(desc);
 
 		//$descBox.css('background-color','');
-		
-		$('.property-tbody,.list-tbody,.user-tbody').addClass('border');
 
-		$.CSSApply('tops.css');
-
-		$.CSSApply.removeClass(desc);
+		CSSApply.removeClass(desc);
 
 		$('table',desc).each(function(index,table){
 			var bordercolor='',
