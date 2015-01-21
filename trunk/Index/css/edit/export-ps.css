@@ -1,14 +1,8 @@
-/*
-table.border{
-	border-top: 1px solid #DDD;
-	border-left: 1px solid #DDD;
-	border-bottom: none;
-	border-right: none;
+.idex-export-ps-win{
+
 }
-*/
-table.border > tbody > tr > td{
-	border-top: 1px solid #DDD;
-	border-left: 1px solid #DDD;
-	border-bottom: none;
-	border-right: none;
+.idex-export-ps-win .x-ui-win-body{
+	width: 300px;
+	height:200px;
+	padding: 5px;
 }
