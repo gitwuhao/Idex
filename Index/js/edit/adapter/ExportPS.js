@@ -1,6 +1,6 @@
 (function(CF,$){
 	$.push({
-		_name_ : 'toPS',
+		_name_ : 'ExportPS',
 		show : function(callback){
 			
 		
