@@ -8,43 +8,41 @@ $.push({
 		{
 			type:'layout',
 			key : 'F7',
-			title : '布局'
+			title : '布局(F7)'
 		},{
 			type:'property',
 			key : 'F7',
-			title : '属性'
+			title : '属性(F7)'
 		},'|',{
 			type:'history',
 			key : 'F6',
-			title : '历史记录'
-		},/*{
-			type:'info'
-		},'|',*/{
+			title : '历史记录(F6)'
+		},{
 			type:'image',
-			key : 'F9',
-			title : '图片验证'
+			key : 'F8',
+			title : '图片验证(F8)'
 		},'|',{
+			type:'exportps',
+			key : 'F9',
+			title : '导出(F9)'
+		},{
 			type:'preview',
 			key : 'F10',
-			title : '预览'
+			title : '预览(F10)'
 		},/*{
 			type:'fullscreen'
 		},'|',*/{
-			type:'exportps',
-			key : 'F4',
-			title : '导出'
-		},{
 			type:'save',
 			key : 'S',
 			ctrlKey : true,
-			title : '保存'
+			title : '保存(Ctrl + S)'
 		},/*{
 			type:'publish',
 			title : '发布'
 		},*/'|',{
 			type:'guide',
 			key : 'F1',
-			title : '指南'
+			title : '指南(F1)'
 		}
 	],
 	itemsMap : {},
