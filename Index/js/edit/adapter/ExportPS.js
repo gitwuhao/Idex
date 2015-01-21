@@ -19,6 +19,7 @@
 		},
 		close:function(){
 			this.logger(this);
+			this.win.callback.execute();
 			this.win.remove();
 			delete this.win;
 		},
