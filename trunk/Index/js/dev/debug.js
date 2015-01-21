@@ -8,6 +8,7 @@ var path='/js/dev/data/',
 		'method=getCat' : 'picture.getcat.js'
 	},
 	'/module.s' : {
+		'method=query&_t=1' : 'module.query.1.js',
 		'method=query&_t=2' : 'module.query.2.js',
 		'method=query&_t=4' : 'module.query.4.js',
 		'method=getCode&_t=4' : 'module.getCode.4.txt',
@@ -19,7 +20,9 @@ var path='/js/dev/data/',
 		'method=get&type=1' : 'config.get.1.js'
 	},
 	'/item.s' : {
-		'method=query&pageSize=1' : 'item.query.1.js',
+		'method=query&page=1' : 'item.query.1.js',
+		'method=query&page=2' : 'item.query.2.js',
+		'method=query&page=3' : 'item.query.3.js',
 		'method=get' : 'item.get.js'
 	}
 };
