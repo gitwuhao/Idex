@@ -644,7 +644,7 @@
 			if(this.activeLayout.on('show',layout)!=false){
 				$(icon).replaceClass('check','eye');
 			}
-			this.app.trigger('loadImage');
+			this.app.trigger('loadImage',layout);
 		},
 		onDeActive:function(){
 			this.logger(this);

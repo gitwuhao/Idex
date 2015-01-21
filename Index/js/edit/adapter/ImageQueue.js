@@ -43,7 +43,7 @@ $.push({
 		}
 		var imgList=$('img['+ATTR_KEY_MAP.SRC+']',context);
 		$.it(imgList,function(i,img){
-			if(!this.isLoadAfterImage(img)){
+			if(!this.isLoadAfterImage(img) && img.offsetParent){
 				this.push(img);
 			}
 		},this);
