@@ -15,16 +15,20 @@
 	border-bottom-color: #CCC;
     margin: 5px 10px;
 }
-.idex-export-ps-win .idex-link-item:hover{
-	border-color: #00B2FF;
-	color: #00B2FF;
-	margin-top: 2px;
-	transition: all 0.5s 0s ease;
-}
 .idex-export-ps-win .idex-link-item a{
     float: left;
     display: inline-block;
     padding: 30px 20px;
     font-size: 24px;
 	font-family: "Microsoft YaHei";
+    text-decoration: none;
+    color: #CCC;
+}
+.idex-export-ps-win .idex-link-item:hover{
+	border-color: #00B2FF;
+	margin-top: 2px;
+	transition: all 0.5s 0s ease;
+}
+.idex-export-ps-win .idex-link-item:hover a{
+	color: #00B2FF;
 }
