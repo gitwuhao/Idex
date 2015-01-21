@@ -93,7 +93,7 @@
 			}else{
 				$item.removeClass('hide');
 				if($item.hasClass('image-title')){
-					this.app.trigger('loadImage');
+					this.app.trigger('loadImage',null);
 				}
 			}
 		},
@@ -118,7 +118,7 @@
 				}else{
 					$imageTitle.children('img').attr('src',value);
 					$imageTitle.removeClass('hide');
-					this.app.trigger('loadImage');
+					this.app.trigger('loadImage',null);
 				}
 			}else if($elem.children('.text-title:first').length==0){
 				$elem.children('.image-title:first').remove();

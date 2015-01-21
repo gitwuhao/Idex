@@ -83,13 +83,19 @@ function loadFile(){
 		
 		//$('.image-list').html('<div style="height: 500px;background-color: '+IMAGE_BG_COLOR+';"></div>');
 		
-		var $list=$('.image-title');
-		
-		$list.css({
-			'background-color': IMAGE_BG_COLOR
+		$('.image-title img').each(function(index,img){
+			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
+				_bgcolor_;
+			if(!src || /s\.gif$/g.test(src)){
+				_bgcolor_=IMAGE_BG_COLOR;
+			}else{
+				_bgcolor_='#EDFBFF';
+			}
+			var $elem=$(img.parentElement);
+			$elem.css('background-color',_bgcolor_);
+			$elem.attr('img','true');
+			$elem.empty();
 		});
-		
-		$list.empty();
 
 		$(IMAGE_SELECTER,desc).each(function(index,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
