@@ -87,13 +87,10 @@ Idex.Module.prototype={
 			this.rerenderList();
 			return;
 		}
-		$.ajax({
+		$.jsonp({
 			url:'/module.s',
 			data : 'method=query&_t=' + this.ACTION_TYPE,
 			$owner : this,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				this.$owner.initRawData(json||[]);
 				this.$owner.saveCache();
@@ -108,14 +105,11 @@ Idex.Module.prototype={
 		if(this.isActionBusy(target)){
 			return;
 		}
-		$.ajax({
+		$.jsonp({
 			url:'/module.s',
 			data : 'method=copy&id='+item.id+'&_t='+this.ACTION_TYPE,
 			$owner : this,
 			item : item,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				if(json && json.id>0){
 					this.$owner.copyItem(this.item,json);
@@ -144,14 +138,11 @@ Idex.Module.prototype={
 		if(this.isActionBusy(target)){
 			return;
 		}
-		$.ajax({
+		$.jsonp({
 			url:'/module.s',
 			data : 'method=insert&_t='+this.ACTION_TYPE,
 			_$owner : this,
 			_target : target,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(json){
 				if(json && json.id>0){
 					this._$owner.newItem(json);
@@ -206,14 +197,11 @@ Idex.Module.prototype={
 		});
 	},
 	confirmDel : function(item){
-		$.ajax({
+		$.jsonp({
 			url:'/module.s',
 			data : 'method=delete&id='+item.id+'&_t='+this.ACTION_TYPE,
 			$owner : this,
 			item : item,
-			type : 'POST',
-			dataType : 'jsonp',
-			jsonpCallback : $.getJSONPName(),
 			success : function(data){
 				if(data==1){
 					this.$owner.delItem(this.item);

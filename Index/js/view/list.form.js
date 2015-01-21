@@ -56,13 +56,10 @@ Idex.view.list.getForm= function(){
 
 			data=$.cache.get(key);
 			if(!data){
-				$.ajax({
+				$.jsonp({
 					url:'/config.s',
 					data : 'method=get&type=1',
 					$owner : this,
-					type : 'POST',
-					dataType : 'jsonp',
-					jsonpCallback : $.getJSONPName(),
 					success : function(json){
 						json=$.cache.buildTreeData(json);
 						$.cache.put(key,JSON.stringify(json),new Date());
@@ -151,19 +148,19 @@ Idex.view.list.getForm= function(){
 			}
 			//获取分页尺寸
 			if(!this.pageSize){
-				data=data+'&pageSize=1';
+				data=data+'&pageSize=1&page=1';
+			}else if(!this.page){
+				data=data+'&page=1';
 			}
+
 
 			this.$statusbox.empty();
 
-			$.ajax({
+			$.jsonp({
 				url:'/item.s',
 				data : data,
 				$type : type,
 				$owner : this,
-				type : 'POST',
-				dataType : 'jsonp',
-				jsonpCallback : $.getJSONPName(),
 				success : function(json){
 					if(!this.$owner.pageSize){
 						this.$owner.pageSize=$.toNumber(localStorage[this.$owner.KEY_PAGE_SIZE]);

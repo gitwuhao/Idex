@@ -9,7 +9,7 @@
 				title : '导出',
 				callback : callback,
 				cls : 'idex-export-ps-win x-ui-scrollbar',
-				html : 'dsfsdf',
+				html : '<div class="idex-link-item ps-script"><a>切图脚本</a></div><div class="idex-link-item layout-pic"><a>布局模板</a></div>',
 				onCloseAfter : function(){
 					this.$owner.close();
 				}
