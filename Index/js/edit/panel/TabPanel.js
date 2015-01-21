@@ -413,7 +413,6 @@ $.push({
 
 		this.app.isLocked=false;
 	},
-	TO_PS_URL : '/tops.html',
 	onExportps:function(){
 		if(this.app.isLocked){
 			return;

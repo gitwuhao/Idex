@@ -10,12 +10,36 @@ function loadFile(){
 		$descBox,
 		time=0,
 		id,
+		EXPORT_CONFIG_DATA={
+			type : 't',
+			id : '1234567'
+		},
 		tid=Date.now();
 
 
 	function ready(){
-		var html=localStorage.getItem(_L_S_KEY_);
-		if(html=='false'){
+		var param=$.getParam();
+		if(!param || !param.fn){
+			return;
+		}
+		var data=window.top[param.fn]();
+		if(!data || !data.html){
+			return;
+		}
+		EXPORT_CONFIG_DATA=data;
+		$.getBody().append(data.html);
+		$descBox=$(".idex-desc-box");
+		build();
+	};
+
+
+
+	function ready2(){
+		var param=$.getParam(),
+			html=localStorage.getItem(_L_S_KEY_);
+		if(param && param.fn){
+			this.getData(param.fn);
+		}else if(html=='false'){
 			return;
 		}else if($(".idex-desc-box").length>0){
 			
@@ -33,6 +57,7 @@ function loadFile(){
 		}
 		build();
 	};
+
 	function cleanText(){
 		var desc=$descBox[0];
 		
@@ -127,7 +152,7 @@ function loadFile(){
 			}
 		});
 		
-		//toJSX(desc)
+		toJSX(desc)
 	
 		toCanvas(desc);
 	};
@@ -142,28 +167,27 @@ function loadFile(){
 				bottom : img.offsetTop + img.offsetHeight
 			});
 		});
-		getJSX(regions);
-				
+		EXPORT_CONFIG_DATA.jsxData=getJSX(regions);
 	};
 
 	function toCanvas(element){
 		html2canvas(element, {
 			onrendered: function(canvas) {
 
-				document.body.innerHTML='';
+				$.getBody().empty();
+
 				document.body.appendChild(canvas);
 				
-				Canvas2Image.saveAsPNG(canvas,'Idex-template-' + tid);
-				
-				var _L_S_C_=CACHE_KEY_MAP.TO_PS_CALLBACK,
-					callback=localStorage.getItem(_L_S_C_);
-
-				localStorage.removeItem(_L_S_C_);
-				if(callback){
-					setTimeout(function(){
-						window.top[callback]();
-					},1500);
+				try{
+					var mime='image/png',
+						picData;
+					picData = canvas.toDataURL(mime);
+					EXPORT_CONFIG_DATA.imageData=picData.replace(mime,'image/octet-stream');
+				}catch(e){
+					console.error(e);
 				}
+				EXPORT_CONFIG_DATA.callback();
+
 			}
 		});
 	};
@@ -176,6 +200,7 @@ function loadFile(){
 					 'a = app.activeDocument,',
 					 'hs,',
 					 'p,',
+					 'fp="idex-',EXPORT_CONFIG_DATA.type,'-',EXPORT_CONFIG_DATA.id,'",',
 					 'dD = app.displayDialogs,',
 					 'jO = new JPEGSaveOptions();',
 				'p=a.path+"/IdexJPEG/";',
@@ -197,7 +222,7 @@ function loadFile(){
 				'};',
 				'function s(r,x){',
 					'a.crop(r);',
-					'a.saveAs(File(p+"idex-"+x+".jpg"), jO );',
+					'a.saveAs(File(p+fp+x+".jpg"), jO );',
 					'a.activeHistoryState = hs;',
 				'};',
 				'function main() {',
@@ -206,7 +231,7 @@ function loadFile(){
 					'yCA();',
 					'var f=Folder(p);',
 					'f.create();',
-					'for ( var i = 0,len=l.length; i < len; i++ ) {',
+					'for (var i = 0,len=l.length; i < len; i++ ) {',
 						's(g(l[i]),(i+1));',
 					'}',
 					'app.displayDialogs = dD;',
@@ -215,13 +240,7 @@ function loadFile(){
 				'main();'
 		);
 		
-		var link,
-			data="data:text/plain;base64," + btoa(script.join(''));
-
-		link = document.createElement('a');
-		link.href = data;
-		link.download = 'idex-script-'+tid+'.jsx';
-		link.click();
+		return "data:text/plain;base64," + btoa(script.join(''));
 	
 	};
 
