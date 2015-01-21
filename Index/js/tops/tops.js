@@ -222,7 +222,7 @@ function loadFile(){
 				'};',
 				'function s(r,x){',
 					'a.crop(r);',
-					'a.saveAs(File(p+fp+"("+x+").jpg"), jO );',
+					'a.saveAs(File(p+fp+x+".jpg"), jO );',
 					'a.activeHistoryState = hs;',
 				'};',
 				'function main() {',
