@@ -307,6 +307,7 @@
 			this.logger(this);
 			this.$layoutTabView.empty();
 			this.createMainNavList();
+			this.app.trigger('contextUpdate');
 			this.getDescBoxElement().firstElementChild.click();
 			this.disabled('home');
 		},
