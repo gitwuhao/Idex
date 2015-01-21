@@ -2,21 +2,29 @@
 
 }
 .idex-export-ps-win .x-ui-win-body{
-	width: 300px;
-	height:200px;
-	padding: 5px;
+	/* width: 350px; */
+	/* height:200px; */
+	padding: 20px 15px;
 }
 .idex-export-ps-win .idex-link-item{
     float: left;
-    border: 1px solid #DDD;
-    border-radius: 2px;
-    margin-right: 10px;
+	border: 1px solid #DDD;
+	color: #CCC;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px #DDD;
+	border-bottom-color: #CCC;
+    margin: 5px 10px;
+}
+.idex-export-ps-win .idex-link-item:hover{
+	border-color: #00B2FF;
+	color: #00B2FF;
+	margin-top: 2px;
+	transition: all 0.5s 0s ease;
 }
 .idex-export-ps-win .idex-link-item a{
     float: left;
     display: inline-block;
-    padding: 30px 10px;
-    font-size: 28px;
+    padding: 30px 20px;
+    font-size: 24px;
 	font-family: "Microsoft YaHei";
-	color: #ccc;
 }
