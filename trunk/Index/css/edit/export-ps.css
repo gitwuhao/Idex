@@ -6,3 +6,17 @@
 	height:200px;
 	padding: 5px;
 }
+.idex-export-ps-win .idex-link-item{
+    float: left;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    margin-right: 10px;
+}
+.idex-export-ps-win .idex-link-item a{
+    float: left;
+    display: inline-block;
+    padding: 30px 10px;
+    font-size: 28px;
+	font-family: "Microsoft YaHei";
+	color: #ccc;
+}

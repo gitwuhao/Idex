@@ -10,6 +10,7 @@ var path='/js/dev/data/',
 	'/module.s' : {
 		'method=query&_t=1' : 'module.query.1.js',
 		'method=query&_t=2' : 'module.query.2.js',
+		'method=query&_t=3' : 'module.query.3.js',
 		'method=query&_t=4' : 'module.query.4.js',
 		'method=getCode&_t=4' : 'module.getCode.4.txt',
 		'method=getCode&_t=2&id=101010806' : 'module.getCode.2.101010806.txt',
