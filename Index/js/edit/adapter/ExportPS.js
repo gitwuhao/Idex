@@ -9,13 +9,30 @@
 				title : '导出',
 				callback : callback,
 				cls : 'idex-export-ps-win x-ui-scrollbar',
-				html : '<div class="idex-link-item ps-script"><a href="#a">切图脚本</a></div><div class="idex-link-item layout-pic"><a href="#s" download="">布局模板</a></div>',
 				onCloseAfter : function(){
 					this.$owner.close();
 				}
 			});
 			this.win.$owner = this;
 			this.win.show();
+
+			
+			ui.popu.createInnerLoadingAnimation({
+				$elem : this.win.$body,
+				css : {
+					'margin': '10px auto 0px auto',
+					'height': '100px',
+					'width': '200px',
+					'text-align': 'center',
+					'overflow': 'hidden'
+				}
+			});
+			
+			$.setTimeout(this.buildDownLoadLink,2000,this);
+
+		},
+		buildDownLoadLink : function(config){
+			this.win.$body.html('<div class="idex-link-item ps-script"><a href="#a">切图脚本</a></div><div class="idex-link-item layout-pic"><a href="#s" download="">布局模板</a></div>');
 		},
 		close:function(){
 			this.logger(this);
