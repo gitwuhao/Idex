@@ -256,7 +256,7 @@ $.push({
 			onTreeLoadAfter : function(){
 				this.initPicList();
 				delete this.onTreeLoadAfter;
-				delete this.initPicList;
+				//delete this.initPicList;
 			}
 		};
 	},
