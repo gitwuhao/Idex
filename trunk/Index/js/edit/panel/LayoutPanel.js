@@ -103,6 +103,15 @@
 
 			this.$layoutTabView=tab.$tabview;
 
+
+			var div,
+				html='<div class="idex-code-count-box"><span class="value">10K</span>/<span class="count">20K</span></div>';
+
+			div=$.createElement(html);
+
+			this.$bottombarbox.append(div);
+			this.$codeCountBox=$(div);
+
 			this.initEvents();
 
 		},

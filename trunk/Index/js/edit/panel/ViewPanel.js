@@ -31,7 +31,7 @@ $.push({
 		this._$$originalHTML=this.getAllHTML();
 
 		var div,
-			html='<div class="idex-view-panel-popu-box"></div>';
+			html=['<div class="idex-view-panel-popu-box">','</div>'].join('');
 
 		div=$.createElement(html);
 		this.$contextBox.after(div);
