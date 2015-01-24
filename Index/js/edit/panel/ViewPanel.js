@@ -28,7 +28,7 @@ $.push({
 
 		this.getDescBox();
 		
-		this.originalHTML=this.getAllHTML();
+		this._$$originalHTML=this.getAllHTML();
 
 		var div,
 			html='<div class="idex-view-panel-popu-box"></div>';
@@ -168,7 +168,7 @@ $.push({
 	},
 	getOriginalHTML : function(){
 		this.logger(this);
-		return this.originalHTML;
+		return this._$$originalHTML;
 	}
 });
 })(CF,jQuery);
