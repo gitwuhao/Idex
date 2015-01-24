@@ -10,12 +10,9 @@ $.push({
 	_name_ : 'SelectPicture',
 	initModule : function(){
 		this.logger(this);
-
-		this.app.addEventListener('readyafter',function(event){
-			this.SelectPicture.on('readyAfter');
-		});
+		this.app.bindReadyAfter(this);
 	},
-	onReadyAfter : function(){
+	onAppReadyAfter : function(){
 		var app=this.app,
 			ViewPanel,
 			ImagePanel,

@@ -19,13 +19,14 @@ $.push({
 			this.Template.show(config);
 		});
 
-		this.app.addEventListener('readyafter',function(event){
-			this.Template.CustomModule=this.CustomModule;
-			$.setTimeout(function(){
-				this.initData();
-				delete this.initData;
-			},500,this.Template);
-		});
+		this.app.bindReadyAfter(this);
+	},
+	onAppReadyAfter : function(){
+		this.CustomModule=this.app.CustomModule;
+		$.setTimeout(function(){
+			this.initData();
+			delete this.initData;
+		},500,this);
 	},
 	CACHE_KEY : {
 		CUSTOM_CODE : 'custom_code',
