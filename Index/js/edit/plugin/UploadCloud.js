@@ -1,7 +1,5 @@
 (function(CF,$){
-var CACHE_KEY={
-
-};
+var LAST_UPLOAD_KEY = 'IDEX_LAST_UPLOAD_CLOUD_HTML';
 $.push({
 	_name_ : 'UploadCloud',
 	initModule : function(){

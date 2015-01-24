@@ -24,9 +24,11 @@ $.push({
 		this.viewPanel=this.app.$viewPanel[0];
 		this.$contextBox=this.app.$contextBox;
 		
+		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
+
 		this.getDescBox();
 		
-		this.originalHTML=this.descbox.outerHTML;
+		this.originalHTML=this.getAllHTML();
 
 		var div,
 			html='<div class="idex-view-panel-popu-box"></div>';
@@ -37,7 +39,6 @@ $.push({
 
 		this.app.data=this.data;
 
-		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
 
 		this.initEvents();
 	},
