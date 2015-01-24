@@ -42,13 +42,14 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/template.js',
 	'js/edit/SystemData.js',
 	'js/edit/saveAs.js',
-	'js/edit/adapter/SelectPicture.js',
 	'js/edit/adapter/DragDrop.js',
-	'js/edit/adapter/ImageQueue.js',
 	'js/edit/adapter/TextEditor.js',
 	'js/edit/adapter/HTMLEditor.js',
 	'js/edit/adapter/TableEditor.js',
-	'js/edit/adapter/ExportPS.js',
+	'js/edit/plugin/ImageQueue.js',
+	'js/edit/plugin/SelectPicture.js',
+	'js/edit/plugin/ExportPS.js',
+	'js/edit/plugin/UploadCloud.js',
 	/*
 	--------------------------------------------
 	*/
