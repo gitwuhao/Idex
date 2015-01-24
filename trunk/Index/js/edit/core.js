@@ -34,7 +34,6 @@
 				this.$viewPanel.append('<div class="idex-event-listener"></div>');
 
 				this.$eventElement=$('.idex-event-listener');
-
 			}
 		},
 		ready : function(){
@@ -51,7 +50,25 @@
 			delete this._module_list_;
 			delete this._module_map_;
 			this.triggerAndRemoveEvent('readyafter');
+			delete this.bindReady();
+			delete this.bindReadyAfter();
 			this.trigger('resize');
+		},
+		bindReady : function(module){
+			if(!module){
+				return;
+			}
+			this.addEventListener('ready',function(){
+				module.on('ready');
+			});
+		},
+		bindReadyAfter : function(module){
+			if(!module){
+				return;
+			}
+			this.addEventListener('readyafter',function(){
+				module.on('appReadyAfter');
+			});
 		},
 		_initModule_:function(module){
 			if(module._isUIModule_){

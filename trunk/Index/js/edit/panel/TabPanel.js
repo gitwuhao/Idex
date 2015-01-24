@@ -275,10 +275,7 @@ $.push({
 			ui.popu.removeCurrentPopu();
 		});
 
-		this.app.addEventListener('readyafter',function(event){
-			this.TabPanel.trigger('expand');
-		});
-
+		this.app.bindReadyAfter(this);
 		
 		this.app.addEventListener('cleanfloatpanel',function(event){
 			this.TabPanel.setCurrentTabPanel(null);
@@ -390,6 +387,9 @@ $.push({
 			this.on(icon);
 		});
 
+	},
+	onAppReadyAfter : function(){
+		this.trigger('expand');
 	},
 	PREVIEW_URL : '/preview.html',
 	onPreview:function(){

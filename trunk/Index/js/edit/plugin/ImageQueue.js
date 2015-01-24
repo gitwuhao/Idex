@@ -5,9 +5,8 @@ $.push({
 	_name_ : 'ImageQueue',
 	initModule : function(){
 		this.logger(this);
-		this.app.addEventListener('readyafter',function(){
-			this.ImageQueue.onReadyAfter();
-		});
+		
+		this.app.bindReadyAfter(this);
 
 		this.app.addEventListener('contextUpdate',function(){
 			this.ImageQueue.trigger('contextUpdate');
@@ -21,7 +20,7 @@ $.push({
 			IQ.load();
 		});
 	},
-	onReadyAfter : function(){
+	onAppReadyAfter : function(){
 		this.init(this.app.$viewPanel);
 		this.addEventListener('contextUpdate runImageQueue',function(){
 			this.clear();

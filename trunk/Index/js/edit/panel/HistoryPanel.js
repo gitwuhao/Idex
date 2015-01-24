@@ -77,10 +77,7 @@
 				me.on('removeUndo',commands);
 			});
 
-			
-			this.app.addEventListener('readyafter',function(event){
-				me.on('appReadyAfter');
-			});
+			this.app.bindReadyAfter(this);
 		},
 		onCreatePanel:function(){
 			this.logger(this);

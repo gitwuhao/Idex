@@ -63,42 +63,38 @@ $.push({
 		});
 
 		app.addEventListener('readyafter',function(event){
-			this.LayoutPanel.initCopyCode();
-		});
-
-
-
-		LayoutPanel.initCopyCode=function(){
-			var codeItem=this.getItem('code');
-			if(codeItem){
-				this.app.ZeroClipboard.bind({
-					panel : this,
-					target : codeItem.$elem[0],
-					onMouseOver : function(event){
-						this.$target.addClass('hover');
-					},
-					onMouseOut : function(event){
-						this.$target.removeClass('hover');
-					},
-					onCopy : function(event){
-						if(this.panel.activeLayout){
-							ui.quicktip.show({
-								time : 2000,
-								html : '<span style="color: #F90;">代码复制成功</span>',
-								px : 'idex-ui',
-								offset : 'tl',
-								align : 'tc',
-								cls : 'qit-autosize copy-qit',
-								target : this.target
-							});
-							var html=HTMLfilter.getOuterHTML(this.panel.activeElement,this.app.ViewPanel.__OUTPUT_RULES__);
-							return html;
-						}
-					}
-				});
+			var panel=this.LayoutPanel,
+				codeItem=panel.getItem('code');
+			if(!codeItem){
+				return;
 			}
-		};
-		
+			this.ZeroClipboard.bind({
+				panel : panel,
+				target : codeItem.$elem[0],
+				onMouseOver : function(event){
+					this.$target.addClass('hover');
+				},
+				onMouseOut : function(event){
+					this.$target.removeClass('hover');
+				},
+				onCopy : function(event){
+					if(this.panel.activeLayout){
+						ui.quicktip.show({
+							time : 2000,
+							html : '<span style="color: #F90;">代码复制成功</span>',
+							px : 'idex-ui',
+							offset : 'tl',
+							align : 'tc',
+							cls : 'qit-autosize copy-qit',
+							target : this.target
+						});
+						var html=HTMLfilter.getOuterHTML(this.panel.activeElement,this.app.ViewPanel.__OUTPUT_RULES__);
+						return html;
+					}
+				}
+			});
+		});
+ 
 	}
 });
 })(CF,jQuery);

@@ -135,9 +135,9 @@
 				}
 			});
 
-			this.app.addEventListener('readyafter',function(event){
-				this.LayoutPanel.onAppReadyAfter(event);
-			});
+
+			this.app.bindReadyAfter(this);
+
 			
 			$.getBody().on('mousedown',{
 				panel : this,
@@ -208,7 +208,7 @@
 			this.__CONTAINER_LAYOUT__=this.app.layout.getLayout('container');
 			this.home();
 		},
-		onAppReadyAfter:function(){
+		onAppReadyAfter : function(){
 			this.logger(this);
 			this.initMainNavList();
 			delete this.initMainNavList;
