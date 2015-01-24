@@ -239,6 +239,7 @@
 .idex-code-count-box .value{
 	padding-right: 2px;
 	color: #3A6FA1;
+	margin-left: -5px;
 }
 .idex-code-count-box .value.c1{
 	color:#A13A3A;

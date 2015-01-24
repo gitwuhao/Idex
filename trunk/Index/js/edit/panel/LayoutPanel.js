@@ -105,7 +105,7 @@
 
 
 			var div,
-				html='<div class="idex-code-count-box"><span class="value">10K</span>/<span class="count">20K</span></div>';
+				html='<div class="idex-code-count-box">源码：<span class="value">10K</span>/<span class="count">20K</span></div>';
 
 			div=$.createElement(html);
 
