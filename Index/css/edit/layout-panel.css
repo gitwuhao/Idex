@@ -223,3 +223,27 @@
 .idex-layout-tab-panel .idex-list-item .idex-list-item-icon.eye,.idex-layout-tab-panel .idex-list-item .idex-list-item-icon.check{
 	cursor: pointer;
 }
+
+
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.idex-code-count-box{
+	position: absolute;
+	height: 15px;
+	font-size: 12px;
+	line-height: 15px;
+	text-align: right;
+	padding: 0px 5px;
+    color: #676767;
+    text-shadow: 1px 1px 0px #000;
+}
+.idex-code-count-box .value{
+	padding-right: 2px;
+	color: #3A6FA1;
+}
+.idex-code-count-box .value.c1{
+	color:#A13A3A;
+}
+.idex-code-count-box .count{
+    padding-left: 3px;
+}
+/*----------------------------------------------------------------------------*/
