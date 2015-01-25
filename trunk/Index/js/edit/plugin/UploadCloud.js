@@ -5,7 +5,7 @@ $.push({
 	_name_ : 'UploadCloud',
 	initModule : function(){
 		this.logger(this);
-		
+
 		this.app.bindReadyAfter(this);
 
 		this.app.addEventListener('upload',function(){
@@ -13,7 +13,12 @@ $.push({
 		});
 	},
 	onAppReadyAfter : function(){
-		this.lastUploadHTML=this.app.ViewPanel.getOriginalHTML();
+		var ViewPanel=this.app.ViewPanel;
+		
+		this.CONTEXT_MAX_LENGTH=ViewPanel.CONTEXT_MAX_LENGTH;
+
+		this.lastUploadHTML=ViewPanel.getOriginalHTML();
+
 		this.iconItem=this.app.TabPanel.getItem('save');
 		this.iconItem.target=this.iconItem.$elem[0];
 		console.info('onAppReadyAfter:',this);
@@ -28,18 +33,17 @@ $.push({
 			target :  this.iconItem.target
 		});
 	},
-	MAX_LENGTH : 20 * 1000,
+	CONTEXT_MAX_LENGTH : -1,
 	onUpload : function(){
-		var allHTML=this.app.ViewPanel.getAllHTML(),
-			length=allHTML.length;
+		var allHTML=this.app.ViewPanel.getAllHTML();
 		if(this.lastUploadHTML==allHTML){
 			this.on('success');
 			return;
-		}else if(length>this.MAX_LENGTH){
+		}else if(allHTML.length>this.CONTEXT_MAX_LENGTH){
 			this.on('error',['<span class="">',
 								'内容超出限制，保存失败！',
 							 '</span>'].join(''));
-			return;	
+			return;
 		}
 		this.lastUploadHTML=allHTML;
 
@@ -49,7 +53,7 @@ $.push({
 			data : $.param(data),
 			_$owner : this,
 			success : function(id){
-				 
+
 			},
 			error : function(){
 			},
