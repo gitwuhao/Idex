@@ -30,7 +30,7 @@ Idex.view.template.init=function(tab){
 				COUNT : Idex.getVersionLimit('tcount'),
 				MODULE_TYPE : 't',
 				CACHE_KEY : 'template_list',
-				ACTION_TYPE : 1
+				ACTION_TYPE : Idex.TYPE_MAP.TEMPLATE
 			});
 			
 			CF.merger(this,module);

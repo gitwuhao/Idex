@@ -54,7 +54,7 @@ function initTab(render){
 					COUNT : Idex.getVersionLimit('rcount'),
 					MODULE_TYPE : 'r',
 					CACHE_KEY : 'renovation_list',
-					ACTION_TYPE : 3
+					ACTION_TYPE : Idex.TYPE_MAP.RENOVATION
 				});
 				
 				CF.merger(this,module);
@@ -72,7 +72,7 @@ function initTab(render){
 					COUNT : Idex.getVersionLimit('ccount'),
 					MODULE_TYPE : 'c',
 					CACHE_KEY : 'custom_list',
-					ACTION_TYPE : 2,
+					ACTION_TYPE : Idex.TYPE_MAP.CUSTOM,
 					copyItemValue : function(item){
 						return {
 							id : item.id,

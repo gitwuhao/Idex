@@ -8,8 +8,8 @@ $.push({
 
 		this.app.bindReadyAfter(this);
 
-		this.app.addEventListener('upload',function(){
-			//this.UploadCloud.on('upload');
+		this.app.addEventListener('upload',function(callback){
+			this.UploadCloud.upload(callback);
 		});
 	},
 	onAppReadyAfter : function(){
@@ -26,45 +26,59 @@ $.push({
 	quicktip : function(config){
 		ui.quicktip.show({
 			px : 'idex-ui',
-			align : 'tc',
 			offset : 'lt',
+			align : 'lc',
 			html : config.html,
 			time : config.time,
 			target :  this.iconItem.target
 		});
 	},
 	CONTEXT_MAX_LENGTH : -1,
-	onUpload : function(){
-		var allHTML=this.app.ViewPanel.getAllHTML();
-		if(this.lastUploadHTML==allHTML){
-			this.on('success');
-			return;
-		}else if(allHTML.length>this.CONTEXT_MAX_LENGTH){
-			this.on('error',['<span class="">',
-								'内容超出限制，保存失败！',
+	upload : function(callback){
+		var ViewPanel=this.app.ViewPanel,
+			allHTML=ViewPanel.getAllHTML();
+
+		this.callback=callback;
+		
+		if(allHTML.length>this.CONTEXT_MAX_LENGTH){
+			this.on('error',['<span style="color:#CD3E00;">',
+								'代码超出限制，保存失败！',
 							 '</span>'].join(''));
 			return;
+		}else if(this.lastUploadHTML==allHTML){
+			this.on('success');
+			return;
 		}
+		this.on('upload',allHTML);
+	},
+	onUpload : function(allHTML){
 		this.lastUploadHTML=allHTML;
-
-		/*
+		var ViewPanel=this.app.ViewPanel,
+			data={
+				method : 'save',
+				id : ViewPanel.data.id,
+				type : ViewPanel.data.type,
+				html : allHTML
+			};
+	
 		$.jsonp({
-			url:'/module.s',
+			url : '/edit.s',
 			data : $.param(data),
 			_$owner : this,
 			success : function(id){
-
+				this._$owner.on('success');
 			},
 			error : function(){
-			},
-			complete : function(){
+				this._$owner.on('error',['<span style="color:#CD3E00;">',
+											'保存失败，稍后在试！',
+										'</span>'].join(''));
 			}
 		});
-		*/
+		
 	},
 	onSuccess : function(){
 		this.quicktip({
-			html : '<span style="color:#EEE;">上传成功</span>',
+			html : '<span style="color:#5BCD00;padding: 0px 15px;">上传成功</span>',
 			time : 5000
 		});
 		this.setInterval();
@@ -72,7 +86,7 @@ $.push({
 	onError : function(html){
 		this.quicktip({
 			html : html,
-			time : 10000
+			time : 5000
 		});
 		this.setInterval();
 	},
@@ -83,8 +97,11 @@ $.push({
 			window.clearTimeout(lastUploadTimeId);
 		}
 		lastUploadTimeId=$.setTimeout(function(){
-			this.on('upload');
-		},this.INTERVAL_TIME,this);
+			this.trigger('save');
+		},this.INTERVAL_TIME,this.app.TabPanel);
+		if(this.callback){
+			this.callback.execute();
+		}
 	}
 });
 })(CF,jQuery);
