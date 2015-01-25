@@ -20,14 +20,14 @@ $.push({
 	__events__ : ['click','mousedown'].join(' '),
 	initModule : function(){
 		this.logger(this);
-		
+
 		this.viewPanel=this.app.$viewPanel[0];
 		this.$contextBox=this.app.$contextBox;
-		
+
 		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
 
 		this.getDescBox();
-		
+
 		this._$$originalHTML=this.getAllHTML();
 
 		var div,
@@ -39,8 +39,37 @@ $.push({
 
 		this.app.data=this.data;
 
-
 		this.initEvents();
+
+		this.app.bindReadyAfter(this);
+
+		this.app.addEventListener('contextReLoad contextInsert contextDelete',function(){
+			this.ViewPanel.updateCount();
+		});
+	},
+	onAppReadyAfter : function(){
+		var div,
+			html='<div class="idex-code-count-box">源码：<span class="value">19.9K</span>/<span class="count">20K</span></div>';
+		div=$.createElement(html);
+		this.app.LayoutPanel.$bottombarbox.append(div);
+		this.$codeCountBox=$(div);
+		this.$countValue=this.$codeCountBox.children('.value');
+		this.updateCount(this._$$originalHTML.length);
+	},
+	MAX_LENGTH : 20 * 1000,
+	updateCount : function(val){
+		if(!this.$countValue){
+			return;
+		}else if(!val){
+			val=this.descbox.outerHTML.length;
+		}
+
+		if(val>this.MAX_LENGTH){
+			this.$countValue.addClass('c1');
+		}else{
+			this.$countValue.removeClass('c1');
+		}
+		this.$countValue.text(Number.toPrecision((val/1000),1)+'K');
 	},
 	data : {
 		id : current_id,
@@ -63,7 +92,7 @@ $.push({
 			if(!event.originalEvent || event.screenX==0 && event.screenY==0){
 				event.isCommandTrigger=true;
 			}
-			
+
 			if(event.type=='mousedown' && (event.button==2 || event.ctrlKey)){
 				event.type='mouserightdown';
 			}
@@ -152,7 +181,9 @@ $.push({
 	},
 	getAllHTML : function(){
 		this.logger(this);
-		return HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
+		var HTML=HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
+		this.updateCount(HTML.length);
+		return HTML;
 	},
 	getHTML : function(){
 		this.logger(this);
@@ -163,7 +194,7 @@ $.push({
 		this.$contextBox.html(HTML);
 		this.getDescBox();
 		$('.idex-r-active',this.descbox).removeClass('idex-r-active');
-		this.app.trigger('contextUpdate');
+		//this.app.trigger('contextReLoad');
 		this.app.LayoutPanel.home();
 	},
 	getOriginalHTML : function(){

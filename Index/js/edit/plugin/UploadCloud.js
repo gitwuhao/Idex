@@ -37,7 +37,7 @@ $.push({
 			return;
 		}else if(length>this.MAX_LENGTH){
 			this.on('error',['<span class="">',
-								'保存失败，',
+								'内容超出限制，保存失败！',
 							 '</span>'].join(''));
 			return;	
 		}

@@ -8,8 +8,8 @@ $.push({
 		
 		this.app.bindReadyAfter(this);
 
-		this.app.addEventListener('contextUpdate',function(){
-			this.ImageQueue.trigger('contextUpdate');
+		this.app.addEventListener('contextReLoad',function(){
+			this.ImageQueue.trigger('contextReLoad');
 		});
 
 		this.app.addEventListener('loadImage',function(context){
@@ -22,7 +22,7 @@ $.push({
 	},
 	onAppReadyAfter : function(){
 		this.init(this.app.$viewPanel);
-		this.addEventListener('contextUpdate runImageQueue',function(){
+		this.addEventListener('contextReLoad runImageQueue',function(){
 			this.clear();
 			this.pushList(this.context);
 			this.run();

@@ -299,7 +299,7 @@
 				this.setCommandBrushStyle(command);
 			}
 			this.activeCommand=command;
-			//this.app.trigger('contextUpdate');
+			//this.app.trigger('contextReLoad');
 			if(this.applySnapCommand && this.applySnapCommand!=command){
 				this.applySnapCommand=null;
 				this.on('deActiveLocalSnap');
