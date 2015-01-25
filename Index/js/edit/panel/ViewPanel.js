@@ -54,22 +54,27 @@ $.push({
 		this.app.LayoutPanel.$bottombarbox.append(div);
 		this.$codeCountBox=$(div);
 		this.$countValue=this.$codeCountBox.children('.value');
-		this.updateCount(this._$$originalHTML.length);
 	},
-	MAX_LENGTH : 20 * 1000,
-	updateCount : function(val){
+	CONTEXT_MAX_LENGTH : 20 * 1000,
+	updateCount : function(length){
 		if(!this.$countValue){
 			return;
-		}else if(!val){
-			val=this.descbox.outerHTML.length;
+		}else if(!length){
+			length=this.descbox.outerHTML.length;
 		}
+		
+		var val=length-this.CONTEXT_MAX_LENGTH;
 
-		if(val>this.MAX_LENGTH){
+		if(val > 0){
 			this.$countValue.addClass('c1');
+			this.$codeCountBox.attr('title','已超出'+Number.stringify(val)+'字');
+			console.info(val);
 		}else{
 			this.$countValue.removeClass('c1');
+			this.$codeCountBox.removeAttr('title');
+			this.$codeCountBox.attr('title','还剩'+Number.stringify(Math.abs(val))+'字');
 		}
-		this.$countValue.text(Number.toPrecision((val/1000),1)+'K');
+		this.$countValue.text(Number.toPrecision((length/1000),1)+'K');
 	},
 	data : {
 		id : current_id,
