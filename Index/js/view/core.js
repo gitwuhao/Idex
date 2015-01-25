@@ -18,6 +18,12 @@
 	Idex=new Idex();
 
 	CF.merger(Idex,{
+		TYPE_MAP : {
+			DESC : 0,
+			TEMPLATE : 1,
+			CUSTOM : 2,
+			RENOVATION : 3
+		},
 		topbar : [{
 				type:'home'
 			},{

@@ -449,40 +449,15 @@ $.push({
 			}
 		});
 	},
-	onSave:(function(){
-		var AnimationFrames=['-260px -0px','-260px -20px','-260px -40px'],
-			isStop=false,
-			index=0;
-		function saveing($elem){
-			if(index>2){
-				index=0;
-			}
-			$elem.children().css('background-position',AnimationFrames[index++]);
-			if(isStop!=true){
-				setTimeout(function(){
-					saveing($elem);
-				},500);
-			}else{
-				$elem.children().css('background-position','');
-			}
-		};
+	onSave : function(){
+		if(this.app.isSave){
+			return;
+		}
+		this.app.isSave=true;
 
-		return function(){
-			
-			if(this.app.isSave){
-				return;
-			}
-			this.app.isSave=true;
-			
-			var item=this.getItem('save');
-			//item.$elem.addClass('idex-icon-saveing');
-			isStop=false;
-			saveing(item.$elem);
-			$.setTimeout(function(){
-				isStop=true;
-				this.app.isSave=false;
-			},5000,this);
-		};
-	})()
+		this.app.trigger('upload',CF.getCallback(function(){
+			this.app.isSave=false;
+		},this));
+	}
 });
 })(CF,jQuery);
