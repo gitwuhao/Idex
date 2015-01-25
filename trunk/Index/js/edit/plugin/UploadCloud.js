@@ -61,7 +61,9 @@ $.push({
 				method : 'save',
 				id : ViewPanel.data.id,
 				atype : ViewPanel.data.type,
-				html : allHTML
+				html : allHTML,
+				name : '',
+				width : ''//$.Idex.ViewPanel.form.getItem('name').value
 			};
 
 		$.jsonp({
