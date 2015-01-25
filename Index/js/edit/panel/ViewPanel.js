@@ -68,7 +68,6 @@ $.push({
 		if(val > 0){
 			this.$countValue.addClass('c1');
 			this.$codeCountBox.attr('title','已超出'+Number.stringify(val)+'字');
-			console.info(val);
 		}else{
 			this.$countValue.removeClass('c1');
 			this.$codeCountBox.removeAttr('title');
