@@ -98,7 +98,7 @@ $.push({
 			item.img.src='';
 		});
 		$.setTimeout(function(){
-			this.trigger('contextUpdate');
+			this.trigger('contextReLoad');
 		},100,this.app);
 	},
 	PIC_SIZING : '_150x150.jpg',

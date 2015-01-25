@@ -103,15 +103,6 @@
 
 			this.$layoutTabView=tab.$tabview;
 
-
-			var div,
-				html='<div class="idex-code-count-box">源码：<span class="value">10K</span>/<span class="count">20K</span></div>';
-
-			div=$.createElement(html);
-
-			this.$bottombarbox.append(div);
-			this.$codeCountBox=$(div);
-
 			this.initEvents();
 
 		},
@@ -316,7 +307,7 @@
 			this.logger(this);
 			this.$layoutTabView.empty();
 			this.createMainNavList();
-			this.app.trigger('contextUpdate');
+			this.app.trigger('contextReLoad');
 			this.getDescBoxElement().firstElementChild.click();
 			this.disabled('home');
 		},
@@ -349,6 +340,7 @@
 					var element=this.activeLayout.after(this.activeElement,html);
 					element.click();
 					this.app.trigger('loadImage',element);
+					this.app.trigger('contextInsert');
 					this.addNewLayoutUndo();
 				}
 			}
@@ -393,6 +385,7 @@
 					template.layout.on('new',element[0]);
 					element.click();
 					this.$owner.app.trigger('loadImage',element);
+					this.$owner.app.trigger('contextInsert');
 					this.$owner.addNewLayoutUndo();
 				}
 			});
@@ -498,6 +491,7 @@
 				}
 				var elem=this.app.get(this.layoutID);
 				elem.click();
+				this.app.trigger('contextInsert');
 			};
 
 			command.redo=function(){
@@ -531,6 +525,8 @@
 			if(nextLayout){
 				nextLayout.click();
 			}
+
+			this.app.trigger('contextDelete');
 		},
 		removeNavItem : function(targetElement){
 			this.logger(this);
