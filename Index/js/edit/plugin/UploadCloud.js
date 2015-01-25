@@ -51,22 +51,29 @@ $.push({
 		}
 		this.on('upload',allHTML);
 	},
+	getParam : function(data){
+		return $.param(data);
+	},
 	onUpload : function(allHTML){
 		this.lastUploadHTML=allHTML;
 		var ViewPanel=this.app.ViewPanel,
 			data={
 				method : 'save',
 				id : ViewPanel.data.id,
-				type : ViewPanel.data.type,
+				atype : ViewPanel.data.type,
 				html : allHTML
 			};
-	
+
 		$.jsonp({
 			url : '/edit.s',
-			data : $.param(data),
+			data : this.getParam(data),
 			_$owner : this,
-			success : function(id){
-				this._$owner.on('success');
+			success : function(val){
+				if(val==1){
+					this._$owner.on('success');
+				}else{
+					this.error();
+				}
 			},
 			error : function(){
 				this._$owner.on('error',['<span style="color:#CD3E00;">',
