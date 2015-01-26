@@ -32,24 +32,26 @@ $.push({
 		$.LS[CHECK_UPLOAD_FAIL_KEY]='1';
 		var list=$.cache.findAll(UPLOAD_FAIL_KEY);
 		list=list||[];
-		for(var i=0,len=list.length;i<len;i++){
-			
-		}
-		delete $.LS[CHECK_UPLOAD_FAIL_KEY];
+		list.index=0;
+		this.uploadFail(list);
 	},
-	uploadFail : function(item,list){
+	uploadFail : function(list){
+		var item=list[list.index++];
+		if(!item){
+			delete $.LS[CHECK_UPLOAD_FAIL_KEY];
+		}
 		$.jsonp({
 			url : '/edit.s',
 			data : item.value,
 			_key : item.key,
+			_list : list,
 			_$owner : this,
 			success : function(val){
-				if(val==1){
-					delete $.LS[this._key];
-					this.error();
-				}
+				delete $.LS[this._key];
+				this.error();
 			},
 			error : function(){
+				$.setTimeout(this.uploadFail,200,this._$owner,[this._list]);
 			}
 		});
 	},
