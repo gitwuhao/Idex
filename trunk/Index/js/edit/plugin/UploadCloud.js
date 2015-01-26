@@ -1,6 +1,6 @@
 (function(CF,$){
-var UPLOAD_FAIL_KEY = 'IDEX_UPLOAD_CLOUD_FAIL@',
-	CHECK_UPLOAD_FAIL_KEY = 'IDEX_IS_CHECK_UPLOAD_FAIL',
+var UPLOAD_FAIL_KEY = 'UPLOAD_CLOUD_FAIL@',
+	CHECK_UPLOAD_FAIL_KEY = 'CHECK_UPLOAD_FAIL',
 	lastUploadTimeId;
 $.push({
 	_name_ : 'UploadCloud',
@@ -24,23 +24,28 @@ $.push({
 		this.iconItem.target=this.iconItem.$elem[0];
 		//console.info('onAppReadyAfter:',this);
 		
-		$.setTimeout(this.checkUploadFail,200,this);
+		$.setTimeout(this.checkUploadFail,100,this);
 	},
 	checkUploadFail : function(){
-		if($.LS[CHECK_UPLOAD_FAIL_KEY]){
+		if($.cache.get(CHECK_UPLOAD_FAIL_KEY)){
 			return;
 		}
-		$.LS[CHECK_UPLOAD_FAIL_KEY]='1';
+		$.cache.put(CHECK_UPLOAD_FAIL_KEY,'1',new Date());
 		var list=$.cache.findAll(UPLOAD_FAIL_KEY);
-		list=list||[];
-		list.index=0;
-		this.uploadFail(list);
+		if(list && list.length>0){
+			list.index=0;
+			$.setTimeout(this.uploadFail,1000,this,[list]);
+		}else{
+			$.cache.remove(CHECK_UPLOAD_FAIL_KEY);
+		}
 	},
 	uploadFail : function(list){
-		var item=list[list.index++];
+		var item=list[list.index];
 		if(!item){
-			delete $.LS[CHECK_UPLOAD_FAIL_KEY];
+			$.cache.remove(CHECK_UPLOAD_FAIL_KEY);
+			return;
 		}
+		list.index++;
 		$.jsonp({
 			url : '/edit.s',
 			data : item.value,
