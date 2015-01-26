@@ -35,6 +35,9 @@ $.push({
 	},
 	CONTEXT_MAX_LENGTH : -1,
 	upload : function(callback){
+		
+		this.iconItem.$elem.addClass('saveing');
+
 		var ViewPanel=this.app.ViewPanel,
 			allHTML=ViewPanel.getAllHTML();
 
@@ -111,6 +114,9 @@ $.push({
 		if(this.callback){
 			this.callback.execute();
 		}
+		$.setTimeout(function(){
+			this.iconItem.$elem.removeClass('saveing');
+		},500,this);
 	}
 });
 })(CF,jQuery);
