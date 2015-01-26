@@ -4,7 +4,19 @@ var MIN_WIDTH=750,
 	STYLE_KEY_MAP = {
 		CONTEXT_PADDING : 'p-l-r'
 	},
-	ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
+	ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
+	data_title,
+	DEFAULT_TITLE='未命名模板';
+
+(function(){
+	var $context=$('.idex-view-context-box');
+
+	data_title= $context.attr('idex-title');
+	$context.removeAttr('idex-title');
+
+	data_title=data_title||DEFAULT_TITLE;
+
+})();
 
 $.push({
 	overwrite : function(app){
@@ -247,10 +259,13 @@ $.push({
 				return this.$descbox.hasClass(STYLE_KEY_MAP.CONTEXT_PADDING);
 			},
 			setTitle : function(value){
-				this.data.title=value;
+				if(!value){
+					 value=DEFAULT_TITLE;
+				}
+				data_title=value;
 			},
 			getTitle : function(){
-				return this.data.title || '未命名模板';
+				return data_title;
 			},
 			setWidth:function(value){
 				this.logger(this);
