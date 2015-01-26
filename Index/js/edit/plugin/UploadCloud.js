@@ -1,5 +1,6 @@
 (function(CF,$){
-var UPLOAD_FAIL_KEY = 'IDEX_UPLOAD_CLOUD_FAIL',
+var UPLOAD_FAIL_KEY = 'IDEX_UPLOAD_CLOUD_FAIL@',
+	CHECK_UPLOAD_FAIL_KEY = 'IDEX_IS_CHECK_UPLOAD_FAIL',
 	lastUploadTimeId;
 $.push({
 	_name_ : 'UploadCloud',
@@ -22,6 +23,35 @@ $.push({
 		this.iconItem=this.app.TabPanel.getItem('save');
 		this.iconItem.target=this.iconItem.$elem[0];
 		//console.info('onAppReadyAfter:',this);
+
+	},
+	checkUploadFail : function(){
+		if($.LS[CHECK_UPLOAD_FAIL_KEY]){
+			return;
+		}
+		$.LS[CHECK_UPLOAD_FAIL_KEY]='1';
+		var list=$.cache.findAll(UPLOAD_FAIL_KEY);
+		list=list||[];
+		for(var i=0,len=list.length;i<len;i++){
+			
+		}
+		delete $.LS[CHECK_UPLOAD_FAIL_KEY];
+	},
+	uploadFail : function(item,list){
+		$.jsonp({
+			url : '/edit.s',
+			data : item.value,
+			_key : item.key,
+			_$owner : this,
+			success : function(val){
+				if(val==1){
+					delete $.LS[this._key];
+					this.error();
+				}
+			},
+			error : function(){
+			}
+		});
 	},
 	quicktip : function(config){
 		ui.quicktip.show({
@@ -91,7 +121,7 @@ $.push({
 					this._$owner.on('success');
 					this._$owner.saveUploadFail(this._id);
 				}else{
-					this.error();
+					this._$owner.on('error');
 				}
 			},
 			error : function(){
@@ -101,7 +131,7 @@ $.push({
 		});
 	},
 	saveUploadFail:function(id,data){
-		var key=UPLOAD_FAIL_KEY+'_'+id;
+		var key=UPLOAD_FAIL_KEY+id;
 		if(!data){
 			$.cache.remove(key);
 		}else{
