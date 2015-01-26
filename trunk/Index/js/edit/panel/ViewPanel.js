@@ -1,16 +1,15 @@
 (function(CF,$){
-var current_id,
-	current_type,
+var CONFIG_DATA={},
 	KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
 	CACHE_KEY_MAP=KEY_MAP.CACHE;
 (function(){
 	var $context=$('.idex-view-context-box');
 
-	current_id= $context.attr('idex-id');
+	CONFIG_DATA.id= $context.attr('idex-id');
 	$context.removeAttr('idex-id');
 
-	current_type= $context.attr('idex-type');
+	CONFIG_DATA.type= $context.attr('idex-type');
 	$context.removeAttr('idex-type');
 
 })();
@@ -75,10 +74,7 @@ $.push({
 		}
 		this.$countValue.text(Number.toPrecision((length/1000),1)+'K');
 	},
-	data : {
-		id : current_id,
-		type : current_type
-	},
+	data : CONFIG_DATA,
 	initEvents : function(){
 		this.logger(this);
 
