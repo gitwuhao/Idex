@@ -2,8 +2,9 @@ function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
 		CSSApply=$.CSSApply,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
-		IMAGE_FILL_BG_COLOR='#F4F2FF',
+		TEXT_BG_COLOR='#E5CFE5',
 		IMAGE_BG_COLOR='#F5F5F5',
+		IMAGE_T_BG_COLOR='#CFDEE5',
 		ATTR_KEY_MAP=KEY_MAP.ATTR,
 		CACHE_KEY_MAP=KEY_MAP.CACHE,
 		_L_S_KEY_=CACHE_KEY_MAP.TO_PS_HTML,
@@ -65,14 +66,14 @@ function loadFile(){
 		 
 		$('.property-itable .property-tbody',desc).each(function(index,table){
 			var parentElement=table.parentElement;
-			parentElement.setAttribute('style','float: left;width: '+table.offsetWidth+'px;height: 100%;background-color: '+IMAGE_FILL_BG_COLOR+';');
+			parentElement.setAttribute('style','float: left;width: '+table.offsetWidth+'px;height: 100%;background-color: '+TEXT_BG_COLOR+';');
 			parentElement.removeAttribute('class');
 			$(table).remove();
 		});
 
 		$('.i-text-item',desc).each(function(index,element){
 			var $elem=$(element);
-			$elem.css('background-color',IMAGE_FILL_BG_COLOR);
+			$elem.css('background-color',TEXT_BG_COLOR);
 			$elem.empty();	
 		});
 
@@ -89,7 +90,7 @@ function loadFile(){
 			if(!src || /s\.gif$/g.test(src)){
 				_bgcolor_=IMAGE_BG_COLOR;
 			}else{
-				_bgcolor_='#EDFBFF';
+				_bgcolor_=IMAGE_T_BG_COLOR;
 			}
 			var $elem=$(img.parentElement);
 			$elem.css('background-color',_bgcolor_);
@@ -106,7 +107,7 @@ function loadFile(){
 			if(!src || /s\.gif$/g.test(src)){
 				_bgcolor_=IMAGE_BG_COLOR;
 			}else{
-				_bgcolor_='#EDFBFF';
+				_bgcolor_=IMAGE_T_BG_COLOR;
 			}
 			width=img.offsetWidth;
 			height=img.offsetHeight;
