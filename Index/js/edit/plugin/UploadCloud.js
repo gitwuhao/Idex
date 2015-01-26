@@ -111,12 +111,15 @@ $.push({
 		lastUploadTimeId=$.setTimeout(function(){
 			this.trigger('save');
 		},this.INTERVAL_TIME,this.app.TabPanel);
-		if(this.callback){
-			this.callback.execute();
-		}
+
+
 		$.setTimeout(function(){
 			this.iconItem.$elem.removeClass('saveing');
-		},500,this);
+			
+			if(this.callback){
+				this.callback.execute();
+			}
+		},1000,this);
 	}
 });
 })(CF,jQuery);
