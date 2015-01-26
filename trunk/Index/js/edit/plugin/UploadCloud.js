@@ -119,7 +119,7 @@ $.push({
 			window.clearTimeout(lastUploadTimeId);
 		}
 		lastUploadTimeId=$.setTimeout(function(){
-			this.trigger('save');
+			this.trigger('save','save');
 		},this.INTERVAL_TIME,this.app.TabPanel);
 
 		$.setTimeout(function(){
