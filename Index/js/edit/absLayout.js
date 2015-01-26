@@ -139,10 +139,12 @@
 		onHide:function(element){
 			this.logger(this);
 			$.addClass(element,'hide');
+			this.app.PropertyPanel.setActive(this,element);
 		},
 		onShow:function(element){
 			this.logger(this);
 			$.removeClass(element,'hide');
+			this.app.PropertyPanel.setActive(this,element);
 		},
 		isHide : function(element){
 			this.logger(this);
