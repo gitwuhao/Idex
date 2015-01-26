@@ -52,13 +52,13 @@ $.push({
 			this.on('success');
 			return;
 		}
+		this.currentUploadHTML=allHTML;
 		this.on('upload',allHTML);
 	},
 	getParam : function(data){
 		return $.param(data);
 	},
 	onUpload : function(allHTML){
-		this.lastUploadHTML=allHTML;
 		var ViewPanel=this.app.ViewPanel,
 			form=ViewPanel.form,
 			item,
@@ -81,7 +81,6 @@ $.push({
 			}
 		}
 
-
 		$.jsonp({
 			url : '/edit.s',
 			data : this.getParam(data),
@@ -99,9 +98,10 @@ $.push({
 										'</span>'].join(''));
 			}
 		});
-		
 	},
 	onSuccess : function(){
+		this.lastUploadHTML=this.currentUploadHTML;
+
 		this.quicktip({
 			html : '<span style="color:#5BCD00;padding: 0px 15px;">上传成功</span>',
 			time : 5000
