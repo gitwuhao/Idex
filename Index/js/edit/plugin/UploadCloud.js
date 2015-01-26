@@ -2,6 +2,7 @@
 var UPLOAD_FAIL_KEY = 'UPLOAD_CLOUD_FAIL@',
 	CHECK_UPLOAD_FAIL_KEY = 'CHECK_UPLOAD_FAIL',
 	lastUploadTimeId;
+
 $.push({
 	_name_ : 'UploadCloud',
 	initModule : function(){
@@ -25,6 +26,16 @@ $.push({
 		//console.info('onAppReadyAfter:',this);
 		
 		//$.setTimeout(this.checkUploadFail,100,this);
+
+
+		
+
+		$.getWin().on('beforeunload',{
+			me : this
+		},function(event){
+			event.data.me.upload();
+		});
+
 	},
 	checkUploadFail : function(){
 		if($.cache.get(CHECK_UPLOAD_FAIL_KEY)){
@@ -160,7 +171,7 @@ $.push({
 			$.cache.remove(key);
 		}else{
 			var date=new Date();
-			date.addDays(15);
+			date.addDays(30);
 			$.cache.put(key,data+'&timestamp='+$.timestamp(),date);
 		}
 	},

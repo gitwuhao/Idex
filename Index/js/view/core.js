@@ -1,5 +1,7 @@
 (function(CF,$){
-	window.name="_IDEX_HOME";
+	window.name='_IDEX_HOME';
+	
+	var SIG_KEY='IDEX_SIG';
 	
 	(function(){	
 		var sig,
@@ -9,7 +11,7 @@
 		}else{
 			sig=$.randomChar(12);
 		}
-		localStorage['sig']=sig;
+		localStorage[SIG_KEY]=sig;
 	})();
 
 
