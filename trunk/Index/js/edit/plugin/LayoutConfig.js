@@ -265,6 +265,8 @@ $.push({
 			setFontsize : function(value){
 				if(value==14){
 					value='';
+				}else{
+					value=value+'px';
 				}
 				$.style(this.descbox,'font-size',value);
 			},
