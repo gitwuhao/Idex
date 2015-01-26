@@ -60,14 +60,27 @@ $.push({
 	onUpload : function(allHTML){
 		this.lastUploadHTML=allHTML;
 		var ViewPanel=this.app.ViewPanel,
+			form=ViewPanel.form,
+			item,
 			data={
 				method : 'save',
 				id : ViewPanel.data.id,
 				atype : ViewPanel.data.type,
-				html : allHTML,
-				name : '',
-				width : ''//$.Idex.ViewPanel.form.getItem('name').value
+				html : allHTML
 			};
+			
+		if(form){
+			item=form.getItem('width');
+			if(item){
+				data.width=item.value;
+			}
+			
+			item=form.getItem('name');
+			if(item){
+				data.name=item.value;
+			}
+		}
+
 
 		$.jsonp({
 			url : '/edit.s',
