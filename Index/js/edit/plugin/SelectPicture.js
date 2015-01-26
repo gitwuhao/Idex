@@ -84,10 +84,9 @@ $.push({
 			me=this;
 
 		$.it(list,function(i,img){
-			array.push({
-				i : i+1,
-				target : img
-			});
+			if(img.offsetParent){
+				array.push(img);
+			}
 		});
 		return array;
 	},
@@ -762,11 +761,10 @@ $.push({
 				});
 
 				//i:index,target:img
-				$.it(this.descImageList,function(i,item){
-					var index=item.i,
-						picItem=resultArray[index];
+				$.it(this.descImageList,function(index,img){
+					var picItem=resultArray[index+1];
 					if(picItem){
-						picItem.img=item.target;
+						picItem.img=img;
 						this.matchArray.push(picItem);
 					/*
 					}else{
