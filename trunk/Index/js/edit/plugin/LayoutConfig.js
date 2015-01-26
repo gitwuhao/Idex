@@ -103,7 +103,6 @@ $.push({
 						unit:'px',
 						maxlength : 2,
 						vtype : ['spin'],
-						value: 14,
 						maxValue : 20,
 						minValue : 12,
 						xtype:'text',
@@ -262,6 +261,25 @@ $.push({
 			getWidth:function(){
 				this.logger(this);
 				return this.descbox.offsetWidth;
+			},
+			setFontsize : function(value){
+				if(value==14){
+					value='';
+				}
+				$.style(this.descbox,'font-size',value);
+			},
+			getFontsize : function(){
+				var fontSize=$.style(this.descbox,'font-size');
+				if(fontSize){
+					return fontSize.replace('px','');
+				}
+				return 14;
+			},
+			setFontcolor : function(value){
+				$.style(this.descbox,'color',value);
+			},
+			getFontcolor : function(){
+				return $.style(this.descbox,'color');
 			},
 			onPropertyFormShow : CF.emptyFunction,
 			setValue : CF.emptyFunction,
