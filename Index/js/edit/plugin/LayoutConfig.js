@@ -95,6 +95,26 @@ $.push({
 								return '取消画布边距';
 							}
 						}
+					},{
+						label:'字体',
+						name : 'fontsize',
+						placeholder :'填写字号',
+						width:'165px',
+						unit:'px',
+						maxlength : 2,
+						vtype : ['spin'],
+						value: 14,
+						maxValue : 20,
+						minValue : 12,
+						xtype:'text',
+						getDesc : '设置全局文字大小'
+
+					},' ',{
+						name : 'fontcolor',
+						cls:'mini',
+						width:'20px',
+						xtype:'color',
+						getDesc : '设置全局文字颜色',
 					},'||',{
 						label:'配色',
 						xtype:'radio',

@@ -31,7 +31,6 @@
 }
 
 
-
 .idex-ui-radio-group,.idex-ui-checkbox-group{
 	float: left;
 	margin: 5px 2px 3px 0px;
@@ -97,6 +96,12 @@ div.x-ui-popu{
 .idex-ui-item-field.disabled,.idex-ui-button.disabled{
 	opacity: 0.25;
 }
+
+
+.idex-ui-item-field.mini{
+	margin-top: 1px;
+}
+
 /*++++++++++++++++++++++++++++++++++idex-ui-qtip++++++++++++++++++++++++++++++++++*/
 .idex-ui-qtip-box{
 	color: #DDD;
