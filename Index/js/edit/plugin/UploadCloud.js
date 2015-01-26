@@ -21,7 +21,7 @@ $.push({
 
 		this.iconItem=this.app.TabPanel.getItem('save');
 		this.iconItem.target=this.iconItem.$elem[0];
-		console.info('onAppReadyAfter:',this);
+		//console.info('onAppReadyAfter:',this);
 	},
 	quicktip : function(config){
 		ui.quicktip.show({
