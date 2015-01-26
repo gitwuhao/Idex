@@ -113,27 +113,38 @@
 .idex-right-panel .idex-icon-exportps .idex-icon{
 	background-position: -240px -0px;
 }
-.idex-right-panel .idex-icon-save .idex-icon{
-	background-position: -260px -0px;
-}
 .idex-right-panel .idex-icon-guide .idex-icon {
 	background-position: -160px -20px;
 }
 .idex-right-panel .idex-icon-publish .idex-icon {
 	background-position: -180px -20px;
 }
-.idex-right-panel .idex-icon-saveing .idex-icon{
+.idex-right-panel .idex-icon-save .idex-icon{
 	background-position: -260px -0px;
-	-webkit-animation-duration : 2s; 
+}
+.idex-right-panel .idex-icon-save.saveing .idex-icon{
+	-webkit-animation-duration : 1.5s; 
 	-webkit-animation-name: Animation_Saveing;
 	-webkit-animation-iteration-count:infinite;
 }
 @-webkit-keyframes Animation_Saveing{
-from{
-	background-position: -260px -20px;
+0%{
+	background-position-y: 0px;
 }
-to{
-	background-position: -260px -50px;
+32.9%{
+	background-position-y: 0px;
+}
+33%{
+	background-position-y: -20px;
+}
+65.9%{
+	background-position-y: -20px;
+}
+66%{
+	background-position-y: -40px;
+}
+100%{
+	background-position-y: -40px;
 }
 }
 
