@@ -200,6 +200,7 @@ $.push({
 									px : 'idex-ui',
 									offset : 'lt',
 									align :'lc',
+									cls : 'center',
 									target : this
 								});
 							});
