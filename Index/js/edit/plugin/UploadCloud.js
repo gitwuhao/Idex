@@ -24,8 +24,24 @@ $.push({
 		this.iconItem.target=this.iconItem.$elem[0];
 		//console.info('onAppReadyAfter:',this);
 		
-		$.setTimeout(this.checkUploadFail,100,this);
+		//$.setTimeout(this.checkUploadFail,100,this);
 	},
+	checkUploadFail : function(){
+		if($.cache.get(CHECK_UPLOAD_FAIL_KEY)){
+			return;
+		}
+		$.cache.put(CHECK_UPLOAD_FAIL_KEY,'1',new Date());
+		var list=$.cache.findAll(UPLOAD_FAIL_KEY+this.app.ViewPanel.data.id);
+		if(list && list.length>0){
+			var param=$.param2Object(list[0].value);
+			if(param.html &&  param.timestamp){
+				var date=new Date();
+				date.setTime(param.timestamp);
+				console.info('离线快照【'+this.app.HistoryPanel.getShotTimeTitle(date)+'】');
+			}
+		}
+		$.cache.remove(CHECK_UPLOAD_FAIL_KEY);
+	},/*
 	checkUploadFail : function(){
 		if($.cache.get(CHECK_UPLOAD_FAIL_KEY)){
 			return;
@@ -60,7 +76,7 @@ $.push({
 				$.setTimeout(this.uploadFail,200,this._$owner,[this._list]);
 			}
 		});
-	},
+	},*/
 	quicktip : function(config){
 		ui.quicktip.show({
 			px : 'idex-ui',
@@ -143,7 +159,9 @@ $.push({
 		if(!data){
 			$.cache.remove(key);
 		}else{
-			$.cache.put(key,data);
+			var date=new Date();
+			date.addDays(15);
+			$.cache.put(key,data+'&timestamp='+$.timestamp(),date);
 		}
 	},
 	onSuccess : function(){
