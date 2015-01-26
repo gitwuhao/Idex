@@ -65,11 +65,10 @@ $.push({
 					render : box,
 					items : [{
 						label:'名称',
-						name : 'name',
+						name : 'title',
 						placeholder :'填写模板名称',
 						maxlength : 10,
-						value: '未命名描述模板',
-						xtype:'text',
+						xtype: 'text',
 						getDesc : '设置模板名称'
 
 					},{
@@ -246,6 +245,12 @@ $.push({
 			getPadding:function(){
 				this.logger(this);
 				return this.$descbox.hasClass(STYLE_KEY_MAP.CONTEXT_PADDING);
+			},
+			setTitle : function(value){
+				this.data.title=value;
+			},
+			getTitle : function(){
+				return this.data.title || '未命名模板';
 			},
 			setWidth:function(value){
 				this.logger(this);

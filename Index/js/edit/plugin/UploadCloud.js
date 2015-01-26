@@ -60,26 +60,24 @@ $.push({
 	},
 	onUpload : function(allHTML){
 		var ViewPanel=this.app.ViewPanel,
-			form=ViewPanel.form,
-			item,
+			value,
 			data={
 				method : 'save',
 				id : ViewPanel.data.id,
-				atype : ViewPanel.data.type,
-				html : allHTML
+				atype : ViewPanel.data.type
 			};
 			
-		if(form){
-			item=form.getItem('width');
-			if(item){
-				data.width=item.value;
-			}
-			
-			item=form.getItem('name');
-			if(item){
-				data.name=item.value;
-			}
+		value=ViewPanel.getWidth();
+		if(value){
+			data.width=value;
 		}
+		
+		value=ViewPanel.getTitle();
+		if(value){
+			data.title=value;
+		}
+		
+		data.html=allHTML;
 
 		$.jsonp({
 			url : '/edit.s',
