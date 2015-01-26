@@ -42,6 +42,8 @@ $.push({
 			allHTML=ViewPanel.getAllHTML();
 
 		this.callback=callback;
+
+		console.info('on upload:'+Date.getDateTime());
 		
 		if(allHTML.length>this.CONTEXT_MAX_LENGTH){
 			this.on('error',['<span style="color:#CD3E00;">',
@@ -82,20 +84,29 @@ $.push({
 		$.jsonp({
 			url : '/edit.s',
 			data : this.getParam(data),
+			_id : data.id,
 			_$owner : this,
 			success : function(val){
 				if(val==1){
 					this._$owner.on('success');
+					this._$owner.saveUploadFail(this._id);
 				}else{
-					this._$owner.on('error');
+					this.error();
 				}
 			},
 			error : function(){
 				this._$owner.on('error');
-
-				
+				this._$owner.saveUploadFail(this._id,this.data);
 			}
 		});
+	},
+	saveUploadFail:function(id,data){
+		var key=UPLOAD_FAIL_KEY+'_'+id;
+		if(!data){
+			$.cache.remove(key);
+		}else{
+			$.cache.put(key,data);
+		}
 	},
 	onSuccess : function(){
 		this.lastUploadHTML=this.currentUploadHTML;
