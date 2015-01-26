@@ -1,5 +1,5 @@
 (function(CF,$){
-var LAST_UPLOAD_KEY = 'IDEX_LAST_UPLOAD_CLOUD_HTML',
+var UPLOAD_FAIL_KEY = 'IDEX_UPLOAD_CLOUD_FAIL',
 	lastUploadTimeId;
 $.push({
 	_name_ : 'UploadCloud',
@@ -87,28 +87,27 @@ $.push({
 				if(val==1){
 					this._$owner.on('success');
 				}else{
-					this.error();
+					this._$owner.on('error');
 				}
 			},
 			error : function(){
-				this._$owner.on('error',['<span style="color:#CD3E00;">',
-											'保存失败，稍后在试！',
-										'</span>'].join(''));
+				this._$owner.on('error');
+
+				
 			}
 		});
 	},
 	onSuccess : function(){
 		this.lastUploadHTML=this.currentUploadHTML;
-
 		this.quicktip({
 			html : '<span style="color:#5BCD00;padding: 0px 15px;">上传成功</span>',
 			time : 5000
 		});
 		this.setInterval();
 	},
-	onError : function(html){
+	onError : function(){
 		this.quicktip({
-			html : html,
+			html : '<span style="color:#CD3E00;">保存失败，稍后在试！</span>',
 			time : 5000
 		});
 		this.setInterval();
