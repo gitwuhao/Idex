@@ -125,7 +125,6 @@ $.push({
 			this.trigger('save');
 		},this.INTERVAL_TIME,this.app.TabPanel);
 
-
 		$.setTimeout(function(){
 			this.iconItem.$elem.removeClass('saveing');
 			
