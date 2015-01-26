@@ -277,7 +277,7 @@
     border-bottom: 2px groove #454545;
 }
 .idex-panel-box .idex-topbar-box .idex-button,.idex-panel-box .idex-bottombar-box .idex-button{
-    margin-left: 10px;
+    margin-left: 5px;
 	float: left;
 	opacity: 0.7;
 	cursor: pointer;
