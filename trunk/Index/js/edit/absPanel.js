@@ -103,7 +103,9 @@ ideui={
 						return;
 					}
 					var img=$img[0];
-					this.form.$sizeField.html('&nbsp;'+img.clientWidth+'&nbsp;x&nbsp;'+img.clientHeight);
+					this.form.$sizeField.html([img.clientWidth,'&nbsp;x&nbsp;',img.clientHeight,
+											   '&nbsp;【',img.naturalWidth,'&nbsp;x&nbsp;',img.naturalHeight,'】'
+											  ].join(''));
 				};
 
 
