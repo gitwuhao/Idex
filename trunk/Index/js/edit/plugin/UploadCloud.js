@@ -23,7 +23,8 @@ $.push({
 		this.iconItem=this.app.TabPanel.getItem('save');
 		this.iconItem.target=this.iconItem.$elem[0];
 		//console.info('onAppReadyAfter:',this);
-
+		
+		$.setTimeout(this.checkUploadFail,200,this);
 	},
 	checkUploadFail : function(){
 		if($.LS[CHECK_UPLOAD_FAIL_KEY]){
