@@ -45,9 +45,9 @@ $.push({
 		var list=$.cache.findAll(UPLOAD_FAIL_KEY+this.app.ViewPanel.data.id);
 		if(list && list.length>0){
 			var param=$.param2Object(list[0].value);
-			if(param.html &&  param.timestamp){
+			if(param.html &&  param.time){
 				var date=new Date();
-				date.setTime(param.timestamp);
+				date.setTime(param.time);
 				console.info('离线快照【'+this.app.HistoryPanel.getShotTimeTitle(date)+'】');
 			}
 		}
@@ -144,12 +144,13 @@ $.push({
 			data.title=value;
 		}
 		
-		data.html=allHTML;
+		data.code=allHTML;
 
 		$.jsonp({
 			url : '/edit.s',
 			data : this.getParam(data),
 			_id : data.id,
+			_html : allHTML,
 			_$owner : this,
 			success : function(val){
 				if(val==1){
@@ -161,7 +162,7 @@ $.push({
 			},
 			error : function(){
 				this._$owner.on('error');
-				this._$owner.saveUploadFail(this._id,this.data);
+				this._$owner.saveUploadFail(this._id,this._html);
 			}
 		});
 	},
@@ -172,7 +173,10 @@ $.push({
 		}else{
 			var date=new Date();
 			date.addDays(30);
-			$.cache.put(key,data+'&timestamp='+$.timestamp(),date);
+			$.cache.put(key,JSON.stringify({
+				html : data,
+				time : $.timestamp()
+			}),date);
 		}
 	},
 	onSuccess : function(){
