@@ -170,13 +170,15 @@ $.push({
 			}
 		});
 	},
+	/*最大生命周期为15天*/
+	MAX_AGE : 15,
 	saveUploadFail:function(id,data){
 		var key=UPLOAD_FAIL_KEY+id;
 		if(!data){
 			$.cache.remove(key);
 		}else{
 			var date=new Date();
-			date.addDays(30);
+			date.addDays(this.MAX_AGE);
 			$.cache.put(key,JSON.stringify({
 				html : data,
 				time : $.timestamp()

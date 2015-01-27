@@ -491,7 +491,7 @@
 			if(_minutes<10){
 				_minutes='0'+_minutes;
 			}
-			time=_hours + ':' + _hours;
+			time=_hours + ':' + _minutes;
 
 			//今天、昨天、前天
 			if(today ==day){
