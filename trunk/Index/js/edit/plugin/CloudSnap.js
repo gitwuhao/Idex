@@ -191,9 +191,11 @@ $.push({
 		getCloudSnapCodeData : function(id){
 			return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id);
 		},
+		/*缓存生命周期为3天*/
+		CACHE_MAX_AGE : 3,
 		saveCloudSnapCodeData : function(id,html){
 			var date=new Date();
-			date.addDays(7);
+			date.addDays(this.CACHE_MAX_AGE);
 			$.cache.put(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,date);
 		},
 		initCloudSnapList : function(){

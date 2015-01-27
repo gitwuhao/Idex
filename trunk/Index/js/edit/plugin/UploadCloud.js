@@ -170,15 +170,15 @@ $.push({
 			}
 		});
 	},
-	/*最大生命周期为15天*/
-	MAX_AGE : 15,
+	/*缓存生命周期为7天*/
+	CACHE_MAX_AGE : 7,
 	saveUploadFail:function(id,data){
 		var key=UPLOAD_FAIL_KEY+id;
 		if(!data){
 			$.cache.remove(key);
 		}else{
 			var date=new Date();
-			date.addDays(this.MAX_AGE);
+			date.addDays(this.CACHE_MAX_AGE);
 			$.cache.put(key,JSON.stringify({
 				html : data,
 				time : $.timestamp()
