@@ -59,7 +59,7 @@ $.push({
 		this.win=new ui.window({
 			title : '另存为自定义布局',
 			$owner : this,
-			width: '280px',
+			width: '250px',
 			padding: '10px 30px 10px 10px',
 			item : {
 				xtype:'form',
@@ -77,10 +77,18 @@ $.push({
 					name : 'isClean',
 					value : true,
 					text : '保留图片和链接'
-				},{
-					html : '<div style="padding-left: 21px;">长度：超出120字/5千字</div>'
-				},{
-					html : '<div style="padding-left: 21px;">长度：可输入100字/5千字</div>'
+				},/*{
+					html : '<div style="padding-left: 21px;">长度：4.3K/5K</div>'
+				},*/{
+					c1: '#1AA8FF',
+					c2: '#FF0000',
+					html : ['<div style="padding-left: 21px;">',
+								'长度：<span style="color:#FF0000;">5.6K</span>',
+								'&nbsp;/&nbsp;5K',
+								'<span style="color:#888;">',
+									'【超出612字】',
+								'</span>',
+							'</div>'].join('')
 				}]
 			},
 			buttons:[{
