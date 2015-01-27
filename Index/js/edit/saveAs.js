@@ -83,10 +83,9 @@ $.push({
 					c1: '#1AA8FF',
 					c2: '#FF0000',
 					html : ['<div style="padding-left: 21px;">',
-								'长度：<span style="color:#FF0000;">5.6K</span>',
-								'&nbsp;/&nbsp;5K',
-								'<span style="color:#888;">',
-									'【超出612字】',
+								'<span title="已超出2,612字">',
+								'源码：<span style="color:#1AA8FF;">25.6K</span>',
+								'/10K',
 								'</span>',
 							'</div>'].join('')
 				}]
@@ -107,6 +106,8 @@ $.push({
 		});
 		this.win.show();
 	},
+	/*最多10K*/
+	CONTEXT_MAX_LENGTH : 10 * 1000,
 	CLEAN_OUTPUT_RULES : null,
 	DEFAULT_OUTPUT_RULES : null,
 	submit : function(){
