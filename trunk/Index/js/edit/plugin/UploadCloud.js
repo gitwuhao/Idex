@@ -44,9 +44,15 @@ $.push({
 		if(list && list.length>0){
 			var param=JSON.parse(list[0].value);
 			if(param.html &&  param.time){
-				var date=new Date();
+				var date=new Date(),					
+					HistoryPanel=this.app.HistoryPanel;
+				
 				date.setTime(param.time);
-				console.info('离线快照【'+this.app.HistoryPanel.getShotTimeTitle(date)+'】');
+
+				HistoryPanel.createSnap({
+					title : '离线快照【'+HistoryPanel.getShotTimeTitle(date)+'】',
+					context : param.html
+				});
 			}
 		}
 		$.cache.remove(CHECK_UPLOAD_FAIL_KEY);

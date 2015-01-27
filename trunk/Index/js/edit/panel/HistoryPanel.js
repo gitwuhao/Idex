@@ -377,6 +377,10 @@
 		},
 		createSnap : function(snapItem){
 			this.logger(this);
+
+			if(!snapItem.id){
+				snapItem.id=getLocalSnapID();
+			}
 			
 			if(this.localSnapCount>=5){
 				return;
