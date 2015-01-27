@@ -1,6 +1,7 @@
 (function(){
 Idex.addEventListener('initHomeCount',function(){
 	var homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
+
 	if(homeJSON.c && homeJSON.c[0]){
 		var count=homeJSON.c[0];
 		for(var key in count){

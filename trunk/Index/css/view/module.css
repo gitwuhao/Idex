@@ -37,6 +37,8 @@
 	padding: 0px;
 	overflow: hidden;
 	margin: 20px 0px;
+	height: 40px;
+	line-height: 40px;
 }
 .idex-view-panel .idex-module-item em{
     font-size: 16px;
