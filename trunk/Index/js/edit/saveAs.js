@@ -56,11 +56,35 @@ $.push({
 	show : function(config){
 		this.logger(this);
 		this.config=config;
-		this.win=new ui.window({
-			title : '另存为自定义布局',
+ 
+
+		var win=new ui.window({
+			title : '另存为',
 			$owner : this,
 			width: '250px',
 			padding: '10px 30px 10px 10px',
+			getCode : function(isSave){
+				if(!isSave && this.cleanOutPutHTML){
+					return this.cleanOutPutHTML;
+				}else if(isSave && this.defaultOutPutHTML){
+					return this.defaultOutPutHTML;
+				}
+
+				var filterRule,
+					html;
+				if(!isSave){
+					filterRule=this.$owner.CLEAN_OUTPUT_RULES;
+				}else{
+					filterRule=this.$owner.DEFAULT_OUTPUT_RULES;
+				}
+				html = HTMLfilter.getOuterHTML(this.$owner.config.activeElement,filterRule);
+				if(!isSave){
+					this.cleanOutPutHTML=html;
+				}else{
+					this.defaultOutPutHTML=html;
+				}
+				return html;
+			},
 			item : {
 				xtype:'form',
 				notLabelPadding : true,
@@ -74,18 +98,25 @@ $.push({
 				},{
 					label:' ',
 					xtype:'checkitem',
-					name : 'isClean',
+					name : 'isSave',
 					value : true,
-					text : '保留图片和链接'
+					text : '保留图片和链接',
+					onChecked : function(){
+						this.callPrototypeMethod();
+						if(this.$owner){
+							var win=this.$owner.$owner;
+							win.htmlCode=win.getCode(this.value);
+							win.$owner.updateCount(win.htmlCode.length);
+						}
+					}
 				},/*{
 					html : '<div style="padding-left: 21px;">长度：4.3K/5K</div>'
 				},*/{
-					c1: '#1AA8FF',
-					c2: '#FF0000',
 					html : ['<div style="padding-left: 21px;">',
-								'<span title="已超出2,612字">',
-								'源码：<span style="color:#1AA8FF;">25.6K</span>',
-								'/10K',
+								'源码：',
+								'<span class="code-count-box">',
+									'<span class="c1"></span>',
+									'/5K',
 								'</span>',
 							'</div>'].join('')
 				}]
@@ -104,47 +135,57 @@ $.push({
 				this.$owner.close();
 			}
 		});
-		this.win.show();
+
+		
+		this.win=win;
+
+		win.show();
+
+		win.$codeCountBox=$('.code-count-box',win.$body);
+		win.$countValue=win.$codeCountBox.children('.c1');
+		win.htmlCode=win.getCode(true);
+		this.updateCount(win.htmlCode.length);
+
 	},
-	/*最多10K*/
-	CONTEXT_MAX_LENGTH : 10 * 1000,
+	/*最多5K*/
+	CONTEXT_MAX_LENGTH : 5 * 1000,
+	updateCount : function(length){
+		var val=length-this.CONTEXT_MAX_LENGTH,
+			win=this.win;
+		if(val > 0){
+			win.$countValue.css('color','#FF0000');
+			win.$codeCountBox.attr('title','已超出'+Number.stringify(val)+'字');
+			win.buttons.submit.disabled();
+		}else{
+			win.$countValue.css('color','#1AA8FF');
+			win.$codeCountBox.attr('title','还剩'+Number.stringify(Math.abs(val))+'字');
+			win.buttons.submit.enabled();
+		}
+		win.$countValue.text(Number.toPrecision((length/1000),1)+'K');
+	},
 	CLEAN_OUTPUT_RULES : null,
 	DEFAULT_OUTPUT_RULES : null,
 	submit : function(){
 		var form=this.win.form,
 			title,
-			isClean,
 			html,
 			data,
-			type,
 			config=this.config,
 			filterRule;
-		isClean=form.getItem('isClean').getValue();
+ 
 		title=form.getItem('title').getValue();
-		
-
-		if(!isClean){
-			filterRule=this.CLEAN_OUTPUT_RULES;
-		}else{
-			filterRule=this.DEFAULT_OUTPUT_RULES;
-		}
-		
-		type=config.layout._type_index_;
-
-		html = HTMLfilter.getOuterHTML(config.activeElement,filterRule);
-
 
 		data={
-			method : 'insert',
-			_t : '2',
+			method : 'save',
+			atype : '2',
 			title : title,
-			type : type,
-			code : html
+			type : config.layout._type_index_,
+			code : this.win.htmlCode
 		};
 
 
 		$.jsonp({
-			url:'/module.s',
+			url:'/edit.s',
 			data : $.param(data),
 			_$owner : this,
 			_customModule : this.app.CustomModule,
@@ -161,17 +202,21 @@ $.push({
 				}
 				
 				if(html){
-					ui.quicktip.show({
-						px : 'idex-ui',
-						align : 'tc',
-						offset : 'lt',
-						html : '<em style="color:#FC7100;">'+html+'</em>',
-						time : 3000,
-						target :  this._target
-					});
+					this.onError(html);
 				}
 			},
 			error : function(){
+				this.onError('保存失败...');
+			},
+			onError : function(html){
+				ui.quicktip.show({
+					px : 'idex-ui',
+					align : 'tc',
+					offset : 'lt',
+					html : '<em style="color:#FC7100;">'+html+'</em>',
+					time : 3000,
+					target :  this._target
+				});
 			},
 			complete : function(){
 			}

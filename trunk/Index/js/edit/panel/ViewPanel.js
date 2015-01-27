@@ -69,7 +69,6 @@ $.push({
 			this.$codeCountBox.attr('title','已超出'+Number.stringify(val)+'字');
 		}else{
 			this.$countValue.removeClass('c1');
-			this.$codeCountBox.removeAttr('title');
 			this.$codeCountBox.attr('title','还剩'+Number.stringify(Math.abs(val))+'字');
 		}
 		this.$countValue.text(Number.toPrecision((length/1000),1)+'K');
