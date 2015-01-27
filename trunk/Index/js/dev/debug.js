@@ -25,6 +25,9 @@ var path='/js/dev/data/',
 		'method=query&page=2' : 'item.query.2.js',
 		'method=query&page=3' : 'item.query.3.js',
 		'method=get' : 'item.get.js'
+	},
+	'/edit.s' : {
+		'method=save&id=123456789' : 'edit.save.1.js'
 	}
 };
 function match(param,data){
