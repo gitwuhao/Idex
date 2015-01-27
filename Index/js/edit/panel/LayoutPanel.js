@@ -491,6 +491,7 @@
 				}
 				var elem=this.app.get(this.layoutID);
 				elem.click();
+				this.app.trigger('loadImage',elem);
 				this.app.trigger('contextInsert');
 			};
 
@@ -501,6 +502,9 @@
 			};
 
 			this.app.HistoryPanel.addUndo(command);
+
+			
+			this.app.trigger('loadImage',null);
 		},
 		onDelAction:function(){
 			this.logger(this);
