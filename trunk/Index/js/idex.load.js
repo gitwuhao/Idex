@@ -55,9 +55,9 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	*/
 	'js/edit/plugin/LayoutConfig.js',
 	'js/edit/plugin/CloudSnap.js'
-	/*,
+	,
 	'js/edit/plugin/CopyCode.js'
-	*/
+	
 ];
 for(var i=0,len=list.length;i<len;i++){
 	var u=list[i];
