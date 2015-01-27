@@ -159,7 +159,7 @@ $.push({
 			success : function(val){
 				if(val==1){
 					this._$owner.on('success');
-					this._$owner.saveUploadFail(this._id);
+					//this._$owner.saveUploadFail(this._id);
 				}else{
 					this._$owner.on('error');
 				}
