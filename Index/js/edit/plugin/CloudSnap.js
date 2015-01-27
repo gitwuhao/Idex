@@ -235,53 +235,6 @@ $.push({
 				item.snapId=item.id;
 				this.addCloudSnapItem(item);
 			}
-		},
-		getShotTimeTitle : function(date){
-			var today=new Date(),
-				curdate=new Date(date.getTime()),
-				_month = date.getMonth() + 1,
-				_day = date.getDate(),
-				_hours = date.getHours(),
-				_minutes = date.getMinutes(),
-				time,
-				day;
-			
-			today.setHours(0);
-			today.setMinutes(0);
-			today.setSeconds(0);
-			today.setMilliseconds(0);
-
-			curdate.setHours(0);
-			curdate.setMinutes(0);
-			curdate.setSeconds(0);
-			curdate.setMilliseconds(0);
-
-			today=((today.getTime()/Date.ONE_DAY_OF_MILLISECONDS)+"").split('.');
-
-			day=((curdate.getTime()/Date.ONE_DAY_OF_MILLISECONDS)+"").split('.');
-		
-			today=parseInt(today[0]);
-			
-			day=parseInt(day[0]);
-
-			if(_hours<10){
-				_hours='0'+_hours;
-			}
-			if(_minutes<10){
-				_minutes='0'+_minutes;
-			}
-			time=_hours + ':' + _hours;
-
-			//今天、昨天、前天
-			if(today ==day){
-				return time;
-			}else if(today==day + 1){
-				return  '昨天 '+time;
-			}else if(today==day + 2){
-				return  '前天 '+time;
-			}else{
-				return _month+'月'+_day+'日'+time;
-			}
 		}
 	}
 });

@@ -25,10 +25,8 @@ $.push({
 		this.iconItem.target=this.iconItem.$elem[0];
 		//console.info('onAppReadyAfter:',this);
 		
-		//$.setTimeout(this.checkUploadFail,100,this);
+		$.setTimeout(this.checkUploadFail,1000,this);
 
-
-		
 
 		$.getWin().on('beforeunload',{
 			me : this
@@ -44,7 +42,7 @@ $.push({
 		$.cache.put(CHECK_UPLOAD_FAIL_KEY,'1',new Date());
 		var list=$.cache.findAll(UPLOAD_FAIL_KEY+this.app.ViewPanel.data.id);
 		if(list && list.length>0){
-			var param=$.param2Object(list[0].value);
+			var param=JSON.parse(list[0].value);
 			if(param.html &&  param.time){
 				var date=new Date();
 				date.setTime(param.time);
