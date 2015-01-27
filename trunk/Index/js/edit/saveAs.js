@@ -78,9 +78,9 @@ $.push({
 					value : true,
 					text : '保留图片和链接'
 				},{
-					html : '<div style="padding-left: 21px;">长度：超出120字/1.5万字</div>'
+					html : '<div style="padding-left: 21px;">长度：超出120字/5千字</div>'
 				},{
-					html : '<div style="padding-left: 21px;">长度：可输入15000字/1.5万字</div>'
+					html : '<div style="padding-left: 21px;">长度：可输入100字/5千字</div>'
 				}]
 			},
 			buttons:[{
