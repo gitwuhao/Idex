@@ -73,8 +73,8 @@
 .idex-ui-property-panel .idex-ui-item-text{
 	float:left;
 	min-width: 5px;
-	height: 20px;
-	padding: 3px 0px;
+	height: 24px;
+	/* padding: 3px 0px; */
 }
 .idex-ui-property-panel .idex-ui-break{
 	float: left;
