@@ -81,6 +81,7 @@
 				cls:"copy",
 				onClick : iconClickHandle
 			},{
+				isDisabled :true,
 				cls:"new",
 				onClick : iconClickHandle
 			},{
@@ -1049,6 +1050,15 @@
 				this.reloadNavItem(targetElement);
 
 			}
+		},
+		enabled : function(icon){
+			if(icon=="copy" || icon=="new"){
+				var isOverFlow=this.app.ViewPanel.isContextOverFlow();
+				if(isOverFlow){
+					return;
+				}
+			}
+			this.callPrototypeMethod();
 		}
 	});
 

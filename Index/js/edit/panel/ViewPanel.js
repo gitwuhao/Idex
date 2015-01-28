@@ -48,7 +48,7 @@ $.push({
 	},
 	onAppReadyAfter : function(){
 		var div,
-			html='<div class="idex-code-count-box">源码：<span class="value">19.9K</span>/<span class="count">20K</span></div>';
+			html='<div class="idex-code-count-box">源码：<span class="value"></span>/<span class="count">20K</span></div>';
 		div=$.createElement(html);
 		this.app.LayoutPanel.$bottombarbox.append(div);
 		this.$codeCountBox=$(div);
@@ -67,11 +67,19 @@ $.push({
 		if(val > 0){
 			this.$countValue.addClass('c1');
 			this.$codeCountBox.attr('title','已超出'+Number.stringify(val)+'字');
+			this.contextOverFlow=true;
 		}else{
 			this.$countValue.removeClass('c1');
 			this.$codeCountBox.attr('title','还剩'+Number.stringify(Math.abs(val))+'字');
+			this.contextOverFlow=false;
 		}
 		this.$countValue.text(Number.toPrecision((length/1000),1)+'K');
+	},
+	/**
+	*源码是否已溢出
+	*/
+	isContextOverFlow : function(){
+		return this.contextOverFlow;
 	},
 	data : CONFIG_DATA,
 	initEvents : function(){
