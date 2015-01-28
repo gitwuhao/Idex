@@ -52,7 +52,6 @@ function initTab(render){
 			onLoad:function(){
 				var module=new Idex.Module({
 					COUNT : Idex.getVersionLimit('rcount'),
-					MODULE_TYPE : 'r',
 					CACHE_KEY : 'renovation_list',
 					ACTION_TYPE : Idex.TYPE_MAP.RENOVATION
 				});
@@ -70,7 +69,6 @@ function initTab(render){
 			onLoad:function(){
 				var module=new Idex.Module({
 					COUNT : Idex.getVersionLimit('ccount'),
-					MODULE_TYPE : 'c',
 					CACHE_KEY : 'custom_list',
 					ACTION_TYPE : Idex.TYPE_MAP.CUSTOM,
 					copyItemValue : function(item){
