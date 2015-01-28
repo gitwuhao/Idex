@@ -111,6 +111,7 @@ $.push({
 		var ViewPanel=this.app.ViewPanel,
 			allHTML=ViewPanel.getAllHTML();
 
+		this.currentUploadHTML=allHTML;
 		this.callback=callback;
 
 		//console.info('on upload:'+Date.getDateTime());
@@ -124,7 +125,6 @@ $.push({
 			this.on('success');
 			return;
 		}
-		this.currentUploadHTML=allHTML;
 		this.on('upload',allHTML);
 	},
 	onUpload : function(allHTML){
