@@ -40,7 +40,8 @@ $.push({
 			return;
 		}
 		$.cache.put(CHECK_UPLOAD_FAIL_KEY,'1',new Date());
-		var list=$.cache.findAll(UPLOAD_FAIL_KEY+this.app.ViewPanel.data.id);
+		
+		var list=$.cache.findAll(this.getUploadFailCacheKey());
 		if(list && list.length>0){
 			var param=JSON.parse(list[0].value);
 			if(param.html &&  param.time){
@@ -112,7 +113,7 @@ $.push({
 
 		this.callback=callback;
 
-		console.info('on upload:'+Date.getDateTime());
+		//console.info('on upload:'+Date.getDateTime());
 		
 		if(allHTML.length>this.CONTEXT_MAX_LENGTH){
 			this.on('error',['<span style="color:#CD3E00;">',
@@ -126,54 +127,61 @@ $.push({
 		this.currentUploadHTML=allHTML;
 		this.on('upload',allHTML);
 	},
-	getParam : function(data){
-		return $.param(data);
-	},
 	onUpload : function(allHTML){
 		var ViewPanel=this.app.ViewPanel,
 			value,
-			data={
-				method : 'save',
-				id : ViewPanel.data.id,
-				atype : ViewPanel.data.type
-			};
+			contextData=ViewPanel.data,
+			data;
+
+		data={
+			method : 'save',
+			id : contextData.id,
+			atype : contextData.type
+		};
 			
-		value=ViewPanel.getWidth();
-		if(value){
-			data.width=value;
+		if(ViewPanel.getWidth){
+			value=ViewPanel.getWidth();
+			if(value){
+				data.width=value;
+			}
 		}
-		
-		value=ViewPanel.getTitle();
-		if(value){
-			data.title=value;
+
+		if(ViewPanel.getTitle){
+			value=ViewPanel.getTitle();
+			if(value){
+				data.title=value;
+			}
 		}
 		
 		data.code=allHTML;
 
 		$.jsonp({
 			url : '/edit.s',
-			data : this.getParam(data),
-			_id : data.id,
+			data : $.param(data),
 			_html : allHTML,
 			_$owner : this,
 			success : function(val){
 				if(val==1){
 					this._$owner.on('success');
-					//this._$owner.saveUploadFail(this._id);
+					//this._$owner.saveUploadFail();
 				}else{
 					this._$owner.on('error');
 				}
 			},
 			error : function(){
 				this._$owner.on('error');
-				this._$owner.saveUploadFail(this._id,this._html);
+				this._$owner.saveUploadFail(this._html);
 			}
 		});
 	},
 	/*缓存生命周期为7天*/
-	CACHE_MAX_AGE : 7,
-	saveUploadFail:function(id,data){
-		var key=UPLOAD_FAIL_KEY+id;
+	CACHE_MAX_AGE : 7,	
+	getUploadFailCacheKey : function(){
+		var data=this.app.ViewPanel.data;
+		return UPLOAD_FAIL_KEY + data.id+'_'+data.type;
+	},
+	saveUploadFail:function(data){
+		var key=this.getUploadFailCacheKey();
 		if(!data){
 			$.cache.remove(key);
 		}else{
