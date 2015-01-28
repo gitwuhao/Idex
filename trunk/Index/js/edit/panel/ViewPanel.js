@@ -43,7 +43,7 @@ $.push({
 		this.app.bindReadyAfter(this);
 
 		this.app.addEventListener('contextReLoad contextInsert contextDelete',function(){
-			this.ViewPanel.updateCount();
+			this.ViewPanel.getAllHTML();
 		});
 	},
 	onAppReadyAfter : function(){
@@ -59,9 +59,8 @@ $.push({
 		if(!this.$countValue){
 			return;
 		}else if(!length){
-			length=this.descbox.outerHTML.length;
+			return;
 		}
-		
 		var val=length-this.CONTEXT_MAX_LENGTH;
 
 		if(val > 0){
