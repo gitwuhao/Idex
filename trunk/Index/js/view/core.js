@@ -289,7 +289,7 @@
 
 
 	$.loadJSQueue(
-		'/js/dev/debug.js',
+		//'/js/dev/debug.js',
 		'js/view/home.js',
 		'js/view/Idex.Module.js',
 		'js/view/list.js',
