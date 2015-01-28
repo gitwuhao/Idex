@@ -1,22 +1,10 @@
 (function(CF,$){
-var MIN_WIDTH=750,
-	MAX_WIDTH=1200,
-	STYLE_KEY_MAP = {
+var STYLE_KEY_MAP = {
 		CONTEXT_PADDING : 'p-l-r'
 	},
 	ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 	data_title,
 	DEFAULT_TITLE='未命名模板';
-
-(function(){
-	var $context=$('.idex-view-context-box');
-
-	data_title= $context.attr('idex-title');
-	$context.removeAttr('idex-title');
-
-	data_title=data_title||DEFAULT_TITLE;
-
-})();
 
 $.push({
 	overwrite : function(app){
@@ -63,6 +51,8 @@ $.push({
 			styleReady : function(){
 				this.setStylecolor(this.getStylecolor());
 			},
+			MIN_WIDTH : 750,
+			MAX_WIDTH : 1200,
 			getPropertyForm : function (box){
 				this.logger(this);
 
@@ -91,6 +81,8 @@ $.push({
 						unit:'px',
 						maxlength : 4,
 						value: 750,
+						maxValue : this.MAX_WIDTH,
+						minValue : this.MIN_WIDTH,
 						xtype:'text',
 						getDesc : '设置画布宽度'
 
@@ -259,21 +251,31 @@ $.push({
 				return this.$descbox.hasClass(STYLE_KEY_MAP.CONTEXT_PADDING);
 			},
 			setTitle : function(value){
+				this.logger(this);
+				var oldValue=value;
 				if(!value){
 					 value=DEFAULT_TITLE;
 				}
-				data_title=value;
+				value=value.toCWordChar();
+				this.$descbox.attr(ATTR_KEY_MAP.TITLE,value);
+				
+				if(oldValue!=value){
+					this.form.setItemValue('title',value);
+				}
 			},
 			getTitle : function(){
-				return data_title;
+				return this.$descbox.attr(ATTR_KEY_MAP.TITLE)||DEFAULT_TITLE;
 			},
 			setWidth:function(value){
 				this.logger(this);
-				if(value=='' || value < MIN_WIDTH || value > MAX_WIDTH || isNaN(value)){
+				if(value=='' || value < this.MIN_WIDTH || value > this.MAX_WIDTH || isNaN(value)){
 					this.form.setItemValue('width',this.getWidth());
 					this.form.quickTip({
 						target:'width',
-						html:'宽度只能在' + MIN_WIDTH + 'px至' + MAX_WIDTH + 'px之间'
+						css:{
+						 color : '#CD3E00'
+						},
+						html:['宽度只能在' , this.MIN_WIDTH , 'px至' , this.MAX_WIDTH , 'px之间'].join('')
 					});
 					return false;
 				}
