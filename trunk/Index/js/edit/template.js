@@ -2,7 +2,9 @@
 
 var __INDEX__,
 	__SUFFIX__='TP'+$.randomChar(3),
-	CACHE_KEY=window.APP_KEY_MAP.CACHE;
+	KEY_MAP=window.APP_KEY_MAP,
+	CACHE_KEY=KEY_MAP.CACHE,
+	ACTION_KEY=KEY_MAP.ACTION;
 
 __INDEX__=parseInt((''+$.timestamp()).match(/(\d{5}$)/)[0]);
 
@@ -108,7 +110,7 @@ $.push({
 	loadCustomTemplateList : function(config){
 		$.jsonp({
 			url:'/module.s',
-			data : 'method=query&_t=2',
+			data : 'method=query&_t='+ACTION_KEY.CUSTOM,
 			_$owner : this,
 			_config : config,
 			success : function(json){
@@ -136,7 +138,7 @@ $.push({
 		}
 		$.loadText({
 			url:'/module.s',
-			data : 'method=getCode&_t=2&id='+data.id,
+			data : 'method=getCode&id='+data.id+'&_t='+ACTION_KEY.CUSTOM,
 			_$owner : this,
 			_data : data,
 			success : function(_html){
@@ -252,6 +254,9 @@ $.push({
 			layoutMap,
 			list,
 			html=[];
+		if(!customTemplate){
+			return '';
+		}
 		layoutMap=customTemplate.Map;
 		if(parentLayoutType){
 			list=customTemplate.layoutList;
