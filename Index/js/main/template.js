@@ -28,6 +28,7 @@ Idex.view.template.init=function(tab){
 
 			var module=new Idex.Module({
 				COUNT : Idex.getVersionLimit('tcount'),
+				isView : true,
 				CACHE_KEY : 'template_list',
 				ACTION_TYPE : Idex.TYPE_MAP.TEMPLATE
 			});
