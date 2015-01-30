@@ -1,6 +1,5 @@
 (function(CF,$,Idex){
-var VIEW_LINK_TARGET = '_IDEX_VIEW',
-	EDIT_LINK_TARGET = '_IDEX_EDIT';
+var LINK_TARGET = Idex.LINK_TARGET;
 
 Idex.Module=function(config){
 	CF.merger(this,config);
@@ -341,14 +340,14 @@ Idex.Module.prototype={
 		
 		if(this.isView){
 			html.push(
-					'<a href="/view/',this.ACTION_TYPE,'/',item.id,'" target="',VIEW_LINK_TARGET,'" title="预览">',
+					'<a href="/view/',this.ACTION_TYPE,'/',item.id,'" target="',LINK_TARGET.VIEW,'" title="预览">',
 						'<div class="view idex-icon"></div>',
 					'</a>'
 					 );
 		}
 
 		html.push(
-					'<a href="/edit/',this.ACTION_TYPE,'/',item.id,'" target="',EDIT_LINK_TARGET,'" title="编辑">',
+					'<a href="/edit/',this.ACTION_TYPE,'/',item.id,'" target="',LINK_TARGET.EDIT,'" title="编辑">',
 						'<div class="edit idex-icon"></div>',
 					'</a>'
 				 );

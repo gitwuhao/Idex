@@ -69,14 +69,6 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	display: none;
 	box-sizing: border-box;
 }
-.idex-view-panel a{
-	text-decoration: none;
-	color:#888;
-}
-.idex-view-panel a:hover{
-	text-decoration: underline;
-	color:#00B2FF;
-}
 .idex-shadow-box{
 	border: 1px solid #DDD;
 	border-radius: 5px;
