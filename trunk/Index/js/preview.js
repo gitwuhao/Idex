@@ -273,8 +273,8 @@ var KEY_MAP=window.APP_KEY_MAP,
 	};
 
 	$.loadJSQueue(
-		'js/edit/style.js',
-		'js/buildStyle.js',
+		'/js/edit/style.js',
+		'/js/buildStyle.js',
 		'/_/js/ZeroClipboard.js',
 	function(){
 		$(document).ready(function(){
