@@ -1,4 +1,7 @@
 (function(CF,$,Idex){
+var VIEW_LINK_TARGET = '_IDEX_VIEW',
+	EDIT_LINK_TARGET = '_IDEX_EDIT';
+
 Idex.Module=function(config){
 	CF.merger(this,config);
 };
@@ -6,7 +9,6 @@ Idex.Module=function(config){
 Idex.Module.prototype={
 	MODULE_TYPE : 't',
 	CACHE_KEY : 'template_list',
-	LINK_TARGET : '_IDEX_EDIT',
 	ACTION_TYPE : 1,
 	COUNT : 0,
 	RAW_DATA : [],
@@ -319,25 +321,45 @@ Idex.Module.prototype={
 		return html.join('');
 	},
 	getItemHTML : function(item,isAdd){
-		var date;
+		var date,
+			html;
 		if(item.modified){
 			date=new Date(Date.parse(item.modified)).stringify();
 		}else{
 			date='';
 		}
 
-		return ['<div class="idex-module-item idex-shadow-box">',
-						'<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>',
-						'<div class="idex-mini-tbar" data-id="',item.id,'">',
-							'<a href="/edit/',this.ACTION_TYPE,'/',item.id,'" target="',this.LINK_TARGET,'">',
-								'<div class="edit idex-icon"></div>',
-							'</a>',
-							(isAdd ?  '<div class="copy idex-icon"></div>' : '' ), 
+		html=['<div class="idex-module-item idex-shadow-box">'];
+		html.push('<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>');
+
+
+		html.push('<div class="idex-mini-tbar" data-id="',item.id,'">');
+		
+		if(this.isView){
+			html.push(
+					'<a href="/view/',this.ACTION_TYPE,'/',item.id,'" target="',VIEW_LINK_TARGET,'" title="预览">',
+						'<div class="view idex-icon"></div>',
+					'</a>'
+					 );
+		}
+
+		html.push(
+					'<a href="/edit/',this.ACTION_TYPE,'/',item.id,'" target="',EDIT_LINK_TARGET,'" title="编辑">',
+						'<div class="edit idex-icon"></div>',
+					'</a>'
+				 );
+		if(isAdd){
+			html.push('<div class="copy idex-icon" title="复制"></div>');
+		}
+		
+		html.push(
 							'<div class="del idex-icon"></div>',
 						'</div>',
 						'<p>',item.width,'px</p>',
 						'<em>',item.title,'</em>',
-				'</div>'].join('');
+				'</div>');
+		
+		return html.join('');
 	},
 	onSearch : function(val,target){
 		var keyword=$.trim(val||''),

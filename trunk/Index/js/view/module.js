@@ -53,6 +53,7 @@ function initTab(render){
 				var module=new Idex.Module({
 					COUNT : Idex.getVersionLimit('rcount'),
 					CACHE_KEY : 'renovation_list',
+					isView : true,
 					ACTION_TYPE : Idex.TYPE_MAP.RENOVATION
 				});
 				
