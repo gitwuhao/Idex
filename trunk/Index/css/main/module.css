@@ -52,6 +52,9 @@
 	margin-bottom: 28px;
 	transition: all 0.5s 0s ease;
 }
+.idex-view-panel .idex-module-item:hover .datetime span{
+	display: none;
+}
 .idex-view-panel .idex-module-item.del{
 	border-color:#F27530;
 	color:#F27530;

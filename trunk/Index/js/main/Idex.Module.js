@@ -330,7 +330,11 @@ Idex.Module.prototype={
 		}
 
 		html=['<div class="idex-module-item idex-shadow-box">'];
-		html.push('<div class="datetime">',date,'&nbsp;&nbsp;',item.last_user_nick,'</div>');
+		html.push('<div class="datetime">',date,
+					'<span>&nbsp;&nbsp;',
+						item.last_user_nick,
+					'</span>',	
+				  '</div>');
 
 
 		html.push('<div class="idex-mini-tbar" data-id="',item.id,'">');
