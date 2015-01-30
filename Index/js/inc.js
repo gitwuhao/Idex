@@ -24,5 +24,13 @@
 		TO_PS_CALLBACK : 'IDEX_TO_PS_CALLBACK'
 	};
 	
+	
+	KEY.ACTION = {
+		TEMPLATE : 1,
+		DESC : 2,
+		RENOVATION : 3,
+		CUSTOM : 8
+	};
+
 	window.APP_KEY_MAP=KEY;
 })();
