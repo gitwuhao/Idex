@@ -142,6 +142,9 @@ em{
 .idex-view-panel .edit.idex-icon{
 	background-position: -400px -200px;
 }
+.idex-view-panel .view.idex-icon{
+	background-position: -420px -200px;
+}
 .idex-view-panel .x-ui-tab-panel .x-ui-floatbar-box{
 	overflow: visible;
 	padding: 2px;
