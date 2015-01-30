@@ -1,5 +1,7 @@
 (function(CF,$){
-var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
+var KEY_MAP=window.APP_KEY_MAP,
+	ACTION_KEY=KEY_MAP.ACTION,
+	ATTR_KEY_MAP=KEY_MAP.ATTR;
 
 $.push({
 	_name_ : 'CustomModule',
@@ -177,7 +179,7 @@ $.push({
 
 		data={
 			method : 'save',
-			atype : '2',
+			atype : ACTION_KEY.CUSTOM,
 			title : title,
 			type : config.layout._type_index_,
 			code : this.win.htmlCode
