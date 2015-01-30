@@ -27,6 +27,10 @@
 			RENOVATION : 3,
 			CUSTOM : 8
 		},
+		LINK_TARGET : {
+			VIEW : '_IDEX_VIEW',
+			EDIT : '_IDEX_EDIT'
+		},
 		topbar : [{
 				type:'home'
 			},{

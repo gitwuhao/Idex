@@ -192,6 +192,14 @@
     overflow: hidden;
     line-height: 20px;
 }
+.idex-view-panel.list .idex-item-title a{
+	text-decoration: none;
+	color:#888;
+}
+.idex-view-panel.list .idex-item-title a:hover{
+	text-decoration: underline;
+	color:#00B2FF;
+}
 .idex-view-panel.list .idex-item-content .invalid{
 	width: 60px;
 	height: 60px;
@@ -220,7 +228,6 @@
 	padding: 3px 10px;
 	background:none;
 	border-color: #00B2FF;
-	color: #00B2FF;
 }
 .idex-view-panel.list .idex-item-content .last-user,.idex-view-panel.list .idex-item-content .revert{
 	margin-left: 10px;
@@ -248,8 +255,14 @@
 .idex-view-panel.list .idex-paging-box .x-ui-button.num{
 	width: 30px;
 }
-.idex-view-panel.list .idex-list-box .x-ui-button:hover{
-	color: #FFF;
+
+.idex-view-panel.list .idex-list-view .x-ui-button .x-ui-label{
+	color: #00B2FF;
+}
+.idex-view-panel.list .idex-list-view .x-ui-button:hover{
 	box-shadow:none;
 	background-color:#00b2ff;
+}
+.idex-view-panel.list .idex-list-view .x-ui-button:hover .x-ui-label{
+	color: #FFF;
 }

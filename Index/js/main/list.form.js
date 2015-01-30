@@ -1,4 +1,6 @@
-(function(CF,$,Idex){
+(function(CF,$,Idex){		
+var LINK_TARGET = Idex.LINK_TARGET,
+	ACTION_TYPE = Idex.TYPE_MAP.DESC;
 Idex.view.list.getForm= function(){
 	return {
 		notLabelPadding : true,
@@ -282,8 +284,20 @@ Idex.view.list.getForm= function(){
 				}else{
 					html.push(
 						'<div class="idex-item-buttons">',
-							'<div class="x-ui-button publish"><div class="x-ui-label">发布</div></div>',
-							'<div class="x-ui-button edit"><div class="x-ui-label">编辑</div></div>',
+							'<div class="x-ui-button publish">',
+								'<a href="/view/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.VIEW,'">',
+								'<div class="x-ui-label">',
+									'发布',
+								'</div>',
+								'</a>',
+							'</div>',
+							'<div class="x-ui-button edit">',
+								'<a href="/edit/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.EDIT,'">',
+								'<div class="x-ui-label">',
+									'编辑',
+								'</div>',
+								'</a>',
+							'</div>',
 						'</div>'
 					);
 				}
