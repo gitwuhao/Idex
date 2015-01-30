@@ -32,5 +32,10 @@
 		CUSTOM : 8
 	};
 
+	KEY.WIN_NAME = {
+		EDIT : '_IDEX_EDIT',
+		VIEW : '_IDEX_VIEW'
+	};
+
 	window.APP_KEY_MAP=KEY;
 })();
