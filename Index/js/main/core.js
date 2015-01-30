@@ -290,12 +290,12 @@
 
 	$.loadJSQueue(
 		//'/js/dev/debug.js',
-		'js/view/home.js',
-		'js/view/Idex.Module.js',
-		'js/view/list.js',
-		'js/view/list.form.js',
-		'js/view/template.js',
-		'js/view/module.js'
+		'js/main/home.js',
+		'js/main/Idex.Module.js',
+		'js/main/list.js',
+		'js/main/list.form.js',
+		'js/main/template.js',
+		'js/main/module.js'
 	);
 
 })(CF,jQuery);
