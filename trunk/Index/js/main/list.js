@@ -196,10 +196,16 @@ function initTab(render){
 				}
 			}
 		},{
-			label:'描述模板',
+			label:'详情模板',
 			name : 'template',
 			onLoad : function(){
 				Idex.view.template.init(this);
+			}
+		},{
+			label:'系统模板',
+			name : 'system',
+			onLoad : function(){
+
 			}
 		}]
 	});
