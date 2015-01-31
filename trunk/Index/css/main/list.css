@@ -228,6 +228,10 @@
 	padding: 3px 10px;
 	background:none;
 	border-color: #00B2FF;
+/*
+width: 46px;
+height: 28px;
+*/
 }
 .idex-view-panel.list .idex-item-content .last-user,.idex-view-panel.list .idex-item-content .revert{
 	margin-left: 10px;
