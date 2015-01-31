@@ -312,7 +312,8 @@ height: 28px;
 .idex-ind-template-item-box{
     overflow: hidden;
     padding-top:10px;
-
 }
-
+.idex-view-panel .idex-ind-template-item-box .idex-mini-tbar{
+	margin-right: 10px
+}
 /*----------------------------industry template---------------------------------------------*/
