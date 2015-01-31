@@ -291,7 +291,7 @@ height: 28px;
 }
 .idex-ind-template-title-box .idex-title{
     float: left;
-    margin-top: -12px;
+    margin-top: -10px;
     margin-left: 35px;
     background-color: #FFF;
     padding: 0px 10px;
@@ -299,7 +299,16 @@ height: 28px;
     color: #999;
     height: 20px;
     line-height: 20px;
+    font-size: 15px;
 }
+
+.idex-ind-template-title-box.active .idex-bg-line{
+	border-color: #00B2FF;
+}
+.idex-ind-template-title-box.active .idex-title{
+	color: #00B2FF;
+}
+
 .idex-ind-template-item-box{
     overflow: hidden;
     padding-top:10px;
