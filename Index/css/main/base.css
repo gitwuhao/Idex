@@ -61,13 +61,15 @@ body::-webkit-resizer,body::-webkit-scrollbar-resizer,body::-webkit-scrollbar-co
 	padding: 10px;
 	box-sizing: border-box;
 }
-
 .idex-view-panel {
 	height:100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	display: none;
 	box-sizing: border-box;
+}
+.idex-view-panel a{
+	text-decoration: none;
 }
 .idex-shadow-box{
 	border: 1px solid #DDD;
