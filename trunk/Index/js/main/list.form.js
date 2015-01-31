@@ -30,7 +30,7 @@ Idex.view.list.getForm= function(){
 				value:'2'
 			}]
 		},{
-			label:'描述类型',
+			label:'详情类型',
 			xtype:'radio',
 			name : 'isDesc',
 			items:[{
