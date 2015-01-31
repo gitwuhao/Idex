@@ -231,7 +231,7 @@ indTemplate.init=function(tab){
 							'</div>',
 						'</div>',
 						'<div class="idex-ind-template-list-group">',
-							'<div class="idex-ind-template-title-box">',
+							'<div class="idex-ind-template-title-box active">',
 								'<div class="idex-bg-line"></div>',
 								'<div class="idex-title">服装</div>',
 							'</div>',
