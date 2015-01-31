@@ -284,20 +284,16 @@ Idex.view.list.getForm= function(){
 				}else{
 					html.push(
 						'<div class="idex-item-buttons">',
-							'<div class="x-ui-button publish">',
-								'<a href="/view/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.VIEW,'">',
+							'<a class="x-ui-button publish" href="/view/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.VIEW,'">',
 								'<div class="x-ui-label">',
 									'发布',
 								'</div>',
-								'</a>',
-							'</div>',
-							'<div class="x-ui-button edit">',
-								'<a href="/edit/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.EDIT,'">',
+							'</a>',
+							'<a class="x-ui-button edit" href="/edit/',ACTION_TYPE,'/',item.num_iid,'" target="',LINK_TARGET.EDIT,'">',
 								'<div class="x-ui-label">',
 									'编辑',
 								'</div>',
-								'</a>',
-							'</div>',
+							'</a>',
 						'</div>'
 					);
 				}
