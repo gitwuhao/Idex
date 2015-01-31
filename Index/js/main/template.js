@@ -1,6 +1,9 @@
-(function(CF,$,Idex){
- 
-Idex.view.template.init=function(tab){
+(function(CF,$,Idex){ 
+var template = {};
+
+Idex.view.template=template;
+
+template.init=function(tab){
 	CF.merger(tab,{
 		onRender : function(){
 

@@ -104,7 +104,6 @@
 			this.activeViewPanel=item.render;
 		},
 		view : {
-			template : {}
 		},
 		bindIcon : function(item){
 			item.$icon.click({
@@ -299,6 +298,7 @@
 		'js/main/list.js',
 		'js/main/list.form.js',
 		'js/main/template.js',
+		'js/main/indTemplate.js',
 		'js/main/module.js'
 	);
 
