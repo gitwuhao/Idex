@@ -269,3 +269,41 @@ height: 28px;
 .idex-view-panel.list .idex-list-view .x-ui-button:hover .x-ui-label{
 	color: #FFF;
 }
+
+
+
+
+/*++++++++++++++++++++++++++++industry template+++++++++++++++++++++++++++++++++++++++++++++*/
+.idex-ind-template-list-box{
+
+}
+.idex-ind-template-list-group{
+
+
+}
+.idex-ind-template-title-box{
+    height: 30px;
+    overflow: hidden;
+}
+.idex-ind-template-title-box .idex-bg-line{
+    height: 15px;
+    border-bottom: 1px solid #eee;
+}
+.idex-ind-template-title-box .idex-title{
+    float: left;
+    margin-top: -12px;
+    margin-left: 35px;
+    background-color: #FFF;
+    padding: 0px 10px;
+    text-align: center;
+    color: #999;
+    height: 20px;
+    line-height: 20px;
+}
+.idex-ind-template-item-box{
+    overflow: hidden;
+    padding-top:10px;
+
+}
+
+/*----------------------------industry template---------------------------------------------*/
