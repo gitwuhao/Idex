@@ -205,7 +205,7 @@ function initTab(render){
 			label:'行业模板',
 			name : 'system',
 			onLoad : function(){
-				Idex.view.industry.init(this);
+				Idex.view.indTemplate.init(this);
 			}
 		}]
 	});
