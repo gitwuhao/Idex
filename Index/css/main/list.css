@@ -280,6 +280,7 @@ height: 28px;
 .idex-win-template-select .idex-module-box .idex-module-item{
 	width: 180px;
 	margin:3px 0px 7px 10px;
+	padding: 5px 0px;
 }
 .idex-win-template-select .idex-module-box .idex-module-item:hover{
 	margin-top: 0px;
