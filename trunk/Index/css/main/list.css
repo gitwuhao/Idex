@@ -270,8 +270,15 @@ height: 28px;
 	color: #FFF;
 }
 
+/*++++++++++++++++++++++++++++template select+++++++++++++++++++++++++++++++++++++++++++++*/
+.idex-win-template-select .x-ui-win-body{
+    width: 860px;
+    height: 500px;
+}
+.idex-win-template-select .idex-module-box .idex-module-item{
 
-
+}
+/*----------------------------template select---------------------------------------------*/
 
 /*++++++++++++++++++++++++++++industry template+++++++++++++++++++++++++++++++++++++++++++++*/
 .idex-ind-template-list-box{
