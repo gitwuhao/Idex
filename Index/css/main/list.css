@@ -272,11 +272,12 @@ height: 28px;
 
 /*++++++++++++++++++++++++++++template select+++++++++++++++++++++++++++++++++++++++++++++*/
 .idex-win-template-select .x-ui-win-body{
-    width: 860px;
+    width: 850px;
     height: 500px;
+	padding-top: 10px;
 }
 .idex-win-template-select .idex-module-box .idex-module-item{
-
+	width: 180px;
 }
 /*----------------------------template select---------------------------------------------*/
 
