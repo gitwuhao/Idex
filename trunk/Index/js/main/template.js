@@ -97,7 +97,7 @@ CF.merger(template,{
 			return;
 		}
 		this.win=new ui.window({
-			title : '选择模板',
+			title : '选择详情模板',
 			cls : 'idex-win-template-select',
 			html : ['<div class="idex-module-box">',
 						'<div class="idex-module-item idex-shadow-box"><p>760px</p><em>未命名模板</em></div>',
