@@ -9,13 +9,13 @@ var path='/js/dev/data/',
 	},
 	'/module.s' : {
 		'method=query&_t=1' : 'module.query.1.js',
-		'method=query&_t=2' : 'module.query.2.js',
 		'method=query&_t=3' : 'module.query.3.js',
 		'method=query&_t=4' : 'module.query.4.js',
+		'method=query&_t=8' : 'module.query.8.js',
 		'method=getCode&_t=4' : 'module.getCode.4.txt',
-		'method=getCode&_t=2&id=101010806' : 'module.getCode.2.101010806.txt',
-		'method=getCode&_t=2&id=101010827' : 'module.getCode.2.101010827.txt',
-		'method=insert&_t=2' : 'module.insert.js'
+		'method=getCode&_t=8&id=101010806' : 'module.getCode.8.101010806.txt',
+		'method=getCode&_t=8&id=101010827' : 'module.getCode.8.101010827.txt',
+		'method=insert&_t=8' : 'module.insert.js'
 	},
 	'/config.s' : {
 		'method=get&type=1' : 'config.get.1.js'
