@@ -8,7 +8,7 @@ function initTab(render){
 	TAB=new ui.tab({
 		render : render,
 		items : [{
-			label:'详情列表',
+			label:'商品描述',
 			name : 'list',
 			html :[
 					'<div class="idex-form-box"></div>',
