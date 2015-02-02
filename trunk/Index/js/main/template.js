@@ -227,7 +227,22 @@ CF.merger(template,{
 		//this.buildModuleList();
 	},
 	submit : function(){
+		var win=this.win,
+			item=win.activeItem;
+		$.jsonp({
+			url:'/module.s',
+			data : 'method=insert&numIID='+item.id+'&tid=&_t='+this.ACTION_TYPE,
+			$owner : this,
+			success : function(json){
+				if(json && json.id>0){
 
+				}
+			},
+			error : function(){
+			},
+			complete : function(){
+			}
+		});
 
 	},
 	close : function(){
