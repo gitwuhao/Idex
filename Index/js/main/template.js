@@ -144,12 +144,26 @@ CF.merger(template,{
 						'<div class="idex-module-item idex-shadow-box"><p>760px</p><em>未命名模板</em></div>',
 					'</div>'].join(''),
 			callback : callback,
+			buttons:[{
+				label:'确定',
+				cls:'submit',
+				onClick : function(event){
+					this.$owner.$owner.submit();
+				}
+			},{
+				label:'取消',
+				cls:'cancel'
+			}],
 			onCloseAfter : function(){
 				this.$owner.close();
 			}
 		});
 		this.win.$owner = this;
 		this.win.show();
+	},
+	submit : function(){
+
+
 	},
 	close : function(){
 		this.win.remove();
