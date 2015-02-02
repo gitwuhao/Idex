@@ -90,4 +90,26 @@ template.init=function(tab){
 	delete tab.onRender;
 };
 
+
+CF.merger(template,{	
+	select : function(callback){
+		if(this.win){
+			return;
+		}
+		this.win=new ui.window({
+			title : '选择模板',
+			callback : callback,
+			onCloseAfter : function(){
+				this.$owner.close();
+			}
+		});
+		this.win.$owner = this;
+		this.win.show();
+	},
+	close : function(){
+		this.win.remove();
+		delete this.win;
+	}
+});
+
 })(CF,jQuery,Idex);

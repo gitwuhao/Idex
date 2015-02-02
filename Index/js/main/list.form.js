@@ -107,6 +107,22 @@ Idex.view.list.getForm= function(){
 			},function(event){
 				event.data.me.resetSellerCat();
 			});
+
+			this.$listbox.click({
+				me : this
+			},function(event){
+				var target=event.target;
+				if($.hasClass(target,'create') || $.hasClass(target.parentElement,'create')){
+					event.data.me.on('createClick');
+				}
+			});
+		},
+		onCreateClick : function(){
+			
+			Idex.view.template.select(function(){
+			
+			
+			});
 		},
 		resetSellerCat : function(){
 			this.$category.hide();
