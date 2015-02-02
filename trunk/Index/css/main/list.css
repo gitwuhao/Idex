@@ -271,13 +271,19 @@ height: 28px;
 }
 
 /*++++++++++++++++++++++++++++template select+++++++++++++++++++++++++++++++++++++++++++++*/
-.idex-win-template-select .x-ui-win-body{
-    width: 850px;
-    height: 500px;
-	padding-top: 10px;
+.idex-win-template-select .idex-module-box{
+    width: 775px;
+	height: 500px;  
+    margin: 10px 5px 5px 0px;
+    overflow: auto;
 }
 .idex-win-template-select .idex-module-box .idex-module-item{
 	width: 180px;
+	margin:3px 0px 7px 10px;
+}
+.idex-win-template-select .idex-module-box .idex-module-item:hover{
+	margin-top: 0px;
+	margin-bottom: 10px;
 }
 /*----------------------------template select---------------------------------------------*/
 
