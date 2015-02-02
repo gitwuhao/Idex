@@ -182,6 +182,7 @@ CF.merger(template,{
 		}
 		item.$elem.addClass('active');
 		win.activeItem=item;
+		win.buttons.submit.enabled();
 	},
 	select : function(callback){
 		if(this.win){
@@ -194,7 +195,7 @@ CF.merger(template,{
 					'</div>'].join(''),
 			callback : callback,
 			buttons:[{
-				label:'确定',
+				label:'创建',
 				cls:'submit',
 				isDisabled : true,
 				onClick : function(event){
