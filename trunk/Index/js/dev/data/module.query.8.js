@@ -1,0 +1,1 @@
+_test_jsonp_callback([{id:"101010820",type:"2",title:"HTML代码"},{id:"101010823",type:"3",title:"浮动层"},{id:"101010824",type:"0",title:"促销Banner"},{id:"101010825",type:"0",title:"尺码表"},{id:"101010826",type:"0",title:"模特实拍"},{id:"101010830",type:"1",title:"搭配单品ddds"},{id:"101010831",type:"4",title:"浮动层sd"},{id:"101010832",type:"4",title:"立体展示"}]);
