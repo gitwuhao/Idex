@@ -413,7 +413,7 @@ $.push({
 		this.logger(this);
 		var $tabview=tab.getTab('custom').$tabview;
 
-		ui.popu.createInnerLoadingAnimation({
+		ui.popu.createInnerLoading({
 			$elem : $tabview,
 			css : {
 				'margin': '0px',

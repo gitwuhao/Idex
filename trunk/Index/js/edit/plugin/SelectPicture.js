@@ -298,7 +298,7 @@ $.push({
 				this.removePageToolBar();
 				
 				var loadingTimeoutId=$.setTimeout(function(){
-					ui.popu.createInnerLoadingAnimation({
+					ui.popu.createInnerLoading({
 						$elem : this.$picList,
 						css : {
 							'height': '200px',

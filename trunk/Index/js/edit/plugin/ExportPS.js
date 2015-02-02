@@ -17,7 +17,7 @@
 			this.win.show();
 
 			
-			ui.popu.createInnerLoadingAnimation({
+			ui.popu.createInnerLoading({
 				$elem : this.win.$body,
 				css : {
 					'margin': '10px auto 0px auto',

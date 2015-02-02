@@ -286,6 +286,10 @@ height: 28px;
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
+.idex-win-template-select .idex-module-box .error-msg{
+	text-align: center;
+	margin-top: 30%;
+}
 /*----------------------------template select---------------------------------------------*/
 
 /*++++++++++++++++++++++++++++industry template+++++++++++++++++++++++++++++++++++++++++++++*/
