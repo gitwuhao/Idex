@@ -8,7 +8,7 @@
 	padding-top: 15px;
 }
 
-.idex-view-panel .idex-module-item{
+.idex-module-box .idex-module-item{
 	float: left;
 	width: 200px;
 	margin: 3px 0px 25px 25px;
@@ -18,11 +18,11 @@
 	cursor: default;
     color: #999;
 }
-.idex-view-panel .idex-module-item.blank{
+.idex-module-box .idex-module-item.blank{
 	color: #DDD;
 	cursor: pointer;
 }
-.idex-view-panel .idex-module-item .datetime{
+.idex-module-box .idex-module-item .datetime{
 	float: left;
 	font-size: 12px;
 	margin-top: -20px;
@@ -32,7 +32,7 @@
 	width: 185px;
 	text-align: left;
 }
-.idex-view-panel .idex-module-item p{
+.idex-module-box .idex-module-item p{
 	font-size: 36px;
 	padding: 0px;
 	overflow: hidden;
@@ -40,28 +40,28 @@
 	height: 40px;
 	line-height: 40px;
 }
-.idex-view-panel .idex-module-item em{
+.idex-module-box .idex-module-item em{
     font-size: 16px;
     line-height: 30px;
     white-space: nowrap;
 }
-.idex-view-panel .idex-module-item:hover{
+.idex-module-box .idex-module-item:hover{
 	border-color:#00B2FF;
 	color:#00B2FF;
 	margin-top: 0px;
 	margin-bottom: 28px;
 	transition: all 0.5s 0s ease;
 }
-.idex-view-panel .idex-module-item:hover .datetime span{
+.idex-module-box .idex-module-item:hover .datetime span{
 	display: none;
 }
-.idex-view-panel .idex-module-item.del{
+.idex-module-box .idex-module-item.del{
 	border-color:#F27530;
 	color:#F27530;
 	margin-top: 0px;
 	margin-bottom: 28px;
 }
-.idex-view-panel .idex-module-item.del-ani{
+.idex-module-box .idex-module-item.del-ani{
 	-webkit-animation:fadeOut 1s .2s ease both;
 }
 @-webkit-keyframes fadeOut{
@@ -77,10 +77,10 @@
 	0%{opacity:0;}
 	100%{opacity:1;}
 }
-.idex-view-panel .idex-module-item:hover .idex-mini-tbar{
+.idex-module-box .idex-module-item:hover .idex-mini-tbar{
 	display: block;
 }
-.idex-view-panel .idex-module-item .bg.idex-icon{
+.idex-module-box .idex-module-item .bg.idex-icon{
 	background-position: -120px -280px;
 	width: 120px;
 	height: 80px;
