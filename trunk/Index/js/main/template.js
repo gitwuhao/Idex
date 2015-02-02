@@ -5,6 +5,7 @@ var template = {},
 
 Idex.view.template=template;
 
+CF.extendEventListener(template);
 CF.merger(template,{
 	init : function(tab){
 		CF.merger(tab,{
@@ -126,23 +127,61 @@ CF.merger(template,{
 		});
 	},
 	buildModuleList : function(json){
-		var html;
+		var html,
+			win=this.win,
+			MapJSON;
 		if(!json){
 			html='<div class="error-msg">没有详情模板...</div>';
 		}else if(json.length==0){
 			html='<div class="error-msg">还没有详情模板，快去【详情模板】里面创建吧...</div>';
 		}else if(json.length>0){
 			html=[];
+			MapJSON=[];
 			for(var i=0,len=json.length;i<len;i++){
 				var item=json[i];
 				html.push('<div class="idex-module-item idex-shadow-box" data-id="',item.id,'">',
 							'<p>',item.width,'px</p>',
 							'<em>',item.title,'</em>',
 						  '</div>');
+				MapJSON[item.id]=item;
 			}
 			html=html.join('');
 		}
-		this.win.$moduleBox.html(html);
+		win.$moduleBox.html(html);
+		
+		if(!MapJSON.length){
+			return;
+		}
+		var moduleList=win.$moduleBox.children('.idex-module-item'),
+			me=this;
+		
+		moduleList.each(function(i,element){
+			var item,
+				id=$.attr(element,'data-id');
+
+			$.removeAttr(element,'data-id');
+
+			item=MapJSON[id];
+			item.$elem=$(element);
+			item.$elem.click({
+				item : item,
+				$owner : me
+			},function(event){
+				var data=event.data;
+				 data.$owner.on('select',data.item);
+			});
+		});
+	},
+	onSelect : function(item){
+		var win=this.win,
+			activeItem=win.activeItem;
+		if(item==activeItem){
+			return;
+		}else if(activeItem){
+			activeItem.$elem.removeClass('active');
+		}
+		item.$elem.addClass('active');
+		win.activeItem=item;
 	},
 	select : function(callback){
 		if(this.win){
@@ -195,5 +234,4 @@ CF.merger(template,{
 		delete this.win;
 	}
 });
-
 })(CF,jQuery,Idex);
