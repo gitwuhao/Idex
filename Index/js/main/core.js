@@ -293,13 +293,13 @@
 
 	$.loadJSQueue(
 		//'/js/dev/debug.js',
-		'js/main/home.js',
-		'js/main/Idex.Module.js',
-		'js/main/list.js',
-		'js/main/list.form.js',
-		'js/main/template.js',
-		'js/main/indTemplate.js',
-		'js/main/module.js'
+		'/js/main/home.js',
+		'/js/main/Idex.Module.js',
+		'/js/main/list.js',
+		'/js/main/list.form.js',
+		'/js/main/template.js',
+		'/js/main/indTemplate.js',
+		'/js/main/module.js'
 	);
 
 })(CF,jQuery);
