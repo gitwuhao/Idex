@@ -303,12 +303,12 @@
 				return;
 			}
 			this.home();
+			this.app.trigger('contextReLoad');
 		},
 		home : function(){
 			this.logger(this);
 			this.$layoutTabView.empty();
 			this.createMainNavList();
-			this.app.trigger('contextReLoad');
 			this.getDescBoxElement().firstElementChild.click();
 			this.disabled('home');
 		},
