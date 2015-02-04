@@ -96,11 +96,11 @@ var win=window,
 				style.padding=height+"px 0px 0px "+width+"px";
 				style.width='';
 				style.height='';
+				elem.removeAttribute(ATTR_KEY_MAP.SRC);
 			}else{
-				elem.setAttribute('src',src);
+				//elem.setAttribute('src',src);
 			}
 			style.border='none';
-			elem.removeAttribute(ATTR_KEY_MAP.SRC);
 		});
 
 		$('div['+ATTR_KEY_MAP.HREF+']',desc).each(function(index,elem){
@@ -166,13 +166,21 @@ var win=window,
 		if(AllHTML){
 			return AllHTML;
 		}
-		var html=HTMLfilter.getOuterHTML($descBox[0],{
+		var html,
+			rules={
 			'*' : {
 				'^style$' : function(attr){
 					attr.value=HTMLfilter.getStyleText(this.style);
 				}
+			},
+			'img' : {
 			}
-		});
+		};
+		rules.img[ATTR_KEY_MAP.SRC]=function(attr){
+			attr.name='src';
+		};
+
+		html=HTMLfilter.getOuterHTML($descBox[0],rules);
 		AllHTML=['<div align="center">',html,'</div>'].join('');
 		setTimeout(complete,500);
 	};
@@ -245,7 +253,7 @@ var win=window,
   
 		var imageQueue=new window.ImageQueue({
 			ATTR_SRC : ATTR_KEY_MAP.SRC,
-			context : $.getBody()[0]
+			context : $box[0]
 		});
 		imageQueue.pushList(imageQueue.context);
 		imageQueue.run();

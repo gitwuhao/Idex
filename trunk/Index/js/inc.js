@@ -39,4 +39,10 @@
 	};
 
 	window.APP_KEY_MAP=KEY;
+
+	if(window.$){
+		window.$.initDebug=function(){
+			$.loadJSQueue('/js/dev/debug.js');
+		};
+	}
 })();
