@@ -358,8 +358,8 @@ Idex.view.list.getForm= function(){
 						'</div>'
 					);
 				}
-
-				if(item.edit_time){
+				
+				if(item.edit_time && item.is_desc!=0){
 					html.push(
 						'<div class="idex-item-detail">',
 							'最后编辑时间：',item.edit_time);
@@ -383,6 +383,7 @@ Idex.view.list.getForm= function(){
 						'</div>'
 					);
 				}
+
 				html.push(
 					'</div>',
 				'</div>'
