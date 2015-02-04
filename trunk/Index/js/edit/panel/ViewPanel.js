@@ -53,6 +53,7 @@ $.push({
 		this.app.LayoutPanel.$bottombarbox.append(div);
 		this.$codeCountBox=$(div);
 		this.$countValue=this.$codeCountBox.children('.value');
+		this.updateCount(this._$$originalHTML.length);
 	},
 	CONTEXT_MAX_LENGTH : 20 * 1000,
 	updateCount : function(length){
@@ -200,8 +201,8 @@ $.push({
 		this.$contextBox.html(HTML);
 		this.getDescBox();
 		$('.idex-r-active',this.descbox).removeClass('idex-r-active');
-		//this.app.trigger('contextReLoad');
 		this.app.LayoutPanel.home();
+		this.app.trigger('contextReLoad');
 	},
 	getOriginalHTML : function(){
 		this.logger(this);
