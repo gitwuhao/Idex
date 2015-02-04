@@ -1,35 +1,20 @@
 (function(CF,$){
-var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
+var _name_ = 'ImageQueue',
+	ImageQueue;
 
-$.push({
-	_name_ : 'ImageQueue',
-	initModule : function(){
-		this.logger(this);
-		
-		this.app.bindReadyAfter(this);
+ImageQueue=function(config){
+	CF.merger(this,config);
 
-		this.app.addEventListener('contextReLoad',function(){
-			this.ImageQueue.trigger('contextReLoad');
-		});
+	this.$context=$(this.context);
+	this.array = [];
+	this.length=0;
+	this.context=this.$context[0];
+	this.bindcontextScroll();
+};
 
-		this.app.addEventListener('loadImage',function(context){
-			var IQ=this.ImageQueue;
-			if(context){
-				IQ.pushList(context);
-			}
-			IQ.load();
-		});
-	},
-	onAppReadyAfter : function(){
-		this.init(this.app.$viewPanel);
-		this.addEventListener('contextReLoad runImageQueue',function(){
-			this.clear();
-			this.pushList(this.context);
-			this.run();
-		});
-		this.triggerAndRemoveEvent('runImageQueue');
-	},
-	ATTR_SRC : ATTR_KEY_MAP.SRC,
+CF.merger(ImageQueue.prototype,{
+	_name_ : _name_,
+	ATTR_SRC : 'iq-src',
 	context : null,
 	css : {
 		item : 'idex-r-iq-item',
@@ -41,14 +26,6 @@ $.push({
 	retry : 3,
 	isAutoListener : true,
 	errorCount : 0,
-	init : function(context){
-		this.$context=$(context);
-		this.array = [];
-		this.length=0;
-		this.context=this.$context[0];
-
-		this.bindcontextScroll();
-	},
 	getSrc : function(img){
 		return $.attr(img,this.ATTR_SRC);//||$.attr(img,'src');
 	},
@@ -231,6 +208,23 @@ $.push({
 		CF.info('ImageQueue.clear');
 		this.array = [];
 		this.length=0;
+	},
+	destroy:function(){
+		CF.info('ImageQueue.destroy');
+		this.on('destroy');
+		this.stop();
+		if(this.$insertContent){
+			this.$insertContent.off('DOMNodeInserted',this._insertDOMHandle_);
+		}
+		CF.removeOwnProperty.call(this);
 	}
 });
+
+CF.extendEventListener(ImageQueue.prototype);
+
+//CF.setOwner(ImageQueue);
+
+window.ImageQueue=ImageQueue;
+
+
 })(CF,jQuery);
