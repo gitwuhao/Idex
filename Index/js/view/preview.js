@@ -242,25 +242,14 @@ var win=window,
 
 		$box.append('<div class="idex-preview-count">共：'+getLength(AllHTML.length)+'字</div>');
 
-/*
-		var imgQueue=new ImageQueue({
-			_name_ : 'ImageQueue',
-			content : $box[0],
-			spacing : 100,
-			attrName : '_s_',
-			retry : 5,
-			onComplete : function(img){
-				img.removeAttribute(this.attrName);
-				$.removeClass(img,'image-queue-item');
-				if(!img.className){
-					img.removeAttribute('class');
-				}
-			}
+  
+		var imageQueue=new window.ImageQueue({
+			ATTR_SRC : ATTR_KEY_MAP.SRC,
+			context : $.getBody()[0]
 		});
+		imageQueue.pushList(imageQueue.context);
+		imageQueue.run();
 
-		imgQueue.pushList($('img[_s_]',$descBox));
-		imgQueue.run();
-*/
 		$('.idex-preview-button-box').show();
 		$('.idex-preview-loading').remove();
 
@@ -285,6 +274,7 @@ var win=window,
 	$.loadJSQueue(
 		'/js/edit/style.js',
 		'/js/view/buildStyle.js',
+		'/_/js/ImageQueue.js',
 		'/_/js/ZeroClipboard.js',
 	function(){
 		$(document).ready(function(){
