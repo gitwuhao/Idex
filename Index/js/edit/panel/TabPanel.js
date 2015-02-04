@@ -1,7 +1,8 @@
 (function(CF,$){
 var KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
-	CACHE_KEY_MAP=KEY_MAP.CACHE;
+	CACHE_KEY_MAP=KEY_MAP.CACHE,
+	ACTION_KEY_MAP=KEY_MAP.ACTION;
 $.push({
 	_name_ : 'TabPanel',
 	_items_:[
@@ -402,7 +403,13 @@ $.push({
 			html;
 		
 		html=this.app.ViewPanel.getAllHTML();
-		localStorage.setItem(CACHE_KEY_MAP.PREVIEW_HTML,html);
+		$.LS.setItem(CACHE_KEY_MAP.PREVIEW_HTML,html);
+		if(this.app.ViewPanel.data.type==ACTION_KEY_MAP.DESC){
+			$.LS.setItem(CACHE_KEY_MAP.PREVIEW_TYPE,'true');
+		}else{
+			$.LS.removeItem(CACHE_KEY_MAP.PREVIEW_TYPE);
+		}
+		
 
 		link = document.createElement('a');
 		link.href = this.PREVIEW_URL;

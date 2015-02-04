@@ -1,19 +1,23 @@
 function loadFile(){
-var KEY_MAP=window.APP_KEY_MAP,
+var win=window,
+	href=win.location.href,
+	KEY_MAP=win.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
+	ACTION_KEY_MAP=KEY_MAP.ACTION,
 	CACHE_KEY_MAP=KEY_MAP.CACHE,
 	MDID='idex-dm-id',
 	$descBox,
 	AllHTML='',
 	$view,
-	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML;
+	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML,
+	_PREVIEW_TYPE_=CACHE_KEY_MAP.PREVIEW_TYPE;
 
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
 		$view=$('.idex-preview-view');
 		if($descBox.length==1){
-			//localStorage.removeItem(_CACHE_KEY_);
+			//$.LS.removeItem(_CACHE_KEY_);
 			build();
 			return;
 		}
@@ -21,7 +25,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 	};
 
 	function loadHTML(){
-		var html=localStorage.getItem(_CACHE_KEY_);
+		var html=$.LS.getItem(_CACHE_KEY_);
 		if(html=='false'){
 			return;
 		}else if(!html){
@@ -31,7 +35,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 		$view.html(html);
 		$descBox=$(".idex-desc-box");
 		build();
-		//localStorage.removeItem(_CACHE_KEY_);
+		//$.LS.removeItem(_CACHE_KEY_);
 	};
 
 	function build(){
@@ -177,34 +181,40 @@ var KEY_MAP=window.APP_KEY_MAP,
 
 		var html=['<div class="idex-preview-button-box">',
 					'<div class="idex-preview-button">复制</div>',
-					'<div class="idex-preview-button">退出</div>',
+					'<div class="idex-preview-button">发布</div>',
 				  '</div>'].join('');
 
-		var isFrame=window.top!=window,
+		var isDesc,
 			div=$.createElement(html),
 			$box=$('.idex-preview-box'),
 			$copy,
 			$qtipbox,
-			$exit,
-			$exit;
+			$publish;
+
+		if(/preview\.html/.test(href)){
+			isDesc=$.LS.getItem(_PREVIEW_TYPE_);
+		}else{
+			isDesc=new RegExp('/view/'+ACTION_KEY_MAP.DESC+'/\\d+').test(href);
+		}
+
 
 		$box.append(div);
 
 		$copy=$(div.firstElementChild);
-		$exit=$copy.next();
+		$publish=$copy.next();
 
 		div=$.createElement('<div class="idex-preview-qtipbox">复制成功</div>');
 		$.getBody().append(div);
 
 		$qtipbox=$(div);
 
-		if(isFrame){
-			$exit.click(function(event){
-				window.top.$.getDoc().trigger('exitBrowse');
+		if(isDesc){
+			$publish.click(function(event){
+				
 			});
 		}else{
-			$exit.remove();
-			$exit=null;
+			$publish.remove();
+			$publish=null;
 		}
 
 		ZeroClipboard.bind({
