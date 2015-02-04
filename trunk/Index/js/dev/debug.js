@@ -15,7 +15,8 @@ var path='/js/dev/data/',
 		'method=getCode&_t=4' : 'module.getCode.4.txt',
 		'method=getCode&_t=8&id=101010806' : 'module.getCode.8.101010806.txt',
 		'method=getCode&_t=8&id=101010827' : 'module.getCode.8.101010827.txt',
-		'method=insert&_t=8' : 'module.insert.js'
+		'method=insert&_t=8' : 'module.insert.js',
+		'method=insert&_t=2' : 'module.insert.2.js'
 	},
 	'/config.s' : {
 		'method=get&type=1' : 'config.get.1.js'

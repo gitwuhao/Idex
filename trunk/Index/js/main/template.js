@@ -237,7 +237,7 @@ CF.merger(template,{
 				this.$config.callback(json);
 			},
 			error : function(){
-				this.$config.callback(-1);
+				this.$config.callback();
 			},
 			complete : function(){
 			}

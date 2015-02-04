@@ -123,8 +123,44 @@ Idex.view.list.getForm= function(){
 			Idex.view.template.select({
 				id : data['item-id'],
 				element : element,
-				callback : function(id){
-					
+				callback : function(state){
+					var errorMsg,
+						$create,
+						$content=$(element).children('.idex-item-content');
+					$create=$content.children('.create');
+					if(state==1){
+						var num_iid=this.id,
+							html=['<div class="idex-item-buttons">',
+									'<a class="x-ui-button publish" href="/view/',ACTION_TYPE,'/',num_iid,'" target="',LINK_TARGET.VIEW,'">',
+										'<div class="x-ui-label">',
+											'发布',
+										'</div>',
+									'</a>',
+									'<a class="x-ui-button edit" href="/edit/',ACTION_TYPE,'/',num_iid,'" target="',LINK_TARGET.EDIT,'">',
+										'<div class="x-ui-label">',
+											'编辑',
+										'</div>',
+									'</a>',
+								'</div>'];
+
+						$create.remove();
+						$content.append(html.join(''));
+					}else if(state==-1){
+						errorMsg='创建的Idex详情描述已超出上限，赶紧去升级服务吧!';
+					}else{
+						errorMsg='创建失败!';
+					}
+
+					if(errorMsg){
+						ui.quicktip.show({
+							align : 'tc',
+							offset : 'lt',
+							cls : 'c1',
+							html : errorMsg,
+							time : 5000,
+							target :  $create[0]
+						});
+					}
 				}
 			});
 		},
