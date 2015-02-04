@@ -1,6 +1,7 @@
 (function(CF,$,Idex){ 
 var template = {},
-	ACTION_TYPE=Idex.TYPE_MAP.TEMPLATE,
+	ACTION_TYPE_TEMPLATE=Idex.TYPE_MAP.TEMPLATE,
+	ACTION_TYPE_DESC=Idex.TYPE_MAP.DESC,
 	CACHE_KEY = 'template_list';
 
 Idex.view.template=template;
@@ -37,7 +38,7 @@ CF.merger(template,{
 					COUNT : Idex.getVersionLimit('tcount'),
 					isView : true,
 					CACHE_KEY : CACHE_KEY,
-					ACTION_TYPE : ACTION_TYPE
+					ACTION_TYPE_TEMPLATE : ACTION_TYPE_TEMPLATE
 				});
 				
 				CF.merger(this,module);
@@ -92,8 +93,6 @@ CF.merger(template,{
 		tab.onRender();
 
 		delete tab.onRender;
-
-		delete this.init;
 	},
 	initList : function(){
 		var data=$.cache.get(CACHE_KEY);
@@ -109,7 +108,7 @@ CF.merger(template,{
 	query : function(){
 		$.jsonp({
 			url:'/module.s',
-			data : 'method=query&_t=' + ACTION_TYPE,
+			data : 'method=query&_t=' + ACTION_TYPE_TEMPLATE,
 			$owner : this,
 			success : function(json){
 				if(json && json.length>0){
@@ -184,7 +183,7 @@ CF.merger(template,{
 		win.activeItem=item;
 		win.buttons.submit.enabled();
 	},
-	select : function(callback){
+	select : function(config){
 		if(this.win){
 			return;
 		}
@@ -193,7 +192,7 @@ CF.merger(template,{
 			cls : 'idex-win-template-select',
 			html : ['<div class="idex-module-box">',
 					'</div>'].join(''),
-			callback : callback,
+			userConfig : config,
 			buttons:[{
 				label:'创建',
 				cls:'submit',
@@ -231,14 +230,14 @@ CF.merger(template,{
 			item=win.activeItem;
 		$.jsonp({
 			url:'/module.s',
-			data : 'method=insert&numIID='+item.id+'&tid=&_t='+this.ACTION_TYPE,
+			data : 'method=insert&numIID='+win.userConfig.id+'&tid='+item.id+'&_t='+ACTION_TYPE_DESC,
 			$owner : this,
+			$config : win.userConfig,
 			success : function(json){
-				if(json && json.id>0){
-
-				}
+				this.$config.callback(json);
 			},
 			error : function(){
+				this.$config.callback(-1);
 			},
 			complete : function(){
 			}

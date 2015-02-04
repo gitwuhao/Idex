@@ -113,15 +113,19 @@ Idex.view.list.getForm= function(){
 			},function(event){
 				var target=event.target;
 				if($.hasClass(target,'create') || $.hasClass(target.parentElement,'create')){
-					event.data.me.on('createClick');
+					var itemElement=$(target).parentsUntil('.idex-list-item').parent();
+					event.data.me.on('createClick',itemElement[0]);
 				}
 			});
 		},
-		onCreateClick : function(){
-			
-			Idex.view.template.select(function(){
-			
-			
+		onCreateClick : function(element){
+			var data=$.data(element);
+			Idex.view.template.select({
+				id : data['item-id'],
+				element : element,
+				callback : function(id){
+					
+				}
 			});
 		},
 		resetSellerCat : function(){
@@ -272,13 +276,18 @@ Idex.view.list.getForm= function(){
 					this.tabPanel.hideSortBar();
 				}
 			}
+			this.$viewbox.children('.idex-list-item[idex-item-id]').each(function(index,elem){
+				var $elem=$(elem);
+				$.data(elem,'item-id',$elem.attr('idex-item-id'));
+				$elem.removeAttr('idex-item-id');
+			});
 			//console.info(json);
 		},
 		buildHTMLByJSON : function(json){
 			var html=[];
 			$.it(json,function(i,item){
 				html.push(
-				'<div class="idex-list-item">',
+				'<div class="idex-list-item" idex-item-id="',item.num_iid,'">',
 					'<div class="idex-item-img"><img src="',item.pic_url,'_150x150.jpg"/></div>',
 					'<div class="idex-item-content">',
 						'<div class="idex-item-title">',
