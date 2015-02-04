@@ -735,7 +735,9 @@ $.push({
 				}
 				var matchArray=[],
 					total=json.total,
-					resultArray={},
+					resultArray={
+						length : 0
+					},
 					$pl=this.$progressL,
 					picPx=this.$context.picTitlePx,
 					M_REG;
@@ -757,8 +759,15 @@ $.push({
 					var rs=$.trim(item.title).match(M_REG);
 					if(rs && rs[1]){
 						resultArray[rs[1]]=item;
+						resultArray.length++;
 					}
 				});
+
+				if(resultArray.length==0){
+					this.$picMatchList.html('<div class="error-msg">在当前分类下找不到相匹配的图片...</div>');
+					this.$statusL.empty('');
+					return;
+				}
 
 				//i:index,target:img
 				$.it(this.descImageList,function(index,img){
