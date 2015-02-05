@@ -32,18 +32,21 @@
 	line-height: 25px;
 	color: #49A0E1;
 }
+.text-title.s1{
+	height: 32px;
+}
 .text-title.s1 .title-bg{
     border-bottom: 2px solid #49A0E1;
-    height: 33px;
+    height: 25px;
 }
 .text-title.s1 .title-label{
-	margin-top: -28px;
+	margin-top: -27px;
 	background-color: #49A0E1;
 	font-size: 14px;
 	color: #FFF;
 	padding: 0px 15px;
-	height: 28px;
-	line-height: 28px;
+	height: 27px;
+	line-height: 27px;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 }
