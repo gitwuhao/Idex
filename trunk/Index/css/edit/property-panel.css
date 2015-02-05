@@ -45,6 +45,7 @@
 .idex-ui-property-panel .breakline.idex-ui-item-field  .idex-ui-label{
 	line-height: 20px;
 	vertical-align: top;
+	padding-top: 2px;
 }
 .idex-ui-property-panel .idex-ui-item-field  .idex-ui-label-padding{
 	width: 5px;
