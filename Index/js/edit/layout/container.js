@@ -46,6 +46,7 @@
 					label:'风格',
 					xtype:'radio',
 					name: 'style',
+					cls : 'breakline',
 					items:[{
 						label : '1',
 						value : '1'
@@ -61,6 +62,24 @@
 					},{
 						label : '5',
 						value : '5'
+					},{
+						label : '图片',
+						value : '6'
+					}],
+					getDesc : '修改标题风格'
+				},{
+					label:'风格',
+					xtype:'radio',
+					name: 'style',
+					items:[{
+						label : '1',
+						value : '1'
+					},{
+						label : '2',
+						value : '2'
+					},{
+						label : '3',
+						value : '3'
 					}],
 					getDesc : '修改标题风格'
 				},
