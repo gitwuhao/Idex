@@ -16,7 +16,6 @@
 /*+++++++++++++++++++++++++ title +++++++++++++++++++++++++*/
 .text-title{
 	height: 25px;
-	font-size: 18px;
 	font-family: "Microsoft Yahei";
 	margin: 0px 0px 5px 0px;
 }
@@ -58,6 +57,7 @@
     margin-top: -12px;
     margin-left: 10px;
     padding: 0px 15px;
+	font-size: 16px;
     color: #49A0E1;
     background-color: #FFF;
 }
@@ -74,6 +74,7 @@
     line-height: 20px;
     margin-top: -12px;
     padding: 0px 15px;
+	font-size: 16px;
     color: #49A0E1;
     background-color: #FFF;
     border-left: 3px solid #49A0E1;
@@ -91,6 +92,7 @@
 	line-height: 20px;
 	margin-top: -12px;
 	padding: 0px 15px;
+	font-size: 16px;
 	color: #49A0E1;
 	background-color: #FFF;
 	border-left: 3px solid #49A0E1;
@@ -98,6 +100,7 @@
 .text-title.s5{
 	margin: 0px 0px 5px 0px;
 	border-bottom: 2px solid #49A0E1;
+	font-size: 16px;
 	height: 25px;
 	line-height: 25px;
 	color: #49A0E1;
