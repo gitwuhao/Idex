@@ -25,13 +25,6 @@
 .text-title .title-label{
 	float: left;
 }
-.text-title.s{
-	margin: 0px 0px 5px 0px;
-	border-bottom: 2px solid #49A0E1;
-	height: 25px;
-	line-height: 25px;
-	color: #49A0E1;
-}
 .text-title.s1{
 	height: 32px;
 }
@@ -88,6 +81,13 @@
 	color: #49A0E1;
 	background-color: #FFF;
 	border-left: 3px solid #49A0E1;
+}
+.text-title.s5{
+	margin: 0px 0px 5px 0px;
+	border-bottom: 2px solid #49A0E1;
+	height: 25px;
+	line-height: 25px;
+	color: #49A0E1;
 }
 .image-title {
 	height: 40px;

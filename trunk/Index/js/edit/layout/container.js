@@ -42,6 +42,28 @@
 						}
 						return '设置标题不可见';
 					}
+				},{
+					label:'风格',
+					xtype:'radio',
+					name: 'style',
+					cls : 'breakline',
+					items:[{
+						label : '1',
+						value : '1'
+					},{
+						label : '2',
+						value : '2'
+					},{
+						label : '3',
+						value : '3'
+					},{
+						label : '4',
+						value : '4'
+					},{
+						label : '5',
+						value : '5'
+					}],
+					getDesc : '修改标题风格'
 				},
 				CF.merger({
 					placeholder :'填写图片地址',
@@ -102,6 +124,19 @@
 			var $item=$(this.activeElement).children('.text-title:first,.image-title:first');
 			if(!$item.hasClass('hide')){
 				return ['1'];
+			}
+		},
+		setStyle : function(value){
+		
+		},
+		getStyle : function(){
+			this.logger(this);
+			var value,
+				$item=$(this.activeElement).children('.text-title:first');
+			if($item.hasClass('s1')){
+				value= '1';
+			}else if($item.hasClass('s1')){
+				return '1';
 			}
 		},
 		setSrc:function(value){
