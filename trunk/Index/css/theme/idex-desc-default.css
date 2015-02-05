@@ -15,12 +15,75 @@
 .container{}
 /*+++++++++++++++++++++++++ title +++++++++++++++++++++++++*/
 .text-title{
-	padding: 10px 0px 0px 10px;
+	overflow: hidden;
+	height: 40px;
+	font-size: 18px;
+	font-family: "Microsoft Yahei";
+}
+.text-title .title-bg{
+}
+.text-title .title-label{
+	float: left;
+}
+.text-title.s{
 	margin: 0px 0px 5px 0px;
-	color: #49A0E1;
-	font-size: 16px;
-	font-weight: bold;
 	border-bottom: 2px solid #49A0E1;
+	height: 25px;
+	line-height: 25px;
+	color: #49A0E1;
+}
+.text-title.s1 .title-bg{
+    border-bottom: 2px solid #49A0E1;
+    height: 33px;
+}
+.text-title.s1 .title-label{
+	margin-top: -28px;
+	background-color: #49A0E1;
+	font-size: 14px;
+	color: #FFF;
+	padding: 0px 15px;
+	height: 28px;
+	line-height: 28px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+.text-title.s2 .title-bg{
+    border-bottom: 2px solid #49A0E1;  
+    height: 20px;
+}
+.text-title.s2 .title-label{
+    height: 25px;
+	line-height: 25px;
+    margin-top: -15px;
+    margin-left: 10px;
+    padding: 0px 15px;
+    color: #49A0E1;
+    background-color: #FFF;
+}
+.text-title.s3 .title-bg{
+    border-bottom: 2px solid #49A0E1;  
+    height: 22px;
+}
+.text-title.s3 .title-label{
+    height: 25px;
+    line-height: 25px;
+    margin-top: -17px;
+    padding: 0px 15px;
+    color: #49A0E1;  
+    background-color: #FFF;
+    border-left: 3px solid #49A0E1;
+}
+.text-title.s4 .title-bg{
+    border-bottom: 1px solid #DDD;  height: 20px;
+}
+.text-title.s4 .title-label{
+    height: 25px;
+	line-height: 25px;
+	margin-top: -15px;
+	padding: 0px 15px;
+	color: #49A0E1;
+	background-color: #FFF;
+	border-left: 3px solid #49A0E1;
 }
 .image-title {
 	height: 40px;
