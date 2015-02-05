@@ -229,6 +229,7 @@
 			descStyle.width=$(element).width() +'px';
 			descStyle.removeProperty('box-sizing');
 		}
+		$.removeAttr(element,ATTR_KEY_MAP.TITLE);
 	};
 
 	$.CSSApply.setStyle=function(element){
