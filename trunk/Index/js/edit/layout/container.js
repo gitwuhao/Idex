@@ -46,7 +46,6 @@
 					label:'风格',
 					xtype:'radio',
 					name: 'style',
-					cls : 'breakline',
 					items:[{
 						label : '1',
 						value : '1'
