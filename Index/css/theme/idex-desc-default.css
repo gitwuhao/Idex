@@ -15,7 +15,7 @@
 .container{}
 /*+++++++++++++++++++++++++ title +++++++++++++++++++++++++*/
 .text-title{
-	overflow: hidden;
+	height: 25px;
 	font-size: 18px;
 	font-family: "Microsoft Yahei";
 	margin: 0px 0px 5px 0px;
@@ -30,6 +30,7 @@
 }
 .text-title.s1 .title-bg{
     border-bottom: 2px solid #49A0E1;
+	line-height: 25px;
     height: 25px;
 }
 .text-title.s1 .title-label{
@@ -47,7 +48,8 @@
 	height: 25px;
 }
 .text-title.s2 .title-bg{
-    border-bottom: 2px solid #49A0E1;  
+    border-bottom: 2px solid #49A0E1;
+	line-height: 13px;
     height: 13px;
 }
 .text-title.s2 .title-label{
@@ -63,7 +65,8 @@
 	height: 25px;
 }
 .text-title.s3 .title-bg{
-    border-bottom: 2px solid #49A0E1;  
+    border-bottom: 2px solid #49A0E1;
+	line-height: 13px;
     height: 13px;
 }
 .text-title.s3 .title-label{
@@ -71,7 +74,7 @@
     line-height: 20px;
     margin-top: -12px;
     padding: 0px 15px;
-    color: #49A0E1;  
+    color: #49A0E1;
     background-color: #FFF;
     border-left: 3px solid #49A0E1;
 }
@@ -79,7 +82,8 @@
 	height: 25px;
 }
 .text-title.s4 .title-bg{
-    border-bottom: 1px solid #DDD;	
+    border-bottom: 1px solid #DDD;
+	line-height: 15px;
     height: 15px;
 }
 .text-title.s4 .title-label{
@@ -106,7 +110,7 @@
 .image-title img{
 	width: 100%;
 	border: 0;
-	vertical-align: top; 
+	vertical-align: top;
 }
 /*+++++++++++++++++++++++++ layout +++++++++++++++++++++++++*/
 .layout{
@@ -143,7 +147,7 @@
 	float:left;
 	display: inline;
 	overflow: hidden;
-	clear: left; 
+	clear: left;
 }
 /*
 .float-box .float-link{
@@ -158,7 +162,7 @@
 	width: 100%;
 	height:100%;
 	border: 0;
-	vertical-align: top; 
+	vertical-align: top;
 }
 .float-box .float-image img{
 	width: 100%;

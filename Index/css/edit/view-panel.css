@@ -46,6 +46,9 @@
 	width: 100%;
 	height: 100%;
 }
+.idex-desc-box .image-title img{
+	height: initial;
+}
 .idex-desc-box .hide{
 	display: none;
 }
