@@ -77,7 +77,10 @@ systemTemplate=[{
 	type : 'container',
 	title : '未命名模块',
 	html : ['<div class="container" idex-title="未命名模块">',
-				'<div class="text-title">未命名模块</div>',
+				'<div class="text-title s1">',
+					'<div class="title-bg"></div>',
+					'<div class="title-label">未命名模块</div>',
+				'</div>',
 				'<div class="layout-box"></div>',
 			'</div> '].join('')
 },{
