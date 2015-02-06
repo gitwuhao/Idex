@@ -29,6 +29,8 @@ $.push({
 			$.setTimeout(function(){
 				this.initCloudSnapList();
 			},500,this);
+
+			console.error('快照列表有bug，cloud_snap_list需要加上numiid');
 		},
 		addCloudSnapItem:function(item){
 			this.logger(this);
