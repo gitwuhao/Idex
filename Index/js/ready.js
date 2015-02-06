@@ -1,0 +1,1 @@
+$.getDoc().trigger('Idex.ready');
