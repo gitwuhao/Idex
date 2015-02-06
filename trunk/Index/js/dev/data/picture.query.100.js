@@ -15,7 +15,4 @@ result.push({title:'idex_'+type+'_'+id+'_'+(++i),pixel:"800x1200",path:"http://i
 for(;i<count;i++){
 	result.push({title:'idex_'+type+'_'+id+'_'+(i+1),pixel:"800x1200",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2MtFlbFXXXXcGXXXXXXXXXXXX-1646439371.jpg"});
 }
-
 _test_jsonp_callback({total:count,result:result});
-
-//_test_jsonp_callback({errorCode:'s',errorMsg:'sa'});
