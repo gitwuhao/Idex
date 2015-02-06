@@ -102,10 +102,23 @@
 			if(oldValue!=value){
 				this.form.setItemValue('title',value);
 			}
-			var $elem=$(this.activeElement);
+			var $elem=$(this.activeElement),
+				navItem,
+				$textTitle,
+				$titleLabel;
 			$elem.attr(this.attrKey.title,value);
-			$elem.children('.text-title').text(value);
-			var navItem=this.app.LayoutPanel.getNavItemByLayout(this.activeElement);
+
+			$textTitle=$elem.children('.text-title');
+			if($textTitle.length>0){
+				$titleLabel=$textTitle.children('.title-label');
+				if($titleLabel.length>0){
+					$titleLabel.text(value);
+				}else{
+					$textTitle.text(value);
+				}
+			}
+
+			navItem=this.app.LayoutPanel.getNavItemByLayout(this.activeElement);
 			this.app.LayoutPanel.setNavItemTitle(navItem,value);
 		},
 		getTitle:function(){
