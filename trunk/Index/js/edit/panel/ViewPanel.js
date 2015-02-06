@@ -2,7 +2,8 @@
 var CONFIG_DATA={},
 	KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
-	CACHE_KEY_MAP=KEY_MAP.CACHE;
+	CACHE_KEY_MAP=KEY_MAP.CACHE,
+	$$Idex;
 (function(){
 	var $context=$('.idex-view-context-box');
 
@@ -45,6 +46,8 @@ $.push({
 		this.app.addEventListener('contextReLoad contextInsert contextDelete',function(){
 			this.ViewPanel.getAllHTML();
 		});
+
+		$$Idex=this.app;
 	},
 	onAppReadyAfter : function(){
 		var div,
@@ -209,4 +212,8 @@ $.push({
 		return this._$$originalHTML;
 	}
 });
+
+window.getAppData=function(){
+	return CF.merger({},$$Idex.ViewPanel.data);
+};
 })(CF,jQuery);

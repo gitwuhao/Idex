@@ -1,7 +1,8 @@
 var count=200,
+	data=window.getAppData(),
 	i=0,
-	type='2',
-	id='19196897866',
+	type=data.type,
+	id=data.id,
 	result=[];
 result.push({title:'idex_'+type+'_'+id+'_'+(++i),pixel:"800x1200",path:"http://img01.taobaocdn.com/imgextra/i1/1646439371/TB2i1hDaXXXXXcvXXXXXXXXXXXX-1646439371.gif"});
 
