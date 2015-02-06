@@ -15,7 +15,8 @@
 .idex-view-panel-box{
 	font-size: 14px;
 	line-height: 1.5;
-	font-family: tahoma, arial, SimSun, sans-serif;;
+	font-family: tahoma, arial, SimSun, sans-serif;
+	padding: 5px;
 }
 .idex-event-listener{
 	display: none;

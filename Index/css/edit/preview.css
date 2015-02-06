@@ -50,6 +50,7 @@ body{
 	border: 1px solid #CFCFCF;
 	border-top: none;
 	border-bottom: none;
+	padding: 5px;
 }
 .idex-preview-button-box{
 	position: fixed;

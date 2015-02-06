@@ -77,7 +77,7 @@ $.push({
 						label:'宽度',
 						name : 'width',
 						placeholder :'填写画布宽度',
-						width:'165px',
+						//width:'165px',
 						unit:'px',
 						maxlength : 4,
 						value: 750,
@@ -86,7 +86,7 @@ $.push({
 						xtype:'text',
 						getDesc : '设置画布宽度'
 
-					},' ',{
+					}/*,' ',{
 						xtype:'checkitem',
 						name : 'padding',
 						width:'50px',
@@ -98,7 +98,7 @@ $.push({
 								return '取消画布边距';
 							}
 						}
-					},{
+					}*/,{
 						label:'字体',
 						name : 'fontsize',
 						placeholder :'填写字号',

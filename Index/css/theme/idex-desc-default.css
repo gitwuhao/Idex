@@ -9,9 +9,11 @@
 	word-break: break-all;
 	text-align: left;
 }
+/*
 .idex-desc-box.p-l-r{
 	box-sizing: border-box;
 }
+*/
 .container{}
 /*+++++++++++++++++++++++++ title +++++++++++++++++++++++++*/
 .text-title{
@@ -500,9 +502,11 @@ table.property-tbody{
 .f-r{
 	float: right;
 }
+/*
 .idex-desc-box.p-l-r{
 	padding: 5px 5px 0px 5px;
 }
+*/
 /*------------------------- 覆盖样式 -------------------------*/
 
 
