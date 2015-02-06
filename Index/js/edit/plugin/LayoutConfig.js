@@ -1,7 +1,9 @@
 (function(CF,$){
-var STYLE_KEY_MAP = {
+var /*
+	STYLE_KEY_MAP = {
 		CONTEXT_PADDING : 'p-l-r'
 	},
+	*/
 	ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 	data_title,
 	DEFAULT_TITLE='未命名模板';
@@ -236,7 +238,7 @@ $.push({
 			getStylecolor:function(){
 				this.logger(this);
 				return this.$descbox.attr(ATTR_KEY_MAP.STYLE_COLOR);
-			},
+			},/*
 			setPadding:function(value){
 				this.logger(this);
 				if(value==false){
@@ -249,7 +251,7 @@ $.push({
 			getPadding:function(){
 				this.logger(this);
 				return this.$descbox.hasClass(STYLE_KEY_MAP.CONTEXT_PADDING);
-			},
+			},*/
 			setTitle : function(value){
 				this.logger(this);
 				var oldValue=value;
