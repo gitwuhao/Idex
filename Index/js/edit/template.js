@@ -117,9 +117,9 @@ $.push({
 				if(json && json.length>0){
 					this._$owner.saveCustomTemplateData(json);
 					this._$owner.buildCustomTemplate();
-					if(this._config && this._config.success){
-						this._config.success();
-					}
+				}				
+				if(this._config && this._config.success){
+					this._config.success();
 				}
 			},
 			error : function(){
@@ -255,7 +255,7 @@ $.push({
 			list,
 			html=[];
 		if(!customTemplate){
-			return '';
+			return '<div style="padding-top: 25%;text-align: center;">没有找到你的自定义模块...</div>';
 		}
 		layoutMap=customTemplate.Map;
 		if(parentLayoutType){
@@ -362,7 +362,7 @@ $.push({
 			},{
 				cls:'chuang',
 				label:'好创意',
-				html :  ''
+				html :  '<div style="padding-top: 20%;text-align: center;">富有创意的模块还在收集或设计中<br/>敬请期待</div>'
 			}]
 		};
 
