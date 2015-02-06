@@ -20,7 +20,7 @@
 			this.form=this.app.CreatePropertyForm({
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
-				render : box,			
+				render : box,
 				items : [{
 					xtype:'text',
 					label:'标题',
@@ -67,14 +67,7 @@
 						label : '图片标题',
 						value : '6'
 					}],
-					getDesc : '修改标题风格',
-					onClick : function(item){
-						if(item.value=='6' && item.value!=this.value){
-							me.setImageTitle(true);
-						}else{
-							me.setImageTitle(false);
-						}
-					}
+					getDesc : '修改标题风格'
 				},
 				CF.merger({
 					placeholder :'填写图片地址',
@@ -86,7 +79,7 @@
 					}
 				},this.app.ui.FORMITEM.img),
 				'SIZE']
-			});	
+			});
 			//this.setImageTitle(false);
 			return this.form;
 		},
@@ -156,11 +149,9 @@
 			$item.html(html);
 			if(value=="6"){
 				$item.attr('class','image-title');
-				this.setImageTitle(true);
 			}else{
 				$item.attr('class','text-title s'+value);
-				this.setImageTitle(false);
-			}	
+			}
 		},
 		getStyle : function(){
 			this.logger(this);
@@ -179,19 +170,24 @@
 			}else{
 				value= '6';
 			}
+			if(value=="6"){
+				this.setImageTitle(true);
+			}else{
+				this.setImageTitle(false);
+			}
 			return value;
 		},
 		setImageTitle : function(isShow){
 			this.logger(this);
 			var src=this.form.getItem('src'),
 				imgsizing=this.form.getItem('imgsizing');
-			if(isShow){	
+			if(isShow){
 				src.$elem.show();
 				imgsizing.$elem.show();
 			}else{
 				src.$elem.hide();
 				imgsizing.$elem.hide();
-			}	
+			}
 		},
 		setSrc:function(value){
 			this.logger(this);
