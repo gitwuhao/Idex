@@ -29,6 +29,9 @@ var path='/js/dev/data/',
 	},
 	'/edit.s' : {
 		'method=save&id=123456789' : 'edit.save.1.js'
+	},
+	'/view.s' : {
+		'method=publish' : 'view.publish.js'
 	}
 };
 function match(param,data){
