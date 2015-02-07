@@ -269,6 +269,48 @@ var win=window,
 
 	function onPublish(){
 		 console.info("onPublish NUM_IID:"+NUM_IID);
+
+		 /*
+
+		$.jsonp({
+			url:'/edit.s',
+			data : $.param(data),
+			_$owner : this,
+			_customModule : this.app.CustomModule,
+			_data : data,
+			_target : config.target,
+			success : function(id){
+				var html;
+				if(id && id>0){
+					this._customModule.saveCustomCode(id,this._data.code);
+				}else if(id==-1){
+					html='保存失败，超出限制!';
+				}else{
+					html='保存失败...';
+				}
+				
+				if(html){
+					this.onError(html);
+				}
+			},
+			error : function(){
+				this.onError('保存失败...');
+			},
+			onError : function(html){
+				ui.quicktip.show({
+					px : 'idex-ui',
+					align : 'tc',
+					offset : 'lt',
+					html : '<em style="color:#FC7100;">'+html+'</em>',
+					time : 3000,
+					target :  this._target
+				});
+			},
+			complete : function(){
+			}
+		});
+
+		 */
 	};
 
 
