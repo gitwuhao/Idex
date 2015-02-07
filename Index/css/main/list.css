@@ -192,11 +192,11 @@
     overflow: hidden;
     line-height: 20px;
 }
-.idex-view-panel.list .idex-item-title a{
+.idex-view-panel.list .idex-item-content a{
 	text-decoration: none;
 	color:#888;
 }
-.idex-view-panel.list .idex-item-title a:hover{
+.idex-view-panel.list .idex-item-content a:hover{
 	text-decoration: underline;
 	color:#00B2FF;
 }
