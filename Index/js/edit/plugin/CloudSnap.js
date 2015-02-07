@@ -37,7 +37,7 @@ $.push({
 
 			item.id=getCloudSnapID();
 			
-			item.title=this.getShotTimeTitle(new Date(Date.parse(item.ctime)-Date.ONE_DAY_OF_MILLISECONDS));
+			item.title=this.getShotTimeTitle(new Date(Date.parseStr(item.ctime)-Date.ONE_DAY_OF_MILLISECONDS));
 
 			var div,
 				$elem,
