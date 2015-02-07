@@ -222,7 +222,7 @@ var win=window,
 
 		if(isDesc){
 			$publish.click(function(event){
-				onPublish();
+				onPublish(this);
 			});
 		}else{
 			$publish.remove();
@@ -267,24 +267,24 @@ var win=window,
 
 	};
 
-	function onPublish(){
-		 console.info("onPublish NUM_IID:"+NUM_IID);
-
-		 /*
+	function onPublish(element){
+		//console.info("onPublish NUM_IID:"+NUM_IID);
 
 		$.jsonp({
-			url:'/edit.s',
-			data : $.param(data),
-			_$owner : this,
-			_customModule : this.app.CustomModule,
-			_data : data,
-			_target : config.target,
+			url:'/view.s',
+			data :  $.param({
+				method: 'publish',
+				id : NUM_IID,
+				code : AllHTML
+			}),
 			success : function(id){
 				var html;
 				if(id && id>0){
-					this._customModule.saveCustomCode(id,this._data.code);
+					console.info('发布成功..');
 				}else if(id==-1){
-					html='保存失败，超出限制!';
+					html='发布失败，超出限制!';
+				}else if(id==-9){
+					html='发布失败，当前子账号没有发布商品详情的权限!';
 				}else{
 					html='保存失败...';
 				}
@@ -294,23 +294,9 @@ var win=window,
 				}
 			},
 			error : function(){
-				this.onError('保存失败...');
-			},
-			onError : function(html){
-				ui.quicktip.show({
-					px : 'idex-ui',
-					align : 'tc',
-					offset : 'lt',
-					html : '<em style="color:#FC7100;">'+html+'</em>',
-					time : 3000,
-					target :  this._target
-				});
-			},
-			complete : function(){
+				console.info('发布失败..');
 			}
 		});
-
-		 */
 	};
 
 
@@ -330,8 +316,9 @@ var win=window,
 	};
 
 	$.loadJSQueue(
-		'/js/edit/style.js',
-		'/js/view/buildStyle.js',
+		'js/dev/debug.js',
+		'js/edit/style.js',
+		'js/view/buildStyle.js',
 		'/_/js/ImageQueue.js',
 		'/_/js/ZeroClipboard.js',
 	function(){
