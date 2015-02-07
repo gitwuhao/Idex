@@ -307,7 +307,7 @@ Idex.Module.prototype={
 				}
 			}
 			if(item.modified){
-				date=new Date(Date.parse(item.modified)).stringify();
+				date=new Date(Date.parseStr(item.modified)).stringify();
 			}else{
 				date='';
 			}
@@ -323,7 +323,7 @@ Idex.Module.prototype={
 		var date,
 			html;
 		if(item.modified){
-			date=new Date(Date.parse(item.modified)).stringify();
+			date=new Date(Date.parseStr(item.modified)).stringify();
 		}else{
 			date='';
 		}

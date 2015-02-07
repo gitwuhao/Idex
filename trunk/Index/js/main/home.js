@@ -26,7 +26,7 @@ Idex.addEventListener('initHomeCount',function(){
 		};
 	}
 	if(homeJSON.d){
-		var date=new Date(homeJSON.d);
+		var date=new Date(Date.parseStr(homeJSON.d));
 		$('#dtime').text(date.format('yyyy-MM-dd'));
 	}
 	

@@ -309,7 +309,7 @@
 			this.logger(this);
 			this.$layoutTabView.empty();
 			this.createMainNavList();
-			this.getDescBoxElement().firstElementChild.click();
+			$(this.getDescBoxElement().firstElementChild).click();
 			this.disabled('home');
 		},
 		onBack:function(){
