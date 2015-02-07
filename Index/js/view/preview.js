@@ -8,14 +8,16 @@ var win=window,
 	MDID='idex-dm-id',
 	$descBox,
 	AllHTML='',
-	$view,
+	$view=$('.idex-preview-view'),
+	NUM_IID,
 	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML,
+	_NUM_IID_KEY_=CACHE_KEY_MAP.NUM_IID;
 	_PREVIEW_TYPE_=CACHE_KEY_MAP.PREVIEW_TYPE;
 
+	NUM_IID=$view.attr(ATTR_KEY_MAP.ID);
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
-		$view=$('.idex-preview-view');
 		if($descBox.length==1){
 			//$.LS.removeItem(_CACHE_KEY_);
 			build();
@@ -26,6 +28,7 @@ var win=window,
 
 	function loadHTML(){
 		var html=$.LS.getItem(_CACHE_KEY_);
+		NUM_IID=$.LS.getItem(_NUM_IID_KEY_);
 		if(html=='false'){
 			return;
 		}else if(!html){
@@ -218,7 +221,7 @@ var win=window,
 
 		if(isDesc){
 			$publish.click(function(event){
-				
+				onPublish();
 			});
 		}else{
 			$publish.remove();
@@ -261,6 +264,11 @@ var win=window,
 		$('.idex-preview-button-box').show();
 		$('.idex-preview-loading').remove();
 
+	};
+
+	function onPublish(){
+		var html=AllHTML;
+	
 	};
 
 

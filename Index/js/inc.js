@@ -10,8 +10,7 @@
 		NAME : 'idex-name',
 		TITLE : 'idex-title',
 		CLASS : 'idex-class',
-		STYLE_COLOR : 'idex-style-color',
-		PREVIEW : 'IDEX_PREVIEW'
+		STYLE_COLOR : 'idex-style-color'
 	};
  
 
@@ -21,6 +20,7 @@
 		SYSTEM_TEMPLATE : 'IDEX_SYSTEM_TEMPLATE',
 		PREVIEW_HTML : 'IDEX_PREVIEW_HTML',
 		PREVIEW_TYPE : 'IDEX_PREVIEW_TYPE',
+		NUM_IID : 'IDEX_NUM_IID',
 		TO_PS_HTML : 'IDEX_TO_PS_HTML',
 		TO_PS_CALLBACK : 'IDEX_TO_PS_CALLBACK'
 	};

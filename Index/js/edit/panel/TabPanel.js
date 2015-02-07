@@ -2,7 +2,8 @@
 var KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
 	CACHE_KEY_MAP=KEY_MAP.CACHE,
-	ACTION_KEY_MAP=KEY_MAP.ACTION;
+	ACTION_KEY_MAP=KEY_MAP.ACTION,
+	WIN_NAME=KEY_MAP.WIN_NAME;
 $.push({
 	_name_ : 'TabPanel',
 	_items_:[
@@ -409,11 +410,10 @@ $.push({
 		}else{
 			$.LS.removeItem(CACHE_KEY_MAP.PREVIEW_TYPE);
 		}
-		
 
 		link = document.createElement('a');
 		link.href = this.PREVIEW_URL;
-		link.target =ATTR_KEY_MAP.PREVIEW;
+		link.target =WIN_NAME.VIEW;
 		link.click();
 
 		this.app.isLocked=false;
