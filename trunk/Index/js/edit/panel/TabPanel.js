@@ -401,14 +401,18 @@ $.push({
 		this.app.isLocked=true;
 
 		var link,
+			data=this.app.ViewPanel.data,
 			html;
 		
 		html=this.app.ViewPanel.getAllHTML();
 		$.LS.setItem(CACHE_KEY_MAP.PREVIEW_HTML,html);
-		if(this.app.ViewPanel.data.type==ACTION_KEY_MAP.DESC){
+	
+		if(data.type==ACTION_KEY_MAP.DESC){
 			$.LS.setItem(CACHE_KEY_MAP.PREVIEW_TYPE,'true');
+			$.LS.setItem(CACHE_KEY_MAP.NUM_IID,data.id);
 		}else{
 			$.LS.removeItem(CACHE_KEY_MAP.PREVIEW_TYPE);
+			$.LS.removeItem(CACHE_KEY_MAP.NUM_IID);
 		}
 
 		link = document.createElement('a');

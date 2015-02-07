@@ -54,6 +54,8 @@
 			scriptLink.href=data.jsxData;
 			scriptLink.download = 'idex-'+data.type+'-'+data.id+'.jsx';
 
+			this.win.$iframe.remove();
+
 		},
 		TO_PS_URL : '/tops.html',
 		initExportCanvas : function(){
@@ -91,8 +93,6 @@
 		close:function(){
 			this.logger(this);
 			
-			this.win.$iframe.remove();
-
 			delete window[this.dataHandleId];
 
 			this.win.callback.execute();
