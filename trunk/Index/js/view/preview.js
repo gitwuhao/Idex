@@ -15,6 +15,7 @@ var win=window,
 	_PREVIEW_TYPE_=CACHE_KEY_MAP.PREVIEW_TYPE;
 
 	NUM_IID=$view.attr(ATTR_KEY_MAP.ID);
+	$view.removeAttr(ATTR_KEY_MAP.ID);
 
 	function ready(){
 		$descBox=$(".idex-desc-box");
@@ -267,8 +268,7 @@ var win=window,
 	};
 
 	function onPublish(){
-		var html=AllHTML;
-	
+		 console.info("onPublish NUM_IID:"+NUM_IID);
 	};
 
 
