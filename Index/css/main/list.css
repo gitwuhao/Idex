@@ -103,7 +103,12 @@
 .idex-view-panel.list .x-ui-form-box .category-label .del:hover{
 	background-position: -400px -123px;
 }
-
+.idex-view-panel.list .error-msg{
+	text-align: center;
+	padding: 25%;
+	font-size: 14px;
+	color: #888;
+}
 /*----------------------------form---------------------------------------------*/
 .idex-view-panel.list .idex-list-box{
 	position: absolute;
