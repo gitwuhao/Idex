@@ -302,4 +302,5 @@
 		'/js/main/module.js'
 	);
 
+
 })(CF,jQuery);
