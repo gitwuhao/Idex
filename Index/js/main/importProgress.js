@@ -115,13 +115,21 @@
 			}
 
 			if(progress>=100){
-				console.info('完成');
+				onImportComplete();
 			}
 		};
 
 		window.importComplete=function(){
 			console.info('完成');
 			window[callbackName](100);
+		};
+
+		function onImportComplete(){
+			if(CF.Idex){
+				CF.Idex.triggerAndRemoveEvent('importComplete');
+				delete CF.Idex;
+			}
+			console.info('完成');
 		};
 
 		$.getBody().append(html.join(''));

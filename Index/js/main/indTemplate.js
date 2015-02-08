@@ -111,4 +111,4 @@ indTemplate.init=function(tab){
 	delete tab.onRender;
 };
 
-})(CF,jQuery,Idex);
+})(CF,jQuery,$.Idex);
