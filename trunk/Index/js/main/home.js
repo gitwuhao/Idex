@@ -33,7 +33,7 @@ Idex.addEventListener('initHomeCount',function(){
 	var $home=Idex.$viewbox.children('.idex-view-panel.home');
 	$('[id]',$home).removeAttr('id');
 	
-	delete window.getHomeJSON;
-
+	window.getHomeJSON=null;
+	
 });
 })();

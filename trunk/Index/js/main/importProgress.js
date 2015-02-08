@@ -115,7 +115,7 @@
 			}
 
 			if(progress>=100){
-				$.removeCookie('import',{path:'/'});
+				console.info('完成');
 			}
 		};
 
