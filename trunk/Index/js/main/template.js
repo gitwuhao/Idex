@@ -249,4 +249,4 @@ CF.merger(template,{
 		delete this.win;
 	}
 });
-})(CF,jQuery,Idex);
+})(CF,jQuery,$.Idex);

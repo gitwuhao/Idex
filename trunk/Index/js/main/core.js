@@ -274,10 +274,11 @@
 				Idex.trigger('anchor.'+event.data.anchor);
 			});
 		});
+
 	});
 	
 
-	window.Idex=Idex;
+	$.Idex=Idex;
 
 
 	$.getDoc().ready(function(){
@@ -286,21 +287,8 @@
 		Idex.triggerAndRemoveEvent('initHomeCount');
 		initBar();
 		Idex.triggerAndRemoveEvent('ready');
+		delete $.Idex;
 		//delete window.Idex;
 	});
-
-
-
-	$.loadJSQueue(
-		//'/js/dev/debug.js',
-		'/js/main/home.js',
-		'/js/main/Idex.Module.js',
-		'/js/main/list.js',
-		'/js/main/list.form.js',
-		'/js/main/template.js',
-		'/js/main/indTemplate.js',
-		'/js/main/module.js'
-	);
-
 
 })(CF,jQuery);

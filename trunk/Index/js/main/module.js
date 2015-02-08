@@ -116,4 +116,4 @@ Idex.addEventListener('anchor.module',function(event){
 });
 
 
-})(CF,jQuery,Idex);
+})(CF,jQuery,$.Idex);

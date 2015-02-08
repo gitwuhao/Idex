@@ -401,4 +401,4 @@ Idex.Module.prototype={
 	}
 };
 
-})(CF,jQuery,Idex);
+})(CF,jQuery,$.Idex);

@@ -1,4 +1,5 @@
 (function(){
+var Idex=$.Idex;
 Idex.addEventListener('initHomeCount',function(){
 	var homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
 
@@ -34,6 +35,9 @@ Idex.addEventListener('initHomeCount',function(){
 	$('[id]',$home).removeAttr('id');
 	
 	window.getHomeJSON=null;
-	
+	if(homeJSON.import){
+		Idex.isImport=true;
+		CF.Idex=Idex;
+	}
 });
 })();
