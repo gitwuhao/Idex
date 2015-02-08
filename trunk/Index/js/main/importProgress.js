@@ -77,7 +77,7 @@
 					'<div class="idex-s-label"></div>',
 					'<div class="idex-s-progress-bg"></div>',
 			  '</div>',
-			  '<iframe id="',frameID,'" width="1" height="1" ',
+			  '<iframe id="',frameID,'" width="1" height="1" style="top:-100px;left:-100px;position: absolute;"',
 			  '>',
 			  '</iframe>'
 			];

@@ -375,7 +375,7 @@ Idex.view.list.getForm= function(){
 						);
 						if(item.status!=3){
 							html.push(
-							'<span class="revert"><a href="#list">还原</a></span>'
+							'<span class="revert"><a href="http://upload.taobao.com/auction/publish/edit.htm?item_num_id=',item.num_iid,'&auto=false" target="_blank">还原</a></span>'
 							);
 						}
 					}
