@@ -316,9 +316,9 @@ var win=window,
 	};
 
 	$.loadJSQueue(
-		'js/dev/debug.js',
-		'js/edit/style.js',
-		'js/view/buildStyle.js',
+		//'js/dev/debug.js',
+		'/js/edit/style.js',
+		'/js/view/buildStyle.js',
 		'/_/js/ImageQueue.js',
 		'/_/js/ZeroClipboard.js',
 	function(){
