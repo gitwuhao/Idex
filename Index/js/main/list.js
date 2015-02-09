@@ -53,6 +53,7 @@ Idex.addEventListener('importComplete',function(event){
 		var tab=TAB.getTab('list');
 		this.view.list.initTabPanel(tab);
 	}
+	delete Idex.isImport;
 });
 
 })(CF,jQuery,$.Idex);
