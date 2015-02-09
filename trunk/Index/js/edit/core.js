@@ -1,23 +1,26 @@
 (function(CF,$){
-	var ObjectHasOwnProperty=Object.prototype.hasOwnProperty,
-		ObjectConstructor={}.constructor,
-		logger = function(ref){
-			var caller,
-				_owner_,
-				arg;
-			caller=arguments.callee.caller;
-			arg=caller.arguments;
-			_owner_=arguments.callee.caller._owner_;
-			callerName=ref._owner_name_+'::'
-			if(ref._owner_name_!=caller._owner_._owner_name_){
-				callerName= callerName + caller._owner_._owner_name_+'.';
-			}
-			callerName=callerName + caller._name_;
-			CF.logger(callerName,arg);
-		},
-		IdexModule,
-		name=['p','u','s','h'].join(''),
-		Idex={
+	
+var KEY_MAP=window.APP_KEY_MAP,
+	WIN_NAME=KEY_MAP.WIN_NAME,
+	ObjectHasOwnProperty=Object.prototype.hasOwnProperty,
+	ObjectConstructor={}.constructor,
+	logger = function(ref){
+		var caller,
+			_owner_,
+			arg;
+		caller=arguments.callee.caller;
+		arg=caller.arguments;
+		_owner_=arguments.callee.caller._owner_;
+		callerName=ref._owner_name_+'::'
+		if(ref._owner_name_!=caller._owner_._owner_name_){
+			callerName= callerName + caller._owner_._owner_name_+'.';
+		}
+		callerName=callerName + caller._name_;
+		CF.logger(callerName,arg);
+	},
+	IdexModule,
+	name=['p','u','s','h'].join(''),
+	Idex={
 		_name_ : 'Idex',
 		_isReady_:false,
 		ui:{},
@@ -155,6 +158,8 @@
 			});		
 		}
 	};
+
+	window.name=WIN_NAME.EDIT;
 
 	Idex.module=function(prototype){
 		CF.merger(this,prototype);
