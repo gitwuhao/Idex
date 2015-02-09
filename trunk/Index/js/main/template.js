@@ -135,7 +135,7 @@ CF.merger(template,{
 			html='<div class="error-msg">还没有详情模板，快去【详情模板】里面创建吧...</div>';
 		}else if(json.length>0){
 			html=[];
-			MapJSON=[];
+			MapJSON={};
 			for(var i=0,len=json.length;i<len;i++){
 				var item=json[i];
 				html.push('<div class="idex-module-item idex-shadow-box" data-id="',item.id,'">',
@@ -148,7 +148,7 @@ CF.merger(template,{
 		}
 		win.$moduleBox.html(html);
 		
-		if(!MapJSON || !MapJSON.length){
+		if(!MapJSON){
 			return;
 		}
 		var moduleList=win.$moduleBox.children('.idex-module-item'),
