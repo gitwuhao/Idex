@@ -39,6 +39,10 @@
 		VIEW : '_IDEX_VIEW'
 	};
 
+	KEY.URL ={
+		GUID_URL : 'http://bangpai.taobao.com/group/thread/16499510-293754315.htm'	
+	};
+
 	window.APP_KEY_MAP=KEY;
 
 	if(window.$){

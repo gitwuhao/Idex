@@ -3,6 +3,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
 	CACHE_KEY_MAP=KEY_MAP.CACHE,
 	ACTION_KEY_MAP=KEY_MAP.ACTION,
+	URL=KEY_MAP.URL,
 	WIN_NAME=KEY_MAP.WIN_NAME;
 $.push({
 	_name_ : 'TabPanel',
@@ -434,10 +435,9 @@ $.push({
 	onHelp : function(){
 		console.info('help');
 	},
-	GUID_URL : 'http://bangpai.taobao.com/group/thread/16499510-293754315.htm',
 	onGuide : function(){
 		var link = document.createElement('a');
-		link.href = this.GUID_URL;
+		link.href = URL.GUID_URL;
 		link.target =WIN_NAME.VIEW;
 		link.click();
 	},
