@@ -434,31 +434,12 @@ $.push({
 	onHelp : function(){
 		console.info('help');
 	},
+	GUID_URL : 'http://bangpai.taobao.com/group/thread/16499510-293754315.htm',
 	onGuide : function(){
-		if(this.app.isLocked && this.app.isGuide){
-
-		}else if(this.app.isLocked){
-			return;
-		}
-		this.app.isLocked=true;
-		this.app.isGuide=true;
-		this.app.$eventElement.trigger('guide',{
-			me : this,
-			app : this.app,
-			item : this.getItem('guide'),
-			onShow : function(){
-				this.app.$viewPanel.hide();
-				this.me.trigger('collapse');
-				this.me.$panel.hide();
-			},
-			onHide : function(){
-				this.app.isLocked=false;
-				delete this.app.isGuide;
-				this.app.$viewPanel.show();
-				this.me.$panel.show();
-				this.me.trigger('expand');
-			}
-		});
+		var link = document.createElement('a');
+		link.href = this.GUID_URL;
+		link.target =WIN_NAME.VIEW;
+		link.click();
 	},
 	onSave : function(){
 		if(this.app.isSave){
