@@ -10,7 +10,13 @@ function initTab(render){
 		items : [{
 			label:'查询详情',
 			name : 'list',
-			html :'<div class="error-msg">数据还在导入，暂时无法使用此功能<br/>请稍等片刻...</div>'
+			html :'<div class="error-msg">数据还在导入，暂时无法使用此功能<br/>请稍等片刻...</div>',
+			onLoad : function(){
+				if(!Idex.isImport){
+					Idex.removeEventListener('importComplete');
+					Idex.view.list.initTabPanel(this);
+				}
+			}
 		},{
 			label:'详情模板',
 			name : 'template',
