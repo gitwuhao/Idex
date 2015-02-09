@@ -148,7 +148,7 @@ CF.merger(template,{
 		}
 		win.$moduleBox.html(html);
 		
-		if(!MapJSON.length){
+		if(!MapJSON || !MapJSON.length){
 			return;
 		}
 		var moduleList=win.$moduleBox.children('.idex-module-item'),
