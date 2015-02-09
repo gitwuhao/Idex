@@ -71,8 +71,7 @@ list.push(function(){
 	setTimeout(function(){
 		$.loadJSQueue(
 			IDEX_LIB_PATH+'js/edit/style.js',
-			IDEX_LIB_PATH+'js/edit/help.js',
-			IDEX_LIB_PATH+'js/edit/guide.js'
+			IDEX_LIB_PATH+'js/edit/help.js'
 		);
 	},1000);
 });
