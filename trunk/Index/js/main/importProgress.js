@@ -126,6 +126,7 @@
 
 		function onImportComplete(){
 			if(CF.Idex){
+				delete CF.Idex.isImport;
 				CF.Idex.triggerAndRemoveEvent('importComplete');
 				delete CF.Idex;
 			}
