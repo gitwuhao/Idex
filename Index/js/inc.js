@@ -30,7 +30,8 @@
 		TEMPLATE : 1,
 		DESC : 2,
 		RENOVATION : 3,
-		CUSTOM : 8
+		CUSTOM : 8,
+		SNAPSHOT :9
 	};
 
 	KEY.WIN_NAME = {

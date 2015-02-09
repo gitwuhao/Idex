@@ -1,10 +1,15 @@
 (function(CF,$){
 
-var __SNAP__SUFFIX__='CS'+$.randomChar(3);
+var KEY_MAP=window.APP_KEY_MAP,
+	ACTION_KEY_MAP=KEY_MAP.ACTION,
+	CLOUD_CACHE_KEY = {
+		SNAP_LIST : 'cloud_snap_list',
+		SNAP_CODE : 'cloud_snap_code'
+	},
+	__SNAP__SUFFIX__='CS'+$.randomChar(3),
+	__UNDO_INDEX__=parseInt((''+$.timestamp()).match(/(\d{4}$)/)[0]),
+	__SNAP_INDEX__=__UNDO_INDEX__ * 5;
 
-var __UNDO_INDEX__=parseInt((''+$.timestamp()).match(/(\d{4}$)/)[0]);
-
-var __SNAP_INDEX__=__UNDO_INDEX__ * 5;
 
 function getCloudSnapID(){
 	return (__SNAP_INDEX__ ++ )  + __SNAP__SUFFIX__;
@@ -30,7 +35,6 @@ $.push({
 				this.initCloudSnapList();
 			},500,this);
 
-			console.error('快照列表有bug，cloud_snap_list需要加上numiid');
 		},
 		addCloudSnapItem:function(item){
 			this.logger(this);
@@ -163,7 +167,7 @@ $.push({
 			};
 			$.loadText({
 				url:'/module.s',
-				data : 'method=getCode&_t=4&id='+cloudSnap.snapId,
+				data : 'method=getCode&_t='+ACTION_KEY_MAP.SNAPSHOT+'&id='+cloudSnap.snapId,
 				success : function(response_html){
 					if(response_html){
 						_temp_context._$owner.saveCloudSnapCodeData(_temp_context.cloudSnapID,response_html);
@@ -180,25 +184,21 @@ $.push({
 				}
 			});
 		},
-		CLOUD_CACHE_KEY : {
-			SNAP_LIST : 'cloud_snap_list',
-			SNAP_CODE : 'cloud_snap_code'
-		},
 		getCloudSnapListData : function(){
-			return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_LIST);
+			return $.cache.get(CLOUD_CACHE_KEY.SNAP_LIST+'_'+this.app.data.id);
 		},
 		saveCloudSnapListData : function(json){
-			$.cache.put(this.CLOUD_CACHE_KEY.SNAP_LIST,JSON.stringify(json),new Date());
+			$.cache.put(CLOUD_CACHE_KEY.SNAP_LIST+'_'+this.app.data.id,JSON.stringify(json),new Date());
 		},
 		getCloudSnapCodeData : function(id){
-			return $.cache.get(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id);
+			return $.cache.get(CLOUD_CACHE_KEY.SNAP_CODE+'_'+id);
 		},
 		/*缓存生命周期为3天*/
 		CACHE_MAX_AGE : 3,
 		saveCloudSnapCodeData : function(id,html){
 			var date=new Date();
 			date.addDays(this.CACHE_MAX_AGE);
-			$.cache.put(this.CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,date);
+			$.cache.put(CLOUD_CACHE_KEY.SNAP_CODE+'_'+id,html,date);
 		},
 		initCloudSnapList : function(){
 			if(this.getCloudSnapListData()){
@@ -210,7 +210,7 @@ $.push({
 		loadCloudSnapList : function(){
 			$.jsonp({
 				url:'/module.s',
-				data : 'method=query&_t=4&numIID='+this.app.data.id,
+				data : 'method=query&_t='+ACTION_KEY_MAP.SNAPSHOT+'&numIID='+this.app.data.id,
 				_$owner : this,
 				success : function(json){
 					if(json && json.length>0){
