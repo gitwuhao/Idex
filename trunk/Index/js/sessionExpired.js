@@ -12,7 +12,7 @@ $.sessionExpired={
 			},
 			html : ['<div style="text-align: center;padding-top: 20%;">',
 						'当前会话已过期，',
-						'<a href="',AUTH_URL,'" ',
+						'<a href="##a" ',
 							'target="',WIN_NAME,'" ',
 							'onclick="$.sessionExpired.open(); return false;" ',
 							'style="color: #F24117;text-decoration: none;">',
@@ -25,10 +25,14 @@ $.sessionExpired={
 	},
 	open : function(){
 		if(this.authWin == null || this.authWin.closed){
-			this.authWin=window.open(AUTH_URL,WIN_NAME,'width=800,height=700,toolbar=no, menubar=no, status=no');
+			this.authWin=window.open('/index.html',WIN_NAME,'width=800,height=700,toolbar=no, menubar=no, status=no');
 		}else{
 			this.authWin.focus();
 		}
+		//window.opener.$.sessionExpired.close();
+	},
+	close : function(){
+		ui.window.close();
 	}
 };
 
