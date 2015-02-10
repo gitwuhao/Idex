@@ -237,6 +237,7 @@
 		}
 	};
 
+$.getDoc().one('Idex.ready',function(){
 	var $eventListener=$('.idex-event-listener');
 
 	$eventListener.data('helpInstance',help);
@@ -268,4 +269,5 @@
 
 		ui.quicktip.show(config);
 	});
+});
 })(CF,jQuery);
