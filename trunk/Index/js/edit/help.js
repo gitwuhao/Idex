@@ -242,7 +242,6 @@ $.getDoc().one('Idex.ready',function(){
 
 	$eventListener.data('helpInstance',help);
 
-
 	$eventListener.on('help',function(event,originalEvent){
 		var data=originalEvent.data,
 			info;

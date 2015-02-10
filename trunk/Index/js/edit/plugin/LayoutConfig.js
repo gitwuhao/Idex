@@ -44,11 +44,7 @@ $.push({
 					app.PropertyPanel.setActive(panel);
 				});
 
-				$.getDoc().one('styleready',{
-					panel : this,
-				},function(event){
-					event.data.panel.styleReady();
-				});
+				this.styleReady();
 			},
 			styleReady : function(){
 				this.setStylecolor(this.getStylecolor());
