@@ -22,7 +22,7 @@ $.sessionExpired={
 							'style="color: #F24117;text-decoration: none;">',
 						'点击登录',
 						'</a>',
-					'解锁!</div>'].join(''),
+					'进行解锁!</div>'].join(''),
 			closable : false,
 			onCloseAfter : function(){
 				delete this.$owner.isWinShow;
