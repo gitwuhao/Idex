@@ -1,5 +1,5 @@
 (function(CF,$){
-var AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23029943&redirect_uri=http://idex.oilan.com.cn/auth.s',
+var AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23029943&redirect_uri=http://idex.oilan.com.cn/auth.s?_isunlock=1',
 	WIN_NAME = 'IDEX_AUTH_WIN';
 $.sessionExpired={
 	show : function(){
