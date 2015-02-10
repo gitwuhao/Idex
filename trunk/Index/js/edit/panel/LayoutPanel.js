@@ -216,6 +216,7 @@
 		},
 		createMainNavList:function(){
 			this.logger(this);
+			this.app.ViewPanel.getDescBox();
 			var descbox=this.getDescBoxElement();
 			descbox.id=this.app.layout.getLayoutID();
 			var navListId=getParentNavID(descbox.id);
