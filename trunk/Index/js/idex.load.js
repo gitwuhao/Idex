@@ -54,27 +54,22 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	--------------------------------------------
 	*/
 	'js/edit/plugin/LayoutConfig.js',
-	'js/edit/plugin/CloudSnap.js'
-	,
-	'js/edit/plugin/CopyCode.js'
+	'js/edit/plugin/CloudSnap.js',
+	'js/edit/plugin/CopyCode.js',
+	/*
+	--------------------------------------------
+	*/
+	'_/js/ImageQueue.js',
+	'js/edit/style.js',
+	'js/edit/help.js',
+	'js/sessionExpired.js',
+	'js/ready.js'
 	
 ];
 for(var i=0,len=list.length;i<len;i++){
 	var u=list[i];
 	list[i]=IDEX_LIB_PATH+u;
 }
-list.push('/_/js/ImageQueue.js');
-list.push(function(){
-	$.getDoc().trigger('Idex.ready');
-	
-	
-	setTimeout(function(){
-		$.loadJSQueue(
-			IDEX_LIB_PATH+'js/edit/style.js',
-			IDEX_LIB_PATH+'js/edit/help.js'
-		);
-	},1000);
-});
 
 $.loadJSQueue.apply(this,list);
 
