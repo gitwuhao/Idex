@@ -8,7 +8,7 @@ $.sessionExpired={
 		}
 		var win=new ui.window({
 			$owner : this,
-			title : 'Idex应用 - 已锁定',
+			title : 'Idex - 已锁定',
 			css : {
 				'width': '300px',
 				'height': '150px',
