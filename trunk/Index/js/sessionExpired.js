@@ -3,10 +3,10 @@ var AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=
 	WIN_NAME = 'IDEX_AUTH_WIN';
 $.sessionExpired={
 	show : function(){
-		if(this.isWinShow){
+		if(this.win){
 			return;
 		}
-		var win=new ui.window({
+		this.win=new ui.window({
 			$owner : this,
 			title : 'Idex - 已锁定',
 			css : {
@@ -25,12 +25,11 @@ $.sessionExpired={
 					'进行解锁!</div>'].join(''),
 			closable : false,
 			onCloseAfter : function(){
-				delete this.$owner.isWinShow;
+				this.$owner.onClose();
 			}
 		});
-		win.show();
+		this.win.show();
 
-		this.isWinShow=true;
 	},
 	open : function(){
 		if(this.authWin == null || this.authWin.closed){
@@ -40,9 +39,12 @@ $.sessionExpired={
 		}
 		//window.opener.$.sessionExpired.close();
 	},
+	onClose : function(){
+		this.win.remove();
+		delete this.win;
+	},
 	close : function(){
 		ui.window.close();
-		delete this.isWinShow;
 	}
 };
 
