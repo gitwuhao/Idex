@@ -10,7 +10,6 @@ $.sessionExpired={
 				'height': '150px',
 				'overflow' : 'hidden'
 			},
-			
 			html : ['<div style="text-align: center;padding-top: 20%;">',
 						'当前会话已过期，',
 						'<a href="',AUTH_URL,'" ',
