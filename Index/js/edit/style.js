@@ -223,6 +223,6 @@
 
 /********************************************************************************/
 
-	$.getDoc().trigger('styleready',$.CSSApply);
+	//$.getDoc().trigger('styleready',$.CSSApply);
 
 })(CF,jQuery);
