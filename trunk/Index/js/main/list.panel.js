@@ -432,7 +432,7 @@ return {
 			}
 		});
 	},
-	KEY_PAGE_SIZE : 'idex_list_page_size',
+	KEY_PAGE_SIZE : 'IDEX_LIST_PAGE_SIZE',
 	pageSize : null,
 	page : null,
 	loadMoreList : function(){
