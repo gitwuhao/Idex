@@ -280,21 +280,23 @@ var win=window,
 			success : function(id){
 				var html;
 				if(id && id>0){
-					console.info('发布成功..');
+					html="发布成功...";
 				}else if(id==-1){
-					html='发布失败，超出限制!';
+					html='发布失败：超出限制!';
 				}else if(id==-9){
-					html='发布失败，当前子账号没有发布商品详情的权限!';
+					html='发布失败：当前子账号没有发布商品详情的权限!';
 				}else{
-					html='保存失败...';
+					html='发布失败：原因未知...';
 				}
-				
+				if(id.errorMsg){
+					html="发布失败："+id.errorMsg;
+				}
 				if(html){
-					this.onError(html);
+					alert(html);
 				}
 			},
 			error : function(){
-				console.info('发布失败..');
+				alert('发布失败：服务器出了个错..');
 			}
 		});
 	};
