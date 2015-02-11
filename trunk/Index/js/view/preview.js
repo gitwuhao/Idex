@@ -330,4 +330,8 @@ var win=window,
 		});
 	});
 
+
+$.getDoc().on('sessionExpired',function(event){
+	alert('操作无效：当前会话已过期！');
+});
 };
