@@ -1,5 +1,6 @@
 (function(CF,$){
-var AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23029943&redirect_uri=http://idex.oilan.com.cn/auth.s?_isunlock=1',
+var SING_KEY = $.cache.getSigKey(),
+	AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23029943&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY,
 	WIN_NAME = 'IDEX_AUTH_WIN';
 $.sessionExpired={
 	show : function(){
@@ -22,13 +23,14 @@ $.sessionExpired={
 							'style="color: #F24117;text-decoration: none;">',
 						'点击登录',
 						'</a>',
-					'进行解锁!</div>'].join(''),
+					'进行解锁!<br/><span id="state-label" style="color: #FF9100;"></span></div>'].join(''),
 			closable : false,
 			onCloseAfter : function(){
 				this.$owner.onClose();
 			}
 		});
 		this.win.show();
+		this.win.$stateLabel=$('#state-label');
 
 	},
 	open : function(){
@@ -37,14 +39,23 @@ $.sessionExpired={
 		}else{
 			this.authWin.focus();
 		}
-		//window.opener.$.sessionExpired.close();
 	},
 	onClose : function(){
 		this.win.remove();
 		delete this.win;
 	},
 	close : function(){
-		ui.window.close();
+		if(this.win){
+			ui.window.close();
+		}
+	},
+	fail : function(){
+		if(this.win){
+			this.win.$stateLabel.text('解锁失败：登录的用户不是当前锁定的用户！');
+			$.setTimeout(function(){
+				this.$stateLabel.text('');
+			},15000,this.win);
+		}
 	}
 };
 
