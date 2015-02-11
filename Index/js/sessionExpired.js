@@ -2,6 +2,8 @@
 var SING_KEY = $.cache.getSigKey(),
 	AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23029943&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY,
 	WIN_NAME = 'IDEX_AUTH_WIN';
+
+//'http://idex.oilan.com/auth.s?_unlock=CB0BB2CB',
 $.sessionExpired={
 	show : function(){
 		if(this.win){
@@ -35,7 +37,7 @@ $.sessionExpired={
 	},
 	open : function(){
 		if(this.authWin == null || this.authWin.closed){
-			this.authWin=window.open('/auth.html',WIN_NAME,'width=800,height=700,toolbar=no, menubar=no, status=no');
+			this.authWin=window.open(AUTH_URL,WIN_NAME,'width=800,height=700,toolbar=no, menubar=no, status=no');
 		}else{
 			this.authWin.focus();
 		}
