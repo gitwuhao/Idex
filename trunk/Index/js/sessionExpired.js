@@ -51,10 +51,14 @@ $.sessionExpired={
 	},
 	fail : function(){
 		if(this.win){
+			if(this.win.hideStateLabelID){
+				return;
+			}
 			this.win.$stateLabel.text('解锁失败：登录的用户不是当前锁定的用户！');
-			$.setTimeout(function(){
+			this.win.hideStateLabelID=$.setTimeout(function(){
 				this.$stateLabel.text('');
-			},15000,this.win);
+				delete this.hideStateLabelID;
+			},10000,this.win);
 		}
 	}
 };
