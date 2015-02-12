@@ -3,6 +3,179 @@
 
 Idex.view.indTemplate=indTemplate;
 
+var listIndTemplate=[{
+	title : '时尚服饰',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '鞋类箱包',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '家居日用',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '母婴用品',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '化妆美容',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '数码家电',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '食品酒水',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '珠宝配饰',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+},{
+	title : '其它',
+	list : [{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	},{
+		id:"101010806",
+		width:"750",
+		title:"未命名模板"
+	}]
+}];
+
 indTemplate.init=function(tab){
 	CF.merger(tab,{
 		onRender : function(){
@@ -53,56 +226,61 @@ indTemplate.init=function(tab){
 			this.$floatbox.hide();
 		},
 		initModule : function(){
-			var html=['<div class="idex-ind-template-list-box idex-module-box">',
-						'<div class="idex-ind-template-list-group">',
-							'<div class="idex-ind-template-title-box">',
-								'<div class="idex-bg-line"></div>',
-								'<div class="idex-title">服装</div>',
-							'</div>',
-							'<div class="idex-ind-template-item-box">',
-								'<div class="idex-module-item idex-shadow-box">',
-									'<div class="idex-mini-tbar">',
-										'<a href="/view/1/101010744" target="_IDEX_VIEW" title="预览">',
-											'<div class="view idex-icon"></div>',
-										'</a>',
-										'<div class="copy idex-icon" title="复制"></div>',
-									'</div>',
-									'<p>750px</p>',
-									'<em>未命名模板</em>',
-								'</div>',
-								'<div class="idex-module-item idex-shadow-box">',
-									'<div class="idex-mini-tbar">',
-										'<a href="/view/1/101010744" target="_IDEX_VIEW" title="预览">',
-											'<div class="view idex-icon"></div>',
-										'</a>',
-										'<div class="copy idex-icon" title="复制"></div>',
-									'</div>',
-									'<p>750px</p>',
-									'<em>未命名模板</em>',
-								'</div>',
-							'</div>',
+			
+			
+			this.$tabview.html('<div class="idex-ind-template-list-box idex-module-box"></div>');
+
+			this.$listbox=this.$tabview.children('.idex-ind-template-list-box');
+
+			this.initListBox(listIndTemplate);
+		},
+		initListBox : function(data){
+			var html=['<div class="idex-ind-template-list-group">',
+						'<div class="idex-ind-template-title-box">',
+							'<div class="idex-bg-line"></div>',
+							'<div class="idex-title">服装</div>',
 						'</div>',
-						'<div class="idex-ind-template-list-group">',
-							'<div class="idex-ind-template-title-box active">',
-								'<div class="idex-bg-line"></div>',
-								'<div class="idex-title">服装</div>',
-							'</div>',
-							'<div class="idex-ind-template-item-box">',
-								'<div class="idex-module-item idex-shadow-box">',
-									'<div class="idex-mini-tbar">',
-										'<a href="/view/1/101010744" target="_IDEX_VIEW" title="预览">',
-											'<div class="view idex-icon"></div>',
-										'</a>',
-										'<div class="copy idex-icon" title="复制"></div>',
-									'</div>',
-									'<p>750px</p>',
-									'<em>未命名模板</em>',
+						'<div class="idex-ind-template-item-box">',
+							'<div class="idex-module-item idex-shadow-box">',
+								'<div class="idex-mini-tbar">',
+									'<a href="/view/1/101010744" target="_IDEX_VIEW" title="预览">',
+										'<div class="view idex-icon"></div>',
+									'</a>',
+									'<div class="copy idex-icon" title="复制"></div>',
 								'</div>',
+								'<p>750px</p>',
+								'<em>未命名模板</em>',
 							'</div>',
 						'</div>',
 					  '</div>'];
-			
-			this.$tabview.html(html.join(''));
+			for(var i=0,len=data.length;i<len;i++){
+				var item=data[i],
+					list=item.list||[];
+				html.push('<div class="idex-ind-template-list-group">',
+							'<div class="idex-ind-template-title-box">',
+								'<div class="idex-bg-line"></div>',
+								'<div class="idex-title">',item.title,'</div>',
+							'</div>',
+							'<div class="idex-ind-template-item-box">');
+				for(var n=0,lLen=list.length;n<lLen;n++){
+					var mitem=list[n];
+					html.push(	'<div class="idex-module-item idex-shadow-box">',
+									'<div class="idex-mini-tbar">',
+										'<a href="/preview/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
+											'<div class="view idex-icon"></div>',
+										'</a>',
+										'<div class="copy idex-icon" title="复制"></div>',
+									'</div>',
+									'<p>',mitem.width,'</p>',
+									'<em>',mitem.title,'</em>',
+								'</div>');
+				}
+				html.push(	'</div>',
+						'</div>');
+			}
+
+			this.$listbox.html(html.join(''));
+		
 		}
 	});
 
