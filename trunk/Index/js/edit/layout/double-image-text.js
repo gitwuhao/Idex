@@ -2,7 +2,7 @@
 	$.push({
 		_isLayoutModule_ : true,
 		_className_ : 'AbsLayout',
-		_name_ : 'doubel-image-text',
+		_name_ : 'double-image-text',
 		title : '双图文',
 		getPropertyForm : function (box){
 			this.logger(this);
