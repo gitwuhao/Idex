@@ -202,7 +202,7 @@
 .image-col-icon .idex-icon{
 	background-position: -120px -235px;
 }
-.image-text-icon .idex-icon{
+.image-text-icon .idex-icon,.double-image-text .idex-icon{
 	background-position: -200px -235px;
 }
 .split-line-icon .idex-icon {
