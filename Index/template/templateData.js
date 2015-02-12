@@ -1,8 +1,8 @@
 (function(){
 var listIndTemplate=[{
-	title : '时尚服饰',
+	title : '时尚服装',
 	list : [{
-		id:"101010806",
+		id:"10000",
 		width:"750",
 		title:"未命名模板"
 	},{
