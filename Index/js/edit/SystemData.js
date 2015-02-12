@@ -69,6 +69,9 @@ layoutRelation={
 	'image-text' : {
 		parent : 'container'
 	},
+	'double-image-text' : {
+		parent : 'container'
+	},
 	'split-line' : {
 		parent : 'container'
 	}

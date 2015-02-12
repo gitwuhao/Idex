@@ -29,7 +29,8 @@
 			'image-text':23,
 			'i-image-item':24,
 			'i-text-item':25,
-			'split-line':26
+			'split-line':26,
+			'double-image-text':27
 		};
 
 	(function(){
