@@ -84,10 +84,6 @@
 			return this.form;
 		},
 		index : 1,
-		getImgsizing : function(){
-			this.logger(this);
-			this._getImgsizing($('.image-title:first img',this.activeElement));
-		},
 		setTitle:function(value){
 			this.logger(this);
 			var oldValue=value;
