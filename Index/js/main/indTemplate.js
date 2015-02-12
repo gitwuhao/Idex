@@ -235,24 +235,7 @@ indTemplate.init=function(tab){
 			this.initListBox(listIndTemplate);
 		},
 		initListBox : function(data){
-			var html=['<div class="idex-ind-template-list-group">',
-						'<div class="idex-ind-template-title-box">',
-							'<div class="idex-bg-line"></div>',
-							'<div class="idex-title">服装</div>',
-						'</div>',
-						'<div class="idex-ind-template-item-box">',
-							'<div class="idex-module-item idex-shadow-box">',
-								'<div class="idex-mini-tbar">',
-									'<a href="/view/1/101010744" target="_IDEX_VIEW" title="预览">',
-										'<div class="view idex-icon"></div>',
-									'</a>',
-									'<div class="copy idex-icon" title="复制"></div>',
-								'</div>',
-								'<p>750px</p>',
-								'<em>未命名模板</em>',
-							'</div>',
-						'</div>',
-					  '</div>'];
+			var html=[];
 			for(var i=0,len=data.length;i<len;i++){
 				var item=data[i],
 					list=item.list||[];
