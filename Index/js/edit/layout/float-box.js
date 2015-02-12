@@ -54,18 +54,6 @@
 			this.logger(this);
 			return this.activeElement.offsetHeight;
 		},
-		getImgsizing : function(){
-			this.logger(this);
-			var element=this.activeElement,
-				$img=$('.float-box-bg:first img',element),
-				img;
-			if($img.length==0){
-				this.form.$sizeField.html('无图');
-				return;
-			}
-			img=$img[0];
-			this.form.$sizeField.html('&nbsp;'+img.clientWidth+'&nbsp;x&nbsp;'+img.clientHeight);
-		},
 		setSrc : function(value){
 			this.logger(this);
 			var $bg=$('.float-box-bg:first',this.activeElement);
