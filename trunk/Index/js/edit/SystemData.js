@@ -328,6 +328,26 @@ systemTemplate=[{
 				'</div>',
 			  '</div>'].join('')
 },{
+	type : 'double-image-text',
+	html : ['<div class="layout double-image-text" style="height:200px;">',
+				'<div class="i-image-box">',
+					'<div class="i-image-item img-b img-p">',
+						'<img src="/s.gif"/>',
+					'</div>',
+				'</div>',
+				'<div class="i-text-box">',
+					'<div class="i-text-item">标题</div>',
+				'</div>',
+				'<div class="i-image-box">',
+					'<div class="i-image-item img-b img-p">',
+						'<img src="/s.gif"/>',
+					'</div>',
+				'</div>',
+				'<div class="i-text-box">',
+					'<div class="i-text-item">标题</div>',
+				'</div>',
+			'</div>'].join('')
+},{
 	type : 'split-line',
 	html : '<div class="layout split-line"></div>'
 }];
