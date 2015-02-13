@@ -214,15 +214,28 @@
 			this._paddingLeft=$.style(parentElement,'padding-left');
 		});
 
+
 		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
 			var parent=this.parentElement;
 			$.style(parent,'width',parent._width);
 			$.style(parent,'height',parent._height);
-			
-			$.style(this,'width',this.clientWidth);
-			$.style(this,'height',this.clientHeight);
+
+			var img=this.children[0];
+			if(img && /^img$/i.test(img.nodeName)){
+				this._width=getWidth(img);
+				this._height=getHeight(img);
+			}else{
+				this._width=this.clientWidth+'px';
+				this._height=this.clientHeight+'px';
+			}
+		});
+
+		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
+			$.style(this,'width',this._width);
+			$.style(this,'height',this._height);
+		
 			$.style(this,'box-sizing','');
-			$.style(this,'padding-left',this._paddingLeft);
+			$.style(this,'margin-left',this._paddingLeft);
 		});
 
 
