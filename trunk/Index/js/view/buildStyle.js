@@ -181,17 +181,6 @@
 			this._height=getHeight(img);
 
 			this._margin=parentElementStyle.margin;
-			/*
-			parent=this.parentElement;
-			if($.hasClass(parent,'p-n') && !parent.parentElement.previousElementSibling){
-				//this._width=(img.clientWidth-1)+'px';
-				if(this.parentElement.previousElementSibling){
-					this._margin=this.parentElement.style.margin;
-				}else{
-					this._margin='0px 5px 0px 0px';
-				}
-			}
-			*/
 		});
 
 		$('.image-text .i-text-item').each(function(index,elem){
@@ -215,6 +204,27 @@
 				style.margin=parentElementStyle.padding;
 			}
 		});
+
+
+		
+		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
+			var parentElement=this.parentElement;
+			parentElement._width=parentElement.offsetWidth+'px';
+			parentElement._height=parentElement.offsetHeight+'px';
+			this._paddingLeft=$.style(parentElement,'padding-left');
+		});
+
+		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
+			var parent=this.parentElement;
+			$.style(parent,'width',parent._width);
+			$.style(parent,'height',parent._height);
+			
+			$.style(this,'width',this.clientWidth);
+			$.style(this,'height',this.clientHeight);
+			$.style(this,'box-sizing','');
+			$.style(this,'padding-left',this._paddingLeft);
+		});
+
 
 		$('.image-list').each(function(index,elem){
 			this.style.removeProperty('box-sizing');
