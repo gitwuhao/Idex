@@ -6,14 +6,16 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/KeyMap.js',
 	'js/edit/absPanel.js',
 	'js/edit/absLayout.js',
-	'js/edit/template.js',
-	'js/edit/saveAs.js',
 	'js/edit/panel/TabPanel.js',
 	'js/edit/panel/ViewPanel.js',
 	'js/edit/panel/LayoutPanel.js',
 	'js/edit/panel/PropertyPanel.js',
 	'js/edit/panel/HistoryPanel.js',
-	'js/edit/panel/ImagePanel.js'
+	'js/edit/panel/ImagePanel.js',
+	'js/edit/template.js',
+	'js/edit/saveAs.js',
+	'js/edit/style.js',
+	'js/edit/help.js'
 ];
 for(var i=0,len=list.length;i<len;i++){
 	var u=list[i];
