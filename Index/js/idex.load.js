@@ -13,6 +13,11 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/panel/PropertyPanel.js',
 	'js/edit/panel/HistoryPanel.js',
 	'js/edit/panel/ImagePanel.js',
+	'js/edit/template.js',
+	'js/edit/saveAs.js',
+	'js/edit/style.js',
+	'js/edit/help.js',
+	/**-----------------------layout----------------------------**/
 	'js/edit/layout/container.js',
 	'js/edit/layout/text-item.js',
 	'js/edit/layout/html-item.js',
@@ -40,9 +45,7 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/layout/i-image-item.js',
 	'js/edit/layout/i-text-item.js',
 	'js/edit/layout/split-line.js',
-	'js/edit/template.js',
-	'js/edit/SystemData.js',
-	'js/edit/saveAs.js',
+	/**-----------------------plugin----------------------------**/
 	'js/edit/plugin/SelectPicture.js',
 	'js/edit/plugin/ExportPS.js',
 	'js/edit/plugin/UploadCloud.js',
@@ -51,18 +54,12 @@ var IDEX_LIB_PATH= window.IDEX_LIB_PATH || window.location.origin +'/',
 	'js/edit/adapter/HTMLEditor.js',
 	'js/edit/adapter/TableEditor.js',
 	'js/edit/adapter/ImageQueue.js',
-	/*
-	--------------------------------------------
-	*/
+	/**-----------------------plugin ++ ----------------------------**/
 	'js/edit/plugin/LayoutConfig.js',
 	'js/edit/plugin/CloudSnap.js',
 	'js/edit/plugin/CopyCode.js',
-	/*
-	--------------------------------------------
-	*/
+	/**---------------------------------------------------**/
 	'_/js/ImageQueue.js',
-	'js/edit/style.js',
-	'js/edit/help.js',
 	'js/sessionExpired.js',
 	'js/ready.js'
 	
@@ -72,6 +69,8 @@ for(var i=0,len=list.length;i<len;i++){
 	list[i]=IDEX_LIB_PATH+u;
 }
 
+
 $.loadJSQueue.apply(this,list);
+
 
 })();

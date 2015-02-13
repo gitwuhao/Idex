@@ -846,18 +846,10 @@
 		},
 		getLayoutID : Idex.getID,
 		getLayout : function(_name_){
-			var LAYOUT_INSTANCE=this.__LAYOUT_INSTANCE_MAP__[_name_];
-			if(!LAYOUT_INSTANCE){
-				console.error('no find layout by name:'+_name_);
-			}
-			return LAYOUT_INSTANCE;
+			return this.__LAYOUT_INSTANCE_MAP__[_name_];
 		},
 		getLayoutByIndex : function(_index_){
-			var LAYOUT_INSTANCE=this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
-			if(!LAYOUT_INSTANCE){
-				console.error('no find layout by index:'+_index_);
-			}
-			return LAYOUT_INSTANCE;
+			return this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
 		},
 		addClass : function(__className__,_class_){
 			_LAYOUT_CLASS_MAP_[__className__]=_class_;
