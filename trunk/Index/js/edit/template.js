@@ -242,7 +242,11 @@ $.push({
 
 				if(layout.title){
 					html.push(this.getLayoutTemplateItemHTML(layout));
+				}else{
+					console.error("not find layout:"+layoutType);
 				}
+			}else{
+				console.error("not find layout:"+layoutType);
 			}
 		}
 		return html.join('');
