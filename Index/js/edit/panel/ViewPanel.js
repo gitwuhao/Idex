@@ -47,7 +47,41 @@ $.push({
 			this.ViewPanel.getAllHTML();
 		});
 
+		
+		this.app.$viewPanel.on('mousewheel',{
+			me : this
+		},function(event){
+			if($.isEditable(event.target)){
+				return;
+			}
+			event.data.me.on('mouseWheel',event);
+			return false;
+		});
+
+
 		$$Idex=this.app;
+	},
+	onMouseWheel:function(event){
+		var viewPanel=this.viewPanel,
+			scrollTop,
+			scrollHeight,
+			wheelDelta,
+			topValue;
+				
+		scrollTop=viewPanel.scrollTop;
+		scrollHeight=viewPanel.scrollHeight;
+		wheelDelta=event.originalEvent.wheelDelta;
+
+		topValue=scrollTop + wheelDelta;
+
+		if(topValue > scrollHeight){
+			topValue = scrollHeight - scrollTop;
+		}else if(topValue < 0 && scrollTop >0 ){
+			topValue = -scrollTop;
+		}else{
+			topValue = wheelDelta;
+		}
+		viewPanel.scrollTop=scrollTop - topValue;
 	},
 	onAppReadyAfter : function(){
 		var div,
