@@ -1,6 +1,5 @@
 function loadFile(){
 var win=window,
-	href=win.location.href,
 	KEY_MAP=win.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
 	ACTION_KEY_MAP=KEY_MAP.ACTION,
@@ -10,8 +9,9 @@ var win=window,
 	AllHTML='',
 	$view=$('.idex-preview-view'),
 	NUM_IID,
+	PreviewType,
 	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML,
-	_NUM_IID_KEY_=CACHE_KEY_MAP.NUM_IID;
+	_NUM_IID_KEY_=CACHE_KEY_MAP.NUM_IID,
 	_PREVIEW_TYPE_=CACHE_KEY_MAP.PREVIEW_TYPE;
 
 	NUM_IID=$view.attr(ATTR_KEY_MAP.ID);
@@ -25,6 +25,17 @@ var win=window,
 			return;
 		}
 		loadHTML();
+	};
+
+	function getPreviewType(){
+		var state,
+			href=win.location.href;
+		if(/preview\.html/.test(href)){
+			state=$.LS.getItem(_PREVIEW_TYPE_);
+		}else{
+			state=new RegExp('/view/'+ACTION_KEY_MAP.DESC+'/\\d+').test(href);
+		}
+		return state;
 	};
 
 	function loadHTML(){
@@ -196,19 +207,14 @@ var win=window,
 					'<div class="idex-preview-button">发布</div>',
 				  '</div>'].join('');
 
-		var isDesc,
+		var 
 			div=$.createElement(html),
 			$box=$('.idex-preview-box'),
 			$copy,
 			$qtipbox,
 			$publish;
 
-		if(/preview\.html/.test(href)){
-			isDesc=$.LS.getItem(_PREVIEW_TYPE_);
-		}else{
-			isDesc=new RegExp('/view/'+ACTION_KEY_MAP.DESC+'/\\d+').test(href);
-		}
-
+ 
 
 		$box.append(div);
 
@@ -266,6 +272,8 @@ var win=window,
 		$('.idex-preview-loading').remove();
 
 	};
+	
+
 
 	function onPublish(element){
 		//console.info("onPublish NUM_IID:"+NUM_IID);
