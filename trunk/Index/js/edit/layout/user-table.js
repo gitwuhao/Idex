@@ -3,7 +3,7 @@
 		_isLayoutModule_ : true,
 		_className_ : 'AbsSingleLayout',
 		_name_ : 'user-table',
-		title : '表格',
+		title : '自定义表格',
 		getPropertyForm : function (box){
 			this.logger(this);
 			var me=this;
