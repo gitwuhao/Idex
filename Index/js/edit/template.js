@@ -292,7 +292,7 @@ $.push({
 				if(node.child.length==1){
 					this.config=config;
 					var type=node.child[0],
-						templateData=this.data.system[type];
+						templateData=this.data.systemTemplate.layoutMap[type];
 					if(!templateData){
 						console.error('['+type+']template data is null');
 						return;
