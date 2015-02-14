@@ -23,6 +23,16 @@
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
 				items : [{
+					label:'列高',
+					name : 'height',
+					unit:'px',
+					maxlength : 3,
+					minValue : 100,
+					maxValue : 500,
+					vtype : ['spin','required'],
+					xtype:'text',
+					getDesc : '修改高度'
+				},{
 					label:'列数',
 					xtype:'radio',
 					name: 'col',
@@ -34,16 +44,6 @@
 						value : '4'
 					}],
 					getDesc : '修改列数'
-				},{
-					label:'列高',
-					name : 'height',
-					unit:'px',
-					maxlength : 3,
-					minValue : 100,
-					maxValue : 500,
-					vtype : ['spin','required'],
-					xtype:'text',
-					getDesc : '修改高度'
 				}]
 			});
 			return this.form;
