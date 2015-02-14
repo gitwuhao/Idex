@@ -9,7 +9,7 @@ var win=window,
 	AllHTML='',
 	$view=$('.idex-preview-view'),
 	NUM_IID,
-	PreviewType,
+	isDescPreview,
 	_CACHE_KEY_=CACHE_KEY_MAP.PREVIEW_HTML,
 	_NUM_IID_KEY_=CACHE_KEY_MAP.NUM_IID,
 	_PREVIEW_TYPE_=CACHE_KEY_MAP.PREVIEW_TYPE;
@@ -59,6 +59,8 @@ var win=window,
 		}
 		var index=0,
 			desc=$descBox[0];
+
+		isDescPreview=getPreviewType();
 
 		$view.css('width',desc.clientWidth);
 		
@@ -226,7 +228,7 @@ var win=window,
 
 		$qtipbox=$(div);
 
-		if(isDesc){
+		if(isDescPreview){
 			$publish.click(function(event){
 				onPublish(this);
 			});
