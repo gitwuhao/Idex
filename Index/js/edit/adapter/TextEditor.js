@@ -163,17 +163,19 @@
 				left : offset.left,
 				top : offset.top,
 				width : width,
+				'min-height' : height,
 				padding : cStyle.padding,
 				//'padding-right' : paddingRight,
 				//'padding-bottom' : paddingBottom,
 				'z-index' : zindex
 			};
+			/*
 			if(height>500){
 				css.height=500;
 			}else{
 				css['min-height']=height;
 			}
-
+			*/
 			this.instance.$container.css(css);
 			
 			this.instance.setContent(target.innerHTML);
@@ -200,6 +202,12 @@
 				},100,event.data.me);
 				return false;
 			});
+
+			
+
+			var __Mask__=ui.popu.getCurrentMask();
+
+			this.app.ViewPanel.bindScollEvent(__Mask__.$target);
 
 		},
 		initOffset : function(offset){
