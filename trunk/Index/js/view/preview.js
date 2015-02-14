@@ -161,7 +161,7 @@ var win=window,
 						}else{
 							td._width='';
 						}
-						if(td.cellIndex==0 && tr.rowIndex!=rowLength-1){
+						if(td.cellIndex==0 && td.style.height!=''){
 							td._height=td.clientHeight+'px';
 						}else{
 							td._height='';
