@@ -417,7 +417,6 @@
 			this.app.isLocked=false;
 
 			this.app.$eventElement.off('.one');
-
 			
 		},
 		addUndo : function(){

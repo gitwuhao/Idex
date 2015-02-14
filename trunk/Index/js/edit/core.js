@@ -190,7 +190,8 @@ var KEY_MAP=window.APP_KEY_MAP,
 		}
 	});
 
-	$(window).resize(function(event){
+
+	$.getWin().resize(function(event){
 		Idex.trigger('resize');
 	});
 	
