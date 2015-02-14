@@ -48,7 +48,12 @@ $.push({
 		});
 
 		
-		this.app.$viewPanel.on('mousewheel',{
+		this.bindScollEvent(this.app.$viewPanel);
+
+		$$Idex=this.app;
+	},
+	bindScollEvent : function($elem){
+		$elem.on('mousewheel',{
 			me : this
 		},function(event){
 			if($.isEditable(event.target)){
@@ -57,9 +62,6 @@ $.push({
 			event.data.me.on('mouseWheel',event);
 			return false;
 		});
-
-
-		$$Idex=this.app;
 	},
 	onMouseWheel:function(event){
 		var viewPanel=this.viewPanel,

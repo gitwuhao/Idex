@@ -453,7 +453,7 @@
 					element.click();
 				}
 			});
-		},
+		},/*
 		srcollToElement : function(element){
 			var offsetTop=element.offsetTop,
 				viewPanel=this.app.ViewPanel.viewPanel,
@@ -470,7 +470,7 @@
 					viewPanel.scrollTop +=  (offsetTop + height) - (viewPanel.scrollTop + MAX_HEIGHT);
 				}
 			}
-		},
+		},*/
 		render : function(config){
 			if(this.app.isLocked){
 				return;
@@ -512,7 +512,7 @@
 				zindex=0;
 			
 
-			this.srcollToElement(target);
+			//this.srcollToElement(target);
 			
 			zindex=ui.popu.createMask({
 				$elem : this.instance.$elem,
@@ -533,6 +533,7 @@
 					event.stopBubble();
 				}
 			});
+
 			
 			zindex++;
 
@@ -544,17 +545,16 @@
 				left : offset.left,
 				top : offset.top,
 				width : width,
-				'max-height': '500px',
-				//height : height,
+				'min-height' : height,
 				'z-index' : zindex
 			};
-
+/*
 			if(height>500){
 				css.height=500;
 			}else{
 				css['min-height']=height;
 			}
-
+*/
 			this.instance.$container.css(css);
 
 			this.instance.show();
@@ -592,6 +592,12 @@
 				},100,event.data.me);
 				return false;
 			});
+
+			
+
+			var __Mask__=ui.popu.getCurrentMask();
+
+			this.app.ViewPanel.bindScollEvent(__Mask__.$target);
 
 		},
 		initOffset : function(offset){
