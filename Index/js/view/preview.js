@@ -331,7 +331,7 @@ var win=window,
 		//'js/dev/debug.js',
 		'/js/edit/style.js',
 		'/js/view/buildStyle.js',
-		'/_/js/ImageQueue.js',
+		'/_/js/ImageQueue.dev.js',
 		'/_/js/ZeroClipboard.js',
 	function(){
 		$(document).ready(function(){
