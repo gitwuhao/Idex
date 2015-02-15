@@ -16,7 +16,12 @@
 		var height=element.offsetHeight;
 		return height+'px';
 	};
-	
+	function getInnerWidth(element){
+		return $(element).getInnerBoxWidth()+'px';
+	};
+	function getInnerHeight(element){
+		return $(element).getInnerBoxHeight()+'px';
+	};
 	$.CSSApply.getCSWidth=function(element){
 		return window.getComputedStyle(element).width;
 	};
