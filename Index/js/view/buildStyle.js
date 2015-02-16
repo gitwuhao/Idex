@@ -1,5 +1,10 @@
 (function(CF,$){
-	var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
+	var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
+		RuleMap={
+			'unwrap' : [],
+			'layout' : []
+	
+		};
 
 	function getIntValue(val){
 		return parseInt(val.replace('px',''));
@@ -21,6 +26,10 @@
 	function getInnerHeight(element){
 		return $(element).getInnerBoxHeight()+'px';
 	};
+	function unwrap(element){
+		
+	};
+	
 	
 	$.StyleSheet.getCSWidth=function(element){
 		return window.getComputedStyle(element).width;
