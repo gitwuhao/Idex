@@ -1,4 +1,4 @@
-function loadFile(){
+(function(CF,$){
 var win=window,
 	KEY_MAP=win.APP_KEY_MAP,
 	ATTR_KEY_MAP=KEY_MAP.ATTR,
@@ -327,23 +327,15 @@ var win=window,
 		return array.reverse().join('');
 	};
 
-	$.loadJSQueue(
-		//'js/dev/debug.js',
-		'/js/edit/style.js',
-		'/js/view/buildStyle.js',
-		'/_/js/ImageQueue.dev.js',
-		'/_/js/ZeroClipboard.js',
-	function(){
-		$(document).ready(function(){
-			$.getBody().append('<div class="idex-preview-loading"><div class="bubbling-g-box"><span class="bubbling-g-1"></span><span class="bubbling-g-2"></span><span class="bubbling-g-3"></span></div></div>');
-			setTimeout(function(){
-				ready();
-			},500);
-		});
+	$(document).ready(function(){
+		$.getBody().append('<div class="idex-preview-loading"><div class="bubbling-g-box"><span class="bubbling-g-1"></span><span class="bubbling-g-2"></span><span class="bubbling-g-3"></span></div></div>');
+		setTimeout(function(){
+			ready();
+		},500);
 	});
 
+	$.getDoc().on('sessionExpired',function(event){
+		alert('操作无效：当前会话已过期！');
+	});
 
-$.getDoc().on('sessionExpired',function(event){
-	alert('操作无效：当前会话已过期！');
-});
-};
+})(CF,jQuery);
