@@ -73,9 +73,9 @@ var win=window,
 			}
 		});
 
-		$.CSSApply.buildStyle(desc);
+		$.StyleSheet.buildStyle(desc);
 
-		$.CSSApply.removeClass(desc);
+		$.StyleSheet.removeClass(desc);
 
 		$('a['+ATTR_KEY_MAP.HREF+']',desc).each(function(index,elem){
 			var href=elem.getAttribute(ATTR_KEY_MAP.HREF);

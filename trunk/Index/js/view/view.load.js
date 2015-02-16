@@ -3,7 +3,9 @@ function loadFile(){
 		'/_/js/ZeroClipboard.js',
 		'/_/js/ImageQueue.dev.js',
 		'/_/js/jquery.StyleSheet.js',
+		'/js/inc.js',
 		'/js/edit/style.js',
-		'/js/view/buildStyle.js'
+		'/js/view/buildStyle.js',
+		'/js/view/preview.js'
 	);
 };
