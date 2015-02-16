@@ -3,6 +3,7 @@ function loadFile(){
 		'/_/js/ZeroClipboard.js',
 		'/_/js/ImageQueue.dev.js',
 		'/_/js/jquery.StyleSheet.js',
+		'/_/js/htmlfilter.js',
 		'/js/inc.js',
 		'/js/edit/style.js',
 		'/js/view/buildStyle.js',
