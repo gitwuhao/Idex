@@ -27,7 +27,9 @@ $.push({
 		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
 
 		this.__OUTPUT_RULES__['img'][ATTR_KEY_MAP.SRC]=function(attr){
-			attr.name=ATTR_KEY_MAP.SRC;
+			if(!$.attr(this,'src')){
+				attr.name=ATTR_KEY_MAP.SRC;
+			}
 		};
 
 		this.getDescBox();
@@ -219,12 +221,7 @@ $.push({
 		/*Refer : app.layout.__OUTPUT_RULES__*/
 		'*' : null,
 		'img' : {
-			':before' : function(){
-				if(this.naturalHeight>0 && this.naturalWidth>0){
-					this.setAttribute(ATTR_KEY_MAP.SRC,'');
-				}
-			},
-			'src' : function(attr){
+			'^src$' : function(attr){
 				attr.name=ATTR_KEY_MAP.SRC;
 			}
 		}
