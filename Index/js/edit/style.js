@@ -5,7 +5,7 @@
 	function findSheet(path){
 		var styleSheet=sheetMap[path];
 		if(!styleSheet){
-			styleSheet=$.CSS.findSheet(path);
+			styleSheet=$.StyleSheet.findSheet(path);
 			if(styleSheet){
 				sheetMap[path]=styleSheet;
 			}
