@@ -15,7 +15,19 @@
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
 				render : box,			
-				items : [
+				items : [{
+					label:'类型',
+					xtype:'radio',
+					name: 'type',
+					items:[{
+						label : '图片',
+						value : '1'
+					},{
+						label : '文本',
+						value : '2'
+					}],
+					getDesc : '修改链接类型'
+				},
 				CF.merger({
 					placeholder :'填写链接地址',
 					getDesc : '修改链接地址'
