@@ -1,4 +1,4 @@
-function loadFile(){
+(function(CF,$){
 	var KEY_MAP=window.APP_KEY_MAP,
 		StyleSheet=$.StyleSheet,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
@@ -253,6 +253,4 @@ function loadFile(){
 
 	ready();
 
-
-};
-loadFile();
+})(CF,jQuery);
