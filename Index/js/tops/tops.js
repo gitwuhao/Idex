@@ -1,6 +1,6 @@
 function loadFile(){
 	var KEY_MAP=window.APP_KEY_MAP,
-		CSSApply=$.CSSApply,
+		StyleSheet=$.StyleSheet,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
 		TEXT_BG_COLOR='#E5CFE5',
 		IMAGE_BG_COLOR='#F5F5F5',
@@ -133,7 +133,7 @@ function loadFile(){
 
 	function applyTableBorder(){
 		$('.property-tbody,.list-tbody,.user-tbody').addClass('border');
-		CSSApply('idex_main_style_sheet');
+		StyleSheet('idex_main_style_sheet');
 	};
 
 	function build(){
@@ -144,11 +144,11 @@ function loadFile(){
 		cleanImage();
 		//applyImage();
 
-		CSSApply.buildStyle(desc);
+		StyleSheet.buildStyle(desc);
 
 		//$descBox.css('background-color','');
 
-		CSSApply.removeClass(desc);
+		StyleSheet.removeClass(desc);
 
 		$('table',desc).each(function(index,table){
 			var bordercolor='',
