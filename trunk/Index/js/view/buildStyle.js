@@ -194,7 +194,6 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 			var parentElement=this.parentElement;
 			$.style(this,'box-sizing','');
-			//$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
