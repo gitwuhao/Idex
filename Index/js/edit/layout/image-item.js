@@ -37,13 +37,31 @@
 			if(value){
 				style.height=value+'px';
 			}else{
-				//style.height=element.offsetWidth+'px';
 				style.height='';
 			}
 		},
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
+		},
+		setSrc : function(value){
+			var img=this.getImgElement();
+			if(img){
+				this.activeElement.style.height='';
+				if(value){
+					var __img__=document.createElement('img');
+					$(__img__).one('load',{
+						activeElement : this.activeElement
+					},function(event){
+						var activeElement=event.data.activeElement;
+						activeElement.style.height=activeElement.offsetHeight+'px';
+					});
+					__img__.src=value;
+				}else{
+					value='/s.gif';
+				}
+				$.attr(img,'src',value);
+			}
 		}
 	});
 
