@@ -1,16 +1,13 @@
 (function(CF,$){
-	var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
-		RuleMap={
-			'unwrap' : [],
-			'padding-box' : [],
-			'layout' : []
-		};
+var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 	function getIntValue(val){
-		return parseInt(val.replace('px',''));
+		val=parseInt(val.replace('px',''));
+		return isNaN(val) ? 0 : val;
 	};
 	function getFloatValue(val){
-		return parseFloat(val.replace('px',''));
+		val=parseFloat(val.replace('px',''));
+		return isNaN(val) ? 0 : val;
 	};
 	function getWidth(element){
 		var offsetWidth=element.offsetWidth;
@@ -21,13 +18,52 @@
 		return height+'px';
 	};
 	function getInnerWidth(element){
-		return $(element).getInnerBoxWidth()+'px';
+		var left=getIntValue($.style(element,'padding-left')),
+			right=getIntValue($.style(element,'padding-right'));
+		return (element.clientWidth - left - right) + 'px';
 	};
 	function getInnerHeight(element){
-		return $(element).getInnerBoxHeight()+'px';
+		var top=getIntValue($.style(element,'padding-top')),
+			bottom=getIntValue($.style(element,'padding-bottom'));
+		return (element.clientHeight - top - bottom) + 'px';
 	};
-	function unwrap(element){
+	function setToInnerWidth(element){
+		$.style(element,'width',getInnerWidth(element));
+	};
+	function setToInnerHeight(element){
+		$.style(element,'height',getInnerHeight(element));
+	};
+	function toProWidthByClient(element){
+		element._width=element.clientWidth + 'px';
+	};
+	function toProHeightByClient(element){
+		element._height=element.clientHeight + 'px';
+	};
+	function toProWidth(element){
+		element._width=getInnerWidth(element);
+	};
+	function toProHeight(element){
+		element._height=getInnerHeight(element);
+	};
+	function setWidth(element,width){
+		if(width){
 		
+		}else if(element._width){
+			width=element._width;
+		}else {
+			width=getInnerWidth(element);
+		}
+		$.style(element,'width',width);
+	};
+	function setHeight(element,height){
+		if(height){
+		
+		}else if(element._height){
+			height=element._height;
+		}else {
+			height=getInnerHeight(element);
+		}
+		$.style(element,'height',height);
 	};
 	
 	
@@ -42,219 +78,155 @@
 	$.StyleSheet.computedSizing=function(element){
 
 		$('.float-box').each(function(index,elem){
-			this.style.width=getWidth(this.children[0]);
-			this.style.height=getHeight(this.children[0]);
+			$.style(this,'width',getInnerWidth(this));
+			//this.style.height=getHeight(this.children[0]);
 			this.style.removeProperty('box-sizing');
 		});
 
 		$('.float-image').each(function(index,elem){
-			var style=this.style;
-			var img=this.children[0];
-			style.width=getWidth(img);
-			style.height=getHeight(img);
-			style.removeProperty('box-sizing');
+			setToInnerWidth(this);
+			setToInnerHeight(this);
+			$.style(this,'box-sizing','');
 		});
+
 		
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=$.StyleSheet.getCSWidth(this.children[0]);
+			toProWidth(this);
 		});
 
 		$array.each(function(index,elem){
-			this.style.width=this._width;
-			this._width=this.offsetWidth+'px';
-		});
-
-		$array.each(function(index,elem){
-			var style=this.style;
-			style.width=this._width;
-			style.removeProperty('box-sizing');
-			if(style.padding){
-				style.margin=style.padding;
-				style.removeProperty('padding');
-			}
+			setWidth(this);
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(this,'padding'));
+			$.style(this,'padding','');
 		});
 		
 
 		$('.image-clink').each(function(index,elem){
-			var style=this.style,
-				img=this.children[0];
-			style.width=getWidth(img);
-			style.height=getHeight(img);
-			style.removeProperty('box-sizing');
+			setToInnerWidth(this);
+			setToInnerHeight(this);
+			$.style(this,'box-sizing','');
 		});
 
-		$('.image-fglink').each(function(index,elem){
+		$array=$('.image-fglink');
+
+		$array.each(function(index,elem){
 			var parentElement=this.parentElement;
-			parentElement._width=parentElement.offsetWidth+'px';
-			parentElement._height=parentElement.offsetHeight+'px';
+			toProWidthByClient(parentElement);
+			toProHeightByClient(parentElement);
 		});
 
-		$('.image-fglink').each(function(index,elem){
-			var style=this.style;
+		$array.each(function(index,elem){
 			var parentElement=this.parentElement;
-			var parentElementStyle=parentElement.style;
-			parentElementStyle.width=parentElement._width;
-			parentElementStyle.height=parentElement._height;
-
-			var img=this.children[0];
-			style.width=getWidth(img);
-			style.height=getHeight(img);
-			style.removeProperty('box-sizing');
-			style.margin=parentElementStyle.padding;
-			style.float=parentElementStyle.float;
-			$(this).unwrap();
-		});
-
-
-		$('.image-rlink').each(function(index,elem){
-			var parentElement=this.parentElement;
-			parentElement._width=parentElement.offsetWidth+'px';
-			parentElement._height=parentElement.offsetHeight+'px';
-		});
-
-		$('.image-rlink').each(function(index,elem){
+			setWidth(parentElement);
+			setHeight(parentElement);
 			
-			var style=this.style;
-			var parentElement=this.parentElement;
-			var parentElementStyle=parentElement.style;
-			parentElementStyle.width=parentElement._width;
-			parentElementStyle.height=parentElement._height;
+			setWidth(this);
+			setHeight(this);
 
-			var img=this.children[0];
-			style.width=getWidth(img);
-			style.height=getHeight(img);
-			style.removeProperty('box-sizing');
-			var parentElementStyle=parentElement.style;
-			style.margin=parentElementStyle.padding;
-			style.float=parentElementStyle.float;
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
 			$(this).unwrap();
 		});
 
-/*
-		$('.image-item img').each(function(index,elem){
-			if(elem.offsetHeight==0){
-				this.style.height=getWidth(this);
-			}
+
+
+		$array=$('.image-rlink');
+
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			toProWidthByClient(parentElement);
+			toProHeightByClient(parentElement);
 		});
 
-		$('.image-item').each(function(index,elem){
-			var style=this.style,
-				img=this.children[0];
-			style.width=getWidth(img);
-			style.height=getHeight(img);
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			setWidth(parentElement);
+			setHeight(parentElement);
+
+			
+			setWidth(this);
+			setHeight(this);
+
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
+			$(this).unwrap();
 		});
 
-*/
+		$('.image-list .image-item').each(function(index,elem){
+			setWidth(this);
+			setHeight(this);
+		});
+
+		$('.image-list').each(function(index,elem){
+			$.style(this,'box-sizing','');
+		});
 
 		$('.property-itable .property-image').each(function(index,elem){
-			var style=this.style;
-			style.width=getWidth(this.children[0]);
-			style.height=getHeight(this.children[0]);
-			style.removeProperty('box-sizing');
-			var parentElementStyle=this.parentElement.style;
-			style.margin=parentElementStyle.padding;
-			style.float=parentElementStyle.float;
+			setWidth(this);
+			setHeight(this);
+
+			var parentElement=this.parentElement;
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
 		$('.property-itable .property-tbody').each(function(index,elem){
-			var style=this.style;
-			style.width=this.clientWidth+'px';
-			style.height=this.clientHeight+'px';
-			style.removeProperty('box-sizing');
-			var parentElementStyle=this.parentElement.style;
-			style.margin=parentElementStyle.padding;
-			style.float=parentElementStyle.float;
-		});
+			setWidth(this,this.offsetWidth);
+			setHeight(this,this.offsetHeight);
 
-
-		$('.image-text .i-text-item').each(function(index,elem){
-			this._width=$(this).width()+'px';
-			this._height=this.clientHeight+'px';
-		});
-
-		$('.image-text .p-r .i-image-item,.image-text .p-n .i-image-item').each(function(index,elem){
 			var parentElement=this.parentElement;
-			parentElement._width=parentElement.offsetWidth+'px';
-			parentElement._height=parentElement.offsetHeight+'px';
-		});
-
-		$('.image-text .i-image-item').each(function(index,elem){
-			var parent,
-				img=this.children[0],
-				parent=this.parentElement,
-				parentElementStyle=parent.style;
-
-			if(parent._width){
-				parentElementStyle.width=parent._width;
-				parentElementStyle.height=parent._height;
-			}
-			
-			this._width=getWidth(img);
-			this._height=getHeight(img);
-
-			this._margin=parentElementStyle.margin;
-		});
-
-		$('.image-text .i-text-item').each(function(index,elem){
-			var style=this.style;
-			style.width=this._width;
-			style.height=this._height;
-			style.removeProperty('box-sizing');
-			var parentElementStyle=this.parentElement.style;
-			style.margin=parentElementStyle.padding;
-		});
-
-		$('.image-text .i-image-item').each(function(index,elem){
-			var style=this.style;
-			style.width=this._width;
-			style.height=this._height;
-			style.removeProperty('box-sizing');
-			var parentElementStyle=this.parentElement.style;
-			if(this._margin){
-				style.margin=this._margin;
-			}else{
-				style.margin=parentElementStyle.padding;
-			}
-		});
-
-
-		
-		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
-			var parentElement=this.parentElement;
-			parentElement._width=parentElement.offsetWidth+'px';
-			parentElement._height=parentElement.offsetHeight+'px';
-			this._paddingLeft=$.style(parentElement,'padding-left');
-		});
-
-
-		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
-			var parent=this.parentElement;
-			$.style(parent,'width',parent._width);
-			$.style(parent,'height',parent._height);
-
-			var img=this.children[0];
-			if(img && /^img$/i.test(img.nodeName)){
-				this._width=getWidth(img);
-				this._height=getHeight(img);
-			}else{
-				this._width=this.clientWidth+'px';
-				this._height=this.clientHeight+'px';
-			}
-		});
-
-		$('.double-image-text .i-image-item,.double-image-text .i-text-item').each(function(index,elem){
-			$.style(this,'width',this._width);
-			$.style(this,'height',this._height);
-		
 			$.style(this,'box-sizing','');
-			$.style(this,'margin-left',this._paddingLeft);
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
+		$array=$('.image-text .i-text-item,.image-text .i-image-item');
 
-		$('.image-list').each(function(index,elem){
-			this.style.removeProperty('box-sizing');
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			toProWidthByClient(parentElement);
+			toProHeightByClient(parentElement);
+		});
+
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			setWidth(parentElement);
+			setHeight(parentElement);
+			
+			setWidth(this);
+			setHeight(this);
+
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
+		});
+
+ 
+		$array=$('.double-image-text .i-image-item,.double-image-text .i-text-item');
+
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			toProWidthByClient(parentElement);
+			toProHeightByClient(parentElement);
+		});
+		
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			setWidth(parentElement);
+			setHeight(parentElement);
+			
+			setWidth(this);
+			setHeight(this);
+
+			$.style(this,'box-sizing','');
+			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
 		
