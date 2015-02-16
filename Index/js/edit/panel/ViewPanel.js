@@ -26,6 +26,10 @@ $.push({
 
 		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
 
+		this.__OUTPUT_RULES__['img'][ATTR_KEY_MAP.SRC]=function(attr){
+			attr.name=ATTR_KEY_MAP.SRC;
+		};
+
 		this.getDescBox();
 
 		this._$$originalHTML=this.getAllHTML();

@@ -332,6 +332,7 @@ table.property-tbody{
 	float: left;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 .property-itable .property-image img{
 	width: 100%;
