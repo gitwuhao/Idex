@@ -1,7 +1,7 @@
 function loadFile(){
 	$.loadJSQueue(
 		'/_/js/ZeroClipboard.js',
-		'/_/js/ImageQueue.dev.js',
+		'/_/js/ImageQueue.js',
 		'/_/js/jquery.StyleSheet.js',
 		'/_/js/htmlfilter.js',
 		'/js/inc.js',
