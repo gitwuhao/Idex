@@ -45,6 +45,18 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 	function toProHeight(element){
 		element._height=getInnerHeight(element);
 	};
+	function getPadding(element){
+		return $.style(element,'padding');
+	};
+	function getMargin(element){
+		return $.style(element,'margin');
+	};
+	function getCSPadding(element){
+		return window.getComputedStyle(element).padding;
+	};
+	function getCSMargin(element){
+		return window.getComputedStyle(element).margin;
+	};
 	function setWidth(element,width){
 		if(width){
 		
@@ -99,7 +111,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		$array.each(function(index,elem){
 			setWidth(this);
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(this,'padding'));
+			$.style(this,'margin',getCSPadding(this));
 			$.style(this,'padding','');
 		});
 		
@@ -127,7 +139,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			setHeight(this);
 
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 			$(this).unwrap();
 		});
@@ -152,7 +164,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			setHeight(this);
 
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 			$(this).unwrap();
 		});
@@ -172,7 +184,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 			var parentElement=this.parentElement;
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
@@ -182,7 +194,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 			var parentElement=this.parentElement;
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
@@ -203,7 +215,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			setHeight(this);
 
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
 		});
 
@@ -225,8 +237,16 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			setHeight(this);
 
 			$.style(this,'box-sizing','');
-			$.style(this,'margin',$.style(parentElement,'padding'));
+			$.style(this,'margin',getCSPadding(parentElement));
 			$.style(this,'float',$.style(parentElement,'float'));
+		});
+
+
+		$array.each(function(index,elem){
+			var parentElement=this.parentElement;
+			if($.hasClass(parentElement.parentElement,'i-image-box')){
+				$(this.parentElement).unwrap();
+			}
 		});
 
 		
