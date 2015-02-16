@@ -42,19 +42,6 @@
 					}],
 					getDesc : '修改比例'
 				},{
-					label:'风格',
-					cls:'s3',
-					xtype:'radio',
-					name: 'pstyle',
-					items:[{
-						label : ' 1图',
-						value : '1'
-					},{
-						label : ' 2图',
-						value : '2'
-					}],
-					getDesc : '修改图文风格'
-				},{
 					label:' ',
 					cls:'s3',
 					xtype:'radio',
@@ -82,32 +69,6 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
-		},
-		setPstyle : function(value){
-			var html;
-			if(value==1){
-				html=['<div class="i-image-item img-b img-p">',
-						'<img src="/s.gif">',
-					  '</div>'];
-			}else{
-				html=['<div class="p-r">',
-							'<div class="i-image-item img-b img-p">',
-								'<img src="/s.gif">',
-							'</div>',
-						'</div>',
-						'<div class="p-n">',
-							'<div class="i-image-item img-b img-p">',
-								'<img src="/s.gif">',
-							'</div>',
-						'</div>'];
-			}
-			$(this.activeElement).children('.i-image-box').html(html.join(''));
-			
-			this.app.LayoutPanel.removeChildrenNavList(this.activeElement);
-		},
-		getPstyle : function(){
-			this.logger(this);
-			return $('img',this.activeElement).length;
 		},
 		setVstyle : function(value){
 			this.logger(this);
