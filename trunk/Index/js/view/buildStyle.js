@@ -4,7 +4,6 @@
 	function getIntValue(val){
 		return parseInt(val.replace('px',''));
 	};
-
 	function getFloatValue(val){
 		return parseFloat(val.replace('px',''));
 	};
@@ -22,15 +21,16 @@
 	function getInnerHeight(element){
 		return $(element).getInnerBoxHeight()+'px';
 	};
-	$.CSSApply.getCSWidth=function(element){
+	
+	$.StyleSheet.getCSWidth=function(element){
 		return window.getComputedStyle(element).width;
 	};
 
-	$.CSSApply.getCSHeight=function (element){
+	$.StyleSheet.getCSHeight=function (element){
 		return window.getComputedStyle(element).height;
 	};
 
-	$.CSSApply.computedSizing=function(element){
+	$.StyleSheet.computedSizing=function(element){
 
 		$('.float-box').each(function(index,elem){
 			this.style.width=getWidth(this.children[0]);
@@ -49,7 +49,7 @@
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){
-			this._width=$.CSSApply.getCSWidth(this.children[0]);
+			this._width=$.StyleSheet.getCSWidth(this.children[0]);
 		});
 
 		$array.each(function(index,elem){
@@ -260,7 +260,7 @@
 		$.removeAttr(element,ATTR_KEY_MAP.TITLE);
 	};
 
-	$.CSSApply.setStyle=function(element){
+	$.StyleSheet.setStyle=function(element){
 		var stylecolor=$.attr(element,ATTR_KEY_MAP.STYLE_COLOR);
 		if(stylecolor){
 			$.getDoc().trigger('changestyle',{
@@ -271,20 +271,20 @@
 		$.removeAttr(element,ATTR_KEY_MAP.STYLE_COLOR);
 	};
 
-	$.CSSApply.buildStyle=function(element){
+	$.StyleSheet.buildStyle=function(element){
 
 		this.setStyle(element);
 
 		$('.hide').remove();
 
-		$.CSSApply('idex-desc-default.css').disabled=true;
+		$.StyleSheet('idex-desc-default.css').disabled=true;
 
 		$('hr').replaceWith('<div style="margin: 5px 0px;border-top: 1px solid #DDD;"></div>');
 
 		this.computedSizing(element);
 	};
 
-	$.CSSApply.removeClass=function(element){
+	$.StyleSheet.removeClass=function(element){
 		var array=$('[class]',element);
 		array.push(element);
 		array.removeAttr('class');
