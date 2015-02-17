@@ -83,9 +83,73 @@
 						element.click();
 					}
 				});
+			},
+			setPaddingTop : function(value){
+				$.style(this.activeElement,'padding-top',value);
+			},
+			getPaddingTop : function(){
+				var padding=this.activeElement.style['padding-top'];
+				return (padding||'').replace('px','');
+			},
+			setPaddingBottom : function(value){
+				$.style(this.activeElement,'padding-bottom',value);
+			},
+			getPaddingBottom : function(){
+				var padding=this.activeElement.style['padding-bottom'];
+				return (padding||'').replace('px','');
+			},
+			setPaddingLeft : function(value){
+				$.style(this.activeElement,'padding-left',value);
+			},
+			getPaddingLeft : function(){
+				var padding=this.activeElement.style['padding-left'];
+				return (padding||'').replace('px','');
+			},
+			setPaddingRight : function(value){
+				$.style(this.activeElement,'padding-right',value);
+			},
+			getPaddingRight : function(){
+				var padding=this.activeElement.style['padding-right'];
+				return (padding||'').replace('px','');
+			},
+			setBorder : function(value){
+				var target=this.activeElement;
+				$.removeClass(target,'idex-r-active s2 s3 s4');
+				if(value=='2' || value=='3' || value=='4'){
+					$.addClass(target,('s'+value));
+				}else{
+					$.style(target,'border-color','');
+				}
+			},
+			getBorder : function(){
+				var value='1',
+					target=this.activeElement;
+				if($.hasClass(target,'s2')){
+					value='2';
+				}else if($.hasClass(target,'s3')){
+					value='3';
+				}else if($.hasClass(target,'s4')){
+					value='4';
+				}
+				return value;
+			},
+			setBColor : function(value){
+				var target=this.activeElement;
+				$.style(target,'border-color',value);
+				$.removeClass(target,'idex-r-active');
+			},
+			getBColor : function(){
+				return $.style(this.activeElement,'border-color');
+			},
+			setBgColor : function(value){
+				$.style(this.activeElement,'background-color',value);
+			},
+			getBgColor : function(){
+				return $.style(this.activeElement,'background-color');
 			}
 		};
 	};
+ 
 
 	$.push({
 		_isLayoutModule_ : true,
@@ -190,69 +254,6 @@
 						me.onEditor();
 					}
 				}];
-		},
-		setPaddingTop : function(value){
-			$.style(this.activeElement,'padding-top',value);
-		},
-		getPaddingTop : function(){
-			var padding=this.activeElement.style['padding-top'];
-			return (padding||'').replace('px','');
-		},
-		setPaddingBottom : function(value){
-			$.style(this.activeElement,'padding-bottom',value);
-		},
-		getPaddingBottom : function(){
-			var padding=this.activeElement.style['padding-bottom'];
-			return (padding||'').replace('px','');
-		},
-		setPaddingLeft : function(value){
-			$.style(this.activeElement,'padding-left',value);
-		},
-		getPaddingLeft : function(){
-			var padding=this.activeElement.style['padding-left'];
-			return (padding||'').replace('px','');
-		},
-		setPaddingRight : function(value){
-			$.style(this.activeElement,'padding-right',value);
-		},
-		getPaddingRight : function(){
-			var padding=this.activeElement.style['padding-right'];
-			return (padding||'').replace('px','');
-		},
-		setBorder : function(value){
-			var target=this.activeElement;
-			$.removeClass(target,'idex-r-active s2 s3 s4');
-			if(value=='2' || value=='3' || value=='4'){
-				$.addClass(target,('s'+value));
-			}else{
-				$.style(target,'border-color','');
-			}
-		},
-		getBorder : function(){
-			var value='1',
-				target=this.activeElement;
-			if($.hasClass(target,'s2')){
-				value='2';
-			}else if($.hasClass(target,'s3')){
-				value='3';
-			}else if($.hasClass(target,'s4')){
-				value='4';
-			}
-			return value;
-		},
-		setBColor : function(value){
-			var target=this.activeElement;
-			$.style(target,'border-color',value);
-			$.removeClass(target,'idex-r-active');
-		},
-		getBColor : function(){
-			return $.style(this.activeElement,'border-color');
-		},
-		setBgColor : function(value){
-			$.style(this.activeElement,'background-color',value);
-		},
-		getBgColor : function(){
-			return $.style(this.activeElement,'background-color');
 		}
 	});
 
