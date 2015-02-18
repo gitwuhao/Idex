@@ -1,7 +1,7 @@
 (function(CF,$){
 	$.push({
 		_isLayoutModule_ : true,
-		_className_ : 'AbsFixedLayout',
+		_className_ : 'AbsSubLayout',
 		_name_ : 'image-ctext',
 		title : '文本',
 		initModule : function(){
@@ -11,20 +11,7 @@
 		},
 		getFormItemConfig : function(){
 			var me=this;
-			return [{
-					label:'类型',
-					xtype:'radio',
-					name: 'type',
-					items:[{
-						label : '图片',
-						value : '1'
-					},{
-						label : '文本',
-						value : '2'
-					}],
-					getDesc : '修改链接类型'
-				},
-				CF.merger({
+			return [CF.merger({
 					placeholder :'填写链接地址',
 					getDesc : '修改链接地址'
 				},this.app.ui.FORMITEM.link),
