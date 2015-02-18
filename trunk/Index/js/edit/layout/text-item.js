@@ -158,7 +158,7 @@
 			return [{
 				label:'边框',
 				name : 'border',
-				width:'199px',
+				width:'200px',
 				xtype:'radio',
 				items:[{
 					label : '1',
@@ -176,8 +176,8 @@
 				getDesc : '设置边框'
 			},{
 				name : 'bColor',
-				width:'18px',
-				cls : 'padding',
+				width:'19px',
+				cls : 'mini2',
 				xtype:'color',
 				getDesc : '设置边框颜色'
 			},'||',{
