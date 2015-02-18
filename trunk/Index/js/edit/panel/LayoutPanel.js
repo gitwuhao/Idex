@@ -680,6 +680,15 @@
 			this.logger(this);
 			$(navItem).children('.idex-list-item-title:first').text(title);
 		},
+		setNavItemIcon : function(navItem,icon){
+			this.logger(this);
+			$(navItem).children('.idex-layout-icon:first').attr('class','idex-layout-icon '+icon+'-icon');
+		},
+		updateNavItem : function(layout){
+			this.logger(this);
+			this.setNavItemTitle(this.activeNavItem,layout.title);
+			this.setNavItemIcon(this.activeNavItem,layout._name_);
+		},
 		getNavItemHTML : function(layout,target){
 			this.logger(this);
 			var html=['<div id="',getNavID(target.id),'" class="idex-list-item ',layout._name_,'-item">',
