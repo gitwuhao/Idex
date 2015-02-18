@@ -34,24 +34,7 @@
 			</div>
 		</div>
 	</div>
-
-	<script>
-	function loadFile() {
-
-		window.BASE_PATH = '/oilan/', uiPath = BASE_PATH + 'ui/';
-
-		window.UI_LIB_PATH = uiPath + 'js/ui/';
-
-		$.includePack('css', uiPath + 'css/imports.css');
-
-		$.loadJSQueue(uiPath + 'js/ui.files.js', function() {
-			UIList.push('/js/dev/debug.js');
-			UIList.push('/js/idex.load.js');
-			$.loadJSQueue.apply(this, UIList);
-		});
-	};
-	
-</script>
+<script type="text/javascript" charset="utf-8" src="/js/idex.load.js"></script>
 <script type="text/javascript" charset="utf-8" src="/_/js/startup.js"></script>
 </body>
 </html>
