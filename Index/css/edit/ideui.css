@@ -89,7 +89,6 @@
 }
 .idex-ui-color .idex-ui-textfield{
 	line-height: 1px;
-	padding: 0px;
 }
 div.x-ui-popu{
 	box-shadow:none;
@@ -97,12 +96,15 @@ div.x-ui-popu{
 .idex-ui-item-field.disabled,.idex-ui-button.disabled{
 	opacity: 0.25;
 }
-
-
 .idex-ui-item-field.mini{
-	padding: 2px 0px;
+	padding: 2px 0px 0px 0px;
 }
-
+.idex-ui-item-field.mini2{
+	padding: 3px 0px 0px 0px;
+}
+.idex-ui-color.mini2 .idex-ui-textfield{
+	padding:0px;
+}
 /*++++++++++++++++++++++++++++++++++idex-ui-qtip++++++++++++++++++++++++++++++++++*/
 .idex-ui-qtip-box{
 	color: #DDD;

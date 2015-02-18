@@ -100,7 +100,7 @@ $.push({
 						label:'字体',
 						name : 'fontsize',
 						placeholder :'填写字号',
-						width:'165px',
+						width:'173px',
 						unit:'px',
 						maxlength : 2,
 						vtype : ['spin'],
@@ -174,7 +174,6 @@ $.push({
 						xtype: 'radio',
 						width: 'auto',
 						name: 'style',
-						cls: 'breakline',
 						getDesc : '更换风格',
 						items:[{
 							checked : true,
