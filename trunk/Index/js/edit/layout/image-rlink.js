@@ -58,6 +58,7 @@
 		},
 		getPropertyForm : function (box){
 			this.logger(this);
+			var me =this;
 			this.form=this.app.CreatePropertyForm({
 				$owner : this,
 				id : this.__PROPERTY_PANEL_ID__,
@@ -73,6 +74,10 @@
 						label : '文本',
 						value : '2'
 					}],
+					onClick : function(item){
+						me.setType(item.value);
+					},
+					onChange : CF.emptyFunction,
 					getDesc : '修改链接类型'
 				},
 				CF.merger({
