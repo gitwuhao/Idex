@@ -25,12 +25,6 @@
 		},
 		getFormItemConfig : function(){
 			return this.formItemConfig;
-		},
-		setType : function(value){
-		
-		},
-		getType : function(){
-		
 		}
 	});
 

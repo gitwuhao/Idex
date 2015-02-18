@@ -86,6 +86,17 @@
 				'SIZE']
 			});
 			return this.form;
+		},
+		setType : function(value){
+		
+		},
+		getType : function(){
+			var value='1',
+				target=this.activeElement;
+			if($.hasClass(target,'image-rtext')){
+				value='2';
+			}
+			return value;
 		}
 	});
 
