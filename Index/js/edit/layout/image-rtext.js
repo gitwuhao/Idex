@@ -18,6 +18,7 @@
 			textItem.extend(this);
 		},
 		getBaseFormItemConfig : function(){
+			var me =this;
 			return [{
 					label:'类型',
 					xtype:'radio',
@@ -29,6 +30,10 @@
 						label : '文本',
 						value : '2'
 					}],
+					onClick : function(item){
+						me.setType(item.value);
+					},
+					onChange : CF.emptyFunction,
 					getDesc : '修改链接类型'
 				},
 				CF.merger({
