@@ -1,4 +1,18 @@
 (function(){
+window.loadFile=function(){
+
+	window.BASE_PATH = '/oilan/', uiPath = BASE_PATH + 'ui/';
+
+	window.UI_LIB_PATH = uiPath + 'js/ui/';
+
+	$.includePack('css', uiPath + 'css/imports.css');
+
+	$.loadJSQueue(uiPath + 'js/ui.files.js', function() {
+		UIList.push('/js/dev/debug.js');
+		UIList.push(loadBaseLib);
+		$.loadJSQueue.apply(this, UIList);
+	});
+};
 function loadBaseLib(){
 	var isDebug=true;
 	window.isDebug=isDebug;
@@ -88,5 +102,4 @@ function loadEditorLib(){
 	$.loadJSQueue.apply(this,urls);
 };
 
-loadBaseLib();
 })();
