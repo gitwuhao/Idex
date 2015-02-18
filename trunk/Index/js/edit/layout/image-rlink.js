@@ -110,9 +110,7 @@
 
 			$elem.replaceWith(div);
 			this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
-			$.setTimeout(function(){
-				$(this).click();
-			},0,div);
+			this.activeElement=div;
 		},
 		getType : function(){
 			var value='1',
