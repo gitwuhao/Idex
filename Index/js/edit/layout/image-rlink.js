@@ -116,6 +116,7 @@
 			$elem.replaceWith(div);
 			this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
 			this.activeElement=div;
+			this.activeElement.click();
 		},
 		getType : function(){
 			var value='1',
