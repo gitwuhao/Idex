@@ -971,7 +971,8 @@
 			
 			_class_=this.getClass(module._className_);
 			_layout_=new _class_(module);
-
+			
+			_layout_.KEY_MAP=this.app.KEY_MAP;
 			this.__LAYOUT_INSTANCE_MAP__[module._name_]=_layout_;
 
 			_index_=_LAYOUT_TYPE_MAP_[module._name_];

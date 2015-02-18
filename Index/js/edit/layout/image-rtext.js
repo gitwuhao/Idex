@@ -40,7 +40,31 @@
 			return this.formItemConfig;
 		},
 		setType : function(value){
-		
+			var html,
+				$elem,
+				div,
+				href,
+				id,
+				activeElement=this.activeElement;
+			if(value=='1'){
+				html='<div class="image-rlink img-b img-p"><img src="/s.gif"/></div>';
+			}else{
+				html='<div class="image-rtext"></div>';
+			}
+			
+			$elem=$(activeElement);
+			id=activeElement.id;
+			href=$elem.attr(this.KEY_MAP.ATTR.HREF);
+			
+			div=$.createElement(html);
+			$.attr(div,this.KEY_MAP.ATTR.HREF,href);
+			$.attr(div,'id',activeElement.id);
+
+			$elem.replaceWith(div);
+			this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
+			$.setTimeout(function(){
+				$(this).click();
+			},0,div);
 		},
 		getType : function(){
 			var value='1',

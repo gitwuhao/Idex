@@ -27,6 +27,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 		layout : {},
 		_module_list_:[],
 		_module_map_:{},
+		KEY_MAP : KEY_MAP,
 		_init_ : function(){
 			if(!this._isReady_){
 				this.$viewPanel=$('.idex-view-panel:first');
