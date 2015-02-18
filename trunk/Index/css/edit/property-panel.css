@@ -127,6 +127,9 @@
 .idex-ui-item-field.minifield .idex-ui-label{
 	width: 50px;
 }
+.idex-ui-item-field.padding{
+	padding-top : 3px;
+}
 .idex-ui-property-panel .idex-ui-button{
 	float: left;
 	background: -webkit-linear-gradient(#4E4E4E 0%, #3D3D3D 100%);
