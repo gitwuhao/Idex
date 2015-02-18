@@ -45,20 +45,6 @@
 						me.onEditor();
 					}
 				}];
-		},
-		setPaddingLeft : function(value){
-			$.style(this.activeElement,'padding-left',value);
-		},
-		getPaddingLeft : function(){
-			var padding=this.activeElement.style['padding-left'];
-			return (padding||'').replace('px','');
-		},
-		setPaddingRight : function(value){
-			$.style(this.activeElement,'padding-right',value);
-		},
-		getPaddingRight : function(){
-			var padding=this.activeElement.style['padding-right'];
-			return (padding||'').replace('px','');
 		}
 	});
 
