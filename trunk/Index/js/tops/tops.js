@@ -1,7 +1,7 @@
 (function(CF,$){
 	var KEY_MAP=window.APP_KEY_MAP,
 		StyleSheet=$.StyleSheet,
-		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-fglink img,.property-image img,.image-item img',
+		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-flink img,.property-image img,.image-item img',
 		TEXT_BG_COLOR='#E5CFE5',
 		IMAGE_BG_COLOR='#F5F5F5',
 		IMAGE_T_BG_COLOR='#CFDEE5',
@@ -70,8 +70,9 @@
 			parentElement.removeAttribute('class');
 			$(table).remove();
 		});
-
-		$('.i-text-item',desc).each(function(index,element){
+		
+		//设置背景颜色
+		$('.i-text-item,.image-ctext,.image-rtext,.image-ftext',desc).each(function(index,element){
 			var $elem=$(element);
 			$elem.css('background-color',TEXT_BG_COLOR);
 			$elem.empty();	

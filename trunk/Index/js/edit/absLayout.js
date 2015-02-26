@@ -13,7 +13,7 @@
 			'float-text':7,
 			'float-html':8,
 			'image-fgrid':9,
-			'image-fglink':10,
+			'image-flink':10,
 			'image-rtable':11,
 			'image-row':12,
 			'image-rlink':13,
@@ -731,7 +731,7 @@
 		},
 		setSizing:function(w,h){
 			this.logger(this);
-			$.removeClass(this.activeElement,'idex-r-active');
+			//$.removeClass(this.activeElement,'idex-r-active');
 			this.on('mousedown',null,this.activeElement);
 			ui.dragdrop.resize.hide();
 			ui.dragdrop.setSizing(w,h);
@@ -744,7 +744,7 @@
 		},
 		setOffset:function(x,y){
 			this.logger(this);
-			$.removeClass(this.activeElement,'idex-r-active');
+			//$.removeClass(this.activeElement,'idex-r-active');
 			this.on('mousedown',null,this.activeElement);
 			ui.dragdrop.resize.hide();
 			ui.dragdrop.setOffset(x,y);
@@ -850,9 +850,6 @@
 		getLayoutID : Idex.getID,
 		getLayout : function(_name_){
 			return this.__LAYOUT_INSTANCE_MAP__[_name_];
-		},
-		getLayoutByIndex : function(_index_){
-			return this.__LAYOUT_INDEX_TYPE_MAP__[_index_];
 		},
 		addClass : function(__className__,_class_){
 			_LAYOUT_CLASS_MAP_[__className__]=_class_;

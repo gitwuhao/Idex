@@ -115,14 +115,13 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			$.style(this,'padding','');
 		});
 		
-
-		$('.image-clink').each(function(index,elem){
+		$('.image-clink,.image-ctext').each(function(index,elem){
 			setToInnerWidth(this);
 			setToInnerHeight(this);
 			$.style(this,'box-sizing','');
 		});
 
-		$array=$('.image-fglink');
+		$array=$('.image-flink,.image-ftext');
 
 		$array.each(function(index,elem){
 			var parentElement=this.parentElement;
@@ -134,7 +133,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			var parentElement=this.parentElement;
 			setWidth(parentElement);
 			setHeight(parentElement);
-			
+
 			setWidth(this);
 			setHeight(this);
 
@@ -146,7 +145,7 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 
 
-		$array=$('.image-rlink');
+		$array=$('.image-rlink,.image-rtext');
 
 		$array.each(function(index,elem){
 			var parentElement=this.parentElement;
@@ -158,7 +157,6 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			var parentElement=this.parentElement;
 			setWidth(parentElement);
 			setHeight(parentElement);
-
 			
 			setWidth(this);
 			setHeight(this);

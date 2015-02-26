@@ -78,12 +78,12 @@
 
 			ui.UndoManager.start();
 
-			if(this.instance.hasChange()){
+			//if(this.instance.hasChange()){
 				this.instance.reset();
 				this.config.callback(html);
-			}else{
-				this.instance.reset();
-			}
+			//}else{
+			//	this.instance.reset();
+			//}
 			
 			delete this.config;
 
@@ -111,7 +111,7 @@
 			}
 			
 			
-			if(this.instance==null || this.instance.$elem==null){
+			if(this.instance==null || this.instance.$elem==null || !config.target){
 				return;
 			}
 
@@ -133,6 +133,7 @@
 				cStyle=window.getComputedStyle(target),
 				paddingRight=$target.outerWidth() - width,
 				paddingBottom=$target.outerHeight() - height,
+				bgColor,
 				zindex=0;
 
 			//this.srcollToElement(target);
@@ -159,12 +160,21 @@
 			});
 			
 			zindex++;
+
+			bgColor=cStyle['background-color'];
+			var array=bgColor.match(/(\d+)/g);
+			if(array && array[3]=='0'){
+				//bgColor='#FFF';
+				bgColor='';
+			}
+
 			var css={
 				left : offset.left,
 				top : offset.top,
 				width : width,
 				'min-height' : height,
 				padding : cStyle.padding,
+				'background-color' : bgColor,
 				//'padding-right' : paddingRight,
 				//'padding-bottom' : paddingBottom,
 				'z-index' : zindex

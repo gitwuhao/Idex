@@ -7,6 +7,7 @@
 	color: #8B8B8B;
 	background-color: #FFF;
 	word-break: break-word;
+	word-wrap: break-word;
 	text-align: left;
 }
 /*
@@ -127,17 +128,17 @@
 /*+++++++++++++++++++++++++ text-item +++++++++++++++++++++++++*/
 .text-item{
 }
-.text-item.s2{
+.text-item.s2,.image-ctext.s2,.image-rtext.s2,.image-ftext.s2{
 	border-style: solid;
 	border-width: 1px;
 	border-color: #DDD;
 }
-.text-item.s3{
+.text-item.s3,.image-ctext.s3,.image-rtext.s3,.image-ftext.s3{
 	border-style: dashed;
 	border-width: 1px;
 	border-color: #DDD;
 }
-.text-item.s4{
+.text-item.s4,.image-ctext.s4,.image-rtext.s4,.image-ftext.s4{
 	border-style: dotted;
 	border-width: 1px;
 	border-color: #DDD;
@@ -192,30 +193,16 @@
 .image-fgrid{
 	overflow: hidden;
 }
-.image-fgrid .image-fglink,.image-ftext{
+.image-fgrid .image-flink,.image-ftext{
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
 }
 .image-ftext{
 	box-sizing: border-box;
+	text-decoration: none;
 }
-.image-ftext.s2{
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-ftext.s3{
-	border-style: dashed;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-ftext.s4{
-	border-style: dotted;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-fgrid .image-fglink img{
+.image-fgrid .image-flink img{
 	width: 100%;
 	height:100%;
 	vertical-align: top;
@@ -231,21 +218,7 @@
 }
 .image-rtext{
 	box-sizing: border-box;
-}
-.image-rtext.s2{
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-rtext.s3{
-	border-style: dashed;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-rtext.s4{
-	border-style: dotted;
-	border-width: 1px;
-	border-color: #DDD;
+	text-decoration: none;
 }
 .image-rtable .image-row{
 	overflow: hidden;
@@ -289,6 +262,9 @@
 	padding: 0px 5px 0px 0px;
 	box-sizing: border-box;
 }
+.image-ctable.col2 .image-col{
+	width: 50%;
+}
 .image-ctable.col3 .image-col{
 	width: 33.5%;
 }
@@ -309,21 +285,7 @@
 }
 .image-ctext{
 	box-sizing: border-box;
-}
-.image-ctext.s2{
-	border-style: solid;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-ctext.s3{
-	border-style: dashed;
-	border-width: 1px;
-	border-color: #DDD;
-}
-.image-ctext.s4{
-	border-style: dotted;
-	border-width: 1px;
-	border-color: #DDD;
+	text-decoration: none;
 }
 .image-ctable .image-clink:first-child,.image-ctable .image-ctext:first-child{
 	margin: 0px;

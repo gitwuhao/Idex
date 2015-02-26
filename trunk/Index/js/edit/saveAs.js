@@ -181,7 +181,7 @@ $.push({
 			method : 'save',
 			atype : ACTION_KEY.CUSTOM,
 			title : title,
-			type : config.layout._type_index_,
+			tid : config.layout._type_id_,
 			code : this.win.htmlCode
 		};
 
