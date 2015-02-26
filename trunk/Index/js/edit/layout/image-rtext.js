@@ -7,15 +7,26 @@
 		initModule : function(){
 			this.logger(this);
 			var array,
-				textItem=this.app.layout.getLayout('text-item');
+				textItem=this.app.layout.getLayout('text-item'),
+				imageRLink=this.app.layout.getLayout('image-rlink');
 
 			array=this.getBaseFormItemConfig();
 			
-			array.push.apply(array,textItem.getFormItemConfig());
+			this.formItemConfig=textItem.getFormItemConfig;
+			
+			array.push.apply(array,this.formItemConfig());
 
 			this.formItemConfig=array;
 
 			textItem.extend(this);
+
+			this.setType=imageRLink.setType;
+			
+			this.getType=imageRLink.getType;
+
+			
+			this.onMousedown=imageRLink.onMousedown;
+			
 		},
 		getBaseFormItemConfig : function(){
 			var me =this;
@@ -43,40 +54,6 @@
 		},
 		getFormItemConfig : function(){
 			return this.formItemConfig;
-		},
-		setType : function(value){
-			var html,
-				$elem,
-				div,
-				href,
-				id,
-				activeElement=this.activeElement;
-			if(value=='1'){
-				html='<div class="image-rlink img-b img-p"><img src="/s.gif"/></div>';
-			}else{
-				html='<div class="image-rtext"></div>';
-			}
-			
-			$elem=$(activeElement);
-			id=activeElement.id;
-			href=$elem.attr(this.KEY_MAP.ATTR.HREF);
-			
-			div=$.createElement(html);
-			$.attr(div,this.KEY_MAP.ATTR.HREF,href);
-			$.attr(div,'id',activeElement.id);
-
-			$elem.replaceWith(div);
-			this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
-			this.activeElement=div;
-			this.activeElement.click();
-		},
-		getType : function(){
-			var value='1',
-				target=this.activeElement;
-			if($.hasClass(target,'image-rtext')){
-				value='2';
-			}
-			return value;
 		}
 	});
 

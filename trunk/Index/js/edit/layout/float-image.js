@@ -4,8 +4,6 @@
 		_className_ : 'AbsFloatLayout',
 		_name_ : 'float-image',
 		title : '图片',
-		isBorder:true,
-		isPadding:true,
 		getPropertyForm : function (box){
 			this.logger(this);
 			var me=this;

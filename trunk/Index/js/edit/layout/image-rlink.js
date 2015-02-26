@@ -4,27 +4,43 @@
 		_className_ : 'AbsFixedLayout',
 		_name_ : 'image-rlink',
 		title : '图片链接',
-		isBorder:true,
-		isPadding:true,
-		onMousedown:function(event,target){
+		initModule : function(){
 			this.logger(this);
-			var row=this.getParentElement(target);
+
+			var textItem=this.app.layout.getLayout('text-item');
+			textItem.extendReplaceLayout(this);
+
+		},
+		onMousedown : function(event,target){
+			this.logger(this);
+
+			var parentBox,
+				row=this.getParentElement(target),
+				LAYOUT=this.app.layout;
+
+			parentBox = this.getParentElement(row);
+			
 			this.app.dragdrop.sort({
 				instance : this,
+				LAYOUT : LAYOUT,
 				target : target,
 				event : event,
-				parentBox : this.getParentElement(row),
+				parentLayout : LAYOUT.findParent(target.parentElement).layout,
+				parentBox : parentBox,
 				isLockBody : true,
 				onSortBoxMove : function(event){
-					var item=this.app.layout.findParent(event.target);
-					if(item && item.layout==this.instance){
-						if(this.target==item.target && this.$replaceElement){
-							this.$replaceElement.removeClass('replace');
-							delete this.$replaceElement;
-							delete this.replaceElement;
-							return;
+					var item=this.LAYOUT.findParent(event.target);
+					if(item && item.target){
+						var parentItem=this.LAYOUT.findParent(item.target.parentElement);
+						if(parentItem && parentItem.layout==this.parentLayout){
+							if(this.target==item.target && this.$replaceElement){
+								this.$replaceElement.removeClass('replace');
+								delete this.$replaceElement;
+								delete this.replaceElement;
+								return;
+							}
+							return item.target;
 						}
-						return item.target;
 					}
 				},
 				onSort : function(element){
@@ -52,9 +68,6 @@
 				},
 				onReplace : CF.emptyFunction
 			});
-		},
-		onDeActiveLayout : function(){
-			this.app.layout.resizeLayout;
 		},
 		getPropertyForm : function (box){
 			this.logger(this);
@@ -93,30 +106,15 @@
 			return this.form;
 		},
 		setType : function(value){
-			var html,
-				$elem,
-				div,
-				href,
-				id,
-				activeElement=this.activeElement;
+			if(this.getType()==value){
+				return;
+			}
 			if(value=='1'){
 				html='<div class="image-rlink img-b img-p"><img src="/s.gif"/></div>';
 			}else{
 				html='<div class="image-rtext"></div>';
 			}
-			
-			$elem=$(activeElement);
-			id=activeElement.id;
-			href=$elem.attr(this.KEY_MAP.ATTR.HREF);
-			
-			div=$.createElement(html);
-			$.attr(div,this.KEY_MAP.ATTR.HREF,href);
-			$.attr(div,'id',activeElement.id);
-
-			$elem.replaceWith(div);
-			this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
-			this.activeElement=div;
-			this.activeElement.click();
+			this.replaceLayoutItem(html);
 		},
 		getType : function(){
 			var value='1',
