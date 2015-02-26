@@ -55,24 +55,25 @@ var win=window,
 
 	function build(){
 		if(!$descBox[0]){
-			return;	
+			return;
 		}
-		var index=0,
+		var mIndex=0,
 			desc=$descBox[0];
 
 		isDescPreview=getPreviewType();
 
 		$view.css('width',desc.clientWidth);
-		
-		$('.image-title,.text-title',desc).each(function(index,elem){
-			var parentElement=elem.parentElement;
-			var title=parentElement.getAttribute(ATTR_KEY_MAP.TITLE);
-			if(title){
-				$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',index,'" style="line-height:0px;"></div>'].join(''));
-				index++;
-			}
-		});
 
+		if(isDescPreview){
+			$('.image-title,.text-title',desc).each(function(index,elem){
+				var parentElement=elem.parentElement;
+				var title=parentElement.getAttribute(ATTR_KEY_MAP.TITLE);
+				if(title && mIndex>7){
+					$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',mIndex,'" style="line-height:0px;"></div>'].join(''));
+					mIndex++;
+				}
+			});
+		}
 		$.StyleSheet.buildStyle(desc);
 
 		$.StyleSheet.removeClass(desc);
@@ -136,11 +137,13 @@ var win=window,
 			$.replaceTag(elem,'a');
 		});
 
-		$('div['+MDID+']',desc).each(function(index,elem){
-			$.attr(elem,'id','ids-module-99143'+index);
-			$.attr(elem,'class','dm_module');
-			$.removeAttr(elem,MDID);
-		});
+		if(isDescPreview){
+			$('div['+MDID+']',desc).each(function(index,elem){
+				$.attr(elem,'id','ids-module-99143'+index);
+				$.attr(elem,'class','dm_module');
+				$.removeAttr(elem,MDID);
+			});
+		}
 
 
 		$('table',desc).each(function(index,table){
@@ -198,7 +201,11 @@ var win=window,
 		};
 
 		html=HTMLfilter.getOuterHTML($descBox[0],rules);
-		AllHTML=['<div align="center">',html,'</div>'].join('');
+		if(isDescPreview){
+			AllHTML=['<div align="center">',html,'</div>'].join('');
+		}else{
+			AllHTML=html;
+		}
 		setTimeout(complete,500);
 	};
 
@@ -209,14 +216,14 @@ var win=window,
 					'<div class="idex-preview-button">发布</div>',
 				  '</div>'].join('');
 
-		var 
+		var
 			div=$.createElement(html),
 			$box=$('.idex-preview-box'),
 			$copy,
 			$qtipbox,
 			$publish;
 
- 
+
 
 		$box.append(div);
 
@@ -262,7 +269,7 @@ var win=window,
 
 		$box.append('<div class="idex-preview-count">共：'+getLength(AllHTML.length)+'字</div>');
 
-  
+
 		var imageQueue=new window.ImageQueue({
 			ATTR_SRC : ATTR_KEY_MAP.SRC,
 			context : $box[0]
@@ -274,7 +281,7 @@ var win=window,
 		$('.idex-preview-loading').remove();
 
 	};
-	
+
 
 
 	function onPublish(element){

@@ -150,7 +150,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 			}
 			data.$eventElement=this.$eventElement;
 			$elem.on("keyup contextmenu",data,function(event){
-				if(event.ctrlKey && (event.button==2 || event.type=='contextmenu')){
+				if(event.altKey && (event.button==2 || event.type=='contextmenu')){
 					$.setTimeout(function(){
 						this.data.$eventElement.trigger('help',this);
 					},100,event);

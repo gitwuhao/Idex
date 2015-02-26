@@ -19,7 +19,8 @@ function loadBaseLib(){
 	$.loadJSQueue(
 		'/_/js/jquery.StyleSheet.js',
 		'/_/js/htmlfilter.js',
-	  	'/_/js/ImageQueue.dev.js',
+	  	'/_/js/ImageQueue.js',
+		//'/_/js/ImageQueue.dev.js',
 		'/js/sessionExpired.js',
 		loadEditorLib
 	);
@@ -60,7 +61,7 @@ function loadEditorLib(){
 		'js/edit/layout/float-text.js',
 		'js/edit/layout/float-html.js',
 		'js/edit/layout/image-fgrid.js',
-		'js/edit/layout/image-fglink.js',
+		'js/edit/layout/image-flink.js',
 		'js/edit/layout/image-ftext.js',
 		'js/edit/layout/image-rtable.js',
 		'js/edit/layout/image-row.js',

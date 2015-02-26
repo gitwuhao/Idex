@@ -85,13 +85,13 @@
 			style.removeProperty('box-sizing');
 		});
 
-		$('.image-fglink').each(function(index,elem){
+		$('.image-flink').each(function(index,elem){
 			var parentElement=this.parentElement;
 			parentElement._width=parentElement.offsetWidth+'px';
 			parentElement._height=parentElement.offsetHeight+'px';
 		});
 
-		$('.image-fglink').each(function(index,elem){
+		$('.image-flink').each(function(index,elem){
 			var style=this.style;
 			var parentElement=this.parentElement;
 			var parentElementStyle=parentElement.style;

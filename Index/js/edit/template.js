@@ -39,11 +39,14 @@ $.push({
 		this.initSystemTemplate();
 		this.initCustomTemplate();
 	},
+	LAYOUT_MAP_BY_TYPE_ID : {},
 	initLayoutRelation : function(){
 		var node,
 			parent,
 			parents,
-			tree=JSON.parse(localStorage[CACHE_KEY.LAYOUT_RELATION]);
+			tree=JSON.parse(localStorage[CACHE_KEY.LAYOUT_RELATION]),
+			tid,
+			LAYOUT=this.app.layout;
 	
 		for(var key in tree){
 			node=tree[key];
@@ -58,6 +61,20 @@ $.push({
 					}
 				}
 				delete node.parent;
+			}
+			//容器ID
+			tid=node.tid;
+			if(tid){
+				var _layout_=LAYOUT.getLayout(key);
+				if(_layout_){
+					_layout_._type_id_=tid;
+					if(this.LAYOUT_MAP_BY_TYPE_ID[tid]){
+						CF.error('layout type id is repeat:['+key+']');
+					}
+					this.LAYOUT_MAP_BY_TYPE_ID[tid]=_layout_;
+				}else{
+					CF.error('no find layout:'+key+'...');
+				}
 			}
 		}
 		this.data.layoutRelationTree=tree;
@@ -101,11 +118,13 @@ $.push({
 	},
 	initCustomTemplate :function(){
 		this.logger(this);
-		if(this.getCustomTemplateData()){
-			this.buildCustomTemplate();
-			return;
+		var data=this.getCustomTemplateData();
+		data=$.cache.parseJSON(data);
+		if(data){
+			this.buildCustomTemplate(data);
+		}else{
+			this.loadCustomTemplateList();
 		}
-		this.loadCustomTemplateList();
 	},
 	loadCustomTemplateList : function(config){
 		$.jsonp({
@@ -116,7 +135,7 @@ $.push({
 			success : function(json){
 				if(json && json.length>0){
 					this._$owner.saveCustomTemplateData(json);
-					this._$owner.buildCustomTemplate();
+					this._$owner.buildCustomTemplate(json);
 				}				
 				if(this._config && this._config.success){
 					this._config.success();
@@ -167,24 +186,20 @@ $.push({
 			}
 		});
 	},
-	buildCustomTemplate : function(){
-		var array,
-			ts=this.getCustomTemplateData(),
-			containerList=[],
+	getLayoutByTypeId : function(_type_id_){
+		return this.LAYOUT_MAP_BY_TYPE_ID[_type_id_];
+	},
+	buildCustomTemplate : function(array){
+		var containerList=[],
 			layoutList=[],
 			layoutMAP={};
-		if(!ts){
-			array=[];
-		}else{
-			array=JSON.parse(ts);
-		}
 
 		for(var i=0,len=array.length;i<len;i++){
 			var _layout_,
 				item=array[i];
 			item.lid=getLayoutID();
 			layoutMAP[item.lid]=item;
-			_layout_=this.app.layout.getLayoutByIndex(item.type);
+			_layout_=this.getLayoutByTypeId(item.tid);
 			if(_layout_ && _layout_._name_){
 				item.type=_layout_._name_;
 			}else{
