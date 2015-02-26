@@ -7,15 +7,23 @@
 		initModule : function(){
 			this.logger(this);
 			var array,
-				textItem=this.app.layout.getLayout('text-item');
+				textItem=this.app.layout.getLayout('text-item'),
+				imageFLink=this.app.layout.getLayout('image-flink');
 
 			array=this.getBaseFormItemConfig();
 			
-			array.push.apply(array,textItem.getFormItemConfig());
+			this.formItemConfig=textItem.getFormItemConfig;
+			
+			array.push.apply(array,this.formItemConfig());
 
 			this.formItemConfig=array;
 
 			textItem.extend(this);
+
+			this.setType=imageFLink.setType;
+			
+			this.getType=imageFLink.getType;
+
 		},
 		getBaseFormItemConfig : function(){
 			var me =this;
@@ -43,17 +51,6 @@
 		},
 		getFormItemConfig : function(){
 			return this.formItemConfig;
-		},
-		setType : function(value){
-		
-		},
-		getType : function(){
-			var value='1',
-				target=this.activeElement;
-			if($.hasClass(target,'image-ftext')){
-				value='2';
-			}
-			return value;
 		}
 	});
 

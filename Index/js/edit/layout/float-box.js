@@ -4,8 +4,6 @@
 		_className_ : 'AbsLayout',
 		_name_ : 'float-box',
 		title : '浮动层',
-		isBorder:true,
-		isPadding:true,
 		getPropertyForm : function (box){
 			this.logger(this);
 			this.form=this.app.CreatePropertyForm({

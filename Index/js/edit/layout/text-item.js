@@ -132,6 +132,28 @@
 			},
 			getBgColor : function(){
 				return $.style(this.activeElement,'background-color');
+			},
+			replaceLayoutItem : function(html){
+				var $elem,
+					div,
+					href,
+					id,
+					activeElement=this.activeElement;
+			
+				$elem=$(activeElement);
+				id=activeElement.id;
+				href=$elem.attr(this.KEY_MAP.ATTR.HREF);
+				
+				div=$.createElement(html);
+				$.attr(div,this.KEY_MAP.ATTR.HREF,href);
+				$.attr(div,'id',activeElement.id);
+
+				$elem.replaceWith(div);
+				this.app.LayoutPanel.updateNavItem(this.app.layout.getItem(div).layout);
+				this.activeElement=div;
+				$.setTimeout(function(){
+					this.click();
+				},0,div);
 			}
 		};
 	};
@@ -145,16 +167,7 @@
 		initModule : function(){
 			this.extend(this);
 		},
-		extend : function(layout){
-			var config=getTextItemConfig();
-			if(!layout.getFormItemConfig){
-				layout.getFormItemConfig=this.getFormItemConfig;
-			}
-			CF.merger(layout,config);
-			CF.setOwner(layout,layout);
-		},
 		getFormItemConfig : function(){
-			var me=this;
 			return [{
 				label:'边框',
 				name : 'border',
@@ -232,15 +245,32 @@
 				getDesc : '设置背景颜色'
 			},{
 				isPadding : true,
-				width : '50px'
+				width : '55px'
 			},{
 				label:'编辑',
 				xtype:'button',
 				name :'editor',
+				me  : this,
 				onClick : function(){
-					me.onEditor();
+					this.me.onEditor();
 				}
 			}];
+		},
+		getTextItemConfig : getTextItemConfig,
+		extend : function(layout){
+			var config=this.getTextItemConfig();
+			if(!layout.getFormItemConfig){
+				layout.getFormItemConfig=this.getFormItemConfig;
+			}
+			CF.merger(layout,config);
+			CF.setOwner(layout,layout);
+		},
+		extendReplaceLayout : function(layout){
+			var config=this.getTextItemConfig();
+			CF.merger(layout,{
+				replaceLayoutItem : config.replaceLayoutItem
+			});
+			CF.setOwner(layout,layout);
 		}
 	});
 

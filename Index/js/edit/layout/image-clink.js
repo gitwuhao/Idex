@@ -4,23 +4,16 @@
 		_className_ : 'AbsSubLayout',
 		_name_ : 'image-clink',
 		title : '图片链接',
-		isBorder:true,
-		isPadding:true,
 		initModule : function(){
 			this.logger(this);
 		},
 		onMousedown:function(event,target){
 			this.logger(this);
-			var col=this.getParentElement(target);
+			var col=this.getParentElement(target),
+				LAYOUT=this.app.layout;
 
 			this.parentBox=this.getParentElement(col);
 			
-			this.updateParentBox();
-			
-			//$.setTimeout(function(){
-			//$.removeClass(this.activeElement,'idex-r-active');
-			//},100,this);
-
 			this.app.dd.sort({
 				instance : this,
 				isAutoWidth : true,
@@ -30,18 +23,22 @@
 				type : {
 					resize : true
 				},
+				parentLayout : LAYOUT.findParent(target.parentElement).layout,
+				LAYOUT : LAYOUT,
 				parentBox : this.parentBox,
 				isLockBody : true,
 				onSortBoxMove : function(event){
-					var item=this.app.layout.findParent(event.target),
+					var item=this.LAYOUT.findParent(event.target),
 						element,
 						layout;
+
 					if(item){
 						element=item.target;
 						layout=item.layout;
-						if(layout==this.instance){
-							return element;
-						}else if(layout._name_ == "image-col"){
+
+						this.instance.setParentBoxHeight();
+						
+						if(layout._name_ == "image-col"){
 							var isAppend=false;
 							if(!element.lastElementChild){
 								isAppend=true;
@@ -57,6 +54,11 @@
 							}
 							if(isAppend){
 								this.moveLayout(element,this.target,'append');
+							}
+						}else{
+							var parentItem=this.LAYOUT.findParent(item.target.parentElement);
+							if(parentItem.layout==this.parentLayout){
+								return element;
 							}
 						}
 					}
@@ -78,9 +80,7 @@
 						type='before';
 					}
 					
-					//ui.dragdrop.scrollTop(this.app.ViewPanel.viewPanel,element);
 					if(type){
-						//$element[type](target);
 						this.moveLayout(element,target,type);
 					}
 				},
@@ -94,6 +94,7 @@
 							this.instance.updateParentBox();
 						}
 					}
+					$.style(this.parentBox,'height','');
 				},
 				moveLayout : function(targetElement,srcElement,type){
 					this.instance.setID(targetElement);
@@ -103,35 +104,36 @@
 					}else{
 						this.app.LayoutPanel.moveLayout(targetElement,srcElement,type);
 					}
-
-					//this.instance.updateParentBox();
+					
+					$.style(this.parentBox,'height','');
 
 					var lastCommand=this.app.HistoryPanel.getLastCommand();
 					
 					if(lastCommand.parentBox!=this.parentBox){
 						lastCommand.parentBox=this.parentBox;
 						lastCommand.layoutInstance=this.instance;
-						lastCommand.undoAfter=lastCommand.redoAfter= function(){
-							//this.layoutInstance.updateParentBox();
-						};
 					}
 				}
 			});
 		},
-		onClick : function(){
-			this.updateParentBox();
+		setParentBoxHeight : function(){
+			if(this.parentBox){
+				$.style(this.parentBox,'height',this.parentBox.scrollHeight);
+			}
 		},
-		updateParentBox:function(){
-			if(this.parentBox){		
-				this.parentBox.style.height="";
-				this.parentBox.style.height=this.parentBox.scrollHeight+'px';
-				delete this._SET_HEIGHT_TIMEOUT_ID_;
+		onClick : function(activeLayout,deActiveLayout){
+			this.logger(this);
+			if(this.parentBox){
+				$.style(this.parentBox,'height','');
+				$.setTimeout(function(){
+					this.setParentBoxHeight();
+				},20,this);
 			}
 		},
 		onDeActiveLayout : function(activeLayout,deActiveLayout){
 			this.logger(this);
 			this.callPrototypeMethod();
-			this.updateParentBox();
+			this.setParentBoxHeight();
 		},
 		getPropertyForm : function (box){
 			this.logger(this);
@@ -187,7 +189,7 @@
 			this.logger(this);
 			this.activeElement.style.height=value + 'px';
 			this.getImgsizing();
-			this.updateParentBox();
+			this.setParentBoxHeight();
 		},
 		getHeight : function(){
 			this.logger(this);

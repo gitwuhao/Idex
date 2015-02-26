@@ -2,12 +2,15 @@
 	$.push({
 		_isLayoutModule_ : true,
 		_className_ : 'AbsFixedLayout',
-		_name_ : 'image-fglink',
+		_name_ : 'image-flink',
 		title : '图片链接',
-		isBorder:true,
-		isPadding:true,
 		initModule : function(){
 			this.logger(this);
+
+			var textItem=this.app.layout.getLayout('text-item');
+
+			textItem.extendReplaceLayout(this);
+
 		},
 		getPropertyForm : function (box){
 			this.logger(this);
@@ -41,7 +44,15 @@
 			return this.form;
 		},
 		setType : function(value){
-		
+			if(this.getType()==value){
+				return;
+			}
+			if(value=='1'){
+				html='<div class="image-flink img-b img-p"><img src="/s.gif"/></div>';
+			}else{
+				html='<div class="image-ftext"></div>';
+			}
+			this.replaceLayoutItem(html);
 		},
 		getType : function(){
 			var value='1',
