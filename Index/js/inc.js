@@ -39,6 +39,10 @@
 		VIEW : '_IDEX_VIEW'
 	};
 
+	KEY.APP_CONFIG={
+		CONTEXT_MAX_LENGTH : 30 * 1000
+	};
+
 	KEY.URL ={
 		GUID_URL : 'http://bangpai.taobao.com/group/thread/16499510-293754315.htm'	
 	};

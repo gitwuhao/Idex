@@ -47,6 +47,8 @@ $.push({
 
 		this.app.data=this.data;
 
+		this.CONTEXT_MAX_LENGTH=this.APP_CONFIG.CONTEXT_MAX_LENGTH;
+
 		this.initEvents();
 
 		this.app.bindReadyAfter(this);
@@ -96,8 +98,11 @@ $.push({
 		viewPanel.scrollTop=scrollTop - topValue;
 	},
 	onAppReadyAfter : function(){
-		var div,
-			html='<div class="idex-code-count-box">源码：<span class="value"></span>/<span class="count">20K</span></div>';
+		var count=(this.CONTEXT_MAX_LENGTH / 1000),
+			div,
+			html=['<div class="idex-code-count-box">',
+					'源码：<span class="value"></span>/<span class="count">',count,'K</span>',
+				  '</div>'].join('');
 		div=$.createElement(html);
 		this.app.LayoutPanel.$bottombarbox.append(div);
 		this.$codeCountBox=$(div);
