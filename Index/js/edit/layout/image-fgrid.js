@@ -31,7 +31,7 @@ var CACHE_KEY=window.APP_KEY_MAP.CACHE;
 					label:'图片',
 					xtype:'radio',
 					name: 'picture',
-					cls : 'breakline picture-group-style',
+					cls : 'breakline picture-group-style s3',
 					items:[{
 						label : '1张',
 						value : '1'

@@ -33,6 +33,7 @@
 				},this.app.ui.FORMITEM.img),
 				'SIZE',{
 					label:'列数',
+					cls:'s3',
 					xtype:'radio',
 					name: 'col',
 					items:[{
@@ -46,6 +47,19 @@
 						me.setCol(item.value,item);
 					},
 					onChange : CF.emptyFunction
+				},{
+					label:'比例',
+					cls:'s3',
+					xtype:'radio',
+					name: 'wtype',
+					items:[{
+						label : '5:5',
+						value : '5'
+					},{
+						label : '6:4',
+						value : '6'
+					}],
+					getDesc : '修改比例'
 				},'|||',{
 					isPadding: true,
 					width: '25px',

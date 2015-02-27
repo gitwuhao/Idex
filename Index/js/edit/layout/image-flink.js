@@ -21,6 +21,7 @@
 				items : [{
 					label:'类型',
 					xtype:'radio',
+					cls:'s3',
 					name: 'type',
 					items:[{
 						label : '图片',
