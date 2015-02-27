@@ -35,6 +35,7 @@
 				},{
 					label:'列数',
 					xtype:'radio',
+					cls:'s3',
 					name: 'col',
 					items:[{
 						label : '3列',
