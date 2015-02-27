@@ -4,6 +4,9 @@
 		_name_ : 'TableEditor',
 		initModule : function(){
 			this.logger(this);
+		},
+		init : function(callback){
+			
 			$.getDoc().one('teditoruiready',{
 				app : this.app,
 				module : this
@@ -12,8 +15,7 @@
 					module=data.module;
 				module.onReady(editor);
 			});
-		},
-		init : function(callback){
+
 			if(ui.teditor instanceof ui.toolbar){
 				$.getDoc().trigger('teditoruiready',ui.teditor);
 			}else{
@@ -38,7 +40,7 @@
 			}
 		},
 		onReady : function(editor){
-			
+
 			editor.initEditor(this.app.ViewPanel.$popuBox);
 			
 			this.instance=editor; 
@@ -57,6 +59,7 @@
 			},50,this);
 
 			delete this.onReady;
+			delete this.init;
 
 		},
 		initPropertyTable : function(){
