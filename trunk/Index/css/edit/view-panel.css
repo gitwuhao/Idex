@@ -35,6 +35,9 @@
 .idex-desc-box .text-item,.idex-desc-box .html-item,.idex-desc-box .image-list,.idex-desc-box .float-box{
 	min-height: 50px;
 }
+.idex-desc-box .text-item{
+	min-height: 20px;
+}
 .idex-desc-box .user-tbody td{
 	height: 20px;
 }
