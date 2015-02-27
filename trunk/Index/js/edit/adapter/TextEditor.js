@@ -4,6 +4,9 @@
 		_name_ : 'TextEditor',
 		initModule : function(){
 			this.logger(this);
+		},
+		init : function(){
+			
 			$.getDoc().one('editoruiready',{
 				app : this.app,
 				module : this
@@ -12,8 +15,7 @@
 					module=data.module;
 				module.onReady(editor);
 			});
-		},
-		init : function(){
+
 			if(ui.editor instanceof ui.toolbar){
 				$.getDoc().trigger('editoruiready',ui.editor);
 			}else{
@@ -63,6 +65,8 @@
 			},50,this);
 
 			delete this.onReady;
+			delete this.init;
+
 
 		},
 		onExiteditor : function(){
