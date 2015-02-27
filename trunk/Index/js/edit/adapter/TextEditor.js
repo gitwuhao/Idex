@@ -213,12 +213,6 @@
 				return false;
 			});
 
-			
-
-			var __Mask__=ui.popu.getCurrentMask();
-
-			this.app.ViewPanel.bindScollEvent(__Mask__.$target);
-
 		},
 		initOffset : function(offset){
 			var $elem=this.instance.$elem,
