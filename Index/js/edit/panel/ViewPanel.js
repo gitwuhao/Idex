@@ -5,13 +5,15 @@ var CONFIG_DATA={},
 	CACHE_KEY_MAP=KEY_MAP.CACHE,
 	$$Idex;
 (function(){
-	var $context=$('.idex-view-context-box');
+	var $context=$('.idex-view-context-box'),
+		ID_ATTR_KEY='idex-id',
+		TYPE_ATTR_KEY='idex-type';
 
-	CONFIG_DATA.id= $context.attr('idex-id');
-	$context.removeAttr('idex-id');
+	CONFIG_DATA.id= $context.attr(ID_ATTR_KEY);
+	$context.removeAttr(ID_ATTR_KEY);
 
-	CONFIG_DATA.type= $context.attr('idex-type');
-	$context.removeAttr('idex-type');
+	CONFIG_DATA.type= $context.attr(TYPE_ATTR_KEY);
+	$context.removeAttr(TYPE_ATTR_KEY);
 
 })();
 
@@ -54,12 +56,11 @@ $.push({
 		});
 
 		
-		this.bindScollEvent(this.app.$viewPanel);
-
 		$$Idex=this.app;
 	},
-	bindScollEvent : function($elem){
-		$elem.on('mousewheel',{
+	EVENT_MOUSEWHEEL : 'mousewheel.idex-view-panel-scoll',
+	bindScollEvent : function(){
+		$.getBody().on(this.EVENT_MOUSEWHEEL,{
 			me : this
 		},function(event){
 			if($.isEditable(event.target)){
@@ -68,6 +69,9 @@ $.push({
 			event.data.me.on('mouseWheel',event);
 			return false;
 		});
+	},
+	unbindScollEvent : function(){
+		$.getBody().off(this.EVENT_MOUSEWHEEL);
 	},
 	onMouseWheel:function(event){
 		var viewPanel=this.viewPanel,
@@ -206,14 +210,14 @@ $.push({
 		this.viewPanel.scrollTop=top;
 	},
 	disabledSrcoll:function(){
-		var style=this.viewPanel.style;
-		style.setProperty('overflow-x','hidden');
-		style.setProperty('overflow-y','hidden');
+		$.style(this.viewPanel,'overflow-x','hidden');
+		$.style(this.viewPanel,'overflow-y','hidden');
+		this.bindScollEvent();
 	},
 	enabledSrcoll:function(){
-		var style=this.viewPanel.style;
-		style.setProperty('overflow-x','hidden');
-		style.setProperty('overflow-y','auto');
+		$.style(this.viewPanel,'overflow-x','hidden');
+		$.style(this.viewPanel,'overflow-y','auto');
+		this.unbindScollEvent();
 	},
 	__OUTPUT_RULES__ : {
 		isRemoveEmptyAttr : true,
@@ -249,8 +253,9 @@ $.push({
 		return this._$$originalHTML;
 	}
 });
-
+/*
 window.getAppData=function(){
 	return CF.merger({},$$Idex.ViewPanel.data);
 };
+*/
 })(CF,jQuery);
