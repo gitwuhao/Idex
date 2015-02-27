@@ -32,6 +32,22 @@
 					getDesc : '修改图片地址'
 				},this.app.ui.FORMITEM.img),
 				'SIZE',{
+					label:'比例',
+					cls:'s3',
+					xtype:'radio',
+					name: 'wtype',
+					items:[{
+						label : '4:6',
+						value : '4'
+					},{
+						label : '5:5',
+						value : '5'
+					},{
+						label : '6:4',
+						value : '6'
+					}],
+					getDesc : '修改比例'
+				},{
 					label:'列数',
 					cls:'s3',
 					xtype:'radio',
@@ -47,19 +63,6 @@
 						me.setCol(item.value,item);
 					},
 					onChange : CF.emptyFunction
-				},{
-					label:'比例',
-					cls:'s3',
-					xtype:'radio',
-					name: 'wtype',
-					items:[{
-						label : '5:5',
-						value : '5'
-					},{
-						label : '6:4',
-						value : '6'
-					}],
-					getDesc : '修改比例'
 				},'|||',{
 					isPadding: true,
 					width: '25px',
@@ -89,6 +92,27 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
+		},
+		setWtype : function(value){
+			this.logger(this);
+			var activeElement=this.activeElement;
+			$.removeClass(activeElement,'w4 w5 w6');
+			$.addClass(activeElement,'w'+value);
+		},
+		getWtype : function(){
+			this.logger(this);
+			var value=0,
+				activeElement=this.activeElement;
+			if($.hasClass(activeElement,'w4')){
+				value=4;
+			}else if($.hasClass(activeElement,'w5')){
+				value=5;
+			}else if($.hasClass(activeElement,'w6')){
+				value=6;
+			}else{
+				value=5;
+			}
+			return value;
 		},
 		setCol : function(value,item){
 			this.logger(this);
