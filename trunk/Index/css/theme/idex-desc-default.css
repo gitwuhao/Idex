@@ -356,22 +356,36 @@ table.property-tbody{
 	border: 0;
 	vertical-align: top;
 }
-.property-itable.col1 .pp-i-image-box{
-	width: 65%;
+.property-itable .pp-i-image-box{
+	width: 50%;
 	height: 100%;
 }
-.property-itable.col1 .pp-t-box{
-	width: 35%;
+.property-itable .pp-t-box{
+	width: 50%;
 	height: 100%;
 }
-.property-itable.col2 .pp-i-image-box{
-	width: 35%;
-	height: 100%;
+
+.property-itable.w4 .pp-i-image-box{
+	width: 40%;
 }
-.property-itable.col2 .pp-t-box{
-	width: 65%;
-	height: 100%;
+.property-itable.w4 .pp-t-box{
+	width: 60%;
 }
+
+.property-itable.w5 .pp-i-image-box{
+	width: 50%;
+}
+.property-itable.w5 .pp-t-box{
+	width: 50%;
+}
+
+.property-itable.w6 .pp-i-image-box{
+	width: 60%;
+}
+.property-itable.w6 .pp-t-box{
+	width: 40%;
+}
+
 /*------------------------- property-itable -------------------------*/
 
 /*+++++++++++++++++++++++++ list-table +++++++++++++++++++++++++*/
