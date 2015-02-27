@@ -93,6 +93,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 				module._owner_name_='Idex.'+module._name_;
 			}
 			module.app=this;
+			module.APP_CONFIG=this.KEY_MAP.APP_CONFIG;
 			module.logger=logger;
 
 			if(module.initModule){
