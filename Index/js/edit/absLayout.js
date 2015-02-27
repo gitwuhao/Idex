@@ -2,39 +2,7 @@
 	var Idex={},
 		ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR,
 		_LAYOUT_CLASS_MAP_={},
-		_CONTAINER_PROTOTYPE_,
-		_LAYOUT_TYPE_MAP_={
-			'container':1,
-			'text-item':2,
-			'html-item':3,
-			'float-box':4,
-			'float-link':5,
-			'float-image':6,
-			'float-text':7,
-			'float-html':8,
-			'image-fgrid':9,
-			'image-flink':10,
-			'image-rtable':11,
-			'image-row':12,
-			'image-rlink':13,
-			'image-ctable':14,
-			'image-col':15,
-			'image-clink':16,
-			'property-table':17,
-			'property-itable':18,
-			'user-table':19,
-			'list-table':20,
-			'image-list':21,
-			'image-item':22,
-			'image-text':23,
-			'i-image-item':24,
-			'i-text-item':25,
-			'split-line':26,
-			'double-image-text':27,
-			'image-rtext':28,
-			'image-ftext':29,
-			'image-ctext':30
-		};
+		_CONTAINER_PROTOTYPE_;
 
 	(function(){
 		var __INDEX_LEN___=6,
@@ -823,7 +791,6 @@
 			//this.app.createLayoutModule=this.createLayoutModule;
 			//this.app.cleanHTML=this._layout_.getClass('AbsContainer').prototype.cleanHTML;
 		},
-		__LAYOUT_INDEX_TYPE_MAP__ :{},
 		__LAYOUT_INSTANCE_MAP__ : {},
 		__OUTPUT_RULES__ : {
 			'*' : {
@@ -856,14 +823,6 @@
 		},
 		getClass:function(__className__){
 			return _LAYOUT_CLASS_MAP_[__className__];
-		},
-		__printIndexMap__ : function(){
-			var h=[];
-			var map=this.__LAYOUT_INDEX_TYPE_MAP__;
-			for(var i in map){
-				h.push(i+'.'+map[i]._name_);
-			}
-			console.info(h.join(';')+';');
 		},
 		__findParent__ : function(target){
 			if(this.app.ViewPanel.descbox==target || !target){
@@ -971,23 +930,6 @@
 			
 			_layout_.KEY_MAP=this.app.KEY_MAP;
 			this.__LAYOUT_INSTANCE_MAP__[module._name_]=_layout_;
-
-			_index_=_LAYOUT_TYPE_MAP_[module._name_];
-			
-			if(!_index_){
-				console.error('not register layout type:'+module._name_);
-				return _layout_;
-			}
-			
-			this.__LAYOUT_INDEX_TYPE_MAP__[_index_]=_layout_;
-
-			_layout_._type_index_=_index_;
-			
-			/*// 初始化 _LAYOUT_TYPE_MAP_
-			var _LAYOUT_TYPE_ARRAY_=$LAYOUT._LAYOUT_TYPE_ARRAY_||[];
-			_LAYOUT_TYPE_ARRAY_.push('\''+module._name_+'\':'+(_LAYOUT_TYPE_ARRAY_.length+1));
-			$LAYOUT._LAYOUT_TYPE_ARRAY_=_LAYOUT_TYPE_ARRAY_;
-			*/
 			return _layout_;
 		}
 	});
