@@ -436,6 +436,9 @@ table.property-tbody{
 	overflow: hidden;
 	width:100%;
 }
+.image-list .image-item.mb5{
+	margin-bottom:5px;
+}
 .image-list .image-item img{
 	width : 100%;
 	height:100%;
