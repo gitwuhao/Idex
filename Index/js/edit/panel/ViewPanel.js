@@ -65,7 +65,10 @@ $.push({
 		$.getBody().on(this.EVENT_MOUSEWHEEL,{
 			me : this
 		},function(event){
-			if($.isEditable(event.target)){
+			var target=event.target;
+			if($.isScollable(target)){
+				return;
+			}else if($.isEditable(target)){
 				return;
 			}
 			event.data.me.on('mouseWheel',event);
