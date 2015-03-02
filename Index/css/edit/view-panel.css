@@ -6,23 +6,23 @@
 	left: 53px;
 	top: 3px;
 	bottom: 3px;
+	-webkit-user-drag: none;
+	padding-right: 7px;
 }
 .idex-view-panel-bg{
 	background-color: #FFF;
-	margin-right: 5px;
-	display: inline-block;
 }
 .idex-view-panel-box{
 	font-size: 14px;
 	line-height: 1.5;
 	font-family: tahoma, arial, SimSun, sans-serif;
-	padding: 5px;
 }
 .idex-event-listener{
 	display: none;
 }
 .idex-desc-box{
 	min-height: 1000px;
+	padding: 5px;
 }
 .idex-desc-box table {
 	border-collapse: collapse;
