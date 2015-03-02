@@ -23,6 +23,7 @@
 .idex-desc-box{
 	min-height: 1000px;
 	padding: 5px;
+	background-color: #FFF;
 }
 .idex-desc-box table {
 	border-collapse: collapse;
