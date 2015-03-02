@@ -874,10 +874,10 @@
 		setActiveNavList : function(navList){
 			this.logger(this);
 			if(this.activeNavList && this.activeNavList!=navList){
-				this.activeNavList.style.display='none';
+				$.style(this.activeNavList,'display','none');
 			}
 			this.activeNavList=navList;
-			this.activeNavList.style.display='';
+			$.style(this.activeNavList,'display','');
 		},
 		getNavItemByLayout : function(layoutElement){
 			this.logger(this);
