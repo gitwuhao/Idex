@@ -14,7 +14,7 @@
 	padding: 5px;
 	background-color: #FFF;
 	margin-right: 7px;
-	border-right: 2px solid rgba(255, 255, 255, 1);
+	border-right: 2px solid rgba(255, 255, 255, 0);
 }
 .idex-view-context-box{
 	display: inline-block;
