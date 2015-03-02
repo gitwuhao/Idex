@@ -6,24 +6,24 @@
 	left: 53px;
 	top: 3px;
 	bottom: 3px;
-	-webkit-user-drag: none;
-	padding-right: 7px;
-}
-.idex-view-panel-bg{
-	background-color: #FFF;
 }
 .idex-view-panel-box{
 	font-size: 14px;
 	line-height: 1.5;
 	font-family: tahoma, arial, SimSun, sans-serif;
+	padding: 5px;
+	background-color: #FFF;
+	margin-right: 7px;
+	border-right: 2px solid rgba(255, 255, 255, 1);
+}
+.idex-view-context-box{
+	display: inline-block;
 }
 .idex-event-listener{
 	display: none;
 }
 .idex-desc-box{
 	min-height: 1000px;
-	padding: 5px;
-	background-color: #FFF;
 }
 .idex-desc-box table {
 	border-collapse: collapse;
