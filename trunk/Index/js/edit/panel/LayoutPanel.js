@@ -1012,6 +1012,9 @@
 						type;
 					if(values.parentID){
 						srcElement = this.panel.get(values.parentID);
+						if($.hasClass(srcElement,'container')){
+							srcElement=$(srcElement).children('.layout-box:first')[0];
+						}
 						type = 'append';
 					}else if(values.prevID){
 						srcElement = this.panel.get(values.prevID);
