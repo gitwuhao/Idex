@@ -16,25 +16,56 @@
 		getFormItemConfig : function(){
 			var me=this;
 			var items=this.getBasePropertyForm();
-			items.push({
+			items.push('|||',{
+					label:'边框',
+					name : 'border',
+					width:'200px',
+					xtype:'radio',
+					items:[{
+						label : '1',
+						value : '1'
+					},{
+						label : '2',
+						value : '2'
+					},{
+						label : '3',
+						value : '3'
+					},{
+						label : '4',
+						value : '4'
+					}],
+					getDesc : '设置边框'
+				},{
+					name : 'bColor',
+					width:'19px',
+					cls : 'mini2',
+					xtype:'color',
+					getDesc : '设置边框颜色'
+				},'||',{
+					label:'背景',
+					name : 'bgColor',
+					width:'110px',
+					xtype:'color',
+					getDesc : '设置背景颜色'
+				},{
 					isPadding: true,
-					width: '33px'
+					width: '38px'
 				},{
 					xtype:'button',
 					cls : 'autosize',
 					onClick : function(){
 						me.onAutoSize();
 					}
-				},'|||',{
+				},{
 					isPadding: true,
-					width: '25px',
-					height: '30px'
+					width: '10px'
 				},{
 					label:'编辑',
 					xtype:'button',
-					name : 'editor',
+					name :'editor',
+					me  : this,
 					onClick : function(){
-						me.onEditor();
+						this.me.onEditor();
 					}
 				});
 			return items;
