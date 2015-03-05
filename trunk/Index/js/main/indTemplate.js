@@ -254,7 +254,7 @@ indTemplate.init=function(tab){
 										'</a>',
 										'<div class="copy idex-icon" title="复制"></div>',
 									'</div>',
-									'<p>',mitem.width,'</p>',
+									'<p>',mitem.width,'px</p>',
 									'<em>',mitem.title,'</em>',
 								'</div>');
 				}
