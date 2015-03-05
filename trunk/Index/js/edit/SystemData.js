@@ -76,6 +76,9 @@ layoutRelation={
 	'float-html' : {
 		parent : 'float-box'
 	},
+	'float-line' : {
+		parent : 'float-box'
+	},
 	'image-col' : {
 		parent : 'image-ctable'
 	},
@@ -114,6 +117,9 @@ systemTemplate=[{
 },{
 	type : 'float-link',
 	html : ['<div class="float-link"></div> '].join('')
+},{
+	type : 'float-line',
+	html : ['<div class="float-line"></div> '].join('')
 },{
 	type : 'float-image',
 	html : ['<div class="float-image img-b img-p">',

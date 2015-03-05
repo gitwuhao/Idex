@@ -34,11 +34,6 @@
     width: 40px;
     height: 40px;
 }
-.idex-layout-tab-panel .idex-list-item .idex-layout-icon.split-line-icon .idex-icon{
-	background-color: #888;
-	height: 1px;
-	margin: 20px 0px 15px 0px;
-}
 .idex-layout-tab-panel .idex-list-item .idex-list-item-title{
     width: 135px;
 	overflow: hidden;
@@ -205,13 +200,11 @@
 .image-text-icon .idex-icon,.double-image-text-icon .idex-icon{
 	background-position: -200px -235px;
 }
-.split-line-icon .idex-icon {
+.idex-layout-tab-panel .idex-list-item .idex-layout-icon.split-line-icon .idex-icon,.idex-layout-tab-panel .idex-list-item .idex-layout-icon.float-line-icon .idex-icon{
 	background-color: #888;
 	height: 1px;
-	margin: 30px 10px 13px 10px;
-	width: 55px;
+	margin: 20px 0px 15px 0px;
 }
-
 .idex-property-panel .idex-tabview-box{
     height: 3500px;
 }

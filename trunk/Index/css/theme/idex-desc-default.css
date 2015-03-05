@@ -149,11 +149,22 @@
 	float:left;
 	overflow: hidden;
 }
-.float-box .float-text,.float-box .float-html,.float-box .float-link,.float-box .float-image{
+.float-box .float-text,.float-box .float-html,.float-box .float-link,.float-box .float-line,.float-box .float-image{
 	float:left;
 	display: inline;
 	overflow: hidden;
 	clear: left;
+}
+.float-line .bg{
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-top-color: #DDD;
+}
+.float-line.s2 .bg{
+	border-top-style: dashed;
+}
+.float-line.s3 .bg{
+	border-top-style: dotted;
 }
 /*
 .float-box .float-link{
