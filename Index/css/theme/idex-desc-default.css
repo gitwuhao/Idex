@@ -128,17 +128,17 @@
 /*+++++++++++++++++++++++++ text-item +++++++++++++++++++++++++*/
 .text-item{
 }
-.text-item.s2,.image-ctext.s2,.image-rtext.s2,.image-ftext.s2{
+.text-item.s2,.float-text.s2,.image-ctext.s2,.image-rtext.s2,.image-ftext.s2{
 	border-style: solid;
 	border-width: 1px;
 	border-color: #DDD;
 }
-.text-item.s3,.image-ctext.s3,.image-rtext.s3,.image-ftext.s3{
+.text-item.s3,.float-text.s3,.image-ctext.s3,.image-rtext.s3,.image-ftext.s3{
 	border-style: dashed;
 	border-width: 1px;
 	border-color: #DDD;
 }
-.text-item.s4,.image-ctext.s4,.image-rtext.s4,.image-ftext.s4{
+.text-item.s4,.float-text.s4,.image-ctext.s4,.image-rtext.s4,.image-ftext.s4{
 	border-style: dotted;
 	border-width: 1px;
 	border-color: #DDD;
