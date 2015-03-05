@@ -6,6 +6,10 @@
 		title : '文本',
 		initModule : function(){
 			this.logger(this);
+			this.app.bindReadyAfter(this);
+		},
+		onAppReadyAfter : function(){
+			this.logger(this);
 			var textItem=this.app.layout.getLayout('text-item');
 			textItem.extend(this);
 		},

@@ -99,6 +99,10 @@ div.idex-desc-box .split-line.idex-r-active{
 	outline:none;
 	border-color: #000;
 }
+div.idex-desc-box .float-line{
+	padding: 25px 0px;
+	max-height: 1px;
+}
 div.idex-desc-box .image-rlink.idex-r-active,div.idex-desc-box .image-clink.idex-r-active{
 	cursor: move;
 }
