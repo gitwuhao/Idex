@@ -34,6 +34,18 @@ $.push({
 			}
 		};
 
+		CF.apply(this.__OUTPUT_EMPTY_RULES__,this.__OUTPUT_RULES__);
+
+		this.__OUTPUT_EMPTY_RULES__['img'][ATTR_KEY_MAP.SRC]=function(attr){
+			attr.name=ATTR_KEY_MAP.SRC;
+			attr.value='/s.gif';
+		};
+
+		this.__OUTPUT_EMPTY_RULES__['div'][ATTR_KEY_MAP.href]=function(attr){
+			attr.value='';
+		};
+
+
 		this.getDescBox();
 
 		this._$$originalHTML=this.getAllHTML();
@@ -238,11 +250,28 @@ $.push({
 			}
 		}
 	},
+	__OUTPUT_EMPTY_RULES__ : {
+		'img' : {
+			'^src$' : function(attr){
+				attr.name=ATTR_KEY_MAP.SRC;
+				attr.value='/s.gif';
+			}
+		},
+		'div' : {
+			'href$' : function(attr){
+				attr.value='';
+			}
+		}
+	},
 	getAllHTML : function(){
 		this.logger(this);
 		var HTML=HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_RULES__);
 		this.updateCount(HTML.length);
 		return HTML;
+	},
+	getEmptyAllHTML : function(){
+		this.logger(this);
+		return HTMLfilter.getOuterHTML(this.descbox,this.__OUTPUT_EMPTY_RULES__);
 	},
 	getHTML : function(){
 		this.logger(this);
