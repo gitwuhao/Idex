@@ -9,6 +9,12 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		val=parseFloat(val.replace('px',''));
 		return isNaN(val) ? 0 : val;
 	};
+	function getMarginTopValue(element){
+		var style=window.getComputedStyle(element);
+		var val=style.getPropertyValue('margin-top');
+		val=parseFloat(val.replace('px',''));
+		return isNaN(val) ? 0 : val;
+	};
 	function getWidth(element){
 		var offsetWidth=element.offsetWidth;
 		return offsetWidth+'px';
@@ -102,6 +108,22 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		});
 
 		
+		$('.float-line').each(function(index,elem){
+			var child=this.firstElementChild,
+				$elem=$(this);
+			if(child){
+				var borderStyle=$.style(child,'border-top-style');
+				var borderColor=$.style(child,'border-top-color');
+				$elem.css('border-top','1px '+borderStyle+' '+borderColor);
+				$elem.css('height','1px');
+				$elem.css('margin-top',(getMarginTopValue(elem)+20)+'px');
+				$elem.css('padding','');
+				$elem.empty();
+			}else{
+				$elem.remove();
+			}
+		});
+
 		var $array=$('.image-col');
 
 		$array.each(function(index,elem){

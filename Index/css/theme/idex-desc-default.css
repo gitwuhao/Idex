@@ -155,6 +155,9 @@
 	overflow: hidden;
 	clear: left;
 }
+.float-line{
+	padding: 20px 0px;
+}
 .float-line .bg{
 	border-top-style: solid;
 	border-top-width: 1px;
