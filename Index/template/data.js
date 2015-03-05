@@ -41,13 +41,18 @@ var listIndTemplate=[{
 },{
 	title : '食品酒水',
 	list : [{
-		id:"101010806",
+		id:"10001",
 		width:"790",
 		title:"达利园蛋糕"
 	}]
 },{
 	title : '珠宝配饰'
 },{
-	title : '其它'
+	title : '其它',
+	list : [{
+		id:"10004",
+		width:"790",
+		title:"北京希腊迪拜9天7晚"
+	}]
 }];
 })();
