@@ -52,11 +52,11 @@
 .idex-view-panel.home .idex-shadow-box .content{
 	font-size: 14px;
 	font-family: SimSun;
-	color: #aaa;
+	color: #666;
 	float: left;
 	width: 100%;
-	line-height: 25px;
-	padding: 30px;
+	line-height: 24px;
+	padding: 20px;
 	height: 150px;
 	box-sizing: border-box;
 }
