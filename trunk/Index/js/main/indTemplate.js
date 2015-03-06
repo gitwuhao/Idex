@@ -3,7 +3,7 @@
 
 Idex.view.indTemplate=indTemplate;
 
-indTemplate.TYPE_KEY=Idex.TYPE_MAP.IND_TEMPLATE;
+indTemplate.ACTION_TYPE=Idex.TYPE_MAP.IND_TEMPLATE;
 
 indTemplate.init=function(tab){
 	CF.merger(tab,{
@@ -95,7 +95,7 @@ indTemplate.init=function(tab){
 				this.initListBox(data);
 			}
 		},
-		TYPE_KEY : this.TYPE_KEY,
+		ACTION_TYPE : this.ACTION_TYPE,
 		ATTR_KEY : 'data-item-id',
 		initListBox : function(data){
 			var html=[];
@@ -116,7 +116,7 @@ indTemplate.init=function(tab){
 
 					html.push(	'<div class="idex-module-item idex-shadow-box">',
 									'<div class="idex-mini-tbar">',
-										'<a href="/preview/',this.TYPE_KEY,'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
+										'<a href="/preview/',this.ACTION_TYPE,'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
 											'<div class="view idex-icon"></div>',
 										'</a>',
 										'<div class="copy idex-icon" title="复制" ',this.ATTR_KEY,'="',mitem.id,'"></div>',
