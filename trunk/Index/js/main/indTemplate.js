@@ -89,7 +89,7 @@ indTemplate.init=function(tab){
 				};
 
 				$.jsonp({
-					url:'/template/data.js'
+					url:'/template/config.js'
 				});
 			}else{
 				this.initListBox(data);
