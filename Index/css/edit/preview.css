@@ -43,7 +43,7 @@ body{
 
 }
 .idex-preview-view{
-	width: 750px;
+	/*width: 750px;*/
 	min-height: 1000px;
 	background-color: #FFF;
 	box-shadow: 1px 1px 3px #C9C9C9;
