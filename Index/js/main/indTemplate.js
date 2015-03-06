@@ -8,6 +8,13 @@ indTemplate.init=function(tab){
 	CF.merger(tab,{
 		onRender : function(){
 
+			//this.initUI();
+
+			this.initModule();
+
+		},
+		initUI : function(){
+		
 			var div,
 				html=['<div class="x-ui-floatbar-box">',
 							ui.getXTypeHTML(this.search),
@@ -21,11 +28,6 @@ indTemplate.init=function(tab){
  
 			this.search.$owner=this;
 			this.search=ui.getXTypeItem(this.search,children[1]);
-
-
-			
-			this.initModule();
-
 		},
 		search : {
 			xtype:'text',
@@ -48,10 +50,14 @@ indTemplate.init=function(tab){
 			}
 		},
 		onShowAfter : function(){
-			this.$floatbox.show();
+			if(this.$floatbox){
+				this.$floatbox.show();
+			}
 		},
 		onHideAfter : function(){
-			this.$floatbox.hide();
+			if(this.$floatbox){
+				this.$floatbox.hide();
+			}
 		},
 		initModule : function(){
 			
