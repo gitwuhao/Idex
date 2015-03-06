@@ -51,6 +51,7 @@ body{
 	border-top: none;
 	border-bottom: none;
 	padding: 5px;
+	display: inline-block;
 }
 .idex-preview-button-box{
 	position: fixed;
