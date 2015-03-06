@@ -1,5 +1,5 @@
 (function(){
-var listIndTemplate=[{
+var data=[{
 	title : '时尚服装',
 	list : [{
 		id:"10000",
@@ -55,4 +55,13 @@ var listIndTemplate=[{
 		title:"北京希腊迪拜9天7晚"
 	}]
 }];
+
+var jsonpName=$.cache.get('callback'),
+	callback;
+
+callback=window[jsonpName];
+
+if(callback){
+	callback(data);
+}
 })();
