@@ -26,6 +26,7 @@ function initTab(render){
 		},{
 			label:'行业模板',
 			name : 'system',
+			html :'<div class="error-msg">行业模板加载失败...</div>',
 			onLoad : function(){
 				Idex.view.indTemplate.init(this);
 			}

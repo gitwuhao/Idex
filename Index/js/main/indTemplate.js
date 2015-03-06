@@ -96,8 +96,10 @@ indTemplate.init=function(tab){
 			}
 		},
 		TYPE_KEY : this.TYPE_KEY,
+		ATTR_KEY : 'data-item-id',
 		initListBox : function(data){
 			var html=[];
+			this.item_map={};
 			for(var i=0,len=data.length;i<len;i++){
 				var item=data[i],
 					list=item.list||[];
@@ -109,23 +111,93 @@ indTemplate.init=function(tab){
 							'<div class="idex-ind-template-item-box">');
 				for(var n=0,lLen=list.length;n<lLen;n++){
 					var mitem=list[n];
+					
+					this.item_map[mitem.id]=mitem;
+
 					html.push(	'<div class="idex-module-item idex-shadow-box">',
 									'<div class="idex-mini-tbar">',
 										'<a href="/preview/',this.TYPE_KEY,'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
 											'<div class="view idex-icon"></div>',
 										'</a>',
-										'<div class="copy idex-icon" title="复制"></div>',
+										'<div class="copy idex-icon" title="复制" ',this.ATTR_KEY,'="',mitem.id,'"></div>',
 									'</div>',
 									'<p>',mitem.width,'px</p>',
 									'<em>',mitem.title,'</em>',
 								'</div>');
+
+
 				}
 				html.push(	'</div>',
 						'</div>');
 			}
-
 			this.$listbox.html(html.join(''));
-		
+			this.initEventListener();
+		},
+		initEventListener : function(){
+			var ATTR_KEY=this.ATTR_KEY,
+				me=this;
+			$('['+ATTR_KEY+']',this.$listbox).each(function(i,elem){
+				var $elem=$(elem),
+					id,
+					item;
+				id=$elem.attr(ATTR_KEY);
+				$elem.removeAttr(ATTR_KEY);
+
+				item=me.item_map[id];
+
+				$elem.click({
+					me : me,
+					item : item
+				},function(event){
+					var data=event.data;
+					data.me.on('copy',data.item,this);
+				});
+			});
+		},	
+		isActionBusy : function (){
+			var now=$.timestamp();
+			if(this.lastActionTime + 2000  > now){
+				return true;
+			}
+			this.lastActionTime=now;
+			return false;
+		},
+		onCopy : function(item,target){
+			if(this.isActionBusy(target)){
+				return;
+			}
+			$.jsonp({
+				url:'/module.s',
+				data : 'method=copy&id='+item.id+'&title='+item.title+'&width='+item.width+'&_t='+Idex.TYPE_MAP.IND_TEMPLATE,
+				$owner : this,
+				_target : target,
+				success : function(json){
+					var config=null;
+					if(json && json.id>0){
+						config={
+							cls : 'c5',
+							html : '复制成功，请刷新详情模板！',
+							time : 3001
+						};
+					}else{
+						config={
+							cls : 'c3',
+							html : '复制失败！',
+							time : 1001
+						};
+					}
+
+					CF.merger(config,{
+						align : 'tc',
+						offset : 'lt',
+						target :  this._target
+					});
+
+					ui.quicktip.show(config);
+				},
+				error : function(){
+				}
+			});
 		}
 	});
 
