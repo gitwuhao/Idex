@@ -307,9 +307,9 @@ height: 28px;
 
 }
 .idex-sys-tpl-split-line{
-	border-bottom: 2px groove #CCC;
+	border-bottom: 1px dashed #AEDDFF;
 	margin: 50px 0px;
-	padding-top: 2px;
+	padding-top: 1px;
 }
 .idex-sys-tpl-title-box{
     height: 30px;
