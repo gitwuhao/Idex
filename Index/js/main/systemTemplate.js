@@ -202,7 +202,7 @@ systemTemplate.init=function(tab){
 						align : 'tc',
 						offset : 'lt',
 						target :  this._target,
-						cls : 'c3',
+						cls : 'c1',
 						html : '复制失败！',
 						time : 1001
 					});
