@@ -1,9 +1,9 @@
 (function(CF,$,Idex){
- var systemTemplate = {};
+ var systemTemplate = {},
+	 TYPE_MAP=Idex.TYPE_MAP;
 
 Idex.view.systemTemplate=systemTemplate;
 
-systemTemplate.ACTION_TYPE=Idex.TYPE_MAP.SYS_TEMPLATE;
 
 systemTemplate.init=function(tab){
 	CF.merger(tab,{
@@ -93,7 +93,7 @@ systemTemplate.init=function(tab){
 				this.initListBox(data);
 			}
 		},
-		ACTION_TYPE : this.ACTION_TYPE,
+		ACTION_TYPE : TYPE_MAP.SYS_TEMPLATE,
 		ATTR_KEY : 'data-item-id',
 		initListBox : function(data){
 			var html=[];
@@ -175,31 +175,40 @@ systemTemplate.init=function(tab){
 				data : 'method=copy&id='+item.id+'&type='+item.type+'&title='+item.title+'&width='+item.width+'&_t='+this.ACTION_TYPE,
 				$owner : this,
 				_target : target,
+				_type : item.type,
 				success : function(json){
-					var config=null;
 					if(json && json.id>0){
-						config={
+						var ttitle;
+						if(this._type==TYPE_MAP.TEMPLATE){
+							ttitle='详情';
+						}else if(this._type==TYPE_MAP.RENOVATION){
+							ttitle='装修';
+						}
+						
+						ui.quicktip.show({
+							align : 'tc',
+							offset : 'lt',
+							target :  this._target,
 							cls : 'c5',
-							html : '复制成功，请刷新详情模板！',
+							html : '复制成功，请刷新'+ttitle+'模板列表！',
 							time : 3001
-						};
+						});
 					}else{
-						config={
-							cls : 'c3',
-							html : '复制失败！',
-							time : 1001
-						};
-					}
-
-					CF.merger(config,{
+						this.onError(); 
+					} 
+				},
+				onError : function(){
+					ui.quicktip.show({
 						align : 'tc',
 						offset : 'lt',
-						target :  this._target
+						target :  this._target,
+						cls : 'c3',
+						html : '复制失败！',
+						time : 1001
 					});
-
-					ui.quicktip.show(config);
 				},
 				error : function(){
+					this.onError(); 
 				}
 			});
 		}
