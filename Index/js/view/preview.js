@@ -214,6 +214,7 @@ var win=window,
 		var html=['<div class="idex-preview-button-box">',
 					'<div class="idex-preview-button">复制</div>',
 					'<div class="idex-preview-button">发布</div>',
+					'<div class="idex-preview-button">分享</div>',
 				  '</div>'].join('');
 
 		var
@@ -221,7 +222,8 @@ var win=window,
 			$box=$('.idex-preview-box'),
 			$copy,
 			$qtipbox,
-			$publish;
+			$publish,
+			$share;
 
 
 
@@ -229,6 +231,7 @@ var win=window,
 
 		$copy=$(div.firstElementChild);
 		$publish=$copy.next();
+		$share=$publish.next();
 
 		div=$.createElement('<div class="idex-preview-qtipbox">复制成功</div>');
 		$.getBody().append(div);
@@ -243,6 +246,22 @@ var win=window,
 			$publish.remove();
 			$publish=null;
 		}
+
+		$share.click(function(event){
+
+			$(this).remove();
+			var $qrcode,
+				div=$.createElement('<div class="qrcode-box"><div class="label">扫一扫</div><div class="qrcode"></div></div>');
+			$.getBody().append(div);
+
+			$(div).children('.qrcode').qrcode({
+				width : 120,
+				height : 120,
+				text : "http://idex.oilan.com.cn/s/1.html"
+			});	
+		});
+		
+
 
 		ZeroClipboard.bind({
 			target :$copy[0],
