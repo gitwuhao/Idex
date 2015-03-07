@@ -119,7 +119,7 @@ systemTemplate.init=function(tab){
 
 						html.push(	'<div class="idex-module-item idex-shadow-box">',
 										'<div class="idex-mini-tbar">',
-											'<a href="/preview/',item.type,'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
+											'<a href="/preview/',(item.type||'type_undefined'),'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
 												'<div class="view idex-icon"></div>',
 											'</a>',
 											'<div class="copy idex-icon" title="复制" ',this.ATTR_KEY,'="',mitem.id,'"></div>',
