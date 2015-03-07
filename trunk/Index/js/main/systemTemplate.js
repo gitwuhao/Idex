@@ -1,6 +1,7 @@
 (function(CF,$,Idex){
  var systemTemplate = {},
-	 TYPE_MAP=Idex.TYPE_MAP;
+	 TYPE_MAP=Idex.TYPE_MAP,
+	 TPLversion=(window['TPLversion']||0);
 
 Idex.view.systemTemplate=systemTemplate;
 
@@ -73,10 +74,11 @@ systemTemplate.init=function(tab){
 
 		},
 		CACHE_KEY : 'IDEX_SYS_TEMPLATE_DATA',
+		VERSION_KEY : 'IDEX_TPL_VERSION',
 		loadData : function(){
 			var data=$.LS[this.CACHE_KEY];
 			data=$.cache.parseJSON(data);
-			if(!data){
+			if(!data || $.LS[this.VERSION_KEY]!=TPLversion){
 				var me=this,
 					jsonpName=$.getJSONPName();
 
@@ -84,11 +86,12 @@ systemTemplate.init=function(tab){
 				
 				window[jsonpName]=function(data){
 					$.LS[me.CACHE_KEY]=JSON.stringify(data);
+					$.LS[me.VERSION_KEY]=TPLversion;
 					me.initListBox(data);
 					delete window[jsonpName];
 				};
 
-				$.loadJSQueue('/template/config.js?v='+(window.TPLversion||0));
+				$.loadJSQueue('/template/config.js?v='+TPLversion);
 			}else{
 				this.initListBox(data);
 			}
