@@ -1,5 +1,13 @@
 (function(){
-var data=[{
+var TEMPLATE = 1,
+	DESC = 2,
+	RENOVATION = 3,
+	CUSTOM = 8,
+	TEMPLATE_list,
+	RENOVATION_list
+	;
+
+TEMPLATE_list=[{
 	title : '时尚服装',
 	list : [{
 		id:"10001",
@@ -27,7 +35,10 @@ var data=[{
 		id:"10006",
 		width:"750",
 		title:"水星家纺奥菲莉四件套"
-	},{
+	}]
+},{
+	title : '家具建材',
+	list : [{
 		id:"10007",
 		width:"790",
 		title:"一米爱家具简约书桌"
@@ -48,7 +59,7 @@ var data=[{
 },{
 	title : '珠宝配饰'
 },{
-	title : '其它',
+	title : '酒店旅游',
 	list : [{
 		id:"10004",
 		width:"790",
@@ -56,8 +67,32 @@ var data=[{
 	}]
 }];
 
-var jsonpName=$.cache.get('callback'),
+RENOVATION_list=[{
+	title : '装修模块',
+	list : [{
+		id:"10004",
+		width:"990",
+		title:"服装"
+	}]
+}];
+
+
+var data=[],
+	jsonpName=$.cache.get('callback'),
 	callback;
+for(var i=0,len=TEMPLATE_list.length;i<len;i++){
+	var item=TEMPLATE_list[i];
+	item.type=TEMPLATE;
+	data.push(item);
+}
+data.push('|||');
+for(var i=0,len=RENOVATION_list.length;i<len;i++){
+	var item=RENOVATION_list[i];
+	item.type=RENOVATION;
+	data.push(item);
+}
+
+
 
 callback=window[jsonpName];
 
