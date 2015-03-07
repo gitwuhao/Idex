@@ -70,9 +70,9 @@ TEMPLATE_list=[{
 RENOVATION_list=[{
 	title : '装修模块',
 	list : [{
-		id:"10004",
+		id:"10001",
 		width:"990",
-		title:"服装"
+		title:"商品列表展示"
 	}]
 }];
 
