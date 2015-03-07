@@ -299,22 +299,27 @@ height: 28px;
 /*----------------------------template select---------------------------------------------*/
 
 /*++++++++++++++++++++++++++++industry template+++++++++++++++++++++++++++++++++++++++++++++*/
-.idex-ind-template-list-box{
+.idex-sys-tpl-list-box{
 
 }
-.idex-ind-template-list-group{
+.idex-sys-tpl-list-group{
 
 
 }
-.idex-ind-template-title-box{
+.idex-sys-tpl-split-line{
+	border-bottom: 2px groove #CCC;
+	margin: 50px 0px;
+	padding-top: 2px;
+}
+.idex-sys-tpl-title-box{
     height: 30px;
     overflow: hidden;
 }
-.idex-ind-template-title-box .idex-bg-line{
+.idex-sys-tpl-title-box .idex-bg-line{
     height: 15px;
     border-bottom: 1px solid #eee;
 }
-.idex-ind-template-title-box .idex-title{
+.idex-sys-tpl-title-box .idex-title{
     float: left;
     margin-top: -10px;
     margin-left: 35px;
@@ -327,18 +332,18 @@ height: 28px;
     font-size: 15px;
 }
 
-.idex-ind-template-title-box.active .idex-bg-line{
+.idex-sys-tpl-title-box.active .idex-bg-line{
 	border-color: #00B2FF;
 }
-.idex-ind-template-title-box.active .idex-title{
+.idex-sys-tpl-title-box.active .idex-title{
 	color: #00B2FF;
 }
 
-.idex-ind-template-item-box{
+.idex-sys-tpl-item-box{
     overflow: hidden;
     padding-top:10px;
 }
-.idex-view-panel .idex-ind-template-item-box .idex-mini-tbar{
+.idex-view-panel .idex-sys-tpl-item-box .idex-mini-tbar{
 	margin-right: 10px
 }
 /*----------------------------industry template---------------------------------------------*/

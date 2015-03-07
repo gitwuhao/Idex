@@ -72,7 +72,7 @@ systemTemplate.init=function(tab){
 
 
 		},
-		CACHE_KEY : 'IDEX_IND_TEMPLATE_DATA',
+		CACHE_KEY : 'IDEX_SYS_TEMPLATE_DATA',
 		loadData : function(){
 			var data=$.LS[this.CACHE_KEY];
 			data=$.cache.parseJSON(data);
@@ -88,9 +88,7 @@ systemTemplate.init=function(tab){
 					delete window[jsonpName];
 				};
 
-				$.jsonp({
-					url:'/template/config.js'
-				});
+				$.loadJSQueue('/template/config.js?v='+(window.TPLversion||0));
 			}else{
 				this.initListBox(data);
 			}
