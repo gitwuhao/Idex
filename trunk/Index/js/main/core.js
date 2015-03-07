@@ -26,7 +26,7 @@
 			DESC : 2,
 			RENOVATION : 3,
 			CUSTOM : 8,
-			IND_TEMPLATE : 10
+			SYS_TEMPLATE : 10
 		},
 		LINK_TARGET : {
 			VIEW : '_IDEX_VIEW',

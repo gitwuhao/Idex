@@ -3,7 +3,7 @@
 
 Idex.view.systemTemplate=systemTemplate;
 
-systemTemplate.ACTION_TYPE=Idex.TYPE_MAP.IND_TEMPLATE;
+systemTemplate.ACTION_TYPE=Idex.TYPE_MAP.SYS_TEMPLATE;
 
 systemTemplate.init=function(tab){
 	CF.merger(tab,{
@@ -113,11 +113,13 @@ systemTemplate.init=function(tab){
 					for(var n=0,lLen=list.length;n<lLen;n++){
 						var mitem=list[n];
 						
+						mitem.type=item.type;
+
 						this.item_map[mitem.id]=mitem;
 
 						html.push(	'<div class="idex-module-item idex-shadow-box">',
 										'<div class="idex-mini-tbar">',
-											'<a href="/preview/',(item.type||'type_undefined'),'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
+											'<a href="/preview/',(mitem.type||'type_undefined'),'/',mitem.id,'" target="_IDEX_VIEW" title="预览">',
 												'<div class="view idex-icon"></div>',
 											'</a>',
 											'<div class="copy idex-icon" title="复制" ',this.ATTR_KEY,'="',mitem.id,'"></div>',
@@ -170,7 +172,7 @@ systemTemplate.init=function(tab){
 			}
 			$.jsonp({
 				url:'/module.s',
-				data : 'method=copy&id='+item.id+'&title='+item.title+'&width='+item.width+'&_t='+Idex.TYPE_MAP.IND_TEMPLATE,
+				data : 'method=copy&id='+item.id+'&type='+item.type+'&title='+item.title+'&width='+item.width+'&_t='+this.ACTION_TYPE,
 				$owner : this,
 				_target : target,
 				success : function(json){
