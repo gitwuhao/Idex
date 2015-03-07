@@ -248,17 +248,8 @@ var win=window,
 		}
 
 		$share.click(function(event){
-
-			$(this).remove();
-			var $qrcode,
-				div=$.createElement('<div class="qrcode-box"><div class="label">扫一扫</div><div class="qrcode"></div></div>');
-			$.getBody().append(div);
-
-			$(div).children('.qrcode').qrcode({
-				width : 120,
-				height : 120,
-				text : "http://idex.oilan.com.cn/s/1.html"
-			});	
+			onShare(this);
+			
 		});
 		
 
@@ -335,6 +326,39 @@ var win=window,
 				alert('发布失败：服务器出了个错..');
 			}
 		});
+	};
+
+	function onShare(button){
+		var defaultText="Idex - 帮你实现好创意！",
+			title=window.prompt("输入分享标题(最多15个字)",defaultText);
+		
+		$.jsonp({
+			url:'/view.s',
+			data :  $.param({
+				method : 'share',
+				title : (title||defaultText).substr(0,15),
+				code : AllHTML
+			}),
+			success : function(id){
+				if(id && id>0){	
+					$(button).remove();
+					var $qrcode,
+						div=$.createElement('<div class="qrcode-box"><div class="label">扫一扫</div><div class="qrcode"></div></div>');
+					$.getBody().append(div);
+
+					$(div).children('.qrcode').qrcode({
+						width : 120,
+						height : 120,
+						text : 'http://idex.oilan.com.cn/s/'+id+'.html'
+					});	
+				}
+			},
+			error : function(){
+				alert('分享失败：服务器出了个错..');
+			}
+		});
+
+
 	};
 
 
