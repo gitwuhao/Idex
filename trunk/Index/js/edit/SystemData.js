@@ -119,7 +119,7 @@ systemTemplate=[{
 	html : ['<div class="float-link"></div> '].join('')
 },{
 	type : 'float-line',
-	html : ['<div class="float-line"></div> '].join('')
+	html : ['<div class="float-line"><div class="bg"></div></div> '].join('')
 },{
 	type : 'float-image',
 	html : ['<div class="float-image img-b img-p">',

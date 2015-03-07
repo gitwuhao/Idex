@@ -61,6 +61,12 @@ $.push({
 		this.activeElement=element;
 		this.setOffset(0,-2000);
 		this.activeElement=activeElement;
+	},
+	setColor : function(value){
+		$.style(this.activeElement.firstElementChild,BORDER_COLOR,(value||'#DDD'));
+	},
+	getColor : function(){
+		return $.style(this.activeElement.firstElementChild,BORDER_COLOR);
 	}
 });
 })(CF,jQuery);

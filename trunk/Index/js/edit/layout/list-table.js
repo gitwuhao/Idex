@@ -3,7 +3,7 @@
 		_isLayoutModule_ : true,
 		_className_ : 'AbsSingleLayout',
 		_name_ : 'list-table',
-		title : '表格',
+		title : '记录表格',
 		getPropertyForm : function (box){
 			this.logger(this);
 			var me=this;
