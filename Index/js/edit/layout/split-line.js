@@ -52,7 +52,7 @@ return {
 		$.style(this.activeElement,BORDER_COLOR,(value||'#DDD'));
 	},
 	getColor : function(){
-		return this.activeElement.style[BORDER_COLOR];
+		return $.style(this.activeElement,BORDER_COLOR);
 	}
 };
 };
