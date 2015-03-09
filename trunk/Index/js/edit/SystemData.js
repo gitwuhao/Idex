@@ -127,10 +127,10 @@ systemTemplate=[{
 			'</div> '].join('')
 },{
 	type : 'float-text',
-	html : '<div class="float-text">&nbsp;</div>'
+	html : '<div class="float-text">文本...</div>'
 },{
 	type : 'float-html',
-	html : '<div class="float-html">&nbsp;</div>'
+	html : '<div class="float-html">html...</div>'
 },{
 	type : 'image-fgrid',
 	html : ['<div class="layout image-fgrid" style="height:300px;">',
@@ -372,10 +372,10 @@ systemTemplate=[{
 			'</div>'].join('')
 },{
 	type : 'text-item',
-	html : '<div class="layout text-item">&nbsp;</div>'
+	html : '<div class="layout text-item">文本...</div>'
 },{
 	type : 'html-item',
-	html : '<div class="layout html-item">&nbsp;</div>'
+	html : '<div class="layout html-item">html...</div>'
 },{
 	type : 'image-text',
 	html : ['<div class="layout image-text w7" style="height:300px;">',
