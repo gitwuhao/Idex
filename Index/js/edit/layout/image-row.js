@@ -20,9 +20,17 @@
 */
 		onActiveElementAfter:function(activeElement,deActiveElement){
 			this.logger(this);
-			this.callPrototypeMethod();
-			this.app.LayoutPanel.disabled('new');
-			this.app.LayoutPanel.disabled('saveas');
+			var len=this.getAll(activeElement).length,
+				LayoutPanel=this.app.LayoutPanel;
+			if(len==1){
+				LayoutPanel.disabled('del');
+			}else{
+				LayoutPanel.enabled('del');
+			}
+
+			LayoutPanel.enabled('copy');
+			LayoutPanel.disabled('new');
+			LayoutPanel.disabled('saveas');
 		}
 	});
 
