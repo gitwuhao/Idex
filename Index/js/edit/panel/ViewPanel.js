@@ -29,8 +29,8 @@ $.push({
 		this.__OUTPUT_RULES__['*']=this.app.layout.__OUTPUT_RULES__['*'];
 
 		this.__OUTPUT_RULES__['img'][ATTR_KEY_MAP.SRC]=function(attr){
-			if(!$.attr(this,'src')){
-				attr.name=ATTR_KEY_MAP.SRC;
+			if($.attr(this,'src')){
+				attr.value='';
 			}
 		};
 
