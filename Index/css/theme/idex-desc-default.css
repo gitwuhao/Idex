@@ -154,6 +154,7 @@
 	display: inline;
 	overflow: hidden;
 	clear: left;
+	box-sizing: border-box;
 }
 .float-line{
 	padding: 20px 0px;
