@@ -3,7 +3,7 @@
 		StyleSheet=$.StyleSheet,
 		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-flink img,.property-image img,.image-item img',
 		TEXT_BG_COLOR='#E5CFE5',
-		IMAGE_BG_COLOR='#F5F5F5',
+		IMAGE_BG_COLOR='#555555',
 		IMAGE_T_BG_COLOR='#CFDEE5',
 		ATTR_KEY_MAP=KEY_MAP.ATTR,
 		CACHE_KEY_MAP=KEY_MAP.CACHE,
