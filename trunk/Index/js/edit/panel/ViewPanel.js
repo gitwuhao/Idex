@@ -290,9 +290,9 @@ $.push({
 		return this._$$originalHTML;
 	}
 });
-/*
+
 window.getAppData=function(){
 	return CF.merger({},$$Idex.ViewPanel.data);
 };
-*/
+/**/
 })(CF,jQuery);
