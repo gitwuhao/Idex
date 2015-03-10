@@ -214,7 +214,7 @@ var win=window,
 		var html=['<div class="idex-preview-button-box">',
 					'<div class="idex-preview-button">复制</div>',
 					'<div class="idex-preview-button">发布</div>',
-					'<div class="idex-preview-button">分享</div>',
+					//'<div class="idex-preview-button">分享</div>',
 				  '</div>'].join('');
 
 		var
@@ -279,16 +279,18 @@ var win=window,
 
 		$box.append('<div class="idex-preview-count">共：'+getLength(AllHTML.length)+'字</div>');
 
+		$.getBody().css('overflow-y','auto');
 
 		var imageQueue=new window.ImageQueue({
-			ATTR_SRC : ATTR_KEY_MAP.SRC,
-			context : $box[0]
+			ATTR_SRC : ATTR_KEY_MAP.SRC
 		});
+
 		imageQueue.pushList(imageQueue.context);
 		imageQueue.run();
 
 		$('.idex-preview-button-box').show();
 		$('.idex-preview-loading').remove();
+
 
 	};
 
