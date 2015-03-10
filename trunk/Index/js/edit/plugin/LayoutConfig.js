@@ -49,8 +49,8 @@ $.push({
 			styleReady : function(){
 				this.setStylecolor(this.getStylecolor());
 			},
-			MIN_WIDTH : 750,
-			MAX_WIDTH : 1200,
+			MIN_WIDTH : 320,
+			MAX_WIDTH : 1500,
 			getPropertyForm : function (box){
 				this.logger(this);
 
