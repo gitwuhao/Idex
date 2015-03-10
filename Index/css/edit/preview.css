@@ -5,6 +5,7 @@ body{
 }
 .idex-preview-box{
 	background-color: #EEE;
+/*
 	position: fixed;
 	top: 0px;
 	bottom: 0px;
@@ -14,30 +15,7 @@ body{
 	-webkit-user-select: none;
 	overflow-y: auto;
 	overflow-x: hidden;
-}
-.idex-preview-box::-webkit-scrollbar-thumb:vertical{
-	-webkit-border-radius:7px;
-	outline:5px solid #EEE;
-	outline-offset:-5px;
-	border: 5px solid #EEE;
-}
-.idex-preview-box::-webkit-scrollbar {
-	 width: 20px;/*对垂直流动条有效*/
-	 height: 8px;/*对水平流动条有效*/
-}
-/*垂直滚动条的按钮*/   /* 垂直滚动条的滑动块*/
-.idex-preview-box::-webkit-scrollbar-button,.idex-preview-box::-webkit-scrollbar-thumb {
-	background: -webkit-linear-gradient(#B6B6B6 0%, #9E9E9E 100%);
-	border-radius: 2px;
-}
-.idex-preview-box::-webkit-resizer,.idex-preview-box::-webkit-scrollbar-resizer,.idex-preview-box::-webkit-scrollbar-corner,.idex-preview-box::-webkit-scrollbar-track {
-	background-color: transparent;
-}
-/*CSS的坐标系，左上角为(0,0),往右往下为增加，往上往左为减少*/
-/*显示滚动条上方的渐增按钮*/
-.idex-preview-box::-webkit-scrollbar-button:start:decrement, /*显示滚动条上方的渐减按钮*/
-.idex-preview-box::-webkit-scrollbar-button:end:increment {
-	display: none;
+*/
 }
 .idex-preview-view-box{
 
@@ -141,13 +119,14 @@ body{
 }
 
 .idex-preview-loading{
-	position: absolute;
+	position: fixed;
 	left: 0px;
 	top: 0px;
 	right: 0px;
 	bottom: 0px;
 	background-color: rgba(0, 0, 0, 0.1);
-	-webkit-user-select: none;z-index: 999999999;
+	-webkit-user-select: none;
+	z-index: 999999999;
 }
 .bubbling-g-box {
 	text-align: center;
