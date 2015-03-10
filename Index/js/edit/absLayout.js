@@ -609,9 +609,6 @@
 					bottom : 0,
 					left : 0
 				},
-				onDblClick : this.onDblclick ? function(event){
-						return this.instance.onDblclick(event);
-				} : null,
 				parentBox : target.parentElement,
 				setPoint : function(point){
 					this.createStartPoint();
