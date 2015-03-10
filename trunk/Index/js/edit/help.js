@@ -112,8 +112,8 @@
 				del : {
 					info : '删除按钮：选中不需要的布局，然后点击该按钮进行删除。',
 					shortcuts : [
-						 '撤销：Alt`+`Ctrl`+`Z\t[Ctrl`+`Z]\n',
-						 '重做：Shift`+`Ctrl`+`Z\t[Ctrl`+`Y]',
+						 '撤销：Ctrl`+`Z\n',
+						 '重做：Ctrl`+`Y',
 					].join('')
 				},
 				home : {
@@ -146,11 +146,11 @@
 				},
 				checkimage : {
 					info : '图片验证：查看或验证图片的。',
-					shortcuts : '面板切换：F9'
+					shortcuts : '面板切换：F8'
 				},
 				exportps : {
 					info : '导出：将当前布局以图片(png格式)模板的方式导出，在导入Ps制作相关图片。',
-					shortcuts : '快捷键：F4'
+					shortcuts : '快捷键：F9'
 				},
 				browse : {
 					info : '预览：预览当前描述，并生成代码。',
