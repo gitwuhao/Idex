@@ -35,7 +35,7 @@ Idex.addEventListener('initHomeCount',function(){
 	$('[id]',$home).removeAttr('id');
 	
 	window.getHomeJSON=null;
-	if(homeJSON.import){
+	if(homeJSON.isImport){
 		Idex.isImport=true;
 		CF.Idex=Idex;
 	}
