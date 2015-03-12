@@ -382,13 +382,12 @@
 		},
 		onExiteditor : function(){
 			this.instance.clearSelectedCell();
-			var isChange=this.instance.hasChange();
-			
-			var undoManager=this.instance.undoManager;
+			var isChange=this.instance.hasChange(),
+				undoManager=this.instance.undoManager;
 
 			undoManager.clear();
 
-			ui.UndoManager.setCurrent(this.currentUndoManager);
+			ui.UndoManager.setCurrent(this.app.HistoryPanel.undo);
 
 			if(isChange){
 				var undoHTML=this.config.target.innerHTML;
@@ -503,9 +502,6 @@
 			this.app.trigger('cleanfloatpanel');
 			
 			this.app.ViewPanel.disabledSrcoll();
-
-
-			this.currentUndoManager=this.app.HistoryPanel.undo();
 
 			this.config=config;
 			
