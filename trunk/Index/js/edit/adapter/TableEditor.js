@@ -383,8 +383,12 @@
 		onExiteditor : function(){
 			this.instance.clearSelectedCell();
 			var isChange=this.instance.hasChange();
+			
+			var undoManager=this.instance.undoManager;
 
-			ui.UndoManager.start();
+			undoManager.clear();
+
+			ui.UndoManager.setCurrent(this.currentUndoManager);
 
 			if(isChange){
 				var undoHTML=this.config.target.innerHTML;
@@ -500,7 +504,8 @@
 			
 			this.app.ViewPanel.disabledSrcoll();
 
-			ui.UndoManager.stop();
+
+			this.currentUndoManager=this.app.HistoryPanel.undo();
 
 			this.config=config;
 			

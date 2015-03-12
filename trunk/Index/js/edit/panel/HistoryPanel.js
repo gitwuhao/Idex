@@ -49,6 +49,8 @@
 			this.logger(this);
 			
 			this.undo=ui.UndoManager.getInstance(20);
+			
+			this.undo._name_='Idex.history';
 
 			this.createPanel();
 
