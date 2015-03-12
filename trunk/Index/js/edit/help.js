@@ -10,49 +10,49 @@
 			src : '图片：设置图片的地址。'
 		},
 		TABLEEDITOR={
-			editor : '编辑：\n<e class="h">Ctrl/s+鼠标单击\n双击表格层进行编辑</em>'
+			editor : '编辑：\n<em class="h">Ctrl/s+鼠标单击\n双击表格层进行编辑</em>'
 		},
 		TEXTEDITOR={
-			editor : '编辑：\n<e class="h">Ctrl`+鼠标单击\n双击文本层进行编辑</em>'
+			editor : '编辑：\n<em class="h">Ctrl`+鼠标单击\n双击文本层进行编辑</em>'
 		},
 		FLOAT={
 				'atop' : {
 					info : '顶对齐：将浮动布局对齐到顶部。',
 					shortcuts : [
-								 '选中浮动布局按快捷键：\n\t\tAlt`+`Shift`+`←\n',
+								 '选中浮动布局按快捷键：\n\t\tShift`+`Alt`+`←\n',
 								  '\t\t轻移：←\t\tShift`+`←'
 					].join('')
 				},
 				'amiddle' :  {
 					info : '垂直居中：将浮动布局垂直居中对齐。',
 					shortcuts : [
-								 '选中浮动布局按快捷键：\n\t\tAlt`+`Shift`+`M'
+								 '选中浮动布局按快捷键：\n\t\tShift`+`Alt`+`M'
 					].join('')
 				},
 				'abottom' :  {
 					info : '底对齐：将浮动布局对齐到底部。',
 					shortcuts : [
-								 '选中浮动布局按快捷键：\n\t\tAlt`+`Shift`+`↓\n',
+								 '选中浮动布局按快捷键：\n\t\tShift`+`Alt`+`↓\n',
 								  '\t\t轻移：↓\t\tShift`+`↓'
 					].join('')
 				},
 				'aleft' : {
 					info : '左对齐：将浮动布局对齐到左边。',
 					shortcuts : [
-								 '选中浮动布局快捷键：\n\t\tAlt`+`Shift`+`←\n',
+								 '选中浮动布局快捷键：\n\t\tShift`+`Alt`+`←\n',
 								  '\t\t轻移：←\t\tShift`+`←'
 					].join('')
 				},
 				'acenter' : {
 					info : '水平居中：将浮动布局水平居中对齐。',
 					shortcuts : [
-								 '选中浮动布局快捷键：\n\t\tAlt`+`Shift`+`C'
+								 '选中浮动布局快捷键：\n\t\tShift`+`Alt`+`C'
 					].join('')
 				},
 				'aright' :  {
 					info : '右对齐：将浮动布局对齐到右边。',
 					shortcuts : [
-								 '选中浮动布局快捷键：\n\t\tAlt`+`Shift`+`→\n',
+								 '选中浮动布局快捷键：\n\t\tShift`+`Alt`+`→\n',
 								  '\t\t轻移：→\t\tShift`+`→'
 					].join('')
 				},
@@ -82,7 +82,7 @@
 			'float-link' : CF.merger({
 				link : '链接：',
 			},FLOAT),
-			'float-text' : CF.merger({},FLOAT,AUTOSIZE),
+			'float-text' : CF.merger({},FLOAT,AUTOSIZE,TEXTEDITOR),
 			'float-html' : CF.merger({},FLOAT,AUTOSIZE),
 			'image-clink' : CF.merger({
 				height : '高度：设置图片的高度。',
@@ -102,8 +102,6 @@
 			},TABLEEDITOR),
 			'user-table'  : CF.merger({
 			},TABLEEDITOR),
-			'float-text'  : CF.merger({
-			},TEXTEDITOR),
 			'text-item'  : CF.merger({
 			},TEXTEDITOR)
 		},
