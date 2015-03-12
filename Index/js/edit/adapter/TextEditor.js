@@ -126,6 +126,8 @@
 			this.app.trigger('cleanfloatpanel');
 
 			this.app.ViewPanel.disabledSrcoll();
+
+			this.app.dragdrop.hide();
 			
 			ui.UndoManager.stop();
 
