@@ -190,6 +190,8 @@
 			}else if(this.activeNavItem!=navItem){
 				this.on('click',event,navItem);
 				this.on('mousedown',navItem);
+			}else if(this.activeNavItem==navItem){
+				this.setPropertyPanel(navItem);
 			}else if(event.ctrlKey ||
 				this.__event_target__==target &&
 				this.__event_timestamp__  >= timeStamp - 500){
@@ -225,6 +227,10 @@
 			var html=this.getNavListHTML(navListId,layout,list);
 			this.$layoutTabView.append(html);
 			this.bindItemSortBarHover(this.get(navListId));
+		},
+		setPropertyPanel : function(navItem){
+			this.logger(this);
+			this.app.PropertyPanel.setActive(this.activeLayout,this.activeElement);
 		},
 		onMousedown:function(navItem){
 			this.logger(this);
