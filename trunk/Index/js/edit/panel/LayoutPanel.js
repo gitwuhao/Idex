@@ -643,7 +643,6 @@
 						this.$layoutTabView.append(html);
 						navList=this.get(navListId);
 					}
-					this.hideActiveNavItem();
 					this.on('deActive');
 					this.setActiveNavList(navList);
 					this.enabled('back');
@@ -670,6 +669,9 @@
 			this.logger(this);
 			if(this.activeElement){
 				this.activeLayout.on('deActiveElement',null,this.activeElement);
+				
+				this.hideActiveNavItem();
+
 				this.activeElement=null;
 				this.activeLayout=null;
 				this.activeNavItem=null;
