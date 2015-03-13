@@ -32,7 +32,7 @@
 			this.$disabledPanel=$(div);
 
 		},
-		setActive : function(layout){
+		setActive : function(layout,element){
 			this.logger(this);
 			if(this.activePanel && (this.activePanel == layout)){
 				return;
