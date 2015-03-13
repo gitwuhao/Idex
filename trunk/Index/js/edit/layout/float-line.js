@@ -113,6 +113,7 @@ $.push({
 			border_color=V_BORDER_COLOR;
 			$.addClass(element,'v');
 		}else{
+			border_color=H_BORDER_COLOR;
 			$.addClass(element,'h');
 		}
 		$.style(element.firstElementChild,border_color,color);
@@ -121,13 +122,8 @@ $.push({
 		var element=this.activeElement,
 			type=1;
 
-		$.removeClass(element,'h v');
-
 		if($.hasClass(element,'v')){
 			type=2;
-			$.addClass(element,'v');
-		}else{
-			$.addClass(element,'h');
 		}
 		return type;
 	}
