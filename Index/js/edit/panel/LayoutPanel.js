@@ -198,9 +198,10 @@
 			}else if(this.activeNavItem!=navItem){
 				this.on('click',event,navItem);
 				this.on('mousedown',navItem);
-			}else if(this.activeNavItem==navItem){
-				this.setPropertyPanel(navItem);
 			}else{
+				if(this.activeNavItem==navItem){
+					this.setPropertyPanel(navItem);
+				}
 				this.on('mousedown',navItem);
 			}
 			this.__event_target__=target;
@@ -642,9 +643,11 @@
 						this.$layoutTabView.append(html);
 						navList=this.get(navListId);
 					}
+					this.hideActiveNavItem();
 					this.on('deActive');
 					this.setActiveNavList(navList);
 					this.enabled('back');
+					this.app.PropertyPanel.hideActivePanel();
 				}
 			}
 		},
@@ -850,6 +853,12 @@
 			}
 			//this.activeLayout.srcollToActiveElement();
 			//this.app.ViewPanel.on('srcollTop',this.activeElement);
+		},
+		hideActiveNavItem : function(){
+			if(this.activeNavItem){
+				$.removeClass(this.activeNavItem,'active');
+			}
+			delete this.activeNavItem;
 		},
 		setActiveNavItem : function(navItem){
 			this.logger(this);
