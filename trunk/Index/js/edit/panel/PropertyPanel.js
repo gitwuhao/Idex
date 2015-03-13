@@ -32,6 +32,12 @@
 			this.$disabledPanel=$(div);
 
 		},
+		hideActivePanel : function(){
+			if(this.activePanel){
+				$(this.activePanel).hide();
+			}
+			delete this.activePanel;
+		},
 		setActive : function(layout,element){
 			this.logger(this);
 			if(this.activePanel && (this.activePanel == layout)){
