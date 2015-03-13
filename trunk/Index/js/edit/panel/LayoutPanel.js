@@ -317,7 +317,7 @@
 			this.$layoutTabView.empty();
 			this.createMainNavList();
 			$(this.getDescBoxElement().firstElementChild).click();
-			this.disabled('home');
+			//this.disabled('home');
 		},
 		onBack:function(){
 			this.logger(this);
@@ -645,7 +645,6 @@
 					this.on('deActive');
 					this.setActiveNavList(navList);
 					this.enabled('back');
-					//this.enabled('home');
 				}
 			}
 		},
@@ -826,7 +825,6 @@
 				}else{
 					this.enabled('back');
 				}
-				this.enabled('home');
 			}
 		},
 		setSortBar : function(){
