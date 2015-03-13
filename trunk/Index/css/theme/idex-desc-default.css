@@ -156,20 +156,38 @@
 	clear: left;
 	box-sizing: border-box;
 }
-.float-line{
+/**horizontal**/
+.float-line.h{
 	padding: 20px 0px;
 }
-.float-line .bg{
+.float-line.h .bg{
 	border-top-style: solid;
 	border-top-width: 1px;
 	border-top-color: #DDD;
 }
-.float-line.s2 .bg{
+.float-line.h.s2 .bg{
 	border-top-style: dashed;
 }
-.float-line.s3 .bg{
+.float-line.h.s3 .bg{
 	border-top-style: dotted;
 }
+/**Vertical**/
+.float-line.v{
+	padding: 0px 20px;
+}
+.float-line.v .bg{
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: #DDD;
+}
+.float-line.v.s2 .bg{
+	border-left-style: dashed;
+}
+.float-line.v.s3 .bg{
+	border-left-style: dotted;
+}
+
+
 /*
 .float-box .float-link{
 	border: 1px dashed #09F;
