@@ -187,12 +187,7 @@
 				this.on('up',navItem,up);
 			}else if(down){
 				this.on('down',navItem,down);
-			}else if(this.activeNavItem!=navItem){
-				this.on('click',event,navItem);
-				this.on('mousedown',navItem);
-			}else if(this.activeNavItem==navItem){
-				this.setPropertyPanel(navItem);
-			}else if(event.ctrlKey ||
+			}else if(event.ctrlKey || event.button == 2 ||
 				this.__event_target__==target &&
 				this.__event_timestamp__  >= timeStamp - 500){
 
@@ -200,6 +195,11 @@
 				this.__event_target__=null;
 				this.__event_timestamp__=null;
 				return;
+			}else if(this.activeNavItem!=navItem){
+				this.on('click',event,navItem);
+				this.on('mousedown',navItem);
+			}else if(this.activeNavItem==navItem){
+				this.setPropertyPanel(navItem);
 			}else{
 				this.on('mousedown',navItem);
 			}
