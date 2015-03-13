@@ -15,6 +15,12 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		val=parseFloat(val.replace('px',''));
 		return isNaN(val) ? 0 : val;
 	};
+	function getMarginLeftValue(element){
+		var style=window.getComputedStyle(element);
+		var val=style.getPropertyValue('margin-left');
+		val=parseFloat(val.replace('px',''));
+		return isNaN(val) ? 0 : val;
+	};
 	function getWidth(element){
 		var offsetWidth=element.offsetWidth;
 		return offsetWidth+'px';
@@ -112,11 +118,19 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 			var child=this.firstElementChild,
 				$elem=$(this);
 			if(child){
-				var borderStyle=$.style(child,'border-top-style');
-				var borderColor=$.style(child,'border-top-color');
-				$elem.css('border-top','1px '+borderStyle+' '+borderColor);
-				$elem.css('height','1px');
-				$elem.css('margin-top',(getMarginTopValue(elem)+20)+'px');
+				if($.hasClass(this,'v')){
+					var borderStyle=$.style(child,'border-left-style');
+					var borderColor=$.style(child,'border-left-color');
+					$elem.css('border-left','1px '+borderStyle+' '+borderColor);
+					$elem.css('width','1px');
+					$elem.css('margin-left',(getMarginLeftValue(elem)+20)+'px');
+				}else{
+					var borderStyle=$.style(child,'border-top-style');
+					var borderColor=$.style(child,'border-top-color');
+					$elem.css('border-top','1px '+borderStyle+' '+borderColor);
+					$elem.css('height','1px');
+					$elem.css('margin-top',(getMarginTopValue(elem)+20)+'px');
+				}
 				$elem.css('padding','');
 				$elem.empty();
 			}else{
