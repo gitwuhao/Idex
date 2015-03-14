@@ -62,7 +62,7 @@
 	function cleanText(){
 		var desc=$descBox[0];
 		
-		$('.float-text,.float-line,.split-line,.float-html,.property-table,.list-table,.user-table,.float-link,.text-item,.html-item',desc).remove();
+		$('.float-text,.float-line,.map-link,.split-line,.float-html,.property-table,.list-table,.user-table,.float-link,.text-item,.html-item',desc).remove();
 		 
 		$('.property-itable .property-tbody',desc).each(function(index,table){
 			var parentElement=table.parentElement;

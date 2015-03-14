@@ -101,10 +101,45 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 	$.StyleSheet.computedSizing=function(element){
 
+		$('.map-box').each(function(index,elem){
+			$.style(this,'width',getInnerWidth(this));
+
+			$.style(this,'box-sizing','');
+			var $img=$('img:first',this),
+				offsetTop=elem.offsetTop,
+				offsetLeft=elem.offsetLeft,
+				img_src,
+				html,
+				map_id='m_'+$.randomChar(4);
+			
+			img_src=$img.attr(ATTR_KEY_MAP.SRC);
+
+			html=['<img style="width:100%;height:100%;border:none;vertical-align:top;" ',
+						ATTR_KEY_MAP.SRC,'="',img_src,'" ',
+						'usemap="#',map_id,'"/>',
+						'<map name="',map_id,'">'];
+			
+			$(this).children('.map-link').each(function(i,link){
+				var href=$.attr(link,ATTR_KEY_MAP.HREF),
+					left=link.offsetLeft - offsetLeft,
+					top=link.offsetTop - offsetTop,
+					width=link.offsetWidth,
+					height=link.offsetHeight;
+				html.push('<area shape="rect" ',
+							'coords="',left,',',top,',',left+width,',',top+height,'" ',
+							'href="',(href||''),'" />');
+			});
+			html.push('</map>');
+
+			this.innerHTML=html.join('');
+		});
+
+
+
 		$('.float-box').each(function(index,elem){
 			$.style(this,'width',getInnerWidth(this));
 			//this.style.height=getHeight(this.children[0]);
-			this.style.removeProperty('box-sizing');
+			$.style(this,'box-sizing','');
 		});
 
 		$('.float-image').each(function(index,elem){
