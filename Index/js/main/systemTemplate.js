@@ -1,7 +1,10 @@
 (function(CF,$,Idex){
+
  var systemTemplate = {},
 	 TYPE_MAP=Idex.TYPE_MAP,
-	 TPLversion=(window['TPLversion']||0);
+	 KEY_MAP=window.APP_KEY_MAP,
+	 CACHE_KEY=KEY_MAP.CACHE,
+	 CACHE_VERSION=KEY_MAP.CACHE_VERSION;
 
 Idex.view.systemTemplate=systemTemplate;
 
@@ -73,12 +76,16 @@ systemTemplate.init=function(tab){
 
 
 		},
-		CACHE_KEY : 'IDEX_SYS_TEMPLATE_DATA',
-		VERSION_KEY : 'IDEX_TPL_VERSION',
+		CACHE_KEY : 'SYS_TEMPLATE_DATA',
+		VERSION_KEY : 'TPL_VERSION',
 		loadData : function(){
 			var data=$.LS[this.CACHE_KEY];
-			data=$.cache.parseJSON(data);
-			if(!data || $.LS[this.VERSION_KEY]!=TPLversion){
+				data=$.cache.parseJSON(data),
+				state=$.cache.equalVersion(this.CACHE_KEY,CACHE_VERSION.TPL_DATA);
+
+			if(state && data){
+				this.initListBox(data);
+			}else{
 				var me=this,
 					jsonpName=$.getJSONPName();
 
@@ -86,14 +93,12 @@ systemTemplate.init=function(tab){
 				
 				window[jsonpName]=function(data){
 					$.LS[me.CACHE_KEY]=JSON.stringify(data);
-					$.LS[me.VERSION_KEY]=TPLversion;
+					$.cache.putVersion(me.CACHE_KEY,CACHE_VERSION.TPL_DATA);
 					me.initListBox(data);
 					delete window[jsonpName];
 				};
 
-				$.loadJSQueue('/template/config.js?v='+TPLversion);
-			}else{
-				this.initListBox(data);
+				$.loadJSQueue('/template/config.js?v='+CACHE_VERSION.TPL_DATA);
 			}
 		},
 		ACTION_TYPE : TYPE_MAP.SYS_TEMPLATE,
