@@ -24,6 +24,7 @@ $.push({
 		this.app.bindReadyAfter(this);
 	},
 	onAppReadyAfter : function(){
+		this.contextType=this.app.ViewPanel.data.type;
 		this.CustomModule=this.app.CustomModule;
 		$.setTimeout(function(){
 			this.initData();
@@ -79,6 +80,19 @@ $.push({
 		}
 		this.data.layoutRelationTree=tree;
 	},
+	isFilterLayout : function(layout){
+		var result=false,
+			node=this.data.layoutRelationTree[layout.type];
+		if(node.export){
+			$.it(node.export,function(i,item){
+				if(item==this.contextType){
+					result=true;
+					return false;
+				}
+			},this);
+		}
+		return result;
+	},
 	initSystemTemplate : function(){
 		this.logger(this);
 		if(this.getSystemTemplateData()){
@@ -98,6 +112,11 @@ $.push({
 		var layoutMap1={},
 			layoutMap2={},
 			systemTemplates=JSON.parse(this.getSystemTemplateData());
+
+		
+		this.initLayoutRelation();
+
+
 		for(var i=0,len=systemTemplates.length;i<len;i++){
 			var item=systemTemplates[i];
 			item.lid=getLayoutID();
@@ -108,7 +127,6 @@ $.push({
 		this.data.systemTemplate.Map=layoutMap1;
 		this.data.systemTemplate.layoutMap=layoutMap2;
 		
-		this.initLayoutRelation();
 	},
 	getCustomTemplateData : function(){
 		return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
@@ -226,7 +244,11 @@ $.push({
 		}
 		return html;
 	},
-	getLayoutTemplateItemHTML : function(layout){		
+	getLayoutTemplateItemHTML : function(layout){
+		if(this.isFilterLayout(layout)){
+			return '';
+		}
+
 		return ['<div id="',layout.lid,'" class="layout-template-item ',layout.type,'-icon">',
 					'<div class="idex-icon"></div>',
 					'<span>',layout.title,'</span>',
