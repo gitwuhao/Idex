@@ -104,7 +104,7 @@ $.push({
 		var me=this;
 		$.loadJSQueue("/js/edit/SystemData.js?_v="+CACHE_VERSION.SYS_DATA,function(){
 			me.buildSystemTemplate();
-			$.cache.putVersion(CACHE_KEY.SYSTEM_TEMPLATE,CACHE_VERSION.SYS_DATA)
+			$.cache.putVersion(CACHE_KEY.SYSTEM_TEMPLATE,CACHE_VERSION.SYS_DATA);
 		});
 	},
 	getSystemTemplateData : function(){
