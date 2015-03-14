@@ -593,6 +593,12 @@
 					}
 				}];
 		},
+		onClick : function(event,target){
+			this.logger(this);
+			if(event.isCommandTrigger){
+				this.onMousedown(event,target);
+			}
+		},
 		onMousedown:function(event,target){
 			this.logger(this);
 			this.app.dd.resize({
