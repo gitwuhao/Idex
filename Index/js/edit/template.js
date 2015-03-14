@@ -273,7 +273,6 @@ $.push({
 		}
 		for(var i=0,len=layoutChilds.length;i<len;i++){
 			var layoutType=layoutChilds[i];
-			
 			if(!this.isFilterLayout(layoutType)){
 				var layout=layoutMap[layoutType];
 				if(layout){
@@ -283,6 +282,7 @@ $.push({
 							layout.title=layoutObject.title;
 						}
 					}
+
 					if(layout.title){
 						html.push(this.getLayoutTemplateItemHTML(layout));
 					}else{
