@@ -136,7 +136,7 @@ $.push({
 		return $.cache.get(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST);
 	},
 	saveCustomTemplateData : function(json){
-		$.cache.put(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST,JSON.stringify(json),new Date());
+		$.cache.put(this.CACHE_KEY.CUSTOM_TEMPLATE_LIST,$.cache.stringJSON(json),new Date());
 	},
 	initCustomTemplate :function(){
 		this.logger(this);

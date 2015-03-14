@@ -109,7 +109,7 @@ $.push({
 			$.cache.remove(CACHE_KEY.PIC_TREE);
 			return;
 		}
-		$.cache.put(CACHE_KEY.PIC_TREE,JSON.stringify(json));
+		$.cache.put(CACHE_KEY.PIC_TREE,$.cache.stringJSON(json));
 	},
 	getLastLoadPic : function(){
 		return $.cache.get(CACHE_KEY.LAST_LOAD);
@@ -119,7 +119,7 @@ $.push({
 			$.cache.remove(CACHE_KEY.LAST_LOAD);
 			return;
 		}
-		$.cache.put(CACHE_KEY.LAST_LOAD,JSON.stringify(json));
+		$.cache.put(CACHE_KEY.LAST_LOAD,$.cache.stringJSON(json));
 	},
 	loadTreeData : function(callback){
 		var treeData=this.getTreeData();
