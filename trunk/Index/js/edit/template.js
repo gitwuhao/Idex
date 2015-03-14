@@ -96,13 +96,15 @@ $.push({
 	},
 	initSystemTemplate : function(){
 		this.logger(this);
-		if(this.getSystemTemplateData()){
+		var state=$.cache.equalVersion(CACHE_KEY.SYSTEM_TEMPLATE,CACHE_VERSION.SYS_DATA);
+		if(state && this.getSystemTemplateData()){
 			this.buildSystemTemplate();
-			return;
+			return;		
 		}
 		var me=this;
 		$.loadJSQueue("/js/edit/SystemData.js?_v="+CACHE_VERSION.SYS_DATA,function(){
 			me.buildSystemTemplate();
+			$.cache.putVersion(CACHE_KEY.SYSTEM_TEMPLATE,CACHE_VERSION.SYS_DATA)
 		});
 	},
 	getSystemTemplateData : function(){
@@ -221,8 +223,10 @@ $.push({
 				item=array[i];
 			_layout_=this.getLayoutByTypeId(item.tid);
 			
-			if(!this.isFilterLayout(_layout_._name_)){
-
+			
+			if(!_layout_){
+				console.error(item,_layout_);
+			}else if(!this.isFilterLayout(_layout_._name_)){
 				item.lid=getLayoutID();
 				layoutMAP[item.lid]=item;
 
