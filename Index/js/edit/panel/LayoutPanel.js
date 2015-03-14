@@ -107,7 +107,7 @@
 			this.initEvents();
 
 		},
-		__events__ : ['mousedown'].join(' '),
+		__events__ : ['mousedown','mouseup'].join(' '),
 		initEvents : function(){
 			this.logger(this);
 			this.$layoutTabView.on(this.__events__,{
@@ -121,7 +121,8 @@
 					return;
 				}
 				*/
-				data.panel.eventDispatch(event,event.type);
+				
+				data.panel.eventDispatch(event);
 			});
 
 			this.tabviewbox=this.$tabviewbox[0];
@@ -152,15 +153,19 @@
 		},
 		eventDispatch:function(event){
 			this.logger(this);
-			var target=event.target;
-			var navItem=$(target).closest('.idex-list-item')[0];
-			var eventtype=event.type;
-			var timeStamp=event.timeStamp;
+			var target=event.target,
+				navItem,
+				eventType,
+				timeStamp;
+			navItem=$(target).closest('.idex-list-item')[0];
+			eventType=event.type;
+			timeStamp=event.timeStamp;
 			if(!navItem){
 				this.__event_target__=null;
 				this.__event_timestamp__=null;
 				return;
 			}
+
 			var check,eye,up,down
 				parentElement=target.parentElement;
 			if($.hasClass(target,'eye')){
@@ -177,35 +182,38 @@
 				down=parentElement;
 			}
 
-			if(eye){
-				this.on('click',event,navItem);
-				this.on('hideLayout',navItem,eye);
-			}else if(check){
-				this.on('click',event,navItem);
-				this.on('showLayout',navItem,check);
-			}else if(up){
-				this.on('up',navItem,up);
-			}else if(down){
-				this.on('down',navItem,down);
-			}else if(event.ctrlKey || event.button == 2 ||
-				this.__event_target__==target &&
-				this.__event_timestamp__  >= timeStamp - 500){
 
-				this.on('dbClick',event,navItem);
-				this.__event_target__=null;
-				this.__event_timestamp__=null;
-				return;
-			}else if(this.activeNavItem!=navItem){
-				this.on('click',event,navItem);
-				this.on('mousedown',navItem);
-			}else{
-				if(this.activeNavItem==navItem){
+			if(eventType=='mouseup'){
+				if(eye){
+					this.on('click',event,navItem);
+					this.on('hideLayout',navItem,eye);
+				}else if(check){
+					this.on('click',event,navItem);
+					this.on('showLayout',navItem,check);
+				}else if(up){
+					this.on('up',navItem,up);
+				}else if(down){
+					this.on('down',navItem,down);
+				}else if(event.ctrlKey || event.button == 2 ||
+					this.__event_target__==target &&
+					this.__event_timestamp__  >= timeStamp - 500){
+
+					this.on('dbClick',event,navItem);
+					this.__event_target__=null;
+					this.__event_timestamp__=null;
+					return;
+				}else if(this.activeNavItem!=navItem){
+					this.on('click',event,navItem);
+				}else if(this.activeNavItem==navItem){
 					this.setPropertyPanel(navItem);
 				}
+				
+				this.__event_target__=target;
+				this.__event_timestamp__=timeStamp;
+
+			}else{
 				this.on('mousedown',navItem);
 			}
-			this.__event_target__=target;
-			this.__event_timestamp__=timeStamp;
 		},
 		initMainNavList : function(){
 			this.logger(this);
