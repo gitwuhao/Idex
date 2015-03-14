@@ -206,6 +206,7 @@
 					this.on('click',event,navItem);
 				}else if(this.activeNavItem==navItem){
 					this.setPropertyPanel(navItem);
+					this.on('click',event,navItem);
 				}
 				
 				this.__event_target__=target;
