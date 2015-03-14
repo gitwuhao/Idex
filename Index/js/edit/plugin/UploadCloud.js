@@ -43,7 +43,7 @@ $.push({
 		
 		var list=$.cache.findAll(this.getUploadFailCacheKey());
 		if(list && list.length>0){
-			var param=JSON.parse(list[0].value);
+			var param=$.cache.parseJSON(list[0].value);
 			if(param.html &&  param.time){
 				var date=new Date(),					
 					HistoryPanel=this.app.HistoryPanel;

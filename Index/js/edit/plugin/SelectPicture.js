@@ -124,7 +124,7 @@ $.push({
 	loadTreeData : function(callback){
 		var treeData=this.getTreeData();
 		if(treeData){
-			callback(JSON.parse(treeData));
+			callback($.cache.parseJSON(treeData));
 			return;
 		}
 		$.jsonp({
@@ -273,7 +273,7 @@ $.push({
 				var json=this.$context.getLastLoadPic();
 				if(json){
 					try{
-						json=JSON.parse(json);
+						json=$.cache.parseJSON(json);
 						this.currentCID=json.cid  || '';
 						this.currentPageNo=json.pageNo;
 						json.isLastLoad=true;

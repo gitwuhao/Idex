@@ -4,6 +4,7 @@ var __INDEX__,
 	__SUFFIX__='TP'+$.randomChar(3),
 	KEY_MAP=window.APP_KEY_MAP,
 	CACHE_KEY=KEY_MAP.CACHE,
+	CACHE_VERSION=KEY_MAP.CACHE_VERSION,
 	ACTION_KEY=KEY_MAP.ACTION;
 
 __INDEX__=parseInt((''+$.timestamp()).match(/(\d{5}$)/)[0]);
@@ -45,7 +46,7 @@ $.push({
 		var node,
 			parent,
 			parents,
-			tree=JSON.parse(localStorage[CACHE_KEY.LAYOUT_RELATION]),
+			tree=$.cache.parseJSON(localStorage[CACHE_KEY.LAYOUT_RELATION]),
 			tid,
 			LAYOUT=this.app.layout;
 	
@@ -111,8 +112,8 @@ $.push({
 		this.logger(this);
 		var layoutMap1={},
 			layoutMap2={},
-			systemTemplates=JSON.parse(this.getSystemTemplateData());
-
+			systemTemplates=$.cache.parseJSON(this.getSystemTemplateData());
+		
 		
 		this.initLayoutRelation();
 

@@ -43,6 +43,10 @@
 		CONTEXT_MAX_LENGTH : 30 * 1000
 	};
 
+	KEY.CACHE_VERSION={
+		SYS_DATA : 1
+	};
+
 	KEY.URL ={
 		GUID_URL : 'http://bangpai.taobao.com/group/thread/16499510-293754315.htm'	
 	};

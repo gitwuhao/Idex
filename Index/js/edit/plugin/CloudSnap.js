@@ -231,7 +231,7 @@ $.push({
 			if(!json){
 				array=[];
 			}else{
-				array=JSON.parse(json);
+				array=$.cache.parseJSON(json);
 				this.$cloudSnapBox.show();
 			}
 			for(var i=0,len=array.length;i<len;i++){
