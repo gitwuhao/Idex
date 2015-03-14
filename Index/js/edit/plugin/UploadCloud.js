@@ -187,7 +187,7 @@ $.push({
 		}else{
 			var date=new Date();
 			date.addDays(this.CACHE_MAX_AGE);
-			$.cache.put(key,JSON.stringify({
+			$.cache.put(key,$.cache.stringJSON({
 				html : data,
 				time : $.timestamp()
 			}),date);
