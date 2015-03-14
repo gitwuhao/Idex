@@ -16,7 +16,7 @@
 		getFormItemConfig : function(){
 			var me=this;
 			var items=this.getBasePropertyForm();
-			items.push('|||',{
+			items.push({
 					label:'边框',
 					name : 'border',
 					width:'200px',
