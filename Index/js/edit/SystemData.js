@@ -10,6 +10,7 @@ layoutRelation={
 	},
 	'float-box' : {
 		parent : 'container',
+		export : ['3'],
 		tid : 10
 	},
 	'image-ctable' : {
