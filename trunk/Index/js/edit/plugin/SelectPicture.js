@@ -757,7 +757,7 @@ $.push({
 				//title:"1 (18)",pixel:"800x1200",path:
 				$.it(json.result,function(i,item){
 					var rs=$.trim(item.title).match(M_REG);
-					if(rs && rs[1]){
+					if(rs && rs[1] && !resultArray[rs[1]]){
 						resultArray[rs[1]]=item;
 						resultArray.length++;
 					}

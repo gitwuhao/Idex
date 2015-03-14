@@ -42,6 +42,50 @@
 					xtype:'color',
 					getDesc : '设置边框颜色'
 				},'||',{
+					label:'上',
+					name : 'paddingTop',
+					placeholder :'边距',
+					unit:'px',
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 50,
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改上边距'
+				},{
+					label:'下',
+					name : 'paddingBottom',
+					placeholder :'边距',
+					unit:'px',
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 50,
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改下边距'
+				},{
+					label:'左',
+					name : 'paddingLeft',
+					placeholder :'边距',
+					unit:'px',
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 50,
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改左边距'
+				},{
+					label:'右',
+					name : 'paddingRight',
+					placeholder :'边距',
+					unit:'px',
+					vtype : ['spin'],
+					xtype:'text',
+					minValue : 50,
+					minValue : 1,
+					width:'110px',
+					getDesc : '修改右边距'
+				},'||',{
 					label:'背景',
 					name : 'bgColor',
 					width:'110px',
