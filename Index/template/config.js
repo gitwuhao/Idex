@@ -73,10 +73,6 @@ RENOVATION_list=[{
 		id:"10000",
 		width:"990",
 		title:"商品列表展示"
-	},{
-		id:"10001",
-		width:"790",
-		title:"商品立体展示"
 	}]
 }];
 
