@@ -193,12 +193,7 @@ var CACHE_KEY=window.APP_KEY_MAP.CACHE;
 		getTemplates : function(){
 			if(!this.templates){
 				var data=localStorage[CACHE_KEY.FGRID_TEMPLATE];
-				try{
-					this.templates=JSON.parse(data);
-				}catch(e){
-					this.templates=null;
-					$.loadJSQueue("/js/edit/SystemData.js");
-				}
+				this.templates=$.cache.parseJSON(data);
 			}
 			return this.templates;
 		}
