@@ -39,7 +39,6 @@ $.push({
 	initData : function(){
 		this.data={};
 		this.initSystemTemplate();
-		this.initCustomTemplate();
 	},
 	LAYOUT_MAP_BY_TYPE_ID : {},
 	initLayoutRelation : function(){
@@ -132,6 +131,9 @@ $.push({
 		this.data.systemTemplate={};
 		this.data.systemTemplate.Map=layoutMap1;
 		this.data.systemTemplate.layoutMap=layoutMap2;
+
+		
+		this.initCustomTemplate();
 		
 	},
 	getCustomTemplateData : function(){
