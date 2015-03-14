@@ -114,6 +114,13 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		});
 
 		
+		$('.float-text').each(function(index,elem){
+			setToInnerWidth(this);
+			setToInnerHeight(this);
+			$.style(this,'box-sizing','');
+		});
+
+		
 		$('.float-line').each(function(index,elem){
 			var child=this.firstElementChild,
 				$elem=$(this);
