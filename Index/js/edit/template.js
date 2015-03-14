@@ -80,9 +80,9 @@ $.push({
 		}
 		this.data.layoutRelationTree=tree;
 	},
-	isFilterLayout : function(layout){
+	isFilterLayout : function(layoutType){
 		var result=false,
-			node=this.data.layoutRelationTree[layout.type];
+			node=this.data.layoutRelationTree[layoutType];
 		if(node.export){
 			$.it(node.export,function(i,item){
 				if(item==this.contextType){
@@ -120,8 +120,11 @@ $.push({
 		for(var i=0,len=systemTemplates.length;i<len;i++){
 			var item=systemTemplates[i];
 			item.lid=getLayoutID();
-			layoutMap1[item.lid]=item;
-			layoutMap2[item.type]=item;
+
+			if(!this.isFilterLayout(item.type)){
+				layoutMap1[item.lid]=item;
+				layoutMap2[item.type]=item;
+			}
 		}
 		this.data.systemTemplate={};
 		this.data.systemTemplate.Map=layoutMap1;
@@ -215,18 +218,24 @@ $.push({
 		for(var i=0,len=array.length;i<len;i++){
 			var _layout_,
 				item=array[i];
-			item.lid=getLayoutID();
-			layoutMAP[item.lid]=item;
 			_layout_=this.getLayoutByTypeId(item.tid);
-			if(_layout_ && _layout_._name_){
-				item.type=_layout_._name_;
-			}else{
-				item.type='container';
-			}
-			if(item.type=='container'){
-				containerList.push(item.lid);
-			}else{
-				layoutList.push(item.lid);
+			
+			if(!this.isFilterLayout(_layout_._name_)){
+
+				item.lid=getLayoutID();
+				layoutMAP[item.lid]=item;
+
+
+				if(_layout_ && _layout_._name_){
+					item.type=_layout_._name_;
+				}else{
+					item.type='container';
+				}
+				if(item.type=='container'){
+					containerList.push(item.lid);
+				}else{
+					layoutList.push(item.lid);
+				}
 			}
 		}
 
@@ -244,11 +253,7 @@ $.push({
 		}
 		return html;
 	},
-	getLayoutTemplateItemHTML : function(layout){
-		if(this.isFilterLayout(layout)){
-			return '';
-		}
-
+	getLayoutTemplateItemHTML : function(layout){		
 		return ['<div id="',layout.lid,'" class="layout-template-item ',layout.type,'-icon">',
 					'<div class="idex-icon"></div>',
 					'<span>',layout.title,'</span>',
