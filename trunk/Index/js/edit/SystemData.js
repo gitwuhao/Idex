@@ -10,15 +10,49 @@ layoutRelation={
 	},
 	'float-box' : {
 		parent : 'container',
+		export : ['3'],
 		tid : 10
+	},
+	'float-link' : {
+		parent : 'float-box'
+	},
+	'float-image' : {
+		parent : 'float-box'
+	},
+	'float-text' : {
+		parent : 'float-box'
+	},
+	'float-html' : {
+		parent : 'float-box'
+	},
+	'float-line' : {
+		parent : 'float-box'
 	},
 	'image-ctable' : {
 		parent : 'container',
 		tid : 11
 	},
+	'image-col' : {
+		parent : 'image-ctable'
+	},
+	'image-clink' : {
+		parent : 'image-col'
+	},
+	'image-ctext' : {
+		parent : 'image-col'
+	},
 	'image-rtable' : {
 		parent : 'container',
 		tid : 12
+	},
+	'image-row' : {
+		parent : 'image-rtable'
+	},
+	'image-rlink' : {
+		parent : 'image-row'
+	},
+	'image-item' : {
+		parent : 'image-list'
 	},
 	'image-fgrid' : {
 		parent : 'container',
@@ -64,42 +98,13 @@ layoutRelation={
 		parent : 'container',
 		tid : 23
 	},
-	'float-link' : {
-		parent : 'float-box'
+	'map-box' : {
+		parent : 'container',
+		export : ['1','2'],
+		tid : 24
 	},
-	'float-image' : {
-		parent : 'float-box',
-		export : ['3']
-	},
-	'float-text' : {
-		parent : 'float-box',
-		export : ['3']
-	},
-	'float-html' : {
-		parent : 'float-box',
-		export : ['3']
-	},
-	'float-line' : {
-		parent : 'float-box',
-		export : ['3']
-	},
-	'image-col' : {
-		parent : 'image-ctable'
-	},
-	'image-clink' : {
-		parent : 'image-col'
-	},
-	'image-ctext' : {
-		parent : 'image-col'
-	},
-	'image-row' : {
-		parent : 'image-rtable'
-	},
-	'image-rlink' : {
-		parent : 'image-row'
-	},
-	'image-item' : {
-		parent : 'image-list'
+	'map-link' : {
+		parent : 'map-box'
 	}
 };
 systemTemplate=[{
@@ -413,6 +418,16 @@ systemTemplate=[{
 },{
 	type : 'split-line',
 	html : '<div class="layout split-line"></div>'
+},{
+	type : 'map-box',
+	html : ['<div class="layout map-box img-b img-p" style="height:300px;">',
+				'<div class="map-box-bg">',
+					'<img src="/s.gif" />',
+				'</div>',
+			'</div> '].join('')
+},{
+	type : 'map-link',
+	html : ['<div class="map-link"></div> '].join('')
 }];
 
 fixedGridTemplate = {
