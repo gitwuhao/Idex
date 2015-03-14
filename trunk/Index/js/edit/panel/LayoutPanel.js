@@ -629,7 +629,9 @@
 			this.logger(this);
 			var layoutElement=this.getLayoutElementByNavItem(navItem.id);
 			layoutElement._NavItemClick_=true;
+
 			layoutElement.click();
+
 			delete layoutElement._NavItemClick_;
 		},
 		onDbClick : function(event,navItem){
