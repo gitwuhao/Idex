@@ -73,6 +73,8 @@ var win=window,
 					mIndex++;
 				}
 			});
+		}else{
+			$('.image-title,.text-title',desc).remove();
 		}
 		$.StyleSheet.buildStyle(desc);
 
