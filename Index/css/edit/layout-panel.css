@@ -111,7 +111,7 @@
 	background-position: -45px -30px;
 }
 .idex-layout-tab-panel .idex-button.home .idex-icon{
-	background-position: -0px -30px;
+	background-position: 0px -30px;
 }
 .idex-layout-tab-panel .idex-button.back .idex-icon{
 	background-position: -15px -30px;
@@ -156,7 +156,7 @@
 	background-position: -200px -195px;
 }
 .image-list-icon .idex-icon{
-	background-position: -0px -195px;
+	background-position: 0px -195px;
 }
 .image-item-icon .idex-icon,.i-image-item-icon .idex-icon{
 	background-position: -40px -195px;
@@ -167,14 +167,14 @@
 .html-item-icon .idex-icon,.float-html-icon .idex-icon{
 	background-position: -120px -195px;
 }
-.float-box-icon .idex-icon{
-	background-position: -0px -155px;
+.float-box-icon .idex-icon,.map-box-icon .idex-icon{
+	background-position: 0px -155px;
 }
 .float-table-icon .idex-icon{
 	background-position: -200px -155px;
 }
-.float-link-icon .idex-icon{
-	background-position: -0px -235px;
+.float-link-icon .idex-icon,.map-link-icon .idex-icon{
+	background-position: 0px -235px;
 }
 .float-image-icon .idex-icon{
 	background-position: -40px -235px;
