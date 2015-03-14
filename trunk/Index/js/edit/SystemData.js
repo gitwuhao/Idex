@@ -10,7 +10,6 @@ layoutRelation={
 	},
 	'float-box' : {
 		parent : 'container',
-		export : ['3'],
 		tid : 10
 	},
 	'image-ctable' : {
@@ -69,16 +68,20 @@ layoutRelation={
 		parent : 'float-box'
 	},
 	'float-image' : {
-		parent : 'float-box'
+		parent : 'float-box',
+		export : ['3']
 	},
 	'float-text' : {
-		parent : 'float-box'
+		parent : 'float-box',
+		export : ['3']
 	},
 	'float-html' : {
-		parent : 'float-box'
+		parent : 'float-box',
+		export : ['3']
 	},
 	'float-line' : {
-		parent : 'float-box'
+		parent : 'float-box',
+		export : ['3']
 	},
 	'image-col' : {
 		parent : 'image-ctable'

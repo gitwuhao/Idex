@@ -273,22 +273,24 @@ $.push({
 		}
 		for(var i=0,len=layoutChilds.length;i<len;i++){
 			var layoutType=layoutChilds[i];
-			var layout=layoutMap[layoutType];
-			if(layout){
-				if(!layout.title){
-					var layoutObject=this.app.layout.getLayout(layoutType);
-					if(layoutObject && layoutObject.title){
-						layout.title=layoutObject.title;
+			
+			if(!this.isFilterLayout(layoutType)){
+				var layout=layoutMap[layoutType];
+				if(layout){
+					if(!layout.title){
+						var layoutObject=this.app.layout.getLayout(layoutType);
+						if(layoutObject && layoutObject.title){
+							layout.title=layoutObject.title;
+						}
 					}
-				}
-
-				if(layout.title){
-					html.push(this.getLayoutTemplateItemHTML(layout));
+					if(layout.title){
+						html.push(this.getLayoutTemplateItemHTML(layout));
+					}else{
+						console.error("not find layout:"+layoutType);
+					}
 				}else{
 					console.error("not find layout:"+layoutType);
 				}
-			}else{
-				console.error("not find layout:"+layoutType);
 			}
 		}
 		return html.join('');
