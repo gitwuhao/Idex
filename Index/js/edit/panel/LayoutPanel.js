@@ -298,7 +298,7 @@
 					this.panel.replaceLayout(srcElement,targetElement);
 				},
 				*/
-				onSortovers : function(){
+				onSortover : function(){
 					
 					CF.info('Idex.LayoutPanel.dragdrop.onSortover');
 
@@ -318,6 +318,7 @@
 				},
 				dragover : function(){
 					
+					CF.info('Idex.LayoutPanel.dragdrop.dragover');
 					if(!this.sortElement){
 						return;
 					}
