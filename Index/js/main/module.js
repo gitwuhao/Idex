@@ -75,7 +75,7 @@ function initTab(render){
 					copyItemValue : function(item){
 						return {
 							id : item.id,
-							type : item.type,
+							tid : item.tid,
 							title : item.title
 						};
 					},
