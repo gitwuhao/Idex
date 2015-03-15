@@ -227,7 +227,7 @@ $.push({
 			
 			
 			if(!_layout_){
-				console.error(item,_layout_);
+				CF.error(item,_layout_);
 			}else if(!this.isFilterLayout(_layout_._name_)){
 				item.lid=getLayoutID();
 				layoutMAP[item.lid]=item;
@@ -293,10 +293,10 @@ $.push({
 					if(layout.title){
 						html.push(this.getLayoutTemplateItemHTML(layout));
 					}else{
-						console.error("not find layout:"+layoutType);
+						CF.error("not find layout:"+layoutType);
 					}
 				}else{
-					console.error("not find layout:"+layoutType);
+					CF.error("not find layout:"+layoutType);
 				}
 			}
 		}
@@ -345,7 +345,7 @@ $.push({
 					var type=node.child[0],
 						templateData=this.data.systemTemplate.layoutMap[type];
 					if(!templateData){
-						console.error('['+type+']template data is null');
+						CF.error('['+type+']template data is null');
 						return;
 					}
 					this.submit(templateData);

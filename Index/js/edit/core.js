@@ -204,7 +204,7 @@ var KEY_MAP=window.APP_KEY_MAP,
 		if(arg.length==1 && caller.caller.arguments[0]==CF){
 			Idex.pushModule(arg[0]);
 		}else{
-			console.error(arguments.callee.caller.caller);
+			CF.error(arguments.callee.caller.caller);
 		}
 	};
 

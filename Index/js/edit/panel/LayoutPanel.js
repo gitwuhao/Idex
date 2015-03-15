@@ -183,7 +183,7 @@
 			}
 
 
-			if(eventType=='mouseup'){
+			if(eventType=='mouseup' && this.lastTargetNavItem==navItem){
 				if(eye){
 					this.on('click',event,navItem);
 					this.on('hideLayout',navItem,eye);
@@ -215,6 +215,7 @@
 			}else{
 				this.on('mousedown',navItem);
 			}
+			this.lastTargetNavItem=navItem;
 		},
 		initMainNavList : function(){
 			this.logger(this);
@@ -802,7 +803,7 @@
 				this.$layoutTabView.empty();
 				this.createMainNavList();
 				target.click();
-				//console.error('navItem of null ');
+				//CF.error('navItem of null ');
 				return;
 			}
 			this.setActiveNavItem(navItem);

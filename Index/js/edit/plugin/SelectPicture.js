@@ -140,7 +140,7 @@ $.push({
 					}
 					this._$callback(json);
 				}else if(json.errorMsg){
-					console.error('loadTreeData :'+json.errorMsg);
+					CF.error('loadTreeData :'+json.errorMsg);
 					this._$callback();
 				}
 			},
@@ -352,7 +352,7 @@ $.push({
 				}else if(json==-1){
 					errorMsg='加载失败...';
 				}else if(json && json.errorMsg){
-					console.error('buildPicList :'+json.errorMsg);
+					CF.error('buildPicList :'+json.errorMsg);
 					errorMsg='加载失败【'+json.errorMsg+'】';
 				}else{
 					errorMsg='没有找到图片...';
