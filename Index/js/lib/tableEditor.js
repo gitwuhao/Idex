@@ -1,4 +1,4 @@
-var editorPath=BASE_PATH+'teditor/';
+var editorPath=window.BASE_PATH+'teditor/';
 $.includePack('css',editorPath+'css/imports.css');				
 $.loadJSQueue(
 		editorPath+'js/ui.js',
