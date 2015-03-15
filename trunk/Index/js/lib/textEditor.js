@@ -1,0 +1,25 @@
+var editorPath=BASE_PATH+'editor/';
+$.includePack('css',editorPath+'css/editor.css');
+$.loadJSQueue(
+	editorPath+'js/editor.config.js',
+	editorPath+'js/core/browser.js',
+	editorPath+'js/core/utils.js',
+	editorPath+'js/core/EventBase.js',
+	editorPath+'js/core/dtd.js',
+	editorPath+'js/core/domUtils.js',
+	editorPath+'js/core/Range.js',
+	editorPath+'js/core/Selection.js',
+	editorPath+'js/core/Editor.js',
+	editorPath+'js/core/node.js',
+	editorPath+'js/core/htmlparser.js',
+	editorPath+'js/plugins/inserthtml.js',
+	editorPath+'js/plugins/justify.js',
+	editorPath+'js/plugins/font.js',
+	editorPath+'js/plugins/horizontal.js',
+	editorPath+'js/plugins/paste.js',
+	editorPath+'js/plugins/basestyle.js',
+	editorPath+'js/plugins/removeformat.js',
+	editorPath+'js/plugins/list.js',
+	editorPath+'js/plugins/undo.js',
+	editorPath+'js/editor.js'
+);
