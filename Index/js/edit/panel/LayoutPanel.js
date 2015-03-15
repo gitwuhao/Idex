@@ -298,7 +298,10 @@
 					this.panel.replaceLayout(srcElement,targetElement);
 				},
 				*/
-				onSortover : function(){
+				onSortovers : function(){
+					
+					CF.info('Idex.LayoutPanel.dragdrop.onSortover');
+
 					if(!this.sortElement){
 						return;
 					}
@@ -312,6 +315,22 @@
 						sortLayout=this.panel.getLayoutElementByNavItem(this.sortElement);
 					this.panel.moveLayout(sortLayout,layoutElement,type);
 
+				},
+				dragover : function(){
+					
+					if(!this.sortElement){
+						return;
+					}
+					
+					this.$sortElement.removeClass('sort-after sort-before');
+
+					var type=this.appendType,
+						layoutElement,
+						sortLayout;
+						layoutElement=this.panel.getLayoutElementByNavItem(this.target),
+						sortLayout=this.panel.getLayoutElementByNavItem(this.sortElement);
+					this.panel.moveLayout(sortLayout,layoutElement,type);
+					CF.info('Idex.LayoutPanel.dragdrop.dragover');
 				}
 			});
 		},
