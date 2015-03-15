@@ -1,4 +1,4 @@
-var editorPath=BASE_PATH+'editor/';
+var editorPath=window.BASE_PATH+'editor/';
 $.includePack('css',editorPath+'css/imports.css');
 $.loadJSQueue(
 	editorPath+'js/editor.config.js',
