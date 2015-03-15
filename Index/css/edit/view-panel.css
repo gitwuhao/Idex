@@ -94,9 +94,11 @@ div.idex-desc-box .idex-r-active{
 	outline: 1px dashed #000;  
 	outline-offset: -1px;
 }
+/*
 div.idex-desc-box .float-link.idex-r-active,.idex-desc-box .map-link.idex-r-active{
 	background-color: rgba(0, 139, 255, 0.5);
 }
+*/
 div.idex-desc-box .split-line.idex-r-active{
 	outline:none;
 	border-color: #000;
