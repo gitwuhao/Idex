@@ -76,9 +76,7 @@ var win=window,
 		}else{
 			
 			$('.map-box').each(function(index,elem){
-				$.style(this,'width',getInnerWidth(this));
 
-				$.style(this,'box-sizing','');
 				var $img=$('img:first',this),
 					offsetTop=elem.offsetTop,
 					offsetLeft=elem.offsetLeft,
@@ -171,14 +169,15 @@ var win=window,
 								//'width:0px;','height:0px;',
 						   '" />'].join('');
 			}
-			$(this.children).each(function(index,_div_){
-				var tagName=_div_.tagName;
-				if(/^div$/i.test(tagName)){
-					$.style(_div_,'display','block');
-					$(_div_).append('<br/>');
-					$.replaceTag(_div_,'span');
-				}
+			$('div',this).each(function(index,div){
+				$.style(div,'display','block');
+				$.replaceTag(div,'span');
 			});
+			
+			var $br=$('br',this.children);
+			$br.before('<span style="display:block;"></span>');
+			$br.remove();
+
 			$.replaceTag(elem,'a');
 		});
 

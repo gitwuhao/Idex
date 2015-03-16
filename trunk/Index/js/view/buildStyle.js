@@ -101,6 +101,12 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 
 	$.StyleSheet.computedSizing=function(element){
 
+		$('.map-box').each(function(index,elem){
+			$.style(this,'width',getInnerWidth(this));
+			$.style(this,'box-sizing','');
+		});
+
+
 
 		$('.float-box').each(function(index,elem){
 			$.style(this,'width',getInnerWidth(this));
