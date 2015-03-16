@@ -596,6 +596,17 @@ table.property-tbody{
 }
 /*------------------------- split-line -------------------------*/
 
+
+ul{
+	list-style: disc;
+	margin: 15px 0px;
+	padding-left: 40px;
+}
+ol{
+	list-style: decimal;
+	margin: 15px 0px;
+	padding-left: 40px;
+}
 /*+++++++++++++++++++++++++ 覆盖样式 +++++++++++++++++++++++++*/
 .p-r-b,.p-b,.p-r,.p-n{
 	float: left;
