@@ -74,6 +74,41 @@ var win=window,
 				}
 			});
 		}else{
+			
+			$('.map-box').each(function(index,elem){
+				$.style(this,'width',getInnerWidth(this));
+
+				$.style(this,'box-sizing','');
+				var $img=$('img:first',this),
+					offsetTop=elem.offsetTop,
+					offsetLeft=elem.offsetLeft,
+					img_src,
+					html,
+					map_id='m_'+$.randomChar(4);
+				
+				img_src=$img.attr(ATTR_KEY_MAP.SRC);
+
+				html=['<img style="width:100%;height:100%;border:none;vertical-align:top;" ',
+							ATTR_KEY_MAP.SRC,'="',img_src,'" ',
+							'usemap="#',map_id,'"/>',
+							'<map name="',map_id,'">'];
+				
+				$(this).children('.map-link').each(function(i,link){
+					var href=$.attr(link,ATTR_KEY_MAP.HREF),
+						left=link.offsetLeft - offsetLeft,
+						top=link.offsetTop - offsetTop,
+						width=link.offsetWidth,
+						height=link.offsetHeight;
+					html.push('<area shape="rect" ',
+								'coords="',left,',',top,',',left+width,',',top+height,'" ',
+								'href="',(href||''),'" />');
+				});
+				html.push('</map>');
+
+				this.innerHTML=html.join('');
+			});
+
+
 			$('.image-title,.text-title',desc).remove();
 		}
 		$.StyleSheet.buildStyle(desc);
@@ -136,6 +171,14 @@ var win=window,
 								//'width:0px;','height:0px;',
 						   '" />'].join('');
 			}
+			$(this.children).each(function(index,_div_){
+				var tagName=_div_.tagName;
+				if(/^div$/i.test(tagName)){
+					$.style(_div_,'display','block');
+					$(_div_).append('<br/>');
+					$.replaceTag(_div_,'span');
+				}
+			});
 			$.replaceTag(elem,'a');
 		});
 
