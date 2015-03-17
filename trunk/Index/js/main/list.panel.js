@@ -258,9 +258,11 @@ return {
 				data : 'method=get&type=1',
 				$owner : this,
 				success : function(json){
-					json=$.cache.buildTreeData(json);
-					$.cache.put(key,JSON.stringify(json),new Date());
-					this.$owner.createTree(json);
+					if(!$.cache.isEmpty(json)){
+						json=$.cache.buildTreeData(json);
+						$.cache.put(key,JSON.stringify(json),new Date());
+						this.$owner.createTree(json);
+					}
 				},
 				error : function(){
 
