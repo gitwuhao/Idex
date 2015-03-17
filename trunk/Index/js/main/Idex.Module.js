@@ -93,8 +93,12 @@ Idex.Module.prototype={
 			data : 'method=query&_t=' + this.ACTION_TYPE,
 			$owner : this,
 			success : function(json){
-				this.$owner.initRawData(json||[]);
-				this.$owner.saveCache();
+				if(json && json.length>0){
+					this.$owner.initRawData(json||[]);
+					this.$owner.saveCache();
+				}else{
+					this.$owner.$moduleBox.html('<div class="error-msg">空空的...</div>');
+				}
 			},
 			error : function(){
 			},

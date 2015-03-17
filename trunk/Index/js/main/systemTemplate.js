@@ -202,21 +202,21 @@ systemTemplate.init=function(tab){
 							time : 3001
 						});
 					}else{
-						this.onError(); 
+						this.onError('超出限制！'); 
 					} 
 				},
-				onError : function(){
+				onError : function(msg){
 					ui.quicktip.show({
 						align : 'tc',
 						offset : 'lt',
 						target :  this._target,
 						cls : 'c1',
-						html : '复制失败！',
+						html : msg,
 						time : 1001
 					});
 				},
 				error : function(){
-					this.onError(); 
+					this.onError('复制失败！'); 
 				}
 			});
 		}
