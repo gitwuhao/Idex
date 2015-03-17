@@ -68,7 +68,7 @@ var win=window,
 			$('.image-title,.text-title',desc).each(function(index,elem){
 				var parentElement=elem.parentElement;
 				var title=parentElement.getAttribute(ATTR_KEY_MAP.TITLE);
-				if(title && mIndex>7){
+				if(title){
 					$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',mIndex,'" style="line-height:0px;"></div>'].join(''));
 					mIndex++;
 				}
