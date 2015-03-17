@@ -69,7 +69,7 @@ var win=window,
 				var parentElement=elem.parentElement;
 				var title=parentElement.getAttribute(ATTR_KEY_MAP.TITLE);
 				if(title){
-					$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',mIndex,'" style="line-height:0px;"></div>'].join(''));
+					$(elem).before(['<div data-id="99143',index,'" data-title="',title,'" ',MDID,'="',mIndex,'" style="line-height:0px;"> &nbsp;</div>'].join(''));
 					mIndex++;
 				}
 			});
