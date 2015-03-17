@@ -157,3 +157,8 @@ em{
 .idex-view-panel .x-ui-floatbar-box .x-ui-search-icon:hover{
 	background-position: -440px -177px;
 }
+
+.idex-view-panel .idex-module-box .error-msg{
+	text-align: center;
+	margin-top: 30%;
+}
