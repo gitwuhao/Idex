@@ -1,6 +1,6 @@
 (function(CF,$){
 var SING_KEY = $.cache.getSigKey(),
-	AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23096634&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY,
+	AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23096938&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY,
 	WIN_NAME = 'IDEX_AUTH_WIN';
 
 //'http://idex.oilan.com/auth.s?_unlock=CB0BB2CB',

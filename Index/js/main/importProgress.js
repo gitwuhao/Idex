@@ -120,7 +120,6 @@
 		};
 
 		window.importComplete=function(){
-			console.info('完成');
 			window[callbackName](100);
 		};
 
@@ -130,7 +129,12 @@
 				CF.Idex.triggerAndRemoveEvent('importComplete');
 				delete CF.Idex;
 			}
-			console.info('完成');
+			setTimeout(function(){
+				$progress.remove();
+				$frame.remove();
+				delete window[callbackName];
+				delete window.importComplete;
+			},30 * 1000);
 		};
 
 		$.getBody().append(html.join(''));
