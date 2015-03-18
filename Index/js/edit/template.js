@@ -227,7 +227,7 @@ $.push({
 			
 			
 			if(!_layout_){
-				CF.error(item,_layout_);
+				CF.error("no find layout:",item);
 			}else if(!this.isFilterLayout(_layout_._name_)){
 				item.lid=getLayoutID();
 				layoutMAP[item.lid]=item;
