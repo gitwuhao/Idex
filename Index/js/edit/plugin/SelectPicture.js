@@ -337,7 +337,9 @@ $.push({
 					for(var i=0,len=result.length;i<len;i++){
 						var item=result[i];
 						html.push('<div class="idex-pic-item" title="',item.title,'">',
-									'<img src="',item.path,this.$context.PIC_SIZING,'"/>',
+									'<div class="idex-img-box">',
+										'<img src="',item.path,this.$context.PIC_SIZING,'"/>',
+									'</div>',
 									'<div class="pic-title">',item.pixel,'</div>',
 									'<div class="select-title">选择</div>',
 								  '</div>');
