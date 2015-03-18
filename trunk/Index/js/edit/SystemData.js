@@ -105,6 +105,20 @@ layoutRelation={
 	},
 	'map-link' : {
 		parent : 'map-box'
+	},
+	'left-box' : {
+		parent : 'container',
+		export : ['1','2'],
+		tid : 25
+	},
+	'left-link' : {
+		parent : 'left-box'
+	},
+	'left-image' : {
+		parent : 'left-box'
+	},
+	'left-line' : {
+		parent : 'left-box'
 	}
 };
 systemTemplate=[{
@@ -428,6 +442,20 @@ systemTemplate=[{
 },{
 	type : 'map-link',
 	html : ['<div class="map-link"></div> '].join('')
+},{
+	type : 'left-box',
+	html : ['<div class="layout left-box"></div> '].join('')
+},{
+	type : 'left-line',
+	html : ['<div class="left-line h"><div class="bg"></div></div> '].join('')
+},{
+	type : 'left-image',
+	html : ['<div class="left-image img-b img-p">',
+				'<img src="/s.gif">',
+			'</div> '].join('')
+},{
+	type : 'left-text',
+	html : '<div class="left-text">文本...</div>'
 }];
 
 fixedGridTemplate = {
