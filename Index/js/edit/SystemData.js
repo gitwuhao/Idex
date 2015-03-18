@@ -111,13 +111,10 @@ layoutRelation={
 		export : ['1','2'],
 		tid : 25
 	},
-	'left-link' : {
-		parent : 'left-box'
-	},
 	'left-image' : {
 		parent : 'left-box'
 	},
-	'left-line' : {
+	'left-text' : {
 		parent : 'left-box'
 	}
 };
@@ -444,10 +441,9 @@ systemTemplate=[{
 	html : ['<div class="map-link"></div> '].join('')
 },{
 	type : 'left-box',
-	html : ['<div class="layout left-box"></div> '].join('')
-},{
-	type : 'left-line',
-	html : ['<div class="left-line h"><div class="bg"></div></div> '].join('')
+	html : ['<div class="layout left-box">',
+				'<div class="left-col"></div>',
+			'</div>'].join('')
 },{
 	type : 'left-image',
 	html : ['<div class="left-image img-b img-p">',

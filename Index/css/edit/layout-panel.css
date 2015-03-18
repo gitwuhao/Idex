@@ -161,7 +161,7 @@
 .image-item-icon .idex-icon,.i-image-item-icon .idex-icon{
 	background-position: -40px -195px;
 }
-.text-item-icon .idex-icon,.float-text-icon .idex-icon,.i-text-item-icon .idex-icon,.image-rtext-icon .idex-icon,.image-ftext-icon .idex-icon,.image-ctext-icon .idex-icon{
+.text-item-icon .idex-icon,.float-text-icon .idex-icon,.i-text-item-icon .idex-icon,.image-rtext-icon .idex-icon,.image-ftext-icon .idex-icon,.image-ctext-icon .idex-icon,.left-text-icon .idex-icon{
 	background-position: -80px -195px;
 }
 .html-item-icon .idex-icon,.float-html-icon .idex-icon{
@@ -176,25 +176,13 @@
 .float-link-icon .idex-icon,.map-link-icon .idex-icon{
 	background-position: 0px -235px;
 }
-.float-image-icon .idex-icon{
-	background-position: -40px -235px;
-}
-.image-glink-icon .idex-icon{
-	background-position: -40px -235px;
-}
-.image-flink-icon .idex-icon{
-	background-position: -40px -235px;
-}
-.image-clink-icon .idex-icon{
-	background-position: -40px -235px;
-}
-.image-rlink-icon .idex-icon{
+.float-image-icon .idex-icon,.image-glink-icon .idex-icon,.image-flink-icon .idex-icon,.image-clink-icon .idex-icon,.image-rlink-icon .idex-icon,.left-image-icon .idex-icon{
 	background-position: -40px -235px;
 }
 .image-row-icon .idex-icon{
 	background-position: -160px -235px;
 }
-.image-col-icon .idex-icon{
+.image-col-icon .idex-icon,.left-box-icon .idex-icon{
 	background-position: -120px -235px;
 }
 .image-text-icon .idex-icon,.double-image-text-icon .idex-icon{
