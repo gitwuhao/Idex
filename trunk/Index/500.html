@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Idex 500</title>
+  </head>
+  <style>
+	body{
+		margin: 0;
+		height: 2000px;
+		overflow: hidden;
+		-webkit-user-select: none;
+		cursor: default;
+	}
+	.view{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background: -webkit-linear-gradient(top, #cbebdb 0, #3794c0 120%);
+	}
+	canvas{
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+	}
+	.box{
+		position: absolute;
+		left: 38%;
+		top: 30%;
+		color: #FFF;
+	}
+	.title{
+		font-size:100px;
+		font-family:Corbel;
+		float: left;
+	}
+	.title span{
+		font-size: 30px;
+		margin: 0px 5px;
+		font-weight: bold;
+	}
+	.message{
+		font-size: 15px;
+		font-family: '微软雅黑';
+		float: left;
+		margin-top: 80px;
+		margin-left: 20px;
+	}
+	.message span{
+		font-family: Arial;
+	}
+  </style>
+  <body>
+	<div class="view">
+		<div class="box">
+			<div class="title">500</div>
+			<div class="message">
+				<span>Orz</span>&nbsp;&nbsp;&nbsp;服务器出了个错...
+				<br/>
+  				<span class="timing" id="timing">5</span>秒钟之后将回到<a href="/">主页</a>
+			</div>
+		</div>
+		<canvas class="canvas"></canvas>
+	</div>
+	<script type="text/javascript">
+		var index=9,
+			timing=document.getElementById('timing');
+		
+		function redirect(){
+			
+			if(index==0){
+				window.location.href='/';
+			}else{
+				timing.innerText=index;
+				index--;
+				setTimeout(redirect,1000);
+			}
+		};
+
+		redirect();
+	</script>
+    <script>(function(){var a={init:function(){a.Drawing.init(".canvas");a.ShapeBuilder.init();a.UI.simulate(["1"]);a.Drawing.loop(function(){a.Shape.render()})}};window.addEventListener("load",function(){a.init()});a.Drawing=(function(){var b,d,c,e=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(f){window.setTimeout(f,1000/60)};return{init:function(f){b=document.querySelector(f);d=b.getContext("2d");this.adjustCanvas();window.addEventListener("resize",function(){a.Drawing.adjustCanvas()})},loop:function(f){c=!c?f:c;this.clearFrame();c();e.call(window,this.loop.bind(this))},adjustCanvas:function(){b.width=window.innerWidth;b.height=window.innerHeight},clearFrame:function(){d.clearRect(0,0,b.width,b.height)},getArea:function(){return{w:b.width,h:b.height}},drawCircle:function(f,g){d.fillStyle=g.render();d.beginPath();d.arc(f.x,f.y,f.z,0,2*Math.PI,true);d.closePath();d.fill()}}}());a.maxSize=100;a.Point=function(b){this.x=b.x;this.y=b.y;this.z=b.z;this.a=b.a;this.h=b.h};a.Color=function(f,e,c,d){this.r=f;this.g=e;this.b=c;this.a=d};a.Color.prototype={render:function(){return"rgba("+this.r+","+this.g+","+this.b+","+this.a+")"}};a.UI=(function(){var c,l,k,d,b=30,j=true,g=[],e="#";function h(n){return n&&n.split(" ")[1]}function m(n){n=n&&n.split(" ")[0];return n&&n[0]===e&&n.substring(1)}function i(q,p,n,o){clearInterval(c);l=o?n:1;q(l);if(!n||(!o&&l<n)||(o&&l>0)){c=setInterval(function(){l=o?l-1:l+1;q(l);if((!o&&n&&l===n)||(o&&l===0)){clearInterval(c)}},p)}}function f(o){var n,p;g=o;i(function(){p=g.shift();n=m(p);o=h(p);a.Shape.switchShape(a.ShapeBuilder.letter("1"))},2000,g.length)}return{init:function(){},simulate:function(n){f(n)}}}());a.Dot=function(b,c){this.p=new a.Point({x:b,y:c,z:5,a:1,h:0});this.e=0.07;this.s=true;this.c=new a.Color(255,255,255,this.p.a);this.t=this.clone();this.q=[]};a.Dot.prototype={clone:function(){return new a.Point({x:this.x,y:this.y,z:this.z,a:this.a,h:this.h})},_draw:function(){this.c.a=this.p.a;a.Drawing.drawCircle(this.p,this.c)},_moveTowards:function(i){var f=this.distanceTo(i,true),c=f[0],b=f[1],h=f[2],g=this.e*h;if(this.p.h===-1){this.p.x=i.x;this.p.y=i.y;return true}if(h>1){this.p.x-=((c/h)*g);this.p.y-=((b/h)*g)}else{if(this.p.h>0){this.p.h--}else{return true}}return false},_update:function(){var b,c;if(this._moveTowards(this.t)){b=this.q.shift();if(b){this.t.x=b.x||this.p.x;this.t.y=b.y||this.p.y;this.t.z=b.z||this.p.z;this.t.a=b.a||this.p.a;this.p.h=b.h||0}else{if(this.s){}else{this.move(new a.Point({x:this.p.x+(Math.random()*50)-25,y:this.p.y+(Math.random()*50)-25}))}}}c=this.p.a-this.t.a;this.p.a=Math.max(0.1,this.p.a-(c*0.05));c=this.p.z-this.t.z;this.p.z=Math.max(1,this.p.z-(c*0.05))},distanceTo:function(g,e){var c=this.p.x-g.x,b=this.p.y-g.y,f=Math.sqrt(c*c+b*b);return e?[c,b,f]:f},move:function(c,b){if(!b||(b&&this.distanceTo(c)>1)){this.q.push(c)}},render:function(){this._update();this._draw()}};a.ShapeBuilder=(function(){var g=13,e=document.createElement("canvas"),c=e.getContext("2d"),j=500,f="Corbel,Arial,Verdana,sans-serif,Avenir, Helvetica Neue, Helvetica, Arial, sans-serif";function d(){e.width=Math.floor(window.innerWidth/g)*g;e.height=Math.floor(window.innerHeight/g)*g;c.fillStyle="red";c.textBaseline="middle";c.textAlign="center"}function h(){var m=c.getImageData(0,0,e.width,e.height).data,q=[],s=0,r=0,n=e.width,l=e.height,t=0,o=0;for(var k=0;k<m.length;k+=(4*g)){if(m[k+3]>0){q.push(new a.Point({x:s,y:r}));t=s>t?s:t;o=r>o?r:o;n=s<n?s:n;l=r<l?r:l}s+=g;if(s>=e.width){s=0;r+=g;k+=g*4*e.width}}return{dots:q,w:t+n,h:o+l}}function b(k){c.font="bold "+k+"px "+f}function i(k){return !isNaN(parseFloat(k))&&isFinite(k)}return{init:function(){d();window.addEventListener("resize",d)},letter:function(k){var m=0;b(j);m=Math.min(j,(e.width/c.measureText(k).width)*0.8*j,(e.height/j)*(i(k)?1:0.45)*j);b(m);c.clearRect(0,0,e.width,e.height);c.fillText(k,e.width/2,e.height/2);return h()}}}());a.Shape=(function(){var g=[],d=0,c=0,b=0,f=0;function e(){var h=a.Drawing.getArea();b=h.w/2-d/2;f=h.h/2-c/2}return{switchShape:function(o,j){var l,h=a.Drawing.getArea(),m=0,k=0;d=o.w;c=o.h;e();if(o.dots.length>g.length){l=o.dots.length-g.length;for(m=1;m<=a.maxSize;m++){g.push(new a.Dot(h.w/2,h.h/2))}}for(k=0;k<g.length;k++){if(g[k].s){g[k].s=false;g[k].e=0.04;g[k].move(new a.Point({x:Math.random()*h.w,y:Math.random()*h.h,a:0.3,z:Math.random()*4,h:0}))}}},render:function(){for(var h=0;h<g.length;h++){g[h].render()}}}}())})();</script>
+  </body>
+</html>
