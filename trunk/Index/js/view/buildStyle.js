@@ -107,21 +107,17 @@ var ATTR_KEY_MAP=window.APP_KEY_MAP.ATTR;
 		});
 
 
-
 		$('.float-box').each(function(index,elem){
 			$.style(this,'width',getInnerWidth(this));
 			//this.style.height=getHeight(this.children[0]);
 			$.style(this,'box-sizing','');
 		});
 
-		$('.float-image').each(function(index,elem){
-			setToInnerWidth(this);
-			setToInnerHeight(this);
+		$('.left-box').each(function(index,elem){
 			$.style(this,'box-sizing','');
 		});
 
-		
-		$('.float-text').each(function(index,elem){
+		$('.float-image,.float-text,.left-image,.left-text').each(function(index,elem){
 			setToInnerWidth(this);
 			setToInnerHeight(this);
 			$.style(this,'box-sizing','');

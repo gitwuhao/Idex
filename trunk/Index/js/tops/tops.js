@@ -1,7 +1,6 @@
 (function(CF,$){
 	var KEY_MAP=window.APP_KEY_MAP,
 		StyleSheet=$.StyleSheet,
-		IMAGE_SELECTER='.i-image-item img,.float-box-bg img,.float-image img,.image-clink img,.image-rlink img,.image-flink img,.property-image img,.image-item img',
 		TEXT_BG_COLOR='#E5CFE5',
 		IMAGE_BG_COLOR='#000000',
 		IMAGE_T_BG_COLOR='#CFDEE5',
@@ -72,7 +71,7 @@
 		});
 		
 		//设置背景颜色
-		$('.i-text-item,.image-ctext,.image-rtext,.image-ftext',desc).each(function(index,element){
+		$('.i-text-item,.image-ctext,.image-rtext,.image-ftext,.left-text',desc).each(function(index,element){
 			var $elem=$(element);
 			$elem.css('background-color',TEXT_BG_COLOR);
 			$elem.empty();	
@@ -99,7 +98,7 @@
 			$elem.empty();
 		});
 
-		$(IMAGE_SELECTER,desc).each(function(index,img){
+		$('img',desc).each(function(index,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC),
 				parentElement=img.parentElement,
 				width,
@@ -124,7 +123,7 @@
 	
 	function applyImage(){
 		var desc=$descBox[0];
-		$(IMAGE_SELECTER,desc).each(function(i,img){
+		$('img',desc).each(function(i,img){
 			var src=img.getAttribute(ATTR_KEY_MAP.SRC);
 			if(src && !/s\.gif$/g.test(src)){
 				$(img).attr('src',src);
