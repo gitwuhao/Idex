@@ -599,7 +599,8 @@ table.property-tbody{
 
 
 /*+++++++++++++++++++++++++ left-box +++++++++++++++++++++++++*/
-.left-box{
+.left-box .left-col{
+	overflow: hidden;
 }
 .left-box .left-image,.left-box .left-text{
 	float: left;
