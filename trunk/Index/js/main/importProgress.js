@@ -39,7 +39,7 @@
 		timeoutID=null,
 		firstRunTimeStamp,
 		$frame,
-		html=['<style>',
+		html=['<style id="progressStyle">',
 				'.idex-s-progress{',
 					'position: fixed;',
 					'right: 3px;',
@@ -132,13 +132,15 @@
 			setTimeout(function(){
 				$progress.remove();
 				$frame.remove();
+				$progressStyle.remove();
 				delete window[callbackName];
 				delete window.importComplete;
 			},30 * 1000);
 		};
 
 		$.getBody().append(html.join(''));
-
+		
+		$progressStyle=$('#progressStyle');
 		$progress=$('.idex-s-progress');
 		$progresslabel=$progress.children('.idex-s-label:first');
 		$progressbg=$progress.children('.idex-s-progress-bg:first');
