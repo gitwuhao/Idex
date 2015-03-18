@@ -31,7 +31,7 @@
 		},
 		setHeight : function(value){
 			this.logger(this);
-			this.activeElement.style.height=value + 'px';
+			$.style(this.activeElement,'height',value + 'px');
 			/*
 			var offsetHeight=this.activeElement.offsetHeight;
 			this.activeElement.style.height=value + 'px';
