@@ -182,7 +182,7 @@
 			}
 			html.push('</div>',
 					'</div>');
-			console.info(html.join(''));
+			CF.info(html.join(''));
 		}
 	});
 

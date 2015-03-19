@@ -451,7 +451,7 @@ return {
 			param=this.queryParam+'&page='+this.page;
 		}
 		this.query(param,this.Q_TYPE.LOAD);
-		//console.info('load more');
+		//CF.info('load more');
 	},
 	Q_TYPE : {
 		SUBMIT : 1,
@@ -514,7 +514,7 @@ return {
 			$.data(elem,'item-id',$elem.attr('idex-item-id'));
 			$elem.removeAttr('idex-item-id');
 		});
-		//console.info(json);
+		//CF.info(json);
 	},
 	buildHTMLByJSON : function(json){
 		var html=[];
