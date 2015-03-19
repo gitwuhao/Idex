@@ -21,7 +21,7 @@ $.push({
 		if(ui.editor instanceof ui.toolbar){
 			$.getDoc().trigger('editoruiready',ui.editor);
 		}else{
-			$.loadJSQueue('/js/lib/textEditor.js?_v='+CACHE_VERSION.TEXT_EDITOR);
+			$.loadJSQueue('/js/lib/textEditor.min.js?_v='+CACHE_VERSION.TEXT_EDITOR);
 		}
 	},
 	onReady : function(editor){

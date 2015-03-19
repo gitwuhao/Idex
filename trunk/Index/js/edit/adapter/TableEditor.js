@@ -21,7 +21,7 @@ $.push({
 		if(ui.teditor instanceof ui.toolbar){
 			$.getDoc().trigger('teditoruiready',ui.teditor);
 		}else{
-			$.loadJSQueue('/js/lib/tableEditor.js?_v='+CACHE_VERSION.TABLE_EDITOR);
+			$.loadJSQueue('/js/lib/tableEditor.min.js?_v='+CACHE_VERSION.TABLE_EDITOR);
 		}
 	},
 	onReady : function(editor){
