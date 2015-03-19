@@ -24,6 +24,9 @@ JSPConextDataHandle jspHandle = handle.getEditJSPHandle();
 </div>
 
 <script>
+<%
+handle.outIncJS(out);
+%>
 function loadFile() {
 
 	window.BASE_PATH = '/oilan/', uiPath = BASE_PATH + 'ui/';
@@ -54,7 +57,6 @@ function loadEditorLib(){
 	var IDEX_LIB_PATH = window.IDEX_LIB_PATH || window.location.origin +'/',
 	urls;
 	urls=[
-	  	'js/inc.js',
 		'js/edit/core.js',
 		'js/edit/KeyMap.js',
 		'js/edit/absPanel.js',
