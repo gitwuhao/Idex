@@ -5,19 +5,19 @@
 	request.setRequestHeader("Content-Type","application/x-javascript;");
 
 	request.onload = function() {
-		console.info("request.onload",this,arguments);
+		CF.info("request.onload",this,arguments);
 	};
 	request.onloadend = function() {
-		console.info("request.onloadend",this,arguments);
+		CF.info("request.onloadend",this,arguments);
 	};
 	request.onloadstart = function() {
-		console.info("request.onloadstart",this,arguments);
+		CF.info("request.onloadstart",this,arguments);
 	};
 	request.onprogress = function() {
-		console.info("request.onprogress",this,arguments);
+		CF.info("request.onprogress",this,arguments);
 	};
 	request.onreadystatechange = function() {
-		console.info("request.onreadystatechange",this,arguments);
+		CF.info("request.onreadystatechange",this,arguments);
 	};
 	request.send(null);
 */
@@ -158,7 +158,7 @@
 			if(callbackName){
 				delete window[callbackName];
 			}
-			console.info('loadFrame:'+new Date().format()+'>>>'+$progresslabel.html());
+			CF.info('loadFrame:'+new Date().format()+'>>>'+$progresslabel.html());
 			timeoutID=null;
 			callbackName='C'+$.randomChar(5);
 			window[callbackName]=callbackHandle;
