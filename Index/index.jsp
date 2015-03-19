@@ -75,6 +75,9 @@ JSPDataHandle handle=JSPDataHandle.getInstance();
 handle.outHomeCountInfo(out);
 %>
 };
+<%
+handle.outIncJS(out);
+%>
 
 function loadFile(){
 	window.BASE_PATH='/oilan/';
@@ -93,7 +96,6 @@ function loadFile(){
 	$.loadJSQueue(
 		//'/js/dev/debug.js',
 		'_/js/jquery.cache.js',
-		'/js/inc.js',
 		'/js/main/core.js',
 		'/js/main/home.js',
 		'/js/main/Idex.Module.js',
