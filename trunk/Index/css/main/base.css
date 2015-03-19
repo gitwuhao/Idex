@@ -17,7 +17,7 @@ body{
 	-webkit-box-sizing: border-box;
 }
 .idex-icon,.idex-ui-icon{
-	background-image: url(/_/images/allicon.png);
+	background-image: url(/allicon.png);
 	background-repeat: no-repeat;
 	background-position: 1000px 0px;
 }
