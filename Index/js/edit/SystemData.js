@@ -442,16 +442,20 @@ systemTemplate=[{
 },{
 	type : 'left-box',
 	html : ['<div class="layout left-box">',
-				'<div class="left-col"></div>',
+				'<div class="left-col">',
+					'<div class="left-image img-b img-p" style="height:300px;">',
+						'<img src="/s.gif">',
+					'</div>',
+				'</div>',
 			'</div>'].join('')
 },{
 	type : 'left-image',
-	html : ['<div class="left-image img-b img-p">',
+	html : ['<div class="left-image img-b img-p" style="height:300px;">',
 				'<img src="/s.gif">',
 			'</div> '].join('')
 },{
 	type : 'left-text',
-	html : '<div class="left-text">文本...</div>'
+	html : '<div class="left-text" style="height:300px;">文本...</div>'
 }];
 
 fixedGridTemplate = {
