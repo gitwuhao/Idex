@@ -608,6 +608,9 @@ table.property-tbody{
 	overflow: hidden;
 	margin: 5px 0px 0px 0px;
 }
+.left-text:first-child,.left-image:first-child{
+	margin: 0px;
+}
 .left-text{
 	box-sizing: border-box;
 	text-decoration: none;
