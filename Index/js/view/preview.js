@@ -99,7 +99,7 @@ var win=window,
 						height=link.offsetHeight;
 					html.push('<area shape="rect" ',
 								'coords="',left,',',top,',',left+width,',',top+height,'" ',
-								'href="',(href||''),'" />');
+								'href="',(href||''),'" target="_blank"/>');
 				});
 				html.push('</map>');
 
