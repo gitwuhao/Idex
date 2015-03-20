@@ -442,7 +442,7 @@ systemTemplate=[{
 },{
 	type : 'left-box',
 	html : ['<div class="layout left-box">',
-				'<div class="left-col">',
+				'<div class="left-col" style="width:190px;">',
 					'<div class="left-image img-b img-p" style="height:300px;">',
 						'<img src="/s.gif">',
 					'</div>',
