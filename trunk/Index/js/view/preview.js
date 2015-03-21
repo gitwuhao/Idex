@@ -106,8 +106,10 @@ var win=window,
 				this.innerHTML=html.join('');
 			});
 
-
-			$('.image-title,.text-title',desc).remove();
+			if($.getParam().isTitle){
+			}else{
+				$('.image-title,.text-title',desc).remove();
+			}
 		}
 		$.StyleSheet.buildStyle(desc);
 
