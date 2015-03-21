@@ -50,6 +50,13 @@
 		getHeight : function(){
 			this.logger(this);
 			return this.activeElement.offsetHeight;
+		},
+		onSetSrc : function(){
+			if(!$.style(this.activeElement,'height')){
+				$.setTimeout(function(){
+					$.style(this,'height',this.offsetHeight);
+				},100,this.activeElement);
+			}
 		}
 	});
 
