@@ -23,11 +23,7 @@ ideui={
 						if(img){
 							$.attr(img,'src',value||'/s.gif');
 						}
-						if(!$.style(this.activeElement,'height')){
-							$.setTimeout(function(){
-								$.style(this,'height',this.offsetHeight);
-							},100,this.activeElement);
-						}
+						this.on('setSrc');
 					};
 				}
 				if(!layout.getSrc){
