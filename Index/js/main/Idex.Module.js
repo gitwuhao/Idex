@@ -1,5 +1,6 @@
 (function(CF,$,Idex){
-var LINK_TARGET = Idex.LINK_TARGET;
+var LINK_TARGET = Idex.LINK_TARGET,
+	CUSTOM_ACTION_TYPE=Idex.TYPE_MAP.CUSTOM;
 
 Idex.Module=function(config){
 	CF.merger(this,config);
@@ -93,11 +94,11 @@ Idex.Module.prototype={
 			data : 'method=query&_t=' + this.ACTION_TYPE,
 			$owner : this,
 			success : function(json){
-				if(json && json.length>0){
+				if(this.$owner.ACTION_TYPE==CUSTOM_ACTION_TYPE){
+					this.$owner.$moduleBox.html('<div class="error-msg">空空的...</div>');
+				}else{
 					this.$owner.initRawData(json||[]);
 					this.$owner.saveCache();
-				}else{
-					this.$owner.$moduleBox.html('<div class="error-msg">空空的...</div>');
 				}
 			},
 			error : function(){
