@@ -374,7 +374,7 @@ $.push({
 				this.$picList.children('.idex-pic-item').click({
 					$context : this.$context
 				},function(event){
-					event.data.$context.onSelect($(this).children('img')[0]);
+					event.data.$context.onSelect($('img',this)[0]);
 				});
 			},
 			buildPageToolBar : function(total){
