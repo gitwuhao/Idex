@@ -50,8 +50,7 @@
 			<div class="message">
 				<span  id="message-box">这是一个静态页面...</span><br/>
   				<span class="timing" id="timing">5</span>秒钟之后将跳转至<a id="link">帮派</a><br/>
-				或者<a href="https://oauth.taobao.com/authorize?response_type=code&client_id=23096938&redirect_uri=http://idex.oilan.com.cn/auth.s">
-					点击这里</a>重新获取授权
+				或者<a id="auth">点击这里</a>重新获取授权
 			</div>
 		</div>
 		<canvas class="canvas"></canvas>
@@ -103,15 +102,20 @@
 
 			var index=9,
 				url='http://bangpai.taobao.com/group/16499510.htm',
-				link=document.getElementById('link');
+				link=document.getElementById('link'),
+				auth=document.getElementById('auth');
+				
 				timing=document.getElementById('timing');
 				
 				link.href=url;
+				
+				auth.href=code.auth;
+
 			
 			function redirect(){
 				
 				if(index==0){
-					//window.location.href=url;
+					window.location.href=url;
 				}else{
 					timing.innerText=index;
 					index--;
