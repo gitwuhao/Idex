@@ -1,7 +1,31 @@
 (function(CF,$){
 var SING_KEY = $.cache.getSigKey(),
-	AUTH_URL = 'https://oauth.taobao.com/authorize?response_type=code&client_id=23096938&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY,
+	appKey=[],
+	array,
+	s,
+	nick='',
+	AUTH_URL,
 	WIN_NAME = 'IDEX_AUTH_WIN';
+
+
+array=$.LS[$.cache.KEY_SING].split('#');
+if(array[1]){
+	s=array[1].split('');
+	for(var i=0,len=s.length;i<len;i++){
+		if((i+1)%2==0){
+			appKey.push(s[i]);
+		}
+	}
+	appKey=appKey.join('');
+	AUTH_URL='https://oauth.taobao.com/authorize?response_type=code&client_id='+appKey+'&redirect_uri=http://idex.oilan.com.cn/auth.s?_unlock='+SING_KEY;
+}else{
+	AUTH_URL='http://idex.oilan.com/';
+}
+if(array[2]){
+	nick='用户【'+decodeURIComponent(array[2].replace(/\|/g,'%'))+'】';
+}
+
+
 
 //'http://idex.oilan.com/auth.s?_unlock=CB0BB2CB',
 $.sessionExpired={
@@ -11,7 +35,7 @@ $.sessionExpired={
 		}
 		this.win=new ui.window({
 			$owner : this,
-			title : 'Idex - 已锁定',
+			title : nick+'已锁定',
 			css : {
 				'width': '300px',
 				'height': '150px',

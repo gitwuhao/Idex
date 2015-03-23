@@ -8,6 +8,18 @@
 			homeJSON=window.getHomeJSON ? window.getHomeJSON() :{};
 		if(homeJSON.sig){
 			sig=homeJSON.sig;
+			/*appKey#nick#secretKey*/
+			var array=sig.split('#'),
+				list=[],
+				appKey=array[0].split(''),
+				sKey=($.randomInt(1000) + $.randomChar(20)).split('');
+			for(var i=0,len=appKey.length;i<len;i++){
+				list.push(sKey[i]+appKey[i]);
+			}
+			array[0]=list.join('');
+			array[1]=encodeURIComponent(array[1]).replaceAll('%','|');
+			/*secretKey#appKey#nick*/
+			sig=array[2]+'#'+array[0]+'#'+array[1];
 		}else{
 			sig=$.randomChar(12);
 		}
