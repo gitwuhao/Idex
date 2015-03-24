@@ -44,7 +44,7 @@
 	};
 
 	KEY.CACHE_VERSION={
-		SYS_DATA : 1,
+		SYS_DATA : (Math.random(1)+'').substr(10),
 		TPL_DATA : 1,
 		TEXT_EDITOR : 1,
 		TABLE_EDITOR : 1
