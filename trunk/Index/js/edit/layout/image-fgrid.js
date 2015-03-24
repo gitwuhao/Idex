@@ -50,6 +50,9 @@ var CACHE_KEY=window.APP_KEY_MAP.CACHE;
 					},{
 						label : '6张',
 						value : '6'
+					},{
+						label : '7张',
+						value : '7'
 					}],
 					getDesc : '修改拼图模板',
 					onClick : function(item){
