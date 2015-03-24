@@ -8,26 +8,6 @@ layoutRelation={
 	'container' : {
 		tid : 1
 	},
-	'float-box' : {
-		parent : 'container',
-		export : ['3'],
-		tid : 10
-	},
-	'float-link' : {
-		parent : 'float-box'
-	},
-	'float-image' : {
-		parent : 'float-box'
-	},
-	'float-text' : {
-		parent : 'float-box'
-	},
-	'float-html' : {
-		parent : 'float-box'
-	},
-	'float-line' : {
-		parent : 'float-box'
-	},
 	'image-ctable' : {
 		parent : 'container',
 		tid : 11
@@ -97,6 +77,26 @@ layoutRelation={
 	'split-line' : {
 		parent : 'container',
 		tid : 23
+	},
+	'float-box' : {
+		parent : 'container',
+		export : ['3'],
+		tid : 10
+	},
+	'float-link' : {
+		parent : 'float-box'
+	},
+	'float-image' : {
+		parent : 'float-box'
+	},
+	'float-text' : {
+		parent : 'float-box'
+	},
+	'float-html' : {
+		parent : 'float-box'
+	},
+	'float-line' : {
+		parent : 'float-box'
 	},
 	'map-box' : {
 		parent : 'container',
