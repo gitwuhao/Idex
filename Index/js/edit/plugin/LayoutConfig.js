@@ -198,6 +198,9 @@ $.push({
 						},{
 							value : 'style5',
 							label :'5'
+						},{
+							value : 'style6',
+							label :'6'
 						}],
 						onRenderAfter : function(){
 							this.callPrototypeMethod();
