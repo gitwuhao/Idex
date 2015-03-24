@@ -101,6 +101,7 @@ function loadEditorLib(){
 		'js/edit/plugin/SelectPicture.js',
 		'js/edit/plugin/ExportPS.js',
 		'js/edit/plugin/UploadCloud.js',
+		'js/edit/plugin/CopyCode.js',
 		'js/edit/adapter/DragDrop.js',
 		'js/edit/adapter/TextEditor.js',
 		'js/edit/adapter/HTMLEditor.js',
