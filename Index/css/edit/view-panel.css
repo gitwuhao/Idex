@@ -16,6 +16,9 @@
 	margin-right: 5px;
 	border-right: 2px solid rgba(255, 255, 255, 0);
 }
+.idex-desc-box.style5{
+	margin: 5px;
+}
 .idex-view-context-box{
 	display: inline-block;
 }
@@ -66,6 +69,7 @@
 .idex-desc-box img.idex-r-iq-item{
 	visibility: hidden;
 }
+
 /*
 .idex-desc-box img.idex-r-iq-error{
 	background-color: #F00;

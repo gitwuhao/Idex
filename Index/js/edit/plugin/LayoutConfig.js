@@ -174,6 +174,7 @@ $.push({
 						xtype: 'radio',
 						width: 'auto',
 						name: 'style',
+						cls: 'breakline',
 						getDesc : '更换风格',
 						items:[{
 							checked : true,
@@ -188,6 +189,9 @@ $.push({
 						},{
 							value : 'style4',
 							label :'4'
+						},{
+							value : 'style5',
+							label :'5'
 						}],
 						onRenderAfter : function(){
 							this.callPrototypeMethod();
