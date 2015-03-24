@@ -75,7 +75,7 @@ $.push({
 						label:'宽度',
 						name : 'width',
 						placeholder :'填写画布宽度',
-						//width:'165px',
+						width:'194px',
 						unit:'px',
 						maxlength : 4,
 						value: 750,
@@ -84,6 +84,12 @@ $.push({
 						xtype:'text',
 						getDesc : '设置画布宽度'
 
+					},'',{
+						name : 'bgcolor',
+						cls:'mini',
+						width:'20px',
+						xtype:'color',
+						getDesc : '设置全局背景颜色',
 					}/*,' ',{
 						xtype:'checkitem',
 						name : 'padding',
@@ -100,7 +106,7 @@ $.push({
 						label:'字体',
 						name : 'fontsize',
 						placeholder :'填写字号',
-						width:'173px',
+						width:'194px',
 						unit:'px',
 						maxlength : 2,
 						vtype : ['spin'],
@@ -306,6 +312,12 @@ $.push({
 			},
 			getFontcolor : function(){
 				return $.style(this.descbox,'color');
+			},
+			setBgcolor : function(value){
+				$.style(this.descbox,'background-color',value);
+			},
+			getBgcolor : function(){
+				return $.style(this.descbox,'background-color');
 			},
 			onPropertyFormShow : CF.emptyFunction,
 			setValue : CF.emptyFunction,
