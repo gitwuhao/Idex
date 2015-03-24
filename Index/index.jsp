@@ -40,7 +40,7 @@
 		<div class="idex-shadow-box module">
 			<div class="title">装修模块</div>
 			<div class="content">
-				装修模块可制作店招、活动页、品牌信息、产品答疑、物流信息等自定义内容和自定义页面。
+				装修模块可制作店招、侧边栏、活动页、品牌信息、产品答疑、物流信息等自定义内容和自定义页面。
 			</div>
 			<div class="count"><br/>
 				装修模块：<em class="c2" id="renovationCount">0</em>个/<em class="c1" id="rcount">10</em>个
@@ -78,7 +78,11 @@ handle.outHomeCountInfo(out);
 <%
 handle.outIncJS(out);
 %>
-
+/*
+function getHomeJSON(){
+return {c:[{item_count:"77",desc_count:"12",template_count:"12",custom_count:"0",renovation_count:"12"}],v:{vtitle:"专业版",version:3,ccount:30,dcount:-1,rcount:30,tcount:20},isImport:true,d:"2015-04-15 11:42:00",sig:"23097861#奥艾兰#CB0BB2CB"};
+};
+*/
 function loadFile(){
 	window.BASE_PATH='/oilan/';
 	var uiPath= BASE_PATH + 'ui/';
