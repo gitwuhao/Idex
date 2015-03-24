@@ -10,7 +10,7 @@ function initTab(render){
 		items : [{
 			label:'查询详情',
 			name : 'list',
-			html :'<div class="error-msg">数据还在导入，暂时无法使用此功能<br/>请稍等片刻...</div>',
+			html :'<div class="error-msg">数据正在导入，暂时无法使用此功能<br/>可以去创建详情模板...</div>',
 			onLoad : function(){
 				if(!Idex.isImport){
 					Idex.removeEventListener('importComplete');
