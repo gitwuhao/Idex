@@ -3,5 +3,6 @@ $.getDoc().one('Idex.ready',function(){
 	if(title){
 		document.title="编辑【" + title + "】Idex - 帮你实现好创意！";
 	}
+	$('.idex-view-panel').addClass('panel-type'+window.getAppData().type);
 });
 $.getDoc().trigger('Idex.ready');

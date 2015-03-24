@@ -7,6 +7,15 @@
 	top: 3px;
 	bottom: 3px;
 }
+.idex-view-panel.panel-type1{
+
+}
+.idex-view-panel.panel-type2{
+
+}
+.idex-view-panel.panel-type3 .idex-desc-box .text-title,.idex-view-panel.panel-type3 .idex-desc-box .image-title{
+	display: none;
+}
 .idex-view-panel-box{
 	font-size: 14px;
 	line-height: 1.5;
