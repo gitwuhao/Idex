@@ -55,7 +55,12 @@ Idex.Module.prototype={
 		};
 	},
 	saveCache : function(){
-		$.cache.put(this.CACHE_KEY,JSON.stringify(this.RAW_DATA),new Date());
+		var json=this.RAW_DATA;
+		if(json && json.length>0){
+			$.cache.put(this.CACHE_KEY,JSON.stringify(this.RAW_DATA),new Date());
+		}else{
+			$.cache.remove(this.CACHE_KEY);
+		}
 	},
 	initRawData : function(json){
 		this.listJSON=json;
@@ -94,7 +99,7 @@ Idex.Module.prototype={
 			data : 'method=query&_t=' + this.ACTION_TYPE,
 			$owner : this,
 			success : function(json){
-				if(this.$owner.ACTION_TYPE==CUSTOM_ACTION_TYPE){
+				if(this.$owner.ACTION_TYPE==CUSTOM_ACTION_TYPE && (!json || json.length==0)){
 					this.$owner.$moduleBox.html('<div class="error-msg">空空的...</div>');
 				}else{
 					this.$owner.initRawData(json||[]);
