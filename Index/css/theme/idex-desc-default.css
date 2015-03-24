@@ -826,5 +826,59 @@ ol{
 .idex-desc-box.style5 .image-ctable .image-col:last-child{
 	padding: 0px;
 }
-
 /*------------------------- 样式5 -------------------------*/
+
+/*+++++++++++++++++++++++++ 样式6 +++++++++++++++++++++++++*/
+.idex-desc-box.style6 .text-title {
+	margin: 0px 0px 5px 0px;
+}
+.idex-desc-box.style6 .layout {
+	margin-bottom: 5px;
+}
+.idex-desc-box.style6 .img-b{
+	border: 1px solid #DDD;
+	box-sizing: border-box;
+}
+.idex-desc-box.style6 .img-p{
+	padding: 5px;
+	background-color: #FFF;
+	box-sizing: border-box;
+}
+.idex-desc-box.style6 .p-r-b{
+	padding: 0px 5px 5px 0px;
+}
+.idex-desc-box.style6 .p-b{
+	padding: 0px 0px 5px 0px;
+}
+.idex-desc-box.style6 .p-r{
+	padding: 0px 5px 0px 0px;
+}
+.idex-desc-box.style6 .p-n{
+	padding: 0px;
+}
+.idex-desc-box.style6 .image-rtable .image-row{
+	margin: 0px 0px 5px 0px;
+}
+.idex-desc-box.style6 .image-rtable .image-row:last-child{
+	margin: 0px;
+}
+.idex-desc-box.style6 .image-rtable .r-b {
+	padding: 0px 5px 0px 0px;
+}
+.idex-desc-box.style6 .image-rtable .r-b:last-child {
+	padding: 0px;
+}
+.idex-desc-box.style6 .image-ctable .image-clink,.idex-desc-box.style6 .image-ctable .image-ctext{
+	margin: 5px 0px 0px 0px;
+}
+.idex-desc-box.style6 .image-ctable .image-clink:first-child,.idex-desc-box.style6  .image-ctable .image-ctext:first-child{
+	margin: 0px;
+}
+.idex-desc-box.style6 .image-ctable .image-col{
+	padding: 0px 5px 0px 0px;
+}
+.idex-desc-box.style6 .image-ctable .image-col:last-child{
+	padding: 0px;
+}
+/*------------------------- 样式1 -------------------------*/
+
