@@ -308,10 +308,20 @@ return {
 		this.$listbox.click({
 			me : this
 		},function(event){
-			var target=event.target;
-			if($.hasClass(target,'create') || $.hasClass(target.parentElement,'create')){
+			var type,
+				target=event.target,
+				parentElement=target.parentElement;
+			if($.hasClass(target,'create') || $.hasClass(parentElement,'create')){
+				type='create';
+			}else if($.hasClass(target,'reset') || $.hasClass(target.parentElement,'reset')){
+				type='reset';
+			}else{
+				return;
+			}
+
+			if(type){
 				var itemElement=$(target).parentsUntil('.idex-list-item').parent();
-				event.data.me.on('createClick',itemElement[0]);
+				event.data.me.on(type+'Click',itemElement[0]);
 			}
 		});
 	},
@@ -360,6 +370,9 @@ return {
 				}
 			}
 		});
+	},
+	onResetClick : function(element){
+		CF.info('onResetClick');
 	},
 	resetSellerCat : function(){
 		this.$category.hide();
@@ -565,6 +578,11 @@ return {
 						'<span class="last-user">',item.last_user_nick,'</span>'
 						);
 				}
+				/*
+				html.push(
+						'&nbsp;&nbsp;&nbsp;&nbsp;<a href="#list" class="reset" title="清空宝贝的Idex详情，选择模板重新创建。">清空详情</a>'
+						);
+				*/
 				if(item.publish_time){
 					html.push(
 						'<br/>',
